@@ -6,7 +6,7 @@
 <title>Bibliothèque de sections, le catalogue</title>
 <meta name="description" content="Chaque section de la bibliothèque de landings, avec sa fiche et un contenu fictif.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="generator" content="assemble-landing.py · sha256:6abee2f6f92b804463c8d5c2730e15678c88b4c9a4d752e7c49047ad3d129562">
+<meta name="generator" content="assemble-landing.py · sha256:7424029429f384dbcb9145a3bba0ac496a96b1decb0cb688a22b06c8a20dcb94">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap">
@@ -5647,12 +5647,15 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
   border-radius: max(8px, calc(var(--radius-card) - 4px));
 }
 
+/* The face sits in the upper third of a portrait: the 16:9 crop on mobile
+   keeps it in frame. */
 .s-people__portrait img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 28%;
 }
 
 .s-people__initials {
@@ -9970,7 +9973,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
 <div class="lib-intro">
   <div class="wrap lib-intro__inner">
     <p class="lib-intro__title">Bibliothèque de sections : le catalogue</p>
-    <p class="lib-intro__text">Toutes les sections de la bibliothèque, dans un ordre de récit plausible, remplies avec le contenu d’exemple de leurs slots : une marque fictive (Meridian Conseil, cabinet climat inventé) et une offre fictive. Avant chaque section, sa fiche dit l’objection qu’elle traite, quand l’utiliser, quand l’éviter, ce qui se passe en mouvement réduit et quels slots elle prend. Une vraie page n’en prend qu’une dizaine. Page assemblée par ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py depuis catalogue.json.</p>
+    <p class="lib-intro__text">Toutes les sections de la bibliothèque, dans un ordre de récit plausible, remplies avec le contenu d’exemple de leurs slots : une marque fictive (Meridian Conseil, cabinet climat inventé) et une offre fictive. Avant chaque section, sa fiche dit l’objection qu’elle traite, quand l’utiliser, quand l’éviter, ce qui se passe en mouvement réduit et quels slots elle prend. Une vraie page n’en prend qu’une dizaine. Page assemblée par le script assemble-landing.py du plugin (fabrique/scripts/) depuis catalogue.json. Dans cette copie en ligne, les emplacements d’image portent des photos Pexels, à la place des vraies photos d’une marque.</p>
     <nav class="lib-intro__toc" aria-label="Sections du catalogue"><ol role="list"><li><a href="#hero"><code>hero</code> Hero à objet fort</a></li><li><a href="#hero-editorial"><code>hero-editorial</code> Hero éditorial (titre en pleine largeur)</a></li><li><a href="#hero-image-title"><code>hero-image-title</code> Hero à image dans le titre</a></li><li><a href="#sommaire"><code>chapters</code> Sommaire des chapitres</a></li><li><a href="#preuves"><code>proof-band</code> Bande de preuve immédiate</a></li><li><a href="#logos"><code>logos</code> Logos clients</a></li><li><a href="#pieces"><code>problem-evidence</code> Problème en pièces à conviction</a></li><li><a href="#probleme"><code>problem-pinned</code> Problème épinglé</a></li><li><a href="#pivot"><code>pivot</code> Basculement typographique</a></li><li><a href="#formules"><code>choice-gate</code> Porte de choix</a></li><li><a href="#orientation"><code>recommender</code> Recommandeur d’offre</a></li><li><a href="#benefits"><code>benefits</code> Bénéfices</a></li><li><a href="#parcours"><code>journey</code> Parcours en scrollytelling</a></li><li><a href="#programme"><code>program</code> Programme détaillé</a></li><li><a href="#parole"><code>quote-interlude</code> Citation en respiration</a></li><li><a href="#kit"><code>showcase-dark</code> Vitrine d’un objet tangible (bande sombre)</a></li><li><a href="#rythme"><code>map-pinned</code> Carte ou schéma épinglé</a></li><li><a href="#demonstrateur"><code>demonstrator</code> Démonstrateur</a></li><li><a href="#estimation"><code>demonstrator</code> Démonstrateur</a></li><li><a href="#animateurs"><code>people</code> Personnes (experts, intervenants, équipe)</a></li><li><a href="#lettre"><code>letter</code> Lettre signée</a></li><li><a href="#avis"><code>testimonials</code> Témoignages</a></li><li><a href="#mur-avis"><code>wall</code> Mur d’avis qui se déplie</a></li><li><a href="#cas"><code>cases</code> Cas avant / après</a></li><li><a href="#realisations"><code>work-wall</code> Mur de réalisations filtrable</a></li><li><a href="#chiffre"><code>evidence-chart</code> Un chiffre, un graphique, une source</a></li><li><a href="#resultats"><code>outcomes</code> Résultats (respiration)</a></li><li><a href="#pour-qui"><code>for-whom</code> Pour qui, et pour qui ce n’est pas</a></li><li><a href="#pratique"><code>facts-grid</code> Fiche pratique</a></li><li><a href="#ensuite"><code>process</code> Étapes (ce qui se passe ensuite)</a></li><li><a href="#comparatif"><code>comparison</code> Tableau comparatif</a></li><li><a href="#propriete"><code>ownership-diagram</code> Schéma de propriété (le dossier reste, l’outil change)</a></li><li><a href="#suivi"><code>pricing-table</code> Grille tarifaire</a></li><li><a href="#carte"><code>bundle-receipt</code> Ticket à la carte qui bascule vers le pack</a></li><li><a href="#offre"><code>offer-ticket</code> Bloc de conversion en billet</a></li><li><a href="#garantie"><code>guarantee</code> Garantie (sceau et conditions exactes)</a></li><li><a href="#guide"><code>lead-capture</code> Formulaire de capture</a></li><li><a href="#contact"><code>form</code> Formulaire qualifiant (rendez-vous, démo, devis)</a></li><li><a href="#inscription"><code>event-registration</code> Inscription à un événement (sur place ou en ligne)</a></li><li><a href="#faq"><code>faq</code> FAQ avec carte collante</a></li><li><a href="#mentions"><code>legal</code> Informations légales</a></li><li><a href="#final"><code>final-cta</code> CTA final (bande sombre)</a></li></ol></nav>
   </div>
 </div>
@@ -10033,7 +10036,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
 <!-- section:hero-image-title -->
 <section id="hero-image-title" class="s-himg section" aria-labelledby="hero-image-title-titre" data-section="hero-image-title">
   <div class="wrap">
-    <h2 id="hero-image-title-titre" class="s-himg__title">Le bilan carbone <span class="s-himg__glue"><span class="s-himg__pic s-himg__pic--gradient" aria-hidden="true" data-qa-decor data-reveal><svg viewBox="0 0 220 100" fill="currentColor" aria-hidden="true"><rect x="44" y="20" width="22" height="58" rx="6" opacity=".5"/><rect x="76" y="30" width="22" height="48" rx="6" opacity=".62"/><rect x="108" y="41" width="22" height="37" rx="6" opacity=".74"/><rect x="140" y="52" width="22" height="26" rx="6" opacity=".86"/><rect x="172" y="61" width="22" height="17" rx="6"/><path d="M36 86h166" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity=".6"/></svg></span>&nbsp;</span>de votre PME<br><span class="hl">en six semaines</span></h2>
+    <h2 id="hero-image-title-titre" class="s-himg__title">Le bilan carbone <span class="s-himg__glue"><span class="s-himg__pic s-himg__pic--gradient" aria-hidden="true" data-qa-decor data-reveal><img src="https://images.pexels.com/photos/963631/pexels-photo-963631.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=440&amp;h=200&amp;fm=webp" alt="" width="440" height="200" fetchpriority="high"></span>&nbsp;</span>de votre PME<br><span class="hl">en six semaines</span></h2>
     <div class="s-himg__body">
       <p class="s-himg__lede lede">Six ateliers en petit groupe pour mesurer vos émissions et répondre aux questionnaires carbone de vos clients.</p>
       <div class="s-himg__buttons">
@@ -10940,7 +10943,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
     </div>
     <ul class="s-people__grid" role="list" data-shape="rounded" data-reveal-group>
       <li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">NF</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/20819288/pexels-photo-20819288.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Nadia Ferrand</h3>
           <p class="s-people__role">Ingénieure énergie, animatrice</p>
@@ -10951,7 +10954,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
           </dl>
         </div>
       </li><li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">OB</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/30976000/pexels-photo-30976000.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Olivier Brunet</h3>
           <p class="s-people__role">Acheteur industriel, animateur</p>
@@ -10979,7 +10982,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
       <h2 id="lettre-titre" class="section-title">Pourquoi le bilan se fait<br><span class="hl">dans vos fichiers</span></h2>
     </div>
     <div class="s-letter__margin" data-reveal="fade">
-      <div class="s-letter__portrait"><span class="s-letter__initials" aria-hidden="true">NF</span></div>
+      <div class="s-letter__portrait"><img src="https://images.pexels.com/photos/20819288/pexels-photo-20819288.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=480&amp;h=480&amp;fm=webp" alt="" width="480" height="480" loading="lazy"></div>
       <p class="s-letter__from"><strong class="s-letter__name">Nadia Ferrand</strong><span class="s-letter__role">Ingénieure énergie, animatrice des ateliers</span></p>
       <p class="s-letter__date">Lyon, le 4 janvier 2027</p>
       <p class="s-letter__note">Personnage et lettre fictifs, pour la démonstration</p>
@@ -11267,7 +11270,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
         <li class="s-work__item" data-work-key="fonderie" data-work-tags="industrie" style="counter-reset: work 1" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media" aria-hidden="true" data-qa-decor><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Bilan 2025</b><span class="obj-push">Fonderie</span></div><div class="obj-rule"></div><div class="obj-bars"><div class="obj-bar is-hl" style="--v:.71"><span>Métal</span><span class="obj-bar__track"><i class="obj-bar__fill"></i></span><b>71 %</b></div><div class="obj-bar" style="--v:.14"><span>Énergie</span><span class="obj-bar__track"><i class="obj-bar__fill"></i></span><b>14 %</b></div><div class="obj-bar" style="--v:.09"><span>Fret</span><span class="obj-bar__track"><i class="obj-bar__fill"></i></span><b>9 %</b></div></div></div></div></div>
+            <div class="s-work__media" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/37363857/pexels-photo-37363857.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Industrie</p>
             <p class="s-work__year label">2026</p>
             <h3 class="s-work__title">Le bilan carbone d’une fonderie d’aluminium</h3>
@@ -11279,7 +11282,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
         </li><li class="s-work__item" data-work-key="cliniques" data-work-tags="sante" style="counter-reset: work 2" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media s-work__media--tint" aria-hidden="true" data-qa-decor><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Trajectoire</b><span class="obj-push">2025 à 2030</span></div><div class="obj-rule"></div><div class="obj-chart"><i style="--v:1"></i><i style="--v:.9"></i><i style="--v:.82"></i><i style="--v:.75"></i><i class="is-hl" style="--v:.68"></i></div></div></div></div>
+            <div class="s-work__media s-work__media--tint" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/29948395/pexels-photo-29948395.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Santé</p>
             <p class="s-work__year label">2025</p>
             <h3 class="s-work__title">La trajectoire 2030 d’un groupe de cliniques</h3>
@@ -11291,7 +11294,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
         </li><li class="s-work__item" data-work-key="plan-climat" data-work-tags="public" style="counter-reset: work 3" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media s-work__media--warm" aria-hidden="true" data-qa-decor><div class="obj obj-sheet s-work__cover"><div class="obj-head"><span class="obj-mark"></span><b>Plan climat</b><span class="obj-push">40 actions</span></div><div class="obj-rule"></div><div class="obj-check"><span class="is-done">Rénovation des écoles</span><span class="is-done">Transport à la demande</span><span>Réseau de chaleur</span></div></div></div>
+            <div class="s-work__media s-work__media--warm" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/37399388/pexels-photo-37399388.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Collectivités</p>
             <p class="s-work__year label">2025</p>
             <h3 class="s-work__title">Le plan climat d’une communauté de communes</h3>
@@ -11303,7 +11306,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
         </li><li class="s-work__item" data-work-key="menuiserie" data-work-tags="industrie" style="counter-reset: work 4" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media" aria-hidden="true" data-qa-decor><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Premier bilan</b><span class="obj-push">Menuiserie</span></div><div class="obj-rule"></div><div class="obj-kpi">80 %<small>mesuré</small></div></div></div></div>
+            <div class="s-work__media" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/13005858/pexels-photo-13005858.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Industrie</p>
             <p class="s-work__year label">2024</p>
             <h3 class="s-work__title">Le premier bilan d’une menuiserie de 40 salariés</h3>
@@ -11315,7 +11318,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
         </li><li class="s-work__item" data-work-key="laboratoires" data-work-tags="sante" style="counter-reset: work 5" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media s-work__media--dark" aria-hidden="true" data-qa-decor><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Achats</b><span class="obj-push">12 sites</span></div><div class="obj-rule"></div><div class="obj-grid" style="--cols:2"><span class="is-head">Famille</span><span class="is-head">Part</span><span class="is-warn">Réactifs</span><span class="is-warn">38 %</span><span>Consommables</span><span>24 %</span><span>Transport</span><span>15 %</span></div></div></div></div>
+            <div class="s-work__media s-work__media--dark" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/6627667/pexels-photo-6627667.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Santé</p>
             <p class="s-work__year label">2026</p>
             <h3 class="s-work__title">Les achats d’un réseau de laboratoires</h3>
@@ -11327,7 +11330,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
         </li><li class="s-work__item" data-work-key="bricolage" data-work-tags="commerce" style="counter-reset: work 6" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media s-work__media--tint" aria-hidden="true" data-qa-decor><div class="obj obj-window s-work__cover"><div class="obj-window__bar"><i></i><i></i><i></i><span>Fret amont</span></div><div class="obj-window__body"><div class="obj-chart"><i style="--v:1"></i><i style="--v:.8"></i><i style="--v:.62"></i><i class="is-hl" style="--v:.5"></i></div></div></div></div>
+            <div class="s-work__media s-work__media--tint" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Commerce et services</p>
             <p class="s-work__year label">2025</p>
             <h3 class="s-work__title">La logistique d’une enseigne de bricolage</h3>
@@ -11339,7 +11342,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
         </li><li class="s-work__item" data-work-key="lycees" data-work-tags="public" style="counter-reset: work 7" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media" aria-hidden="true" data-qa-decor><div class="obj obj-sheet s-work__cover"><div class="obj-head"><span class="obj-mark"></span><b>Lycées</b><span class="obj-push">112 sites</span></div><div class="obj-rule"></div><div class="obj-kpi">112<small>établissements</small></div></div></div>
+            <div class="s-work__media" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/35758714/pexels-photo-35758714.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Collectivités</p>
             <p class="s-work__year label">2024</p>
             <h3 class="s-work__title">Le bilan des lycées d’une région</h3>
@@ -11351,7 +11354,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
         </li><li class="s-work__item" data-work-key="editeur" data-work-tags="commerce" style="counter-reset: work 8" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media s-work__media--warm" aria-hidden="true" data-qa-decor><div class="obj obj-sheet s-work__cover"><div class="obj-head"><span class="obj-mark"></span><b>Numérique</b><span class="obj-push">2026</span></div><div class="obj-rule"></div><div class="obj-bars"><div class="obj-bar is-hl" style="--v:.62"><span>Postes</span><span class="obj-bar__track"><i class="obj-bar__fill"></i></span><b>62 %</b></div><div class="obj-bar" style="--v:.38"><span>Serveurs</span><span class="obj-bar__track"><i class="obj-bar__fill"></i></span><b>38 %</b></div></div></div></div>
+            <div class="s-work__media s-work__media--warm" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/36706459/pexels-photo-36706459.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Commerce et services</p>
             <p class="s-work__year label">2026</p>
             <h3 class="s-work__title">Le numérique d’un éditeur de logiciels</h3>
@@ -11363,7 +11366,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
         </li><li class="s-work__item" data-work-key="verrerie" data-work-tags="industrie" style="counter-reset: work 9" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media" aria-hidden="true" data-qa-decor><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Scénarios</b><span class="obj-push">Fours</span></div><div class="obj-rule"></div><div class="obj-check"><span class="is-done">Four hybride</span><span class="is-done">Four électrique</span><span>Biométhane</span></div></div></div></div>
+            <div class="s-work__media" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/36423789/pexels-photo-36423789.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Industrie</p>
             <p class="s-work__year label">2026</p>
             <h3 class="s-work__title">Trois scénarios pour les fours d’une verrerie</h3>
@@ -11374,7 +11377,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
           <template id="realisations-verrerie"><div data-viewer-page data-viewer-src="" data-viewer-alt="" data-viewer-caption="Scénario 1 : four hybride, gaz et électricité."><div class="obj s-work__page" aria-hidden="true"><div class="obj-head"><span class="obj-mark"></span><b>Scénario 1 · four hybride</b><span class="obj-push">p. 1 sur 3</span></div><div class="obj-rule"></div><div class="obj-kpi">−45 %<small>sur le four</small></div><div class="obj-rule"></div><p class="obj-small">Investissement moyen, arrêt de production de trois semaines.</p></div></div><div data-viewer-page data-viewer-src="" data-viewer-alt="" data-viewer-caption="Scénario 2 : four entièrement électrique."><div class="obj s-work__page" aria-hidden="true"><div class="obj-head"><span class="obj-mark"></span><b>Scénario 2 · four électrique</b><span class="obj-push">p. 2 sur 3</span></div><div class="obj-rule"></div><div class="obj-kpi">−80 %<small>sur le four</small></div><div class="obj-rule"></div><p class="obj-small">Raccordement électrique à renforcer avant 2028.</p></div></div><div data-viewer-page data-viewer-src="" data-viewer-alt="" data-viewer-caption="Les trois scénarios comparés sur les mêmes critères."><div class="obj s-work__page" aria-hidden="true"><div class="obj-head"><span class="obj-mark"></span><b>Comparaison</b><span class="obj-push">p. 3 sur 3</span></div><div class="obj-rule"></div><div class="obj-grid" style="--cols:3"><span class="is-head">Scénario</span><span class="is-head">Baisse</span><span class="is-head">Coût</span><span>Hybride</span><span>45 %</span><span>Moyen</span><span class="is-warn">Électrique</span><span class="is-warn">80 %</span><span class="is-warn">Élevé</span><span>Biométhane</span><span>60 %</span><span>Variable</span></div></div></div></template>
         </li>
       </ol>
-      <div class="s-work__stage" aria-hidden="true" data-qa-decor><div class="s-work__media"><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Bilan 2025</b><span class="obj-push">Fonderie</span></div><div class="obj-rule"></div><div class="obj-bars"><div class="obj-bar is-hl" style="--v:.71"><span>Métal</span><span class="obj-bar__track"><i class="obj-bar__fill"></i></span><b>71 %</b></div><div class="obj-bar" style="--v:.14"><span>Énergie</span><span class="obj-bar__track"><i class="obj-bar__fill"></i></span><b>14 %</b></div><div class="obj-bar" style="--v:.09"><span>Fret</span><span class="obj-bar__track"><i class="obj-bar__fill"></i></span><b>9 %</b></div></div></div></div></div></div>
+      <div class="s-work__stage" aria-hidden="true" data-qa-decor><div class="s-work__media"><img src="https://images.pexels.com/photos/37363857/pexels-photo-37363857.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div></div>
     </div>
   </div>
 </section>
@@ -12086,7 +12089,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
 <footer id="pied" class="s-footer" data-section="footer">
   <div class="wrap s-footer__inner">
     <p class="s-footer__brand"><svg class="s-footer__mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M16 3c-5 4-5 22 0 26M16 3c5 4 5 22 0 26M3.5 12h25M3.5 20h25"/></svg><span>Meridian</span></p>
-    <ul class="s-footer__links" role="list"><li><a href="https://www.example.com/mentions-legales">Mentions légales</a></li><li><a href="https://www.example.com/confidentialite">Confidentialité</a></li><li><a href="mailto:bonjour@example.com">bonjour@example.com</a></li></ul>
+    <ul class="s-footer__links" role="list"><li><a href="https://www.example.com/mentions-legales">Mentions légales</a></li><li><a href="https://www.example.com/confidentialite">Confidentialité</a></li><li><a href="mailto:bonjour@example.com">bonjour@example.com</a></li><li><a href="../credits-photos/">Crédits photos</a></li></ul>
     <p class="s-footer__legal">© 2027 Meridian Conseil, marque fictive de démonstration.</p>
   </div>
 </footer>
@@ -12496,10 +12499,10 @@ html[data-offer-state="closed"] .s-receipt__switch {
        data-msg-success              confirmation shown after sending
        data-msg-failure              shown when sending fails
        data-msg-unwired              added after the success message when
-                                     the action is still a {{PLACEHOLDER}}
+                                     the action is still a {{…}} marker
                                      or empty (demonstration: nothing sent)
      form[data-demo]                 written on load when the action is
-                                     still a {{PLACEHOLDER}} or empty:
+                                     still a {{…}} marker or empty:
                                      submissions are demonstrations, never
                                      sent, counted by tracking.js under
                                      form_demo_submit instead of the lead
@@ -12582,7 +12585,7 @@ html[data-offer-state="closed"] .s-receipt__switch {
     status(form, text);
   }
 
-  // The endpoint is still a {{PLACEHOLDER}} (or missing): a demonstration.
+  // The endpoint is still a {{…}} marker (or missing): a demonstration.
   function unwired(form) {
     var action = form.getAttribute('action') || '';
     return !action || /\{\{/.test(action);

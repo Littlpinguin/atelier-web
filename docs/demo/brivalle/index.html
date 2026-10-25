@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="La matinale flotte électrique, le 3 juin 2027">
 <meta property="og:description" content="À Bordeaux et en direct, gratuit, replay sous 48 heures pour tous les inscrits.">
-<meta name="generator" content="assemble-landing.py · sha256:fe69245729cf66f43c4a2d4831b8e8ce095e29f89ff3a7abed3b92b96c628ef9">
+<meta name="generator" content="assemble-landing.py · sha256:af56f16441d92c5d35eeefbb476bad2f943c77954ecfbc315b6bfda7755e6802">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -1555,77 +1555,38 @@ mark:where([data-annotate]) {
     transform: none;
   }
 }
-/* ---- section : hero-editorial ---- */
-/* Editorial opening: the title is the poster. A 12-column grid on wide
-   screens, the title across it, a brand rule drawn under it, then the lede
-   and the action side by side, then a line of practical facts. */
-.s-hedit {
-  padding-block: clamp(40px, 1.5rem + 5vw, 104px) clamp(56px, 2rem + 5vw, 112px);
+/* ---- section : hero ---- */
+.s-hero {
+  padding-block: clamp(40px, 1.5rem + 5vw, 104px) clamp(64px, 2.5rem + 5vw, 120px);
 }
 
-.s-hedit__grid {
+.s-hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: end;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(48px, 2rem + 5vw, 112px);
+  align-items: center;
 }
 
-.s-hedit__title {
-  font-size: clamp(2.75rem, 0.6rem + 7.3vw, 7rem);
-  line-height: 0.98;
+.s-hero__title {
+  font-size: var(--t-h1);
+  line-height: 1.02;
   font-weight: 800;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.04em;
   text-wrap: balance;
-  overflow-wrap: break-word;
 }
 
-/* Optical alignment: the title box starts at its cap height and ends on its
-   baseline, so the rule sits at a true distance from the letters. */
-@supports (text-box: trim-both cap alphabetic) {
-  .s-hedit__title {
-    text-box: trim-both cap alphabetic;
-  }
-}
-
-.s-hedit__in {
-  display: inline-block;
-}
-
-.s-hedit__rule {
-  display: block;
-  height: 4px;
-  margin-block: clamp(28px, 1rem + 2.6vw, 60px) clamp(24px, 1rem + 1.6vw, 44px);
-  border-radius: 4px;
-  background: var(--gradient);
-  transform-origin: 0 50%;
-}
-
-.rv-on .s-hedit__rule[data-reveal] {
-  opacity: 1;
-  transform: scaleX(0);
-  transition: transform 1.2s var(--ease) 0.15s;
-}
-
-.rv-on .s-hedit__rule[data-reveal].is-in {
-  transform: none;
-}
-
-.s-hedit__lede {
-  max-width: 32em;
+.s-hero__lede {
+  max-width: 30em;
+  margin-top: clamp(20px, 1rem + 1vw, 28px);
   color: var(--muted);
 }
 
-.s-hedit__actions {
-  display: grid;
-  justify-items: start;
-  gap: 14px;
-  margin-top: clamp(24px, 1rem + 1vw, 32px);
-}
-
-.s-hedit__buttons {
+.s-hero__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px 28px;
+  gap: 18px 28px;
+  margin-top: clamp(28px, 1.4rem + 1.4vw, 40px);
 }
 
 /* Deadline line: a status dot, then the deadline and its detail. The
@@ -1633,7 +1594,7 @@ mark:where([data-annotate]) {
    starts a line of its own, the separator is clipped with the edge, so it
    never ends or starts a line. A wrapped detail lines up with the deadline
    text, after the dot. */
-.s-hedit__deadline {
+.s-hero__deadline {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
@@ -1644,7 +1605,7 @@ mark:where([data-annotate]) {
   line-height: 1.4;
 }
 
-.s-hedit__deadline::before {
+.s-hero__deadline::before {
   content: "";
   width: 8px;
   height: 8px;
@@ -1654,108 +1615,248 @@ mark:where([data-annotate]) {
   box-shadow: 0 0 0 4px var(--tint-accent);
 }
 
-.s-hedit__when {
+.s-hero__when {
   display: flex;
   flex-wrap: wrap;
   gap: 2px 24px;
   overflow: hidden;
 }
 
-.s-hedit__detail {
+.s-hero__detail {
   position: relative;
 }
 
 /* Centred in the 24 px gap (4 + 16 + 4), its box wholly outside the line
    once the detail starts it. */
-.s-hedit__sep {
+.s-hero__sep {
   position: absolute;
   inset-inline-end: calc(100% + 4px);
   width: 16px;
   text-align: center;
 }
 
-.s-hedit__proof {
-  display: flex;
-  align-items: baseline;
+.s-hero__visual {
+  position: relative;
+  justify-self: end;
+  width: 100%;
+  max-width: 500px;
+}
+
+.s-hero__img {
+  width: 100%;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-lift);
+}
+
+.s-hero__doc .obj-sheet {
+  padding: clamp(18px, 0.8rem + 1vw, 28px);
+}
+
+.s-hero__doc .obj-kpi {
+  margin-top: 4px;
+}
+
+.s-hero__chip {
+  bottom: -18px;
+  left: 28px;
+}
+
+/* Rotating word: every word in the same grid cell, the widest sets the box. */
+.s-hero__rot {
+  display: inline-grid;
+}
+
+.s-hero__rot > span {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(0.25em);
+  transition:
+    opacity 0.5s var(--ease),
+    transform 0.5s var(--ease);
+}
+
+.s-hero__rot > span.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1100px) {
+  .s-hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .s-hero__visual {
+    justify-self: start;
+  }
+}
+/* ---- section : facts-grid ---- */
+.s-facts--flush {
+  padding-top: 0;
+}
+
+.s-facts__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: clamp(28px, 1rem + 1.4vw, 40px) clamp(20px, 0.8rem + 1.6vw, 40px);
+}
+
+/* Columns follow the number of facts, so that no row ends half empty:
+   4 and 8 facts in fours, 3, 5 and 6 in threes, 7 in fours. */
+@media (min-width: 1101px) {
+  .s-facts__list {
+    --facts-cols: 4;
+    grid-template-columns: repeat(var(--facts-cols), minmax(0, 1fr));
+  }
+
+  .s-facts__list:is([data-count="3"], [data-count="5"], [data-count="6"]) {
+    --facts-cols: 3;
+  }
+
+  .s-facts__list[data-count="2"] {
+    --facts-cols: 2;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1100px) {
+  .s-facts__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Each fact sits on its own rule: label, value, note. */
+.s-facts__item {
+  display: grid;
+  align-content: start;
   gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-strong);
+}
+
+/* Labels, values and notes line up across the columns of a row. */
+@supports (grid-template-rows: subgrid) {
+  .s-facts__item {
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+  }
+}
+
+.s-facts__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.s-facts__value {
+  font-size: 1.1875rem;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.s-facts__note {
   color: var(--muted);
   font-size: var(--t-small);
   line-height: 1.45;
 }
 
-.s-hedit__proof svg {
+.s-facts__cta {
+  margin-top: clamp(32px, 1.4rem + 1.6vw, 48px);
+}
+
+/* Icons: masks filled with the highlight token (no icon font, no colour in
+   the drawings). The label always says what the icon shows. */
+.s-facts__icon {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E");
   flex: none;
-  width: 16px;
-  height: 16px;
-  color: var(--hl);
-  transform: translateY(3px);
+  width: 20px;
+  height: 20px;
+  background-color: var(--hl);
+  -webkit-mask: var(--ic) center / contain no-repeat;
+  mask: var(--ic) center / contain no-repeat;
 }
 
-/* Facts: a colophon under the action, one hairline above, labels in the
-   utility face. */
-.s-hedit__facts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px var(--gutter);
-  margin-top: clamp(40px, 1.6rem + 3vw, 80px);
-  padding-top: clamp(18px, 0.8rem + 0.8vw, 26px);
-  border-top: 1px solid var(--line);
+.s-facts__icon--calendar {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M3 10h18M8 3v4M16 3v4'/%3E%3C/svg%3E");
 }
 
-.s-hedit__fact {
-  display: grid;
-  align-content: start;
-  gap: 4px;
+.s-facts__icon--clock {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E");
 }
 
-.s-hedit__fact dd {
-  font-weight: 600;
-  line-height: var(--lh-snug);
-  text-wrap: balance;
+.s-facts__icon--hourglass {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9'/%3E%3C/svg%3E");
 }
 
-.s-hedit__object {
-  max-width: 520px;
-  margin-top: clamp(32px, 1.4rem + 2vw, 56px);
+.s-facts__icon--pin {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z'/%3E%3Ccircle cx='12' cy='10' r='2.5'/%3E%3C/svg%3E");
 }
 
-@media (min-width: 900px) {
-  .s-hedit__facts {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(0, 1fr);
-  }
-
-  .s-hedit__in {
-    margin-inline-start: 16.666%;
-  }
+.s-facts__icon--screen {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='12' rx='2'/%3E%3Cpath d='M8 20h8M12 16v4'/%3E%3C/svg%3E");
 }
 
-@media (min-width: 1101px) {
-  .s-hedit__grid {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--gutter);
+.s-facts__icon--people {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='8' r='3.5'/%3E%3Cpath d='M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8'/%3E%3C/svg%3E");
+}
+
+.s-facts__icon--price {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12V4h8l10 10-8 8z'/%3E%3Ccircle cx='7.5' cy='8.5' r='1.5'/%3E%3C/svg%3E");
+}
+
+.s-facts__icon--list {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='4' width='14' height='17' rx='2'/%3E%3Cpath d='M9 3h6v3H9zM9 12.5l2 2 4-4'/%3E%3C/svg%3E");
+}
+
+.s-facts__icon--language {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 5h16v11H10l-6 4z'/%3E%3Cpath d='M8 9h8M8 12h5'/%3E%3C/svg%3E");
+}
+
+.s-facts__icon--access {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Ccircle cx='12' cy='7.5' r='1.2'/%3E%3Cpath d='M7.5 10.5h9M12 10.5v3.5l-2.5 4M12 14l2.5 4'/%3E%3C/svg%3E");
+}
+
+.s-facts__icon--file {
+  --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h8l4 4v14H6z'/%3E%3Cpath d='M14 3v4h4M9 12h6M9 16h6'/%3E%3C/svg%3E");
+}
+
+/* Phone: a spec sheet, label on the left, value and note on the right. */
+@media (max-width: 640px) {
+  .s-facts__list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--line-strong);
   }
 
-  .s-hedit__title,
-  .s-hedit__rule,
-  .s-hedit__facts {
-    grid-column: 1 / -1;
+  .s-facts__item {
+    grid-row: auto;
+    grid-template-rows: none;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 4px 16px;
+    padding: 14px 0;
   }
 
-  .s-hedit__lede {
-    grid-column: 1 / span 6;
+  .s-facts__label {
+    grid-row: 1 / span 2;
+    align-self: start;
+    padding-top: 0.3em;
+    letter-spacing: 0.04em;
   }
 
-  .s-hedit__actions {
-    grid-column: 8 / -1;
-    margin-top: 0;
+  .s-facts__value,
+  .s-facts__note {
+    grid-column: 2;
   }
 
-  .s-hedit__object {
-    grid-column: 7 / -1;
-    justify-self: end;
-    width: 100%;
+  .s-facts__value {
+    font-size: 1.0625rem;
   }
 }
 /* ---- section : outcomes ---- */
@@ -2047,12 +2148,15 @@ mark:where([data-annotate]) {
   border-radius: max(8px, calc(var(--radius-card) - 4px));
 }
 
+/* The face sits in the upper third of a portrait: the 16:9 crop on mobile
+   keeps it in frame. */
 .s-people__portrait img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 28%;
 }
 
 .s-people__initials {
@@ -3087,27 +3191,51 @@ mark:where([data-annotate]) {
 </header>
 <!-- /section:topbar -->
 <main id="contenu">
-<!-- section:hero-editorial -->
-<section id="hero-editorial" class="s-hedit section" aria-labelledby="hero-editorial-titre" data-section="hero-editorial">
-  <div class="wrap s-hedit__grid">
-    <h1 id="hero-editorial-titre" class="s-hedit__title">Passer vos tournées<br><span class="hl s-hedit__in">à l’électrique</span></h1>
-    <span class="s-hedit__rule" aria-hidden="true" data-reveal></span>
-    <p class="s-hedit__lede lede">Une matinée à Bordeaux et en direct pour les responsables de flotte, avec trois retours d’expérience chiffrés.</p>
-    <div class="s-hedit__actions">
-      <div class="s-hedit__buttons">
+<!-- section:hero -->
+<section id="hero" class="s-hero section" aria-labelledby="hero-titre" data-section="hero">
+  <div class="wrap s-hero__grid">
+    <div class="s-hero__text">
+      <h1 id="hero-titre" class="s-hero__title">Électrifier<br><span class="hl">vos tournées</span></h1>
+      <p class="s-hero__lede lede">Une matinée à Bordeaux et en direct pour les responsables de flotte, avec trois retours d’expérience chiffrés.</p>
+      <div class="s-hero__actions">
         <a class="btn btn--primary" href="#inscription" data-track="cta_click" data-cta-position="hero" data-cta="primaire">M’inscrire<svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
-        
+        <p class="s-hero__deadline"><span class="s-hero__when"><span data-offer-countdown data-many="Inscriptions closes dans {n} jours" data-one="Inscriptions closes demain" data-zero="Inscriptions closes ce soir">Inscriptions jusqu’au mercredi 2 juin 2027</span> <span class="s-hero__detail"><span class="s-hero__sep" aria-hidden="true">·</span>120 places sur place</span></span></p>
       </div>
-      <p class="s-hedit__deadline"><span class="s-hedit__when"><span data-offer-countdown data-many="Inscriptions closes dans {n} jours" data-one="Inscriptions closes demain" data-zero="Inscriptions closes ce soir">Inscriptions jusqu’au mercredi 2 juin 2027</span> <span class="s-hedit__detail"><span class="s-hedit__sep" aria-hidden="true">·</span>120 places sur place</span></span></p>
-      
     </div>
-    <dl class="s-hedit__facts">
-      <div class="s-hedit__fact"><dt class="label">Quand</dt><dd>Jeudi 3 juin 2027, de 8 h 30 à 13 h</dd></div><div class="s-hedit__fact"><dt class="label">Où</dt><dd>Halle Lucine à Bordeaux, et en direct</dd></div><div class="s-hedit__fact"><dt class="label">Programme</dt><dd>Trois retours d’expérience, une table ronde</dd></div><div class="s-hedit__fact"><dt class="label">Prix</dt><dd>Gratuit, replay sous 48 heures</dd></div>
+    <div class="s-hero__visual" data-reveal="right">
+      <img class="s-hero__img" src="https://images.pexels.com/photos/33623771/pexels-photo-33623771.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1000&amp;fm=webp" alt="Des dizaines d’utilitaires blancs garés en rangs serrés, vus d’en haut" width="1000" height="1000" fetchpriority="high">
+    </div>
+  </div>
+</section>
+<!-- /section:hero -->
+<!-- section:essentiel -->
+<section id="essentiel" class="s-facts section s-facts--flush" aria-labelledby="essentiel-titre" data-section="facts-grid">
+  <div class="wrap">
+    <h2 id="essentiel-titre" class="sr-only">La matinale<br><span class="hl">en pratique</span></h2>
+    
+    <dl class="s-facts__list" data-count="4" data-reveal-group>
+      <div class="s-facts__item" data-reveal>
+        <dt class="s-facts__label"><span class="s-facts__icon s-facts__icon--calendar" aria-hidden="true"></span>Quand</dt>
+        <dd class="s-facts__value">Jeudi 3 juin 2027</dd>
+        <dd class="s-facts__note">De 8 h 30 à 13 h</dd>
+      </div><div class="s-facts__item" data-reveal>
+        <dt class="s-facts__label"><span class="s-facts__icon s-facts__icon--pin" aria-hidden="true"></span>Où</dt>
+        <dd class="s-facts__value">Halle Lucine à Bordeaux</dd>
+        <dd class="s-facts__note">Et en direct</dd>
+      </div><div class="s-facts__item" data-reveal>
+        <dt class="s-facts__label"><span class="s-facts__icon s-facts__icon--list" aria-hidden="true"></span>Programme</dt>
+        <dd class="s-facts__value">Trois retours d’expérience</dd>
+        <dd class="s-facts__note">Puis une table ronde</dd>
+      </div><div class="s-facts__item" data-reveal>
+        <dt class="s-facts__label"><span class="s-facts__icon s-facts__icon--price" aria-hidden="true"></span>Prix</dt>
+        <dd class="s-facts__value">Gratuit</dd>
+        <dd class="s-facts__note">Replay sous 48 heures</dd>
+      </div>
     </dl>
     
   </div>
 </section>
-<!-- /section:hero-editorial -->
+<!-- /section:essentiel -->
 <!-- section:rapporter -->
 <section id="rapporter" class="s-outcomes section" aria-labelledby="rapporter-titre" data-section="outcomes">
   <div class="wrap">
@@ -3198,7 +3326,7 @@ mark:where([data-annotate]) {
     </div>
     <ul class="s-people__grid" role="list" data-shape="rounded" data-reveal-group>
       <li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">MR</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/40184469/pexels-photo-40184469.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Manon Ricard</h3>
           <p class="s-people__role">Responsable des données, Brivalle</p>
@@ -3209,7 +3337,7 @@ mark:where([data-annotate]) {
           </dl>
         </div>
       </li><li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">JF</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/12191498/pexels-photo-12191498.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Julien Ferrandi</h3>
           <p class="s-people__role">Ingénieur recharge, bureau d’études</p>
@@ -3220,7 +3348,7 @@ mark:where([data-annotate]) {
           </dl>
         </div>
       </li><li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">SL</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/30479371/pexels-photo-30479371.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Sarah Lemoine</h3>
           <p class="s-people__role">Directrice d’exploitation, transporteur régional</p>
@@ -3231,7 +3359,7 @@ mark:where([data-annotate]) {
           </dl>
         </div>
       </li><li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">YA</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/13375591/pexels-photo-13375591.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Yanis Arnaud</h3>
           <p class="s-people__role">Animateur de la table ronde, Brivalle</p>
@@ -3481,7 +3609,7 @@ mark:where([data-annotate]) {
 <footer id="pied" class="s-footer" data-section="footer">
   <div class="wrap s-footer__inner">
     <p class="s-footer__brand"><svg class="s-footer__mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="25" r="3"/><circle cx="25" cy="7" r="3"/><path d="M10 25h6a4.5 4.5 0 0 0 0-9h-1a4.5 4.5 0 0 1 0-9h7"/></svg><span>Brivalle</span></p>
-    <ul class="s-footer__links" role="list"><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="mailto:matinale@example.com">matinale@example.com</a></li></ul>
+    <ul class="s-footer__links" role="list"><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="mailto:matinale@example.com">matinale@example.com</a></li><li><a href="../../credits-photos/">Crédits photos</a></li></ul>
     <p class="s-footer__legal">© 2027 Brivalle, marque fictive de démonstration.</p>
   </div>
 </footer>
@@ -3890,10 +4018,10 @@ mark:where([data-annotate]) {
        data-msg-success              confirmation shown after sending
        data-msg-failure              shown when sending fails
        data-msg-unwired              added after the success message when
-                                     the action is still a {{PLACEHOLDER}}
+                                     the action is still a {{…}} marker
                                      or empty (demonstration: nothing sent)
      form[data-demo]                 written on load when the action is
-                                     still a {{PLACEHOLDER}} or empty:
+                                     still a {{…}} marker or empty:
                                      submissions are demonstrations, never
                                      sent, counted by tracking.js under
                                      form_demo_submit instead of the lead
@@ -3976,7 +4104,7 @@ mark:where([data-annotate]) {
     status(form, text);
   }
 
-  // The endpoint is still a {{PLACEHOLDER}} (or missing): a demonstration.
+  // The endpoint is still a {{…}} marker (or missing): a demonstration.
   function unwired(form) {
     var action = form.getAttribute('action') || '';
     return !action || /\{\{/.test(action);
@@ -4392,6 +4520,43 @@ mark:where([data-annotate]) {
     } else {
       applyCta();
     }
+  });
+})();
+/* ---- section : hero ---- */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.s-hero [data-rotate]').forEach(function (el) {
+    var words = el.getAttribute('data-rotate').split('|').map(function (w) { return w.trim(); }).filter(Boolean);
+    if (words.length < 2) return;
+    var stable = (el.textContent || '').trim() || words[0];
+    el.textContent = '';
+    var sr = document.createElement('span');
+    sr.className = 'sr-only';
+    sr.textContent = stable;
+    var box = document.createElement('span');
+    box.className = 's-hero__rot';
+    box.setAttribute('aria-hidden', 'true');
+    words.forEach(function (w, i) {
+      var s = document.createElement('span');
+      s.textContent = w;
+      if (i === 0) s.className = 'is-on';
+      box.appendChild(s);
+    });
+    el.appendChild(sr);
+    el.appendChild(box);
+    if (reduce) return;
+    // Three rounds at most, and only while the hero is on screen.
+    var i = 0, steps = 0, max = words.length * 3, onScreen = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) { onScreen = entries[0].isIntersecting; }).observe(el);
+    }
+    var timer = window.setInterval(function () {
+      if (!onScreen) return;
+      box.children[i].className = '';
+      i = (i + 1) % words.length;
+      box.children[i].className = 'is-on';
+      if (++steps >= max) window.clearInterval(timer);
+    }, 2600);
   });
 })();
 /* ---- section : event-registration ---- */

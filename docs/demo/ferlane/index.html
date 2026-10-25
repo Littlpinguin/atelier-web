@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Répondre aux marchés publics en cinq ateliers">
 <meta property="og:description" content="Cinq mardis matin en visio, huit entreprises par cohorte, votre mémoire relu avant le dépôt.">
-<meta name="generator" content="assemble-landing.py · sha256:443b596da68691336e71e8e921a37ff19edfa4c7cb54e487a1bd5cddb9758e88">
+<meta name="generator" content="assemble-landing.py · sha256:e009289feb328074ff36ea461f9e7133ce5c4a129adcb23f67b6b5b2dfd425d8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -2788,12 +2788,15 @@ mark:where([data-annotate]) {
   border-radius: max(8px, calc(var(--radius-card) - 4px));
 }
 
+/* The face sits in the upper third of a portrait: the 16:9 crop on mobile
+   keeps it in frame. */
 .s-people__portrait img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 28%;
 }
 
 .s-people__initials {
@@ -3775,29 +3778,7 @@ mark:where([data-annotate]) {
       </div>
     </div>
     <div class="s-hero__visual" data-reveal="right">
-      <div class="obj s-hero__doc" aria-hidden="true" data-qa-decor>
-  <div class="obj-stack">
-    <div class="obj-sheet">
-      <div class="obj-head"><span class="obj-mark"></span><b>Mémoire technique</b><span class="obj-stamp obj-push">Relu</span></div>
-      <div class="obj-rule"></div>
-      <p class="obj-title">Entretien des espaces verts · lot 2</p>
-      <p class="obj-small">Réponse au critère « valeur technique », 60 % de la note</p>
-      <div class="obj-rule"></div>
-      <div class="obj-check">
-        <span class="is-done">1. Moyens humains et encadrement</span>
-        <span class="is-done">2. Méthode par saison</span>
-        <span class="is-done">3. Planning daté des passages</span>
-        <span>4. Gestion des déchets verts</span>
-      </div>
-      <div class="obj-rule"></div>
-      <div class="obj-lines"><i style="--w:94%"></i><i style="--w:78%"></i><i style="--w:86%"></i></div>
-      <p class="obj-small" style="margin-top:12px">Note de relecture : <span class="obj-highlight">ajoutez les photos du chantier de 2025</span></p>
-      <div class="obj-rule"></div>
-      <div class="obj-head"><span>Remise des offres · 12 mars, 12 h</span><span class="obj-push">p. 4 / 18</span></div>
-    </div>
-  </div>
-  <span class="obj-chip s-hero__chip"><i></i>Atelier 5 · relecture croisée</span>
-</div>
+      <img class="s-hero__img" src="https://images.pexels.com/photos/7821731/pexels-photo-7821731.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250&amp;fm=webp" alt="Deux personnes relisent un dossier et l’annotent au stylo rouge" width="1000" height="1250" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -3891,7 +3872,7 @@ mark:where([data-annotate]) {
       <h2 id="lettre-titre" class="section-title">Ce que je lisais<br><span class="hl">de l’autre côté du guichet</span></h2>
     </div>
     <div class="s-letter__margin" data-reveal="fade">
-      <div class="s-letter__portrait"><span class="s-letter__initials" aria-hidden="true">HM</span></div>
+      <div class="s-letter__portrait"><img src="https://images.pexels.com/photos/8871851/pexels-photo-8871851.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=480&amp;h=480&amp;fm=webp" alt="" width="480" height="480" loading="lazy"></div>
       <p class="s-letter__from"><strong class="s-letter__name">Hélène Marchetti</strong><span class="s-letter__role">Ancienne acheteuse publique, formatrice</span></p>
       <p class="s-letter__date">Rennes, le 8 janvier 2027</p>
       <p class="s-letter__note">Personnage et lettre fictifs, à remplacer</p>
@@ -4015,7 +3996,7 @@ mark:where([data-annotate]) {
     </div>
     <ul class="s-people__grid" role="list" data-shape="rounded" data-reveal-group>
       <li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">HM</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/8871851/pexels-photo-8871851.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Hélène Marchetti</h3>
           <p class="s-people__role">Ancienne acheteuse publique</p>
@@ -4026,7 +4007,7 @@ mark:where([data-annotate]) {
           </dl>
         </div>
       </li><li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">BM</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/7565176/pexels-photo-7565176.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Bastien Morel</h3>
           <p class="s-people__role">Chargé d’affaires</p>
@@ -4200,7 +4181,7 @@ mark:where([data-annotate]) {
 <footer id="pied" class="s-footer" data-section="footer">
   <div class="wrap s-footer__inner">
     <p class="s-footer__brand"><svg class="s-footer__mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h11l7 7v17H8z"/><path d="M19 4v7h7"/><path d="m12.5 19.5 3 3 6-7"/></svg><span>Ferlane</span></p>
-    <ul class="s-footer__links" role="list"><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="mailto:bonjour@example.com">bonjour@example.com</a></li></ul>
+    <ul class="s-footer__links" role="list"><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="mailto:bonjour@example.com">bonjour@example.com</a></li><li><a href="../../credits-photos/">Crédits photos</a></li></ul>
     <p class="s-footer__legal">© 2027 Ferlane Formation, marque fictive de démonstration.</p>
   </div>
 </footer>

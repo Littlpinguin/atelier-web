@@ -13,7 +13,7 @@
   "offer": {"state": "open", "closes_at": "2027-03-31T23:59:00+02:00", "after_close": "waitlist"},
   "intro": {
     "title": "Bibliothèque de sections : le catalogue",
-    "text": "Toutes les sections de la bibliothèque, dans un ordre de récit plausible, remplies avec le contenu d’exemple de leurs slots : une marque fictive (Meridian Conseil, cabinet climat inventé) et une offre fictive. Avant chaque section, sa fiche dit l’objection qu’elle traite, quand l’utiliser, quand l’éviter, ce qui se passe en mouvement réduit et quels slots elle prend. Une vraie page n’en prend qu’une dizaine. Page assemblée par ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py depuis catalogue.json."
+    "text": "Toutes les sections de la bibliothèque, dans un ordre de récit plausible, remplies avec le contenu d’exemple de leurs slots : une marque fictive (Meridian Conseil, cabinet climat inventé) et une offre fictive. Avant chaque section, sa fiche dit l’objection qu’elle traite, quand l’utiliser, quand l’éviter, ce qui se passe en mouvement réduit et quels slots elle prend. Une vraie page n’en prend qu’une dizaine. Page assemblée par le script assemble-landing.py du plugin (fabrique/scripts/) depuis catalogue.json."
   },
   "sections": [
     {"use": "topbar"},

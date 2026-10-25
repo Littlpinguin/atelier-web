@@ -2,7 +2,7 @@
 
 **English** · [Français](README.fr.md)
 
-[![MIT license](https://img.shields.io/badge/license-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.3](https://img.shields.io/badge/version-1.2.3-0D1B2A.svg) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![6 agents](https://img.shields.io/badge/agents-6-1B4965.svg)
+[![MIT license](https://img.shields.io/badge/license-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.4](https://img.shields.io/badge/version-1.2.4-0D1B2A.svg) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![6 agents](https://img.shields.io/badge/agents-6-1B4965.svg)
 
 ![Atelier web: three landing pages for three fictional brands, built by the same factory](docs/assets/apercu-en.webp)
 
@@ -24,7 +24,7 @@ Atelier web changes three things:
 
 ## One factory for every brand
 
-The three pages below come out of the same commands with three different brand doctrines. The brands are fictional.
+The three pages below come out of the same commands with three different brand doctrines. The brands are fictional; Pexels photos stand in for the photos a real brand would supply ([credits](https://littlpinguin.github.io/atelier-web/credits-photos/)).
 
 | Training | Event | Service |
 |---|---|---|

@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="La matinale flotte électrique, le 3 juin 2027">
 <meta property="og:description" content="À Bordeaux et en direct, gratuit, replay sous 48 heures pour tous les inscrits.">
-<meta name="generator" content="assemble-landing.py · sha256:e1d6f7ab0fb1a244fc02f31d42d8fc4acd3951f73b547f1f296c623b010d0f3a">
+<meta name="generator" content="assemble-landing.py · sha256:30caf0e9bdf002d94a560d6a81f28fb013f69c8adb06ca8bb76b43216a9b2785">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -2047,12 +2047,15 @@ mark:where([data-annotate]) {
   border-radius: max(8px, calc(var(--radius-card) - 4px));
 }
 
+/* The face sits in the upper third of a portrait: the 16:9 crop on mobile
+   keeps it in frame. */
 .s-people__portrait img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 28%;
 }
 
 .s-people__initials {

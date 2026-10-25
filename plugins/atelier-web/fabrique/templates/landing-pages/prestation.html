@@ -6,7 +6,7 @@
 <title>Ouvrance · Audit d’accessibilité numérique</title>
 <meta name="description" content="Vos parcours testés avec des utilisateurs de lecteur d’écran, puis chaque correction livrée en ticket priorisé. Devis sous trois jours ouvrés.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="generator" content="assemble-landing.py · sha256:77dd8c9e4d033185792eade57c97e8da66d6cc9ee3619ad9d3659bdbe00b4f1c">
+<meta name="generator" content="assemble-landing.py · sha256:cc179f828a220c730f95eac770b989527798673be25d067cbd83873d1eacc5c2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -2754,12 +2754,15 @@ mark:where([data-annotate]) {
   border-radius: max(8px, calc(var(--radius-card) - 4px));
 }
 
+/* The face sits in the upper third of a portrait: the 16:9 crop on mobile
+   keeps it in frame. */
 .s-people__portrait img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 28%;
 }
 
 .s-people__initials {

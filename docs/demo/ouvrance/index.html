@@ -6,7 +6,7 @@
 <title>Ouvrance · Audit d’accessibilité numérique</title>
 <meta name="description" content="Vos parcours testés avec des utilisateurs de lecteur d’écran, puis chaque correction livrée en ticket priorisé. Devis sous trois jours ouvrés.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="generator" content="assemble-landing.py · sha256:4d60c2f06548de6b8a1f7b85f7663249bfbc492539a171597dfe2c60092090b5">
+<meta name="generator" content="assemble-landing.py · sha256:3c74267c6e7203ff9a1b24f9726a4fb1394084ec4c6c1ea2f4e62ee9b94e4a6e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -2754,12 +2754,15 @@ mark:where([data-annotate]) {
   border-radius: max(8px, calc(var(--radius-card) - 4px));
 }
 
+/* The face sits in the upper third of a portrait: the 16:9 crop on mobile
+   keeps it in frame. */
 .s-people__portrait img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 28%;
 }
 
 .s-people__initials {
@@ -4013,7 +4016,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
 <!-- section:hero-image-title -->
 <section id="hero-image-title" class="s-himg section" aria-labelledby="hero-image-title-titre" data-section="hero-image-title">
   <div class="wrap">
-    <h1 id="hero-image-title-titre" class="s-himg__title">Écoutez <span class="s-himg__glue"><span class="s-himg__pic s-himg__pic--dark" aria-hidden="true" data-qa-decor data-reveal><svg viewBox="0 0 220 100" fill="currentColor" aria-hidden="true"><rect x="31" y="42" width="8" height="16" rx="4"/><rect x="44" y="33" width="8" height="34" rx="4"/><rect x="57" y="21" width="8" height="58" rx="4"/><rect x="70" y="30" width="8" height="40" rx="4"/><rect x="83" y="14" width="8" height="72" rx="4"/><rect x="96" y="26" width="8" height="48" rx="4"/><rect x="109" y="37" width="8" height="26" rx="4"/><rect x="122" y="19" width="8" height="62" rx="4"/><rect x="135" y="28" width="8" height="44" rx="4"/><rect x="148" y="35" width="8" height="30" rx="4"/><rect x="161" y="24" width="8" height="52" rx="4"/><rect x="174" y="40" width="8" height="20" rx="4"/></svg></span>&nbsp;</span>votre site<br><span class="hl">comme vos clients</span></h1>
+    <h1 id="hero-image-title-titre" class="s-himg__title">Écoutez <span class="s-himg__glue"><span class="s-himg__pic s-himg__pic--dark" aria-hidden="true" data-qa-decor data-reveal><img src="https://images.pexels.com/photos/5899282/pexels-photo-5899282.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=440&amp;h=200&amp;fm=webp" alt="" width="440" height="200" fetchpriority="high"></span>&nbsp;</span>votre site<br><span class="hl">comme vos clients</span></h1>
     <div class="s-himg__body">
       <p class="s-himg__lede lede">Vos parcours clés testés avec des utilisateurs de lecteur d’écran, puis chaque correction remise en ticket priorisé.</p>
       <div class="s-himg__buttons">
@@ -4173,7 +4176,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
         <li class="s-work__item" data-work-key="cuisine" data-work-tags="commerce" style="counter-reset: work 1" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media" aria-hidden="true" data-qa-decor><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Rapport</b><span class="obj-push">47 tickets</span></div><div class="obj-rule"></div><div class="obj-kpi">91 %<small>conforme</small></div></div></div></div>
+            <div class="s-work__media" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/29462835/pexels-photo-29462835.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Commerce en ligne</p>
             <p class="s-work__year label">2026</p>
             <h3 class="s-work__title">Le parcours de commande d’une boutique de cuisine</h3>
@@ -4185,7 +4188,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
         </li><li class="s-work__item" data-work-key="portail-famille" data-work-tags="public" style="counter-reset: work 2" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media s-work__media--tint" aria-hidden="true" data-qa-decor><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Déclaration</b><span class="obj-stamp obj-push">Vérifiée</span></div><div class="obj-rule"></div><div class="obj-check"><span class="is-done">Inscription cantine</span><span class="is-done">Paiement en ligne</span><span>Agenda des activités</span></div></div></div></div>
+            <div class="s-work__media s-work__media--tint" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/3042436/pexels-photo-3042436.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Service public</p>
             <p class="s-work__year label">2025</p>
             <h3 class="s-work__title">Le portail famille d’une agglomération</h3>
@@ -4197,7 +4200,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
         </li><li class="s-work__item" data-work-key="mutuelle" data-work-tags="banque" style="counter-reset: work 3" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media s-work__media--warm" aria-hidden="true" data-qa-decor><div class="obj obj-window s-work__cover"><div class="obj-window__bar"><i></i><i></i><i></i><span>Espace adhérent</span></div><div class="obj-window__body"><div class="obj-check"><span class="is-done">Connexion</span><span class="is-done">Demande de remboursement</span><span class="is-done">Envoi des justificatifs</span></div></div></div></div>
+            <div class="s-work__media s-work__media--warm" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/39192334/pexels-photo-39192334.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Banque et assurance</p>
             <p class="s-work__year label">2026</p>
             <h3 class="s-work__title">L’espace adhérent d’une mutuelle</h3>
@@ -4209,7 +4212,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
         </li><li class="s-work__item" data-work-key="billetterie" data-work-tags="transport" style="counter-reset: work 4" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media" aria-hidden="true" data-qa-decor><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Billetterie</b><span class="obj-push">Clavier</span></div><div class="obj-rule"></div><div class="obj-grid" style="--cols:2"><span class="is-head">Étape</span><span class="is-head">État</span><span>Choix du trajet</span><span>Corrigé</span><span class="is-warn">Paiement</span><span class="is-warn">Bloquant</span></div></div></div></div>
+            <div class="s-work__media" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/19961417/pexels-photo-19961417.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Transport</p>
             <p class="s-work__year label">2025</p>
             <h3 class="s-work__title">La billetterie d’un réseau de bus</h3>
@@ -4221,7 +4224,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
         </li><li class="s-work__item" data-work-key="assurance-auto" data-work-tags="banque" style="counter-reset: work 5" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media s-work__media--tint" aria-hidden="true" data-qa-decor><div class="obj obj-sheet s-work__cover"><div class="obj-head"><span class="obj-mark"></span><b>Formulaire de devis</b><span class="obj-push">11 champs</span></div><div class="obj-rule"></div><div class="obj-lines"><i style="--w:90%"></i><i style="--w:72%"></i><i style="--w:84%"></i></div></div></div>
+            <div class="s-work__media s-work__media--tint" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/2810140/pexels-photo-2810140.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Banque et assurance</p>
             <p class="s-work__year label">2024</p>
             <h3 class="s-work__title">Le devis en ligne d’un assureur auto</h3>
@@ -4233,7 +4236,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
         </li><li class="s-work__item" data-work-key="mairie" data-work-tags="public" style="counter-reset: work 6" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media" aria-hidden="true" data-qa-decor><div class="obj obj-sheet s-work__cover"><div class="obj-head"><span class="obj-mark"></span><b>Mairie</b><span class="obj-push">24 pages types</span></div><div class="obj-rule"></div><div class="obj-chart"><i style="--v:.4"></i><i style="--v:.62"></i><i class="is-hl" style="--v:.84"></i></div></div></div>
+            <div class="s-work__media" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/38256977/pexels-photo-38256977.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Service public</p>
             <p class="s-work__year label">2024</p>
             <h3 class="s-work__title">Le site d’une mairie de 30 000 habitants</h3>
@@ -4245,7 +4248,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
         </li><li class="s-work__item" data-work-key="train" data-work-tags="transport" style="counter-reset: work 7" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media s-work__media--warm" aria-hidden="true" data-qa-decor><div class="obj obj-window s-work__cover"><div class="obj-window__bar"><i></i><i></i><i></i><span>Horaires</span></div><div class="obj-window__body"><div class="obj-lines"><i style="--w:88%"></i><i style="--w:64%"></i><i style="--w:76%"></i></div></div></div></div>
+            <div class="s-work__media s-work__media--warm" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/32558348/pexels-photo-32558348.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Transport</p>
             <p class="s-work__year label">2026</p>
             <h3 class="s-work__title">L’application d’un transporteur régional</h3>
@@ -4257,7 +4260,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
         </li><li class="s-work__item" data-work-key="librairie" data-work-tags="commerce" style="counter-reset: work 8" data-reveal>
           <div class="s-work__body">
             <span class="s-work__n" aria-hidden="true"></span>
-            <div class="s-work__media" aria-hidden="true" data-qa-decor><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Catalogue</b><span class="obj-push">Filtres</span></div><div class="obj-rule"></div><div class="obj-check"><span class="is-done">Filtres annoncés</span><span class="is-done">Nombre de résultats lu</span><span>Tri par prix</span></div></div></div></div>
+            <div class="s-work__media" aria-hidden="true" data-qa-decor><img src="https://images.pexels.com/photos/32517434/pexels-photo-32517434.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div>
             <p class="s-work__sector label">Commerce en ligne</p>
             <p class="s-work__year label">2025</p>
             <h3 class="s-work__title">Le catalogue d’une librairie en ligne</h3>
@@ -4268,7 +4271,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
           <template id="realisations-librairie"><div data-viewer-page data-viewer-src="" data-viewer-alt="" data-viewer-caption="Les tickets de la recherche par filtres."><div class="obj s-work__page" aria-hidden="true"><div class="obj-head"><span class="obj-mark"></span><b>Recherche par filtres</b><span class="obj-push">p. 1 sur 2</span></div><div class="obj-rule"></div><div class="obj-grid" style="--cols:4"><span class="is-head">Ticket</span><span class="is-head">Critère</span><span class="is-head">Page</span><span class="is-head">Priorité</span><span class="is-warn">ACC-301</span><span class="is-warn">7.5</span><span class="is-warn">Résultats</span><span class="is-warn">1</span><span class="is-warn">ACC-305</span><span class="is-warn">11.2</span><span class="is-warn">Filtres</span><span class="is-warn">1</span><span>ACC-312</span><span>10.7</span><span>Tri</span><span>2</span></div></div></div><div data-viewer-page data-viewer-src="" data-viewer-alt="" data-viewer-caption="L’exemple de correction joint au ticket principal."><div class="obj s-work__page" aria-hidden="true"><div class="obj-head"><span class="obj-mark"></span><b>Correction proposée</b><span class="obj-push">p. 2 sur 2</span></div><div class="obj-rule"></div><p class="obj-small">Annonce du nombre de résultats</p><p class="obj-small"><span class="obj-highlight">&lt;p role="status"&gt;24 livres&lt;/p&gt;</span></p></div></div></template>
         </li>
       </ol>
-      <div class="s-work__stage" aria-hidden="true" data-qa-decor><div class="s-work__media"><div class="obj obj-stack s-work__cover"><div class="obj-sheet"><div class="obj-head"><span class="obj-mark"></span><b>Rapport</b><span class="obj-push">47 tickets</span></div><div class="obj-rule"></div><div class="obj-kpi">91 %<small>conforme</small></div></div></div></div></div>
+      <div class="s-work__stage" aria-hidden="true" data-qa-decor><div class="s-work__media"><img src="https://images.pexels.com/photos/29462835/pexels-photo-29462835.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=960&amp;h=720&amp;fm=webp" alt="" loading="lazy"></div></div>
     </div>
   </div>
 </section>
@@ -4293,7 +4296,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
     </div>
     <ul class="s-people__grid" role="list" data-shape="rounded" data-reveal-group>
       <li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">LM</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/14839073/pexels-photo-14839073.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Lucie Marchal</h3>
           <p class="s-people__role">Auditrice RGAA, cheffe de mission</p>
@@ -4304,7 +4307,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
           </dl>
         </div>
       </li><li class="s-people__card card" data-reveal>
-        <div class="s-people__portrait"><span class="s-people__initials" aria-hidden="true">SO</span></div>
+        <div class="s-people__portrait"><img src="https://images.pexels.com/photos/6981103/pexels-photo-6981103.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=750&amp;fm=webp&amp;crop=right" alt="" width="480" height="600" loading="lazy"></div>
         <div class="s-people__body">
           <h3 class="s-people__name">Samir Ouali</h3>
           <p class="s-people__role">Testeur, utilisateur de lecteur d’écran</p>
@@ -4601,7 +4604,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
 <footer id="pied" class="s-footer" data-section="footer">
   <div class="wrap s-footer__inner">
     <p class="s-footer__brand"><svg class="s-footer__mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M27 16A11 11 0 1 1 16 5"/><path d="M16 11v10M11 16h10"/></svg><span>Ouvrance</span></p>
-    <ul class="s-footer__links" role="list"><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="mailto:bonjour@example.com">bonjour@example.com</a></li></ul>
+    <ul class="s-footer__links" role="list"><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="mailto:bonjour@example.com">bonjour@example.com</a></li><li><a href="../../credits-photos/">Crédits photos</a></li></ul>
     <p class="s-footer__legal">© 2026 Ouvrance, marque fictive. Personnes, cas et prix d’exemple.</p>
   </div>
 </footer>
@@ -4922,10 +4925,10 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
        data-msg-success              confirmation shown after sending
        data-msg-failure              shown when sending fails
        data-msg-unwired              added after the success message when
-                                     the action is still a {{PLACEHOLDER}}
+                                     the action is still a {{…}} marker
                                      or empty (demonstration: nothing sent)
      form[data-demo]                 written on load when the action is
-                                     still a {{PLACEHOLDER}} or empty:
+                                     still a {{…}} marker or empty:
                                      submissions are demonstrations, never
                                      sent, counted by tracking.js under
                                      form_demo_submit instead of the lead
@@ -5008,7 +5011,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
     status(form, text);
   }
 
-  // The endpoint is still a {{PLACEHOLDER}} (or missing): a demonstration.
+  // The endpoint is still a {{…}} marker (or missing): a demonstration.
   function unwired(form) {
     var action = form.getAttribute('action') || '';
     return !action || /\{\{/.test(action);

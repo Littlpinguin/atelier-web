@@ -2,7 +2,7 @@
 
 [English](README.md) · **Français**
 
-[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.3](https://img.shields.io/badge/version-1.2.3-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![6 agents](https://img.shields.io/badge/agents-6-1B4965.svg)
+[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.4](https://img.shields.io/badge/version-1.2.4-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![6 agents](https://img.shields.io/badge/agents-6-1B4965.svg)
 
 ![Atelier web : trois landings de trois marques fictives, produites par la même fabrique](docs/assets/apercu-fr.webp)
 
@@ -22,7 +22,7 @@ L'atelier change trois choses :
 
 ## Une fabrique pour toutes les marques
 
-Les trois pages ci-dessous sortent des mêmes commandes, avec trois doctrines différentes. Les marques sont fictives.
+Les trois pages ci-dessous sortent des mêmes commandes, avec trois doctrines différentes. Les marques sont fictives ; des photos Pexels tiennent la place de celles qu'une vraie marque fournirait ([crédits](https://littlpinguin.github.io/atelier-web/credits-photos/)).
 
 | Formation | Événement | Prestation |
 |---|---|---|

@@ -1,5 +1,15 @@
 # Journal des versions
 
+## 1.2.4 · 2026-10-25
+
+Des démos habillées de photos.
+
+- **Photos dans les démos et le catalogue** : 31 photos Pexels occupent les emplacements d'image des trois landings et du catalogue en ligne. Ferlane : un dossier annoté au stylo rouge en hero, la formatrice dans la lettre, les deux formateurs. Brivalle : les quatre intervenants sur fond gris. Ouvrance : la pastille du titre, les huit réalisations, l'auditrice et son testeur. Catalogue : la pastille, les deux animateurs, la lettre, les neuf missions. Aucune image n'entre dans le dépôt : chaque page appelle le CDN de Pexels, recadré au format de l'emplacement et servi en WebP. La page `docs/credits-photos/` nomme chaque photographe, et chaque pied de page y renvoie.
+- **Brivalle passe au hero à image** : un parc d'utilitaires vu d'en haut à côté du titre, devenu « Électrifier vos tournées » pour tenir en deux lignes dans la colonne ; la ligne de faits du hero éditorial devient une fiche pratique collée sous le hero.
+- **Démos reproductibles** : `demos/construire.py` remonte les trois marques fictives (jetons, spec du modèle, photos), assemble les quatre pages et écrit la page de crédits. Aperçus du README et image de partage recapturés, avec les compteurs à jour (10 skills, 6 agents).
+- **Portraits** : `people` cadre la photo sur le haut du visage (`object-position: 50% 28%`), qui restait coupé dans le recadrage 16:9 du mobile. Pages d'exemple régénérées.
+- **Catalogue** : l'intro nommait le script par une variable brute, `${CLAUDE_PLUGIN_ROOT}`, qui s'affichait telle quelle dans la page.
+
 ## 1.2.3 · 2026-10-25
 
 Fin de la ligne 11 du rapport d'architecture : agents réglés, relectures fermées.
