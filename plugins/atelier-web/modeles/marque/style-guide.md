@@ -1,4 +1,4 @@
-# Visual identity — {{COMPANY_NAME}}
+# Visual identity: {{COMPANY_NAME}}
 
 Source of truth for colors, typography, illustration style, and visual constraints. Read by every atelier-web skill before any page, section or visual.
 
@@ -19,13 +19,13 @@ Source of truth for colors, typography, illustration style, and visual constrain
 {{BRAND_GRADIENT}}
 ```
 
-Use for conversion blocks (final CTA sections, pricing callouts). Do not overuse — one per page max.
+Use for conversion blocks (final CTA sections, pricing callouts). Do not overuse: one per page max.
 
 ### Contrast constraints
 
 - Body text on light background: AA minimum, AAA preferred
 - Interactive elements: 3:1 minimum against adjacent colors
-- Verify with a contrast checker before ship — the `brand-check` skill flags obvious violations but doesn't replace a real check
+- Verify with a contrast checker before ship; the `brand-check` skill flags obvious violations but doesn't replace a real check
 
 ## Typography
 
@@ -93,7 +93,7 @@ Common UI patterns used on landing pages and decks. Each should exist once, as a
 
 ## AI image generation specifics
 
-Any image generation tool of the project reads this file and injects the palette, typography, illustration style, and banned tropes into every prompt. No need to repeat them in individual briefs — just describe the subject.
+Any image generation tool of the project reads this file and injects the palette, typography, illustration style, and banned tropes into every prompt. No need to repeat them in individual briefs: just describe the subject.
 
 {{IMAGE_GEN_SPECIFIC_RULES}}
 

@@ -1,4 +1,4 @@
-# Checklist pré-composition — à charger avant TOUTE production
+# Checklist pré-composition : à charger avant TOUTE production
 
 > **Ce fichier est l'étape 0 de toutes les skills de production** de l'atelier web (`ecriture`, `landing-page`, `page-web`, `lead-magnet`, `cro`, `design`). Aucun texte ne s'écrit, aucun visuel ne se génère, aucun plan ne se brief sans avoir chargé ce fichier **et** `atelier/marque/voice.md`. Si l'un des deux manque ou contient encore des `{{...}}`, arrêter et lancer la skill `demarrer-projet-web` (atelier-web), qui pose la doctrine du projet.
 
@@ -9,15 +9,15 @@
 - **Position de voix** : {{BRAND_VOICE_POSITION}}
 - **Vocabulaire à privilégier** : {{BRAND_VOCABULARY_PREFERRED}}
 - **Vocabulaire interdit** : {{BRAND_VOCABULARY_BANNED}}
-- **Langue par défaut** : {{BRAND_DEFAULT_LANGUAGE}} — bilinguisme : {{BRAND_BILINGUAL}}
-- **Formules signature** : voir la section dédiée de `atelier/marque/voice.md` — réutiliser les formules validées, ne pas en inventer de nouvelles sans validation.
+- **Langue par défaut** : {{BRAND_DEFAULT_LANGUAGE}} ; bilinguisme : {{BRAND_BILINGUAL}}
+- **Formules signature** : voir la section dédiée de `atelier/marque/voice.md` ; réutiliser les formules validées, ne pas en inventer de nouvelles sans validation.
 - **Aucune affirmation sans source** : chaque chiffre publié provient de `atelier/marque/messaging-framework.md` ou d'une source externe citée. Jamais d'invention, jamais d'arrondi trompeur.
 
 ## 2. Règles anti-style-IA
 
 Ces règles neutralisent les tics statistiques de l'écriture générée. Elles s'appliquent à **tout texte destiné à être publié** (post, email, article, titre de slide, légende de carrousel).
 
-### 2a. Vocabulaire IA mort — interdit
+### 2a. Vocabulaire IA mort : interdit
 
 Mots sur-représentés dans les sorties de LLM, signature immédiate d'un texte machine. Bannis dans les deux langues :
 
@@ -26,11 +26,11 @@ Mots sur-représentés dans les sorties de LLM, signature immédiate d'un texte 
 
 La liste de marque ({{BRAND_VOCABULARY_BANNED}}) s'ajoute à celle-ci, elle ne la remplace pas.
 
-### 2b. Tiret cadratin — interdit
+### 2b. Tiret cadratin : interdit
 
-Jamais de tiret cadratin (`—`) dans un contenu visible. Utiliser le demi-cadratin (`–`), une virgule, deux points, des parenthèses, ou reformuler.
+Jamais de tiret cadratin (le tiret long, U+2014) dans un contenu visible. Utiliser le demi-cadratin (`–`), une virgule, deux points, des parenthèses, ou reformuler.
 
-### 2c. Parallélismes négatifs et reformulations — faute fatale
+### 2c. Parallélismes négatifs et reformulations : faute fatale
 
 Le tic le plus fiable du texte IA : nier un cadrage puis affirmer le « bon ». Un seul suffit à faire échouer le livrable :
 
@@ -70,20 +70,20 @@ Paragraphes courts (1-3 phrases). Adresse directe (« vous »). Voix active. Dé
 - **Pas d'emoji Unicode décoratif** dans un visuel : utiliser les icônes de marque de `atelier/marque/assets/` ou en générer avec l'outil d'images du projet.
 - Règles typographiques de marque complémentaires : {{TYPOGRAPHY_RULES}}
 
-## 4. Règle assets — consulter avant de générer
+## 4. Règle assets : consulter avant de générer
 
 Avant **toute** génération ou création visuelle (image, icône, illustration, portrait, fond) :
 
-1. Lire le catalogue **`atelier/marque/assets/index.md`** — bibliothèque navigable par rôle et par cas d'usage. On choisit le bon visuel en lisant l'index, sans ouvrir les fichiers.
+1. Lire le catalogue **`atelier/marque/assets/index.md`** : bibliothèque navigable par rôle et par cas d'usage. On choisit le bon visuel en lisant l'index, sans ouvrir les fichiers.
 2. **Un asset existant se réutilise ou se décline, il ne se régénère pas.**
 3. Ne jamais se fier au nom brut d'un fichier : se fier à sa fiche dans l'index.
 4. Toute nouvelle génération va d'abord dans un dossier de travail (`atelier/brouillons/`) ; elle ne devient un asset officiel de `atelier/marque/assets/` qu'après validation humaine, avec sa fiche ajoutée à `index.md`.
 
-## 5. Règle réutilisation — chercher l'existant avant de créer
+## 5. Règle réutilisation : chercher l'existant avant de créer
 
 Avant de créer un document, un template, un script ou une structure :
 
-1. Consulter **`_templates/inventory.md`** — l'inventaire de ce qui existe déjà dans le repo (templates, scripts, composants, gabarits).
+1. Consulter **`_templates/inventory.md`** : l'inventaire de ce qui existe déjà dans le repo (templates, scripts, composants, gabarits).
 2. Scanner les productions passées du dossier concerné (`examples/`, `editions/`, `outputs/`, `decks/`).
 3. Créer du neuf est le **dernier recours**, jamais le réflexe. Si on crée, on référence la nouveauté dans l'inventaire.
 

@@ -1,4 +1,4 @@
-# Système de design — brivalle.example
+# Système de design : brivalle.example
 
 > Fixture de test du plugin atelier-web : site **fictif**. Le site n'a pas encore de feuille de style propre : ses pages de conversion s'assemblent depuis la fabrique de l'atelier (`fabrique/templates/assets/base.css`, `tokens.css` généré depuis `atelier/marque/tokens.json`). Valeurs exactes : `tokens.json`, qui fait foi.
 

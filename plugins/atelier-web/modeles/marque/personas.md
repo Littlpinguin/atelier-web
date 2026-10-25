@@ -1,4 +1,4 @@
-# Personas — {{COMPANY_NAME}}
+# Personas : {{COMPANY_NAME}}
 
 > **À lire avant tout contenu ciblé.** 2 à 4 personas, pas plus : au-delà, on n'écrit plus pour personne. Rempli par la skill `demarrer-projet-web`, enrichi en continu par les signaux terrain et les apprentissages de campagne.
 >
@@ -6,7 +6,7 @@
 
 ---
 
-## Persona 1 — {{PERSONA_1_NOM}} ({{PERSONA_1_SURNOM}})
+## Persona 1 : {{PERSONA_1_NOM}} ({{PERSONA_1_SURNOM}})
 
 ### Rôle et contexte
 
@@ -46,11 +46,11 @@ Ce qui fait passer ce persona de « je vis avec le problème » à « je cherche
 
 ### Message principal
 
-> {{P1_MESSAGE_PRINCIPAL}} — décliné dans `messaging-framework.md` avec ses preuves.
+> {{P1_MESSAGE_PRINCIPAL}}, décliné dans `messaging-framework.md` avec ses preuves.
 
 ### Signaux terrain (mise à jour depuis le terrain)
 
-*Section vivante : à chaque échange (rendez-vous client, appel prospect) qui apprend quelque chose sur ce persona, ajouter une ligne. Jamais de verbatim confidentiel ni de nom sans accord — reformuler et anonymiser.*
+*Section vivante : à chaque échange (rendez-vous client, appel prospect) qui apprend quelque chose sur ce persona, ajouter une ligne. Jamais de verbatim confidentiel ni de nom sans accord : reformuler et anonymiser.*
 
 | Date | Signal (reformulé, anonymisé) | Source | Impact |
 |---|---|---|---|
@@ -58,7 +58,7 @@ Ce qui fait passer ce persona de « je vis avec le problème » à « je cherche
 
 ---
 
-## Persona 2 — {{PERSONA_2_NOM}} ({{PERSONA_2_SURNOM}})
+## Persona 2 : {{PERSONA_2_NOM}} ({{PERSONA_2_SURNOM}})
 
 *Dupliquer la structure complète du persona 1 : rôle et contexte, déclencheurs d'achat, objections, canaux fréquentés, vocabulaire, message principal, signaux terrain.*
 
@@ -70,12 +70,12 @@ Ce qui fait passer ce persona de « je vis avec le problème » à « je cherche
 
 Éviter de diluer la voix pour plaire à des cibles qu'on ne sert pas :
 
-- {{ANTI_PERSONA_1}} — pourquoi : {{RAISON_1}}
-- {{ANTI_PERSONA_2}} — pourquoi : {{RAISON_2}}
+- {{ANTI_PERSONA_1}}. Pourquoi : {{RAISON_1}}
+- {{ANTI_PERSONA_2}}. Pourquoi : {{RAISON_2}}
 
 ## Règles d'usage
 
 1. **Tout contenu ciblé cite son persona** (dans le brief de campagne, l'entrée calendrier ou l'en-tête du draft). « Tout le monde » n'est pas un persona.
-2. **Écrire avec le vocabulaire du persona**, pas celui de l'entreprise — en respectant `voice.md` (qui prime en cas de conflit).
+2. **Écrire avec le vocabulaire du persona**, pas celui de l'entreprise, en respectant `voice.md` (qui prime en cas de conflit).
 3. **Mettre à jour d'abord ici**, puis propager : un signal terrain qui change un persona doit se refléter dans `messaging-framework.md` et dans le parcours client du projet.
 4. Revue complète des fiches **une fois par trimestre**, en même temps que les objectifs marketing du projet.

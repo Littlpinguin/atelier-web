@@ -1,4 +1,4 @@
-# Messaging framework — Brivalle
+# Messaging framework: Brivalle
 
 > Fixture de test du plugin atelier-web : Brivalle est une marque **fictive**. Chaque chiffre ci-dessous est inventé pour les évals et se publie, s'il le faut, avec la mention « chiffre d'exemple ».
 

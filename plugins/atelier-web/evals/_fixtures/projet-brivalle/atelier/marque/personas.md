@@ -1,8 +1,8 @@
-# Personas — Brivalle
+# Personas : Brivalle
 
 > Fixture de test du plugin atelier-web : personas **fictifs**.
 
-## Persona 1 — Nadia (la cheffe de quai)
+## Persona 1 : Nadia (la cheffe de quai)
 
 - **Rôle** : responsable d'exploitation d'un dépôt de livraison régionale (15 à 60 chauffeurs).
 - **Contexte** : planifie chaque soir la tournée du lendemain sur un tableur ; arbitre entre créneaux clients, temps de conduite et véhicules disponibles.
@@ -22,7 +22,7 @@
 - ✅ tournée, créneau, quai, chauffeur, recaler
 - ❌ algorithme, IA, optimisation intelligente
 
-## Persona 2 — Marc (le dirigeant qui compte les kilomètres)
+## Persona 2 : Marc (le dirigeant qui compte les kilomètres)
 
 - **Rôle** : dirigeant d'une PME de transport (2 à 5 dépôts).
 - **Objectifs** : réduire le coût par livraison sans racheter de camions.
@@ -31,5 +31,5 @@
 
 ## Anti-personas
 
-- Les grands groupes logistiques nationaux — pourquoi : ils ont leurs propres équipes de planification et des outils intégrés.
-- Les particuliers — pourquoi : Brivalle ne vend qu'aux entreprises.
+- Les grands groupes logistiques nationaux. Pourquoi : ils ont leurs propres équipes de planification et des outils intégrés.
+- Les particuliers. Pourquoi : Brivalle ne vend qu'aux entreprises.

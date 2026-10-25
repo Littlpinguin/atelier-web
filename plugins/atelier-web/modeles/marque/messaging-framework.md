@@ -1,4 +1,4 @@
-# Messaging framework — {{COMPANY_NAME}}
+# Messaging framework: {{COMPANY_NAME}}
 
 Source of truth for claims, numbers, and narrative structure. Every producing role reads this before writing anything that converts. The `brand-check` skill verifies numbers against this file.
 
@@ -26,7 +26,7 @@ Every published number comes from this list. Any new number needs explicit exter
 Recommended format for each entry:
 
 ```
-- [Number + unit] — [short context] (source: [internal report / external study / calculation method], last verified YYYY-MM-DD)
+- [Number + unit]: [short context] (source: [internal report / external study / calculation method], last verified YYYY-MM-DD)
 ```
 
 Example:
@@ -46,7 +46,7 @@ Standard CTAs that work for this brand. Reuse rather than invent.
 - **Primary (conversion)**: [one phrase, e.g. "Book a demo"]
 - **Secondary (engagement)**: [one phrase, e.g. "Read the benchmark"]
 - **Content-to-content**: [one phrase, e.g. "Subscribe to monthly updates"]
-- **Sales-to-conversation**: [one phrase, e.g. "Reply to this email — Paul reads every one"]
+- **Sales-to-conversation**: [one phrase, e.g. "Reply to this email, Paul reads every one"]
 
 ## Proof hierarchy
 
@@ -57,7 +57,7 @@ From strongest to weakest. Use the strongest available for any claim.
 3. Industry benchmark (Gartner, Forrester, named study) with citation
 4. Publicly observable fact (pricing, release history)
 5. Logical argument backed by multiple data points
-6. Opinion framed as opinion (rare — only for thought-leadership pieces and explicitly flagged)
+6. Opinion framed as opinion (rare: only for thought-leadership pieces, and explicitly flagged)
 
 Skip anything weaker than 6. Unsupported claims never ship.
 

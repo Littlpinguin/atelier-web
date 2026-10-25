@@ -1,4 +1,4 @@
-# Système de design — {{NOM_DU_SITE}}
+# Système de design : {{NOM_DU_SITE}}
 
 > Source de vérité visuelle du site. À **lire et appliquer avant toute page ou section**. Le principe absolu : **on réutilise le système existant, on ne recrée jamais un style « maison » à côté.** En cas de doute, ouvrir une page de référence et copier le composant.
 >

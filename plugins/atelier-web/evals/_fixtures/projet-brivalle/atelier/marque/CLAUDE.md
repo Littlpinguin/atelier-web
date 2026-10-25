@@ -1,4 +1,4 @@
-# atelier/marque — doctrine de Brivalle
+# atelier/marque : doctrine de Brivalle
 
 Ce dossier est la **source de vérité** de l'identité, de la voix, des preuves et du système visuel. Il ne produit rien : toutes les skills de l'atelier web le lisent avant de produire.
 

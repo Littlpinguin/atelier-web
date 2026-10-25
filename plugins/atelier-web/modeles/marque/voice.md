@@ -1,4 +1,4 @@
-# Voice doctrine — {{COMPANY_NAME}}
+# Voice doctrine: {{COMPANY_NAME}}
 
 Source of truth for tone, vocabulary, and style rules. Every producing role (03 through 09) reads this before drafting. The `brand-check` skill uses it as the filter.
 
@@ -6,7 +6,7 @@ Source of truth for tone, vocabulary, and style rules. Every producing role (03 
 
 {{BRAND_VOICE_POSITION}}
 
-(Two sentences describing where this brand sits on the axes formal/casual, technical/accessible, confident/humble, playful/serious. Avoid single-label summaries like "professional yet approachable" — they don't encode anything the cockpit can use.)
+(Two sentences describing where this brand sits on the axes formal/casual, technical/accessible, confident/humble, playful/serious. Avoid single-label summaries like "professional yet approachable": they don't encode anything the cockpit can use.)
 
 ## Preferred vocabulary
 
@@ -29,7 +29,7 @@ This list is mirrored in `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.toml
 Default construction rules, kept unless the brand explicitly overrides them:
 - **No final period on a title.** Headlines, hooks, slide titles, text on visuals and email subject lines end without a period; body copy and captions keep normal punctuation. *Why*: a period closes the reading exactly where a title should open it. Checked by `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.py` (rule `title-period`).
 - **No orphan word at the end of a short block.** In a title, lede, tag or call to action, no word sits alone on the last line; check the line breaks and force the break at the right place. *Why*: an isolated word draws the eye to the empty space and gives away an unreviewed layout. No linter can see a rendered line break: check it on the rendered visual or page.
-- **No em dash (`—`) in published copy** (see `anti-ai-writing-style.md`, section 2). Checked by `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.py` (rule `dashes`).
+- **No em dash (U+2014, the long dash) in published copy** (see `anti-ai-writing-style.md`, section 2). Checked by `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.py` (rule `dashes`).
 
 Examples of rules worth encoding:
 - Em dashes vs en dashes vs hyphens (a ban on en dashes too goes in `[dashes]` of `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.toml`)
