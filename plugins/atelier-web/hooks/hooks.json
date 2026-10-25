@@ -1,0 +1,17 @@
+{
+  "description": "Atelier web : lint de marque et rappel du brand-check après l'écriture d'une page ou d'un texte sous atelier/ (inactif tant que le projet n'a pas de doctrine atelier/marque/tokens.json).",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/rappel-brand-check.py\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

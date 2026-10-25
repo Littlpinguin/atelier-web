@@ -1,0 +1,13 @@
+{
+  "name": "atelier-web",
+  "displayName": "Atelier web",
+  "version": "1.0.0",
+  "description": "Concevoir des pages web belles et qui convertissent avec Claude Code : doctrine de marque du projet, playbook de landing en huit phases, agents de recherche, de construction et de revue (design, marque, conversion, accessibilité), fabrique de sections et QA mesurée du rendu.",
+  "author": {
+    "name": "Jessy Martin",
+    "url": "https://jessem.fr"
+  },
+  "homepage": "https://jessem.fr",
+  "license": "MIT",
+  "keywords": ["landing-page", "web-design", "ux", "ui", "design-system", "cro", "accessibilite", "animation", "qa"]
+}

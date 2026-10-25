@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "atelier-web",
+  "owner": {
+    "name": "Jessy Martin",
+    "url": "https://jessem.fr"
+  },
+  "metadata": {
+    "description": "La méthode et les outils de Jessy Martin pour créer des pages web soignées avec Claude Code.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "atelier-web",
+      "source": "./plugins/atelier-web",
+      "description": "Doctrine de marque, playbook de landing, agents de revue, fabrique de sections et QA du rendu pour des pages web belles et qui convertissent.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["landing-page", "web-design", "ux", "ui", "cro", "accessibilite"]
+    }
+  ]
+}

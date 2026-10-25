@@ -1,0 +1,11 @@
+{
+  "extraKnownMarketplaces": {
+    "atelier-web": {
+      "source": { "source": "github", "repo": "Littlpinguin/atelier-web" },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": {
+    "atelier-web@atelier-web": true
+  }
+}
