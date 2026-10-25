@@ -1,9 +1,9 @@
 {
-  "description": "Atelier web : lint de marque et rappel du brand-check après l'écriture d'une page ou d'un texte sous atelier/ (inactif tant que le projet n'a pas de doctrine atelier/marque/tokens.json).",
+  "description": "Atelier web : lint de marque et rappel du brand-check après l'écriture d'une page ou d'un texte sous atelier/, par Write, Edit ou une commande Bash qui vise l'atelier (page assemblée par script). Inactif tant que le projet n'a pas de doctrine atelier/marque/tokens.json ; ne bloque jamais.",
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "Write|Edit",
+        "matcher": "Write|Edit|Bash",
         "hooks": [
           {
             "type": "command",
