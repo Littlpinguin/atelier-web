@@ -52,40 +52,44 @@ claude plugin eval /tmp/atelier-web-eval --scaffold --trust-plugin --allow-tools
 
 ## Δ de référence
 
-Passage réduit du 25/10/2026 sur la version 1.1.0 (suite au commit `78cd4c0`) : un run par cas et par bras, Claude Code 2.1.308, Sonnet 5.5 sous test, Haiku 5.5 en juge, compte Max. 34 runs, 281 s, 3,82 $ en prix catalogue. Un run par bras donne un ordre de grandeur, pas une mesure stable : à refaire à trois runs avant d'en tirer une décision.
+Passage du 25/10/2026 sur la version 1.1.0 (suite au commit `0278591`), lancé depuis une copie hors du dossier personnel : trois runs par cas et par bras, Claude Code 2.1.308, Sonnet 5.5 sous test et en juge, `--disallow-tools Agent`, compte Max. 102 runs, 829 s, 12,15 $ en prix catalogue. Δ moyen **+0,21** ; score moyen avec le plugin 0,92.
 
 | Cas | Avec | Sans | Δ | Coût |
 |---|---|---|---|---|
-| `initialiser-atelier` | 1,00 | 0,00 | +1,00 | 0,15 $ |
-| `landing-sans-doctrine` | 1,00 | 0,00 | +1,00 | 0,22 $ |
-| `orienter-page-tarifs` | 1,00 | 1,00 | 0,00 | 0,20 $ |
-| `landing-cadrage` | 0,00 | 1,00 | −1,00 | 0,63 $ |
-| `page-web-section` | 1,00 | 1,00 | 0,00 | 0,25 $ |
-| `motion-trop-statique` | 1,00 | 0,67 | +0,33 | 0,21 $ |
-| `lottie-integration` | 1,00 | 1,00 | 0,00 | 0,25 $ |
-| `brand-check-brouillon` | 0,67 | 0,67 | 0,00 | 0,20 $ |
-| `cro-formulaire` | 1,00 | 1,00 | 0,00 | 0,14 $ |
-| `directions-hero` | 1,00 | 1,00 | 0,00 | 0,39 $ |
-| `lead-magnet-calculateur` | 0,00 | 0,00 | 0,00 | 0,24 $ |
-| `script-python` | 0,50 | 0,50 | 0,00 | 0,14 $ |
-| `css-sticky` | 1,00 | 1,00 | 0,00 | 0,11 $ |
-| `plan-slides` | 1,00 | 1,00 | 0,00 | 0,12 $ |
-| `email-relance` | 1,00 | 1,00 | 0,00 | 0,11 $ |
-| `post-linkedin` | 1,00 | 1,00 | 0,00 | 0,12 $ |
-| `landing-matinale`, depuis `~/claude-projets` | 0,00 | 0,14 | −0,14 | 0,36 $ |
-| `landing-matinale`, depuis une copie hors du dossier personnel | 1,00 | 0,00 | +1,00 | 0,52 $ |
+| `initialiser-atelier` | 1,00 | 0,00 | +1,00 | 0,52 $ |
+| `landing-sans-doctrine` | 1,00 | 0,00 | +1,00 | 0,70 $ |
+| `orienter-page-tarifs` | 0,67 | 1,00 | −0,33 | 0,65 $ |
+| `landing-cadrage` | 0,67 | 0,50 | +0,17 | 1,11 $ |
+| `page-web-section` | 1,00 | 1,00 | 0,00 | 0,79 $ |
+| `motion-trop-statique` | 1,00 | 0,78 | +0,22 | 0,69 $ |
+| `lottie-integration` | 1,00 | 0,67 | +0,33 | 0,71 $ |
+| `brand-check-brouillon` | 1,00 | 0,67 | +0,33 | 0,78 $ |
+| `cro-formulaire` | 1,00 | 1,00 | 0,00 | 0,46 $ |
+| `directions-hero` | 1,00 | 0,67 | +0,33 | 1,17 $ |
+| `lead-magnet-calculateur` | 0,33 | 0,67 | −0,33 | 0,78 $ |
+| `script-python` | 1,00 | 1,00 | 0,00 | 0,41 $ |
+| `css-sticky` | 1,00 | 1,00 | 0,00 | 0,36 $ |
+| `plan-slides` | 1,00 | 1,00 | 0,00 | 0,41 $ |
+| `email-relance` | 1,00 | 1,00 | 0,00 | 0,37 $ |
+| `post-linkedin` | 1,00 | 1,00 | 0,00 | 0,35 $ |
+| `landing-matinale` | 0,95 | 0,05 | +0,90 | 1,91 $ |
 
-Δ moyen du passage : +0,07 ; ≈ +0,14 en retenant le cas de bout en bout lancé hors du dossier personnel.
+**Déclenchement** : avec le plugin, chacun des 12 cas qui attend une skill la déclenche 3 fois sur 3, et les 5 quasi-cas n'en déclenchent aucune, 3 fois sur 3. Les deux indicateurs restés à zéro au passage réduit étaient du bruit d'un run unique.
 
-**Ce que l'atelier apporte, mesuré** : la doctrine d'abord (sans le plugin, Claude écrit toute la landing du webinar dans `index.html` avec ses propres tons verts, et, pour poser une charte, ne demande ni contenus récents de la marque ni chiffres sourcés et propose de choisir à la place de l'humain ; avec le plugin, il demande la matière réelle et ne produit rien avant), la fabrique (page assemblée, empreinte de l'assembleur, marqueurs branchés, linter lancé, rien de publié), le mouvement en CSS piloté par le défilement. Les cinq quasi-cas passent : aucune skill de l'atelier ne s'est déclenchée hors de son périmètre.
+**Ce que l'atelier apporte, mesuré** :
+- La doctrine d'abord : sans le plugin, Claude écrit toute la landing du webinar dans `index.html` avec ses propres couleurs et, pour poser une charte, ne demande ni contenus récents de la marque ni chiffres sourcés ; avec le plugin, il demande la matière réelle et ne produit rien avant (Δ +1,00 deux fois).
+- La fabrique : page assemblée (empreinte de l'assembleur), marqueurs branchés, CTA primaire posé, linter lancé, rien de publié (Δ +0,90). Sans le plugin, aucun run ne produit la page attendue.
+- Le cadrage en une salve : le juge le reconnaît 3 fois sur 3 avec le plugin, 0 fois sans.
+- La relecture de marque (les quatre défauts relevés à chaque run), dotLottie à la place de lottie-web, le CSS piloté par le défilement, deux directions aux jetons de la marque : Δ +0,22 à +0,33.
 
-**Δ nul à 1,00** (`orienter-page-tarifs`, `page-web-section`, `lottie-integration`, `cro-formulaire`, `directions-hero`) : Claude seul fait aussi bien sur ces critères. Dans un projet doté d'une doctrine, il explore l'espace de travail et lit `atelier/marque/` de lui-même, si bien qu'un critère « s'appuie sur la doctrine » ne départage pas les bras. Deux indicateurs de déclenchement sont restés à zéro avec le plugin : aucune des skills attendues ne s'est déclenchée pour `directions-hero` (`design-direction`, `design-taste`, `landing-page`) ni pour `orienter-page-tarifs` (`cro-pricing`, `cro-page`, `demarrer-projet-web`). Ces descriptions sont à revoir lors de la consolidation.
+**Δ nul à 1,00** (`cro-formulaire`, `page-web-section`, et les cinq quasi-cas par construction) : Claude seul fait aussi bien sur ces critères. Pour `cro-formulaire`, c'est un signe que la skill ajoute peu de capacité ; à considérer lors de la consolidation.
 
-**Δ nul ou négatif dû à la suite** :
-- `landing-matinale` : depuis `~/claude-projets`, les commandes Bash qui lisent la fabrique sont refusées par le bac à sable ; Claude s'arrête et demande l'autorisation, sans contourner. Depuis une copie hors du dossier personnel, le cas passe (ligne ci-dessus).
-- `landing-cadrage` : `landing-page` lance `landing-researcher` en arrière-plan (phase 0) ; le réseau du bac à sable refuse les galeries, et la réponse jugée est le message envoyé après la fin de cet agent, qui résume la recherche et rappelle cinq questions de cadrage. Le juge ne voit pas la salve de questions posée plus tôt (la réponse dit « Je n'ai toujours pas vos réponses au cadrage »), et le grader de lecture de la doctrine compte zéro lecture dans la conversation principale.
-- `brand-check-brouillon` : faux négatif du juge. Avec le plugin, la réponse relève les quatre défauts attendus (« solution clé en main », « écosystème », le cadratin, « 98 % » absent des chiffres autorisés) et bloque la publication ; Haiku vote FAIL deux fois sur trois.
-- `lead-magnet-calculateur` : le critère exige le circuit de capture complet dès la première réponse, alors que la skill fait d'abord choisir le type d'outil et valider la logique de calcul. Les deux bras échouent.
-- `script-python` : la regex `\.lower\(\)` ne trouve rien dans aucun des deux bras ; sans trace conservée, impossible de dire si le grader est trop étroit.
+**Δ négatifs, à lire comme des constats sur les skills** :
+- `lead-magnet-calculateur` : avec le plugin, la première réponse présente des formats à choisir et oublie le consentement deux fois sur trois ; sans le plugin, Claude y pense trois fois sur trois. Le circuit de capture « obligatoire » de la skill ne remonte pas jusqu'à sa première réponse.
+- `orienter-page-tarifs` : un run sur trois avec le plugin déroule une méthode (diagnostic, packaging, copy, conversion) en citant `personas.md` et `messaging-framework.md` sans rien en tirer de concret ; sans le plugin, Claude cite Nadia, Marc ou les chiffres de la marque à chaque run.
 
-**À corriger avant le prochain passage** : lancer depuis une copie hors du dossier personnel ; juge Sonnet (`--judge-model claude-sonnet-5-5`) pour les graders `llm` ; pour `landing-cadrage`, juger la trace (`focus: trace`) ou couper l'agent de recherche (`--disallow-tools Agent`) ; réécrire le critère de `lead-magnet-calculateur` pour une première réponse qui fait choisir le type ; vérifier `script-python` sur une trace ; trois runs par cas.
+**Artefacts de la suite encore visibles** :
+- `landing-cadrage` : le grader `lit-la-doctrine` compte zéro lecture de `voice.md`, `messaging-framework.md` ou `checklist-pre-composition.md` dans deux runs avec le plugin, alors que la réponse dit avoir lu « la voix, les chiffres, les personas » : lecture probablement passée par un autre outil (Grep, par exemple), à vérifier sur une trace avant d'élargir le grader.
+- `landing-matinale`, run 1 avec le plugin : la page passe tous les contrôles de fichier, mais la réponse jugée est le message envoyé après la fin d'une commande lancée en arrière-plan, pas le compte rendu.
+
+Passage précédent, réduit (un run par bras, juge Haiku, depuis `~/claude-projets`) : Δ moyen +0,07, 3,82 $. Il a servi à trouver les corrections appliquées depuis (copie hors du dossier personnel, juge Sonnet, agent de recherche coupé, critères de `lead-magnet-calculateur` et `script-python`).
