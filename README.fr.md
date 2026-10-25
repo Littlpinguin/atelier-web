@@ -2,7 +2,7 @@
 
 [English](README.md) · **Français**
 
-[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.0](https://img.shields.io/badge/version-1.2.0-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
+[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.1](https://img.shields.io/badge/version-1.2.1-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
 
 ![Atelier web : trois landings de trois marques fictives, produites par la même fabrique](docs/assets/apercu-fr.webp)
 

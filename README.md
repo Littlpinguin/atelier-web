@@ -2,7 +2,7 @@
 
 **English** · [Français](README.fr.md)
 
-[![MIT license](https://img.shields.io/badge/license-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.0](https://img.shields.io/badge/version-1.2.0-0D1B2A.svg) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
+[![MIT license](https://img.shields.io/badge/license-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.1](https://img.shields.io/badge/version-1.2.1-0D1B2A.svg) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
 
 ![Atelier web: three landing pages for three fictional brands, built by the same factory](docs/assets/apercu-en.webp)
 

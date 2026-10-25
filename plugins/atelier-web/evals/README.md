@@ -9,7 +9,7 @@ Suite `claude plugin eval` du plugin. Chaque cas tourne avec et sans le plugin ;
 | `orientation` | `initialiser-atelier` | Sans doctrine, le hub demande la matière réelle (site, contenus, documents, chiffres sourcés) et n'invente aucune valeur de marque |
 | | `landing-sans-doctrine` | Une demande de landing sans doctrine s'arrête et renvoie à la pose de la doctrine |
 | | `orienter-page-tarifs` | Doctrine posée : la réponse s'appuie sur la doctrine du projet et n'invente ni prix ni chiffre |
-| `declenchement` | `landing-cadrage` | `landing-page` lit la doctrine et pose le cadrage en une salve |
+| `declenchement` | `landing-cadrage` | `landing-page` lit la doctrine (Read ou commande Bash, regex sur la trace) et pose le cadrage en une salve |
 | | `page-web-section` | `page-web` n'invente aucun témoignage et reprend le système du site |
 | | `motion-trop-statique` | Le mouvement passe par le CSS piloté par le défilement et le mouvement réduit, sans AOS |
 | | `lottie-integration` | Une animation Lottie passe par dotLottie, avec mouvement réduit et pause |
@@ -22,7 +22,7 @@ Suite `claude plugin eval` du plugin. Chaque cas tourne avec et sans le plugin ;
 | | `motion-epinglage` | `motion` : épinglage réservé aux grands écrans et au mouvement permis, étapes toutes visibles sinon, aucun écouteur `scroll` |
 | | `cro-popup-sortie` | `cro`, pop-up : une fois par visite, refus mémorisé, fermeture facile, rien en plein écran sur mobile, consentement |
 | | `cro-page-diagnostic` | `cro`, page : hero, sorties concurrentes, formulaire réduit, CTA de la doctrine, aucun fait inventé |
-| | `ecriture-page` | `ecriture`, rédiger : vouvoiement, aucun terme banni ni cadratin, seuls les faits de la doctrine |
+| | `ecriture-page` | `ecriture`, rédiger : texte écrit dans `atelier/pages/comment-ca-marche.md` ; cadratin, termes bannis, vouvoiement, titres sans point et vocabulaire contrôlés par regex sur le fichier ; origine des faits jugée sur le fichier |
 | | `ecriture-humaniser` | `ecriture`, relire : parallélisme négatif et formules creuses retirés, aucun fait inventé |
 | | `revue-accessibilite` | `revue`, accessibilité : au moins cinq défauts WCAG relevés, chacun avec sa correction |
 | | `revue-debordement` | `revue`, rendu : causes de débordement sur mobile, corrections, mesure encore à faire |
@@ -58,13 +58,30 @@ claude plugin eval /tmp/atelier-web-eval --scaffold --trust-plugin --allow-tools
 - Juge Sonnet : Haiku a rendu un faux négatif sur `brand-check-brouillon` au passage du 25/10/2026.
 - Trois runs par cas et par bras (défaut) ; modèles épinglés pour comparer les passages entre eux : un changement de modèle n'est pas une régression du plugin.
 - `--case` ne garde que sa dernière occurrence : lancer un passage par cas pour en rejouer plusieurs. Les neuf cas de la consolidation, seuls : `--tag fusion`.
-- `--allow-tools Bash` vaut pour tous les cas, malgré leur `allowed_tools` : Claude peut alors lire la doctrine par `cat`, ce qu'un grader `tool_used: Read` ne voit pas (`tool_used` compare un nom d'outil exact, sans alternative).
+- `--allow-tools Bash` vaut pour tous les cas, malgré leur `allowed_tools` : Claude peut alors lire la doctrine par `cat`, ce qu'un grader `tool_used: Read` ne voit pas (`tool_used` compare un nom d'outil exact, sans alternative). Pour un chemin suivi par plusieurs outils, viser la trace : `target: trace`, où chaque appel s'écrit `"name":"Bash","input":{"command":"…"}` (voir `lit-la-doctrine` de `landing-cadrage`).
+- Un contrôle d'absence sur un fichier (cadratin, termes bannis) s'écrit en motif positif, `^(?![\s\S]*<motif>)[\s\S]+$` : il échoue alors sur un fichier vide ou absent, au lieu de passer à vide.
 - Garder la trace d'un run : elle vit dans `/private/tmp/e-*/out/trace.jsonl` le temps du run et disparaît ensuite ; la copier pendant le run. `--debug-file` est une option globale (`claude --debug-file <fichier> plugin eval …`) et ne journalise que le type des évènements.
 - Un seul cas, un seul bras, pour itérer : `claude plugin eval /tmp/atelier-web-eval --case <cas> --runs 1 --ablation none --scaffold --trust-plugin`.
 - Avec Claude Code 2.1.308, `--keep-temp` fait refuser les cas à fixture (« more than one hard link ») : le garder pour les cas sans fixture.
 - Les résultats vont dans `results/`, ignoré par git.
 
 ## Δ de référence
+
+### Version 1.2.1 (graders revus, hook corrigé)
+
+Trois graders revus (voir le `CHANGELOG.md` à la racine), et le hook ne réagit plus aux commandes en lecture seule. Les trois cas concernés ont été rejoués à trois runs par bras, avant la refonte (24 skills) et sur la version 1.2.1. Deux cas où le hook travaille le plus l'ont été sur la version 1.2.1 : `revue-debordement`, où un `ls` déclenchait le rappel, et `landing-matinale`, où la page est assemblée par script. Mêmes réglages que le passage complet ; ≈ 11 $.
+
+| Cas | Avec | Sans | Δ 1.2.1 | Δ avant la refonte, mêmes graders |
+|---|---|---|---|---|
+| `landing-cadrage` | 1,00 | 0,67 | **+0,33** | +0,50 |
+| `directions-hero` | 1,00 | 0,67 | **+0,33** | +0,17 |
+| `ecriture-page` | 1,00 | 1,00 | **0,00** | 0,00 |
+| `revue-debordement` | 1,00 | 1,00 | **0,00** | −1,00 |
+| `landing-matinale` | 1,00 | 0,05 | **+0,95** | +0,90 |
+
+`lit-la-doctrine` passe désormais 3 fois sur 3 avec le plugin, avant comme après la refonte : la lecture par `cat` était bien là. Avec ses nouveaux contrôles, déterministes, `ecriture-page` montre que Claude seul, dans un projet doté d'une doctrine, la lit et écrit un texte conforme : Δ nul, comme `cro-formulaire`. `landing-matinale` garde tous ses contrôles avec le nouveau hook (lint lancé 3 fois sur 3).
+
+**Δ moyen consolidé** (les cinq cas ci-dessus à leur valeur 1.2.1, les autres au passage complet 1.2.0) : **+0,32** sur 26 cas, contre +0,28 pour la même suite avant la refonte. Sur les 17 cas d'origine, +0,30 contre +0,30. Sur les neuf cas `fusion`, +0,36 contre +0,25. Score moyen avec le plugin : 0,97 sur 26 cas, 1,00 sur les 17 cas d'origine.
 
 ### Version 1.2.0 (dix skills)
 
@@ -111,10 +128,10 @@ Pour un quasi-cas, « 3/3 » dans la colonne Déclenchement signifie qu'aucune s
 - `motion-epinglage` (+0,44 → +0,56) : l'ancienne `motion-defilement` faisait « calculer la progression au défilement », d'où un écouteur `scroll` que `design-taste` bannissait (2 runs sur 3). L'épinglage passe par une timeline de défilement CSS ou par ScrollTrigger : 0 écouteur sur 3 runs.
 
 **Baisses sur les 17 cas d'origine, lues sur les réponses** :
-- `landing-cadrage` (+0,17 → 0,00) : artefact du grader `lit-la-doctrine`, confirmé par une trace. Avec le plugin, Claude lit `voice.md`, `messaging-framework.md` et `checklist-pre-composition.md` par `cat` dans Bash, que le grader ne compte pas (voir § Lancer). Le cadrage en une salve passe 3 fois sur 3 avec le plugin, 0 fois sans.
+- `landing-cadrage` (+0,17 → 0,00) : artefact du grader `lit-la-doctrine`, confirmé par une trace et corrigé en 1.2.1. Avec le plugin, Claude lit `voice.md`, `messaging-framework.md` et `checklist-pre-composition.md` par `cat` dans Bash, que le grader ne compte pas (voir § Lancer). Le cadrage en une salve passe 3 fois sur 3 avec le plugin, 0 fois sans.
 - `lottie-integration` et `brand-check-brouillon` : le bras avec le plugin reste à 1,00 ; c'est le bras sans qui monte (0,67 → 0,89 et 0,67 → 0,78), du bruit de base à trois runs.
-- `directions-hero` : un run sur trois nomme les couleurs par leurs variables (`--color-primary`, `--color-light`) ; le regex `jetons-de-la-marque` ne cherche que les valeurs hexadécimales. Grader laissé tel quel pour garder la comparaison avec la version 1.1.0.
-- `ecriture-page` reste bas avec le plugin (0,33) alors que les textes relus tiennent le critère à la lecture : le juge est plus sévère que la consigne. Un contrôle déterministe du texte livré serait plus fiable.
+- `directions-hero` : un run sur trois nomme les couleurs par leurs variables (`--color-primary`, `--color-light`) ; le regex `jetons-de-la-marque` ne cherche que les valeurs hexadécimales. Grader élargi en 1.2.1 aux variables `--brand-*` et à JetBrains Mono.
+- `ecriture-page` reste bas avec le plugin (0,33) alors que les textes relus tiennent le critère à la lecture : le juge est plus sévère que la consigne. Remplacé en 1.2.1 par des contrôles déterministes sur le fichier écrit.
 
 La copie évaluée diffère du commit par la seule écriture de six renvois croisés en chemin complet (`${CLAUDE_PLUGIN_ROOT}/skills/…`), faite après le passage.
 

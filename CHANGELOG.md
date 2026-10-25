@@ -1,5 +1,16 @@
 # Journal des versions
 
+## 1.2.1 · 2026-10-25
+
+Corrections relevées par le passage d'évals de la version 1.2.0.
+
+- **Hook** : un simple `ls atelier/…` dans un projet tout juste installé faisait demander un brand-check sur des fichiers que personne n'avait écrits. Au premier passage d'une session, le hook prenait pour repère les dix dernières minutes, si bien que la doctrine copiée ou une page ouverte dans un éditeur passaient pour écrites par la commande. Le même script tourne désormais aussi en PreToolUse sur Bash, où il note seulement l'heure de départ de la session. Les commandes en lecture seule (`ls`, `cat`, `grep`, `find` sans `-exec` ni `-delete`, `git status`, sans redirection vers un fichier) ne déclenchent plus rien. 41 scénarios joués sur une copie de la fixture : tous passent ; l'ancien hook en échoue 19, dont le cas observé.
+- **Évals, trois graders revus** :
+  - `landing-cadrage`, `lit-la-doctrine` : un `tool_used: Read` ne voyait pas les lectures par `cat`, `tool_used` ne comparant qu'un nom d'outil exact. Il devient un regex sur la trace, qui reconnaît un Read des fichiers de doctrine ou une commande Bash qui les lit.
+  - `directions-hero`, `jetons-de-la-marque` : il accepte aussi les variables `--brand-*` et la police JetBrains Mono, en plus des valeurs hexadécimales.
+  - `ecriture-page` : le texte s'écrit dans `atelier/pages/comment-ca-marche.md`. Cadratin, termes bannis, vouvoiement, titres sans point et vocabulaire de la marque se contrôlent par regex sur le fichier, chacun en échec sur un fichier vide ; le juge ne garde que l'origine des faits, jugée sur le fichier.
+- **Mesure** : les trois cas rejoués à trois runs par bras, avant la refonte et sur la version 1.2.1, plus `revue-debordement` et `landing-matinale` avec le nouveau hook (≈ 11 $). `lit-la-doctrine` passe 3 fois sur 3 avec le plugin. Δ moyen consolidé : +0,32 sur 26 cas (+0,28 avant la refonte) ; +0,30 sur les 17 cas d'origine, à la référence ; +0,36 sur les neuf cas de la fusion (+0,25 avant). `ecriture-page` tombe à Δ 0 : avec des contrôles déterministes, Claude seul lit la doctrine du projet et écrit un texte conforme. Détail : `plugins/atelier-web/evals/README.md` § Δ de référence.
+
 ## 1.2.0 · 2026-10-25
 
 Consolider les 24 skills en 10 : ligne 9 du rapport d'architecture du 25/10/2026.
