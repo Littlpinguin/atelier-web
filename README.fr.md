@@ -2,7 +2,7 @@
 
 [English](README.md) · **Français**
 
-[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.0.0](https://img.shields.io/badge/version-1.0.0-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![24 skills](https://img.shields.io/badge/skills-24-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
+[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![24 skills](https://img.shields.io/badge/skills-24-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
 
 ![Atelier web : trois landings de trois marques fictives, produites par la même fabrique](docs/assets/apercu-fr.webp)
 
@@ -62,14 +62,16 @@ Chaque livrable passe par `qa-rendu` puis `brand-check` avant de vous être mont
 | Démarrer | `demarrer-projet-web` : doctrine du projet et orientation |
 | Produire une page | `landing-page` (playbook en huit phases), `page-web` (site existant), `lead-magnet` (outil ou guide contre un email) |
 | Direction et système | `design-direction`, `design-taste`, `design-system`, `design-redesign` |
-| Mouvement | `motion-defilement`, `animation-gsap`, `animation-scroll-reveal`, `animation-animejs`, `animation-lottie` |
+| Mouvement | `motion-defilement` (le cœur : CSS natif piloté par le défilement d'abord, GSAP pour l'épinglage, dotLottie pour les médias animés), `animation-scroll-reveal`, `animation-gsap`, `animation-animejs`, `animation-lottie` |
 | Conversion | `cro-page`, `cro-form`, `cro-popup`, `cro-pricing` |
 | Textes | `copywriting`, `copy-editing`, `humanize-writing` |
 | Contrôle | `qa-rendu`, `design-review`, `accessibility-web`, `brand-check` |
 
 **Agents** : `landing-researcher` (benchmark et recherche visuelle en arrière-plan), `landing-section-builder` (une section par agent, en parallèle), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, `landing-reviewer-a11y`, et `a11y-auditor` (accessibilité en rendu réel).
 
-**Fabrique** : 44 sections (hero, preuves, programme, offre, FAQ, porte de choix, comparateur…), 6 modèles de landing (formation, événement, prestation, démo B2B, vente longue, capture), 10 outils interactifs avec capture (calculateur de ROI, diagnostic, quiz…), et les scripts `assemble-landing.py`, `qa-landing.py`, `controle-fonds.py`, `build-tokens.py`, `lint-brand.py`. Un hook lance le contrôle de marque après chaque page écrite.
+**Fabrique** : 44 sections (hero, preuves, programme, offre, FAQ, porte de choix, comparateur…), 6 modèles de landing (formation, événement, prestation, démo B2B, vente longue, capture), 10 outils interactifs avec capture (calculateur de ROI, diagnostic, quiz…), et les scripts `assemble-landing.py`, `qa-landing.py`, `controle-fonds.py`, `build-tokens.py`, `lint-brand.py`. Un hook lance le contrôle de marque après chaque page écrite, y compris celles qu'assemble un script.
+
+**Évals** : `plugins/atelier-web/evals/` contient une suite `claude plugin eval` (orientation, déclenchement des skills, demandes qui ne doivent pas les déclencher, une landing de bout en bout), jouée sur la doctrine d'une marque fictive fournie en fixture.
 
 La méthode complète est dans [`docs/methode.md`](docs/methode.md).
 
