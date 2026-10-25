@@ -46,19 +46,20 @@ claude plugin eval /tmp/atelier-web-eval --scaffold --trust-plugin --allow-tools
 - `--disallow-tools Agent` : sans lui, `landing-page` lance `landing-researcher` en arrière-plan, le réseau du bac à sable bloque ses galeries, et la réponse jugée de `landing-cadrage` devient le compte rendu de cette recherche.
 - Juge Sonnet : Haiku a rendu un faux négatif sur `brand-check-brouillon` au passage du 25/10/2026.
 - Trois runs par cas et par bras (défaut) ; modèles épinglés pour comparer les passages entre eux : un changement de modèle n'est pas une régression du plugin.
+- `--case` ne garde que sa dernière occurrence : lancer un passage par cas pour en rejouer plusieurs.
 - Un seul cas, un seul bras, pour itérer : `claude plugin eval /tmp/atelier-web-eval --case <cas> --runs 1 --ablation none --scaffold --trust-plugin`.
 - Avec Claude Code 2.1.308, `--keep-temp` fait refuser les cas à fixture (« more than one hard link ») : le garder pour les cas sans fixture.
 - Les résultats vont dans `results/`, ignoré par git.
 
 ## Δ de référence
 
-Passage du 25/10/2026 sur la version 1.1.0 (suite au commit `0278591`), lancé depuis une copie hors du dossier personnel : trois runs par cas et par bras, Claude Code 2.1.308, Sonnet 5.5 sous test et en juge, `--disallow-tools Agent`, compte Max. 102 runs, 829 s, 12,15 $ en prix catalogue. Δ moyen **+0,21** ; score moyen avec le plugin 0,92.
+Passage du 25/10/2026 sur la version 1.1.0 (suite au commit `0278591`), lancé depuis une copie hors du dossier personnel : trois runs par cas et par bras, Claude Code 2.1.308, Sonnet 5.5 sous test et en juge, `--disallow-tools Agent`, compte Max. 102 runs, 829 s, 12,15 $ en prix catalogue. Δ moyen **+0,21** ; score moyen avec le plugin 0,92. Après correction de `lead-magnet` et de `cro-pricing`, les deux cas en Δ négatif ont été rejoués à trois runs avec les mêmes réglages (valeurs après la flèche, 1,54 $) : en les reportant, le Δ moyen passe à ≈ +0,29.
 
 | Cas | Avec | Sans | Δ | Coût |
 |---|---|---|---|---|
 | `initialiser-atelier` | 1,00 | 0,00 | +1,00 | 0,52 $ |
 | `landing-sans-doctrine` | 1,00 | 0,00 | +1,00 | 0,70 $ |
-| `orienter-page-tarifs` | 0,67 | 1,00 | −0,33 | 0,65 $ |
+| `orienter-page-tarifs` | 0,67 → **1,00** | 1,00 | −0,33 → **0,00** | 0,65 $ + 0,78 $ |
 | `landing-cadrage` | 0,67 | 0,50 | +0,17 | 1,11 $ |
 | `page-web-section` | 1,00 | 1,00 | 0,00 | 0,79 $ |
 | `motion-trop-statique` | 1,00 | 0,78 | +0,22 | 0,69 $ |
@@ -66,7 +67,7 @@ Passage du 25/10/2026 sur la version 1.1.0 (suite au commit `0278591`), lancé d
 | `brand-check-brouillon` | 1,00 | 0,67 | +0,33 | 0,78 $ |
 | `cro-formulaire` | 1,00 | 1,00 | 0,00 | 0,46 $ |
 | `directions-hero` | 1,00 | 0,67 | +0,33 | 1,17 $ |
-| `lead-magnet-calculateur` | 0,33 | 0,67 | −0,33 | 0,78 $ |
+| `lead-magnet-calculateur` | 0,33 → **1,00** | 0,67 → 0,33 | −0,33 → **+0,67** | 0,78 $ + 0,76 $ |
 | `script-python` | 1,00 | 1,00 | 0,00 | 0,41 $ |
 | `css-sticky` | 1,00 | 1,00 | 0,00 | 0,36 $ |
 | `plan-slides` | 1,00 | 1,00 | 0,00 | 0,41 $ |
@@ -84,9 +85,9 @@ Passage du 25/10/2026 sur la version 1.1.0 (suite au commit `0278591`), lancé d
 
 **Δ nul à 1,00** (`cro-formulaire`, `page-web-section`, et les cinq quasi-cas par construction) : Claude seul fait aussi bien sur ces critères. Pour `cro-formulaire`, c'est un signe que la skill ajoute peu de capacité ; à considérer lors de la consolidation.
 
-**Δ négatifs, à lire comme des constats sur les skills** :
-- `lead-magnet-calculateur` : avec le plugin, la première réponse présente des formats à choisir et oublie le consentement deux fois sur trois ; sans le plugin, Claude y pense trois fois sur trois. Le circuit de capture « obligatoire » de la skill ne remonte pas jusqu'à sa première réponse.
-- `orienter-page-tarifs` : un run sur trois avec le plugin déroule une méthode (diagnostic, packaging, copy, conversion) en citant `personas.md` et `messaging-framework.md` sans rien en tirer de concret ; sans le plugin, Claude cite Nadia, Marc ou les chiffres de la marque à chaque run.
+**Δ négatifs du passage, corrigés dans les skills** :
+- `lead-magnet-calculateur` : avec le plugin, la première réponse présentait des formats à choisir et oubliait le consentement deux fois sur trois ; le circuit de capture « obligatoire » de la skill n'arrivait qu'à son étape 4. La skill pose désormais, dès la première réponse, la destination de l'email, la contrepartie, le consentement et l'origine des chiffres. Rejeu : 3 runs sur 3 au vert avec le plugin, consentement compris.
+- `orienter-page-tarifs` : un run sur trois avec `cro-pricing` déroulait une méthode en citant `personas.md` et `messaging-framework.md` sans rien en tirer ; l'étape 0 réservait la doctrine à la rédaction. Elle vaut maintenant pour le conseil, et la première réponse nomme personas, preuves, chiffres et règles de voix qu'elle en tire. Rejeu : 3 runs sur 3 au vert avec le plugin ; la skill s'est déclenchée 2 fois sur 3, le run sans skill passant aussi.
 
 **Artefacts de la suite encore visibles** :
 - `landing-cadrage` : le grader `lit-la-doctrine` compte zéro lecture de `voice.md`, `messaging-framework.md` ou `checklist-pre-composition.md` dans deux runs avec le plugin, alors que la réponse dit avoir lu « la voix, les chiffres, les personas » : lecture probablement passée par un autre outil (Grep, par exemple), à vérifier sur une trace avant d'élargir le grader.

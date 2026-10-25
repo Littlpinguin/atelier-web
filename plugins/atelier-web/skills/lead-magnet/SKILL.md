@@ -37,6 +37,13 @@ Vous produisez des lead magnets qui génèrent des leads qualifiés, pas des fic
 
 Présenter 2-3 options argumentées à l'utilisateur avant de produire ; le responsable de la marque tranche.
 
+**Dès cette première réponse, le circuit de capture est sur la table**, pour l'option recommandée, en quatre points courts :
+
+1. **Où part l'email** : l'outil d'emailing et l'automatisation déclarés dans le `CLAUDE.md` du projet ; s'il n'en déclare aucun, le demander.
+2. **Ce que reçoit le visiteur** après avoir donné son email (résultat détaillé, guide, séquence) et le message de confirmation.
+3. **Consentement** : mention RGPD sous le formulaire (finalité, désinscription en un clic, lien vers la politique de confidentialité), case d'opt-in marketing distincte et jamais pré-cochée si la séquence dépasse la livraison du contenu.
+4. **Chiffres** : un résultat chiffré (calcul, score, économie) ne repose que sur un chiffre de `atelier/marque/messaging-framework.md` ou sur une hypothèse annoncée comme telle ; jamais de coefficient inventé.
+
 ## Workflow commun
 
 ### 1. Brief
@@ -120,7 +127,7 @@ Mettre à jour `atelier/publie.md` (et le calendrier éditorial du projet s'il e
 - [ ] Circuit complet branché : formulaire → n8n (ou direct) → l'outil d'emailing du projet → séquence
 - [ ] Séquence de nurturing en place (skill `email`), email 0 livre le contenu
 - [ ] `brand-check` passé sur les trois livrables (contenu, page, emails)
-- [ ] Mesure configurée et `deployed.md` + calendrier à jour
+- [ ] Mesure configurée et `atelier/publie.md` + calendrier à jour
 
 ## Skills associées
 

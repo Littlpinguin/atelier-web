@@ -7,15 +7,17 @@ description: Stratégie de tarification et optimisation de la page tarifs de la 
 
 Adapté du plugin marketingskills (Corey Haines / fork Littlpinguin, MIT) — voir `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-cro.md`. Deux registres : **conseil stratégique** (packaging, prix) et **production** (copy de la page tarifs). La décision de prix appartient toujours à le responsable de la marque — cette skill structure et argumente, elle ne tranche pas.
 
-## Étape 0 — Doctrine de marque (OBLIGATOIRE pour toute production de copy)
+## Étape 0 — Doctrine de marque (OBLIGATOIRE dès qu'elle existe, conseil compris)
 
-Dès que la page tarifs, une FAQ prix ou un argumentaire est rédigé :
+Avant le premier conseil comme avant toute copy :
 
-1. `atelier/marque/checklist-pre-composition.md` et `atelier/marque/voice.md` — voix, vocabulaire, interdits.
-2. `atelier/marque/messaging-framework.md` — les preuves de valeur qui justifient le prix (chiffres sourcés uniquement).
-3. `atelier/marque/personas.md` — chaque palier doit correspondre à un persona identifiable.
+1. `atelier/marque/messaging-framework.md` — les preuves de valeur qui justifient le prix (chiffres sourcés uniquement).
+2. `atelier/marque/personas.md` — chaque palier doit correspondre à un persona identifiable.
+3. `atelier/marque/checklist-pre-composition.md` et `atelier/marque/voice.md` — voix, vocabulaire, interdits (obligatoires dès qu'un texte se rédige).
 
-Si un fichier manque ou contient des `{{...}}` : arrêter et lancer la skill `demarrer-projet-web` (atelier-web), qui pose la doctrine du projet. Le conseil stratégique pur peut se faire sans, mais toute sortie rédigée passe par l'étape 0 puis `brand-check`.
+**La première réponse dit ce qu'elle tire de la doctrine**, nommément : le ou les personas visés et leur objection sur le prix, les preuves de valeur et chiffres autorisés (avec leur source), les règles de voix qui touchent la page (vouvoiement, termes bannis). Citer un fichier sans en rien tirer ne compte pas. Puis elle liste ce qui manque pour avancer : la page tarifs actuelle, les offres et leurs prix, les chiffres de performance. Aucun prix n'est proposé avant.
+
+Si un fichier manque ou contient des `{{...}}` : arrêter et lancer la skill `demarrer-projet-web` (atelier-web), qui pose la doctrine du projet. Sans doctrine, seul un conseil stratégique général reste possible, annoncé comme tel ; toute sortie rédigée passe par l'étape 0 puis `brand-check`.
 
 ## Cadrage initial
 
