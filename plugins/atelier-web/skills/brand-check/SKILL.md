@@ -1,6 +1,6 @@
 ---
 name: brand-check
-description: Valide un texte ou une page web contre la doctrine de marque du projet (atelier/marque/) avant livraison. Obligatoire en dernière étape de toute page, section, landing, lead magnet ou texte de site produit avec l'atelier web. Lint déterministe, filtre 5 points (vocabulaire, ton, preuve, audience, visuel), verdict structuré, corrections appliquées.
+description: "Valide un texte ou une page web contre la doctrine de marque du projet (atelier/marque/) avant livraison : lint déterministe, filtre en cinq points (vocabulaire, ton, preuve, audience, visuel), verdict et corrections. Dernière étape obligatoire de toute page, landing, lead magnet ou texte de site de l'atelier."
 ---
 
 # brand-check — gardien qualité avant livraison
@@ -168,7 +168,7 @@ Règles propres à la marque : `atelier/marque/voice.md`, § règles spécifique
 ## Ce que cette skill ne fait PAS
 
 - ❌ Produire ou réécrire du contenu de fond
-- ❌ Corriger orthographe/grammaire (→ `copy-editing`)
+- ❌ Corriger orthographe/grammaire (→ `ecriture`, mode relire)
 - ❌ Optimiser le SEO (→ `seo`)
 - ❌ Juger la pertinence stratégique (→ `content-strategy`)
 

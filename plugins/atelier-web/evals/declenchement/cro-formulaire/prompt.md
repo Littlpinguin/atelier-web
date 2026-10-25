@@ -1,5 +1,5 @@
 ---
-description: 'cro-form : quels champs garder dans un formulaire de démo.'
+description: 'cro (formulaire) : quels champs garder dans un formulaire de démo.'
 tags: [declenchement]
 max_turns: 16
 timeout_seconds: 420

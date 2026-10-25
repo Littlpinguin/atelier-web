@@ -2,11 +2,11 @@
 
 **English** · [Français](README.fr.md)
 
-[![MIT license](https://img.shields.io/badge/license-MIT-0D1B2A.svg)](LICENSE) ![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-0D1B2A.svg) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![24 skills](https://img.shields.io/badge/skills-24-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
+[![MIT license](https://img.shields.io/badge/license-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.0](https://img.shields.io/badge/version-1.2.0-0D1B2A.svg) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
 
 ![Atelier web: three landing pages for three fictional brands, built by the same factory](docs/assets/apercu-en.webp)
 
-**Atelier web is a Claude Code plugin for designing and building beautiful, high-converting landing pages and web pages that look exactly like the brand they serve.** It bundles 24 skills, 7 agents (visual research, parallel section builders, design, brand, conversion and accessibility reviewers), a library of 44 proven landing sections, and a QA step that measures the real render before showing you anything.
+**Atelier web is a Claude Code plugin for designing and building beautiful, high-converting landing pages and web pages that look exactly like the brand they serve.** It bundles 10 skills, 7 agents (visual research, parallel section builders, design, brand, conversion and accessibility reviewers), a library of 44 proven landing sections, and a QA step that measures the real render before showing you anything.
 
 It packages the method I use to build my clients’ websites and landing pages. I'm [Jessy Martin](https://jessem.fr/en/), a French consultant and trainer who helps marketing teams work with Claude Code and AI agents.
 
@@ -53,9 +53,9 @@ Restart Claude Code. To add the plugins I use alongside it (UI/UX Pro Max, front
 
 1. Open Claude Code in your website's folder.
 2. Run `/atelier-web:demarrer-projet-web`: Claude reads your site and your content, drafts the brand doctrine, has you approve it block by block, and writes it to `atelier/marque/`.
-3. Run `/atelier-web:landing-page` for a landing page, `/atelier-web:page-web` for a page or section on an existing site, or `/atelier-web:design-redesign` to modernize a site that looks dated.
+3. Run `/atelier-web:landing-page` for a landing page, `/atelier-web:page-web` for a page or section on an existing site, or `/atelier-web:design` to modernize a site that looks dated.
 
-Every deliverable goes through `qa-rendu` (rendering QA) and `brand-check` before you see it.
+Every deliverable goes through `revue` (rendering QA) and `brand-check` before you see it.
 
 ## What's inside
 
@@ -63,11 +63,13 @@ Every deliverable goes through `qa-rendu` (rendering QA) and `brand-check` befor
 |---|---|
 | Start | `demarrer-projet-web`: project brand doctrine and routing |
 | Build a page | `landing-page` (8-phase playbook), `page-web` (existing site), `lead-magnet` (tool or guide in exchange for an email) |
-| Direction and system | `design-direction`, `design-taste`, `design-system`, `design-redesign` |
-| Motion | `motion-defilement` (motion core: native CSS scroll-driven animations first, GSAP for pinning, dotLottie for animated media), `animation-scroll-reveal`, `animation-gsap`, `animation-animejs`, `animation-lottie` |
-| Conversion | `cro-page`, `cro-form`, `cro-popup`, `cro-pricing` |
-| Copy | `copywriting`, `copy-editing`, `humanize-writing` |
-| Quality | `qa-rendu` (rendering QA), `design-review`, `accessibility-web`, `brand-check` |
+| Design | `design`: directions named by their signature object, an execution protocol against the generated look, redesign of an existing site, design tokens |
+| Motion | `motion`: native CSS scroll-driven animations first, GSAP for pinning, anime.js, dotLottie for animated media |
+| Conversion | `cro`: pages, forms, popups, pricing |
+| Copy | `ecriture`: write, review in seven passes, humanize text that sounds generated |
+| Quality | `revue` (measured rendering, interface review, WCAG 2.2 AA accessibility), `brand-check` |
+
+Each skill keeps its detail in reference files one level below its `SKILL.md`, read only when the task needs them.
 
 **Agents**: `landing-researcher` (benchmark and visual research in the background), `landing-section-builder` (one section per agent, in parallel), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, `landing-reviewer-a11y`, and `a11y-auditor` (accessibility on the real render).
 

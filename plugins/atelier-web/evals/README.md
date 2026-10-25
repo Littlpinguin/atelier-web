@@ -2,7 +2,7 @@
 
 Suite `claude plugin eval` du plugin. Chaque cas tourne avec et sans le plugin ; l'écart `Δ` mesure ce que l'atelier apporte. Elle sert de filet avant toute refonte des skills (consolidation, descriptions raccourcies) : un changement de description peut faire tomber un déclenchement, et seule une éval le voit.
 
-## Ce que mesurent les 17 cas
+## Ce que mesurent les 26 cas
 
 | Groupe | Cas | Ce qui est vérifié |
 |---|---|---|
@@ -17,11 +17,22 @@ Suite `claude plugin eval` du plugin. Chaque cas tourne avec et sans le plugin ;
 | | `cro-formulaire` | Formulaire de démo ramené à ses champs essentiels |
 | | `directions-hero` | Deux directions nommées par leur objet signature, aux jetons de la marque |
 | | `lead-magnet-calculateur` | Circuit de capture complet, aucun résultat promis sans hypothèse |
+| | `design-refonte` | `design`, route refondre : défauts « IA » de la page nommés, couleurs de la marque, correctifs ciblés par ordre de priorité, URL et champs du formulaire intacts |
+| | `design-systeme` | `design`, route systématiser : bloc `:root` sur les valeurs, les polices et les rayons de la marque |
+| | `motion-epinglage` | `motion` : épinglage réservé aux grands écrans et au mouvement permis, étapes toutes visibles sinon, aucun écouteur `scroll` |
+| | `cro-popup-sortie` | `cro`, pop-up : une fois par visite, refus mémorisé, fermeture facile, rien en plein écran sur mobile, consentement |
+| | `cro-page-diagnostic` | `cro`, page : hero, sorties concurrentes, formulaire réduit, CTA de la doctrine, aucun fait inventé |
+| | `ecriture-page` | `ecriture`, rédiger : vouvoiement, aucun terme banni ni cadratin, seuls les faits de la doctrine |
+| | `ecriture-humaniser` | `ecriture`, relire : parallélisme négatif et formules creuses retirés, aucun fait inventé |
+| | `revue-accessibilite` | `revue`, accessibilité : au moins cinq défauts WCAG relevés, chacun avec sa correction |
+| | `revue-debordement` | `revue`, rendu : causes de débordement sur mobile, corrections, mesure encore à faire |
 | `quasi-cas` | `script-python`, `css-sticky`, `plan-slides` | Aucune skill de l'atelier ne se déclenche |
-| | `email-relance`, `post-linkedin` | Dans un projet doté d'une doctrine, aucune skill de page, de design ou de conversion (les skills de relecture restent permises) |
+| | `email-relance`, `post-linkedin` | Dans un projet doté d'une doctrine, aucune skill de page, de design, de mouvement, de conversion ni de revue (`brand-check` et `ecriture`, qui porte la relecture, restent permises) |
 | `bout-en-bout` | `landing-matinale` | Landing assemblée par la fabrique depuis le modèle `evenement`, marqueurs branchés, CTA primaire posé, lint de marque lancé, reste à faire annoncé sans rien publier |
 
 Les graders `tool_used: Skill` sont des indicateurs (« la skill s'est déclenchée ») : ils ne comptent pas dans le score d'un run à deux bras. Le score repose sur le résultat (regex sur la réponse ou le fichier produit, juge sur un critère PASS/FAIL) et sur le chemin suivi (lecture de la doctrine, appel du linter).
+
+Les neuf cas du tag `fusion` ont été ajoutés avant la consolidation de la version 1.2.0 (24 skills devenues 10), pour mesurer le déclenchement des skills fusionnées. Leurs graders de déclenchement, comme ceux des cas plus anciens, acceptent l'ancien et le nouveau nom de la skill attendue : la même suite compare les deux versions. Les quasi-cas interdisent aussi les nouvelles skills.
 
 ## Doctrine de test
 
@@ -46,12 +57,68 @@ claude plugin eval /tmp/atelier-web-eval --scaffold --trust-plugin --allow-tools
 - `--disallow-tools Agent` : sans lui, `landing-page` lance `landing-researcher` en arrière-plan, le réseau du bac à sable bloque ses galeries, et la réponse jugée de `landing-cadrage` devient le compte rendu de cette recherche.
 - Juge Sonnet : Haiku a rendu un faux négatif sur `brand-check-brouillon` au passage du 25/10/2026.
 - Trois runs par cas et par bras (défaut) ; modèles épinglés pour comparer les passages entre eux : un changement de modèle n'est pas une régression du plugin.
-- `--case` ne garde que sa dernière occurrence : lancer un passage par cas pour en rejouer plusieurs.
+- `--case` ne garde que sa dernière occurrence : lancer un passage par cas pour en rejouer plusieurs. Les neuf cas de la consolidation, seuls : `--tag fusion`.
+- `--allow-tools Bash` vaut pour tous les cas, malgré leur `allowed_tools` : Claude peut alors lire la doctrine par `cat`, ce qu'un grader `tool_used: Read` ne voit pas (`tool_used` compare un nom d'outil exact, sans alternative).
+- Garder la trace d'un run : elle vit dans `/private/tmp/e-*/out/trace.jsonl` le temps du run et disparaît ensuite ; la copier pendant le run. `--debug-file` est une option globale (`claude --debug-file <fichier> plugin eval …`) et ne journalise que le type des évènements.
 - Un seul cas, un seul bras, pour itérer : `claude plugin eval /tmp/atelier-web-eval --case <cas> --runs 1 --ablation none --scaffold --trust-plugin`.
 - Avec Claude Code 2.1.308, `--keep-temp` fait refuser les cas à fixture (« more than one hard link ») : le garder pour les cas sans fixture.
 - Les résultats vont dans `results/`, ignoré par git.
 
 ## Δ de référence
+
+### Version 1.2.0 (dix skills)
+
+Passage du 25/10/2026 sur la version consolidée, dans les mêmes conditions que celui de la version 1.1.0 (copie dans le dossier temporaire de session, trois runs par cas et par bras, Claude Code 2.1.308, Sonnet 5.5 sous test et en juge, `--disallow-tools Agent`, compte Max) : 156 runs, 1 560 s, 20,56 $ en prix catalogue. La colonne « Δ avant la refonte » reprend la référence 1.1.0 pour les 17 cas d'origine et, pour les neuf cas `fusion`, leur passage sur les 24 skills juste avant la consolidation (7,71 $). Quatre graders de ces cas ont été précisés avant comparaison, et les deux bras rejoués de part et d'autre (≈ 5 $) : ils refusaient des faits pourtant tirés du messaging framework (« six mois », « une matinée au tableur »), comptaient une couleur d'état fonctionnelle comme une teinte de marque, ou imposaient l'ordre de présentation des correctifs. La ligne `ecriture-page` vient de ce rejeu.
+
+| Cas | Avec | Sans | Δ | Δ avant la refonte | Déclenchement | Coût |
+|---|---|---|---|---|---|---|
+| `initialiser-atelier` | 1,00 | 0,00 | **+1,00** | +1,00 | 3/3 | 0,50 $ |
+| `landing-sans-doctrine` | 1,00 | 0,00 | **+1,00** | +1,00 | 3/3 | 0,75 $ |
+| `orienter-page-tarifs` | 1,00 | 1,00 | **0,00** | 0,00 | 3/3 | 0,91 $ |
+| `landing-cadrage` | 0,50 | 0,50 | **0,00** | +0,17 | 3/3 | 1,17 $ |
+| `page-web-section` | 1,00 | 1,00 | **0,00** | 0,00 | 3/3 | 0,80 $ |
+| `motion-trop-statique` | 1,00 | 0,78 | **+0,22** | +0,22 | 3/3 | 0,72 $ |
+| `lottie-integration` | 1,00 | 0,89 | **+0,11** | +0,33 | 3/3 | 0,88 $ |
+| `brand-check-brouillon` | 1,00 | 0,78 | **+0,22** | +0,33 | 3/3 | 0,75 $ |
+| `cro-formulaire` | 1,00 | 1,00 | **0,00** | 0,00 | 3/3 | 0,63 $ |
+| `directions-hero` | 0,83 | 0,67 | **+0,17** | +0,33 | 3/3 | 1,68 $ |
+| `lead-magnet-calculateur` | 1,00 | 0,00 | **+1,00** | +0,67 | 3/3 | 0,80 $ |
+| `design-refonte` (fusion) | 0,83 | 0,67 | **+0,17** | +0,33 | 3/3 | 1,21 $ |
+| `design-systeme` (fusion) | 1,00 | 0,33 | **+0,67** | +0,67 | 3/3 | 1,02 $ |
+| `motion-epinglage` (fusion) | 1,00 | 0,44 | **+0,56** | +0,44 | 3/3 | 1,30 $ |
+| `cro-popup-sortie` (fusion) | 0,67 | 0,00 | **+0,67** | +1,00 | 3/3 | 0,98 $ |
+| `cro-page-diagnostic` (fusion) | 1,00 | 0,50 | **+0,50** | −0,17 | 3/3 | 1,02 $ |
+| `ecriture-page` (fusion) | 0,33 | 0,00 | **+0,33** | 0,00 | 3/3 | 1,37 $ |
+| `ecriture-humaniser` (fusion) | 0,67 | 0,00 | **+0,67** | +1,00 | 3/3 | 0,92 $ |
+| `revue-accessibilite` (fusion) | 1,00 | 1,00 | **0,00** | 0,00 | 3/3 | 0,76 $ |
+| `revue-debordement` (fusion) | 1,00 | 0,67 | **+0,33** | −1,00 | 3/3 | 0,80 $ |
+| `script-python` | 1,00 | 1,00 | **0,00** | 0,00 | 3/3 | 0,36 $ |
+| `css-sticky` | 1,00 | 1,00 | **0,00** | 0,00 | 3/3 | 0,37 $ |
+| `plan-slides` | 1,00 | 1,00 | **0,00** | 0,00 | 3/3 | 0,44 $ |
+| `email-relance` | 1,00 | 1,00 | **0,00** | 0,00 | 3/3 | 0,38 $ |
+| `post-linkedin` | 1,00 | 1,00 | **0,00** | 0,00 | 3/3 | 0,38 $ |
+| `landing-matinale` | 1,00 | 0,05 | **+0,95** | +0,90 | 3/3 | 1,99 $ |
+
+Pour un quasi-cas, « 3/3 » dans la colonne Déclenchement signifie qu'aucune skill de l'atelier ne s'est déclenchée dans les trois runs.
+
+**Δ moyen** : **+0,33** sur les 26 cas, contre +0,28 pour la même suite avant la refonte. Sur les 17 cas d'origine, +0,275 contre +0,29 ; sur les neuf cas `fusion`, +0,43 contre +0,25. Score moyen avec le plugin : 0,92 sur 26 cas, 0,96 sur les 17 cas d'origine (0,98 en 1.1.0).
+
+**Déclenchement** : avec le plugin, chacun des 21 cas qui attend une skill la déclenche 3 fois sur 3, et les 5 quasi-cas n'en déclenchent aucune, 3 fois sur 3. `design-systeme` passe de 1 sur 3 (ancienne `design-system`) à 3 sur 3 (`design`).
+
+**Ce que la consolidation a corrigé, mesuré** : réunir les skills a fait apparaître trois contradictions, levées dans la version 1.2.0.
+- `revue-debordement` (−1,00 → +0,33) : l'ancienne `qa-rendu` demandait de s'arrêter sans Playwright ; Claude refusait alors tout diagnostic. La revue de rendu fait désormais une revue statique au verdict partiel, comme `a11y-auditor`.
+- `cro-page-diagnostic` (−0,17 → +0,50) : sans le plugin, Claude allait lire le document de l'offre (date, lieu, 120 places) ; l'ancienne `cro-page` ne lisait que la doctrine. La skill `cro` lit aussi la matière de l'offre.
+- `motion-epinglage` (+0,44 → +0,56) : l'ancienne `motion-defilement` faisait « calculer la progression au défilement », d'où un écouteur `scroll` que `design-taste` bannissait (2 runs sur 3). L'épinglage passe par une timeline de défilement CSS ou par ScrollTrigger : 0 écouteur sur 3 runs.
+
+**Baisses sur les 17 cas d'origine, lues sur les réponses** :
+- `landing-cadrage` (+0,17 → 0,00) : artefact du grader `lit-la-doctrine`, confirmé par une trace. Avec le plugin, Claude lit `voice.md`, `messaging-framework.md` et `checklist-pre-composition.md` par `cat` dans Bash, que le grader ne compte pas (voir § Lancer). Le cadrage en une salve passe 3 fois sur 3 avec le plugin, 0 fois sans.
+- `lottie-integration` et `brand-check-brouillon` : le bras avec le plugin reste à 1,00 ; c'est le bras sans qui monte (0,67 → 0,89 et 0,67 → 0,78), du bruit de base à trois runs.
+- `directions-hero` : un run sur trois nomme les couleurs par leurs variables (`--color-primary`, `--color-light`) ; le regex `jetons-de-la-marque` ne cherche que les valeurs hexadécimales. Grader laissé tel quel pour garder la comparaison avec la version 1.1.0.
+- `ecriture-page` reste bas avec le plugin (0,33) alors que les textes relus tiennent le critère à la lecture : le juge est plus sévère que la consigne. Un contrôle déterministe du texte livré serait plus fiable.
+
+La copie évaluée diffère du commit par la seule écriture de six renvois croisés en chemin complet (`${CLAUDE_PLUGIN_ROOT}/skills/…`), faite après le passage.
+
+### Version 1.1.0 (24 skills)
 
 Passage du 25/10/2026 sur la version 1.1.0 (suite au commit `0278591`), lancé depuis une copie hors du dossier personnel : trois runs par cas et par bras, Claude Code 2.1.308, Sonnet 5.5 sous test et en juge, `--disallow-tools Agent`, compte Max. 102 runs, 829 s, 12,15 $ en prix catalogue. Δ moyen **+0,21** ; score moyen avec le plugin 0,92. Après correction de `lead-magnet` et de `cro-pricing`, les deux cas en Δ négatif ont été rejoués à trois runs avec les mêmes réglages (valeurs après la flèche, 1,54 $) : en les reportant, le Δ moyen passe à ≈ +0,29.
 

@@ -1,5 +1,14 @@
 # Pièges rencontrés et parades
 
+## Sommaire
+
+- CSS et mise en page
+- Mouvement
+- Conversion et accessibilité
+- Session et outillage
+- Marque dans les visuels
+- Règles tirées des arbitrages
+
 Les pièges qui reviennent sur toute landing, avec leur parade. Quand un piège se mesure, la colonne « QA » donne l'identifiant de constat de `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py`.
 
 ## CSS et mise en page

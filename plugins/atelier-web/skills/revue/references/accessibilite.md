@@ -1,13 +1,8 @@
----
-name: accessibility-web
-description: "Référentiel accessibilité web WCAG 2.2 AA pour la marque du projet — structure et alternatives textuelles, ARIA, clavier et focus, modales, formulaires, contrastes, contenus dynamiques, tableaux, liens. À charger avant de construire ou de relire tout livrable HTML (landing pages atelier/, dashboard 11-reporting/) et pour toute question a11y. La revue automatisée avant livraison est déléguée à l'agent a11y-auditor. Enjeu légal : European Accessibility Act applicable depuis juin 2025."
----
-
-# accessibility-web — référentiel WCAG 2.2 AA la marque
+# Accessibilité : référentiel WCAG 2.2 AA
 
 > Contenu vendorisé et condensé depuis **accessibility-agents** v6.0.0 de Community-Access / Taylor Arndt (MIT) — sous-ensemble web uniquement (10 agents spécialistes sur 80) — voir `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-content.md`. Sources d'autorité : [WCAG 2.2](https://www.w3.org/TR/WCAG22/), [ARIA APG](https://www.w3.org/WAI/ARIA/apg/), [axe-core](https://github.com/dequelabs/axe-core).
 
-**Pourquoi c'est bloquant** : l'European Accessibility Act s'applique depuis le 28 juin 2025 aux produits et services numériques vendus dans l'UE (e-commerce inclus). Un livrable web inaccessible est un risque légal, pas seulement un défaut de qualité. Les skills `landing-page` et les pages du dashboard `11-reporting/` passent une revue a11y avant livraison (agent `a11y-auditor`).
+**Pourquoi c'est bloquant** : l'European Accessibility Act s'applique depuis le 28 juin 2025 aux produits et services numériques vendus dans l'UE (e-commerce inclus). Un livrable web inaccessible est un risque légal, pas seulement un défaut de qualité. Toute landing (`landing-page`) et toute page (`page-web`) passe une revue a11y avant livraison (agent `a11y-auditor`).
 
 ## Première règle (avant tout ARIA)
 
@@ -54,7 +49,6 @@ description: "Référentiel accessibilité web WCAG 2.2 AA pour la marque du pro
 - Non-texte 3:1 : bordures de champs, icônes signifiantes, indicateurs de focus, limites de composants.
 - Jamais la couleur seule pour porter l'information (statut, erreur, courbe de graphe → doubler d'un motif, libellé ou icône).
 - Dark mode : re-vérifier tous les ratios dans les deux thèmes ; respecter `prefers-reduced-motion` (pas d'animation essentielle non désactivable) et `prefers-color-scheme`.
-- Ces seuils recoupent l'agent `qa-visuel` (livrables 1920×1080 / carrousels) : `qa-visuel` couvre les decks projetés, `a11y-auditor` couvre les pages web.
 
 ## 7. Contenus dynamiques (live regions)
 
@@ -66,7 +60,6 @@ description: "Référentiel accessibilité web WCAG 2.2 AA pour la marque du pro
 
 - `<table>` sémantique avec `<th scope="col|row">` (jamais une grille de `<div>` pour des données) ; `<caption>` descriptif.
 - Tri : `aria-sort` sur le `<th>` actif, bouton de tri dans l'en-tête ; tableaux complexes → `headers`/`id`.
-- Le dashboard `11-reporting/` (tableaux de métriques) est directement concerné.
 
 ## 9. Liens
 

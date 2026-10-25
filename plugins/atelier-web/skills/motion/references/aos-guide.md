@@ -1,6 +1,20 @@
-> **Référence héritée, à ne pas suivre pour un projet neuf.** Corps d'origine de la skill (claudedesignskills, MIT), conservé pour maintenir ou migrer un projet qui emploie déjà AOS. AOS n'a plus de version depuis le 03/10/2018 (2.3.4, et 3.0.0-beta.6 jamais stabilisée). La méthode par défaut est dans `../SKILL.md` : CSS natif, repli par `IntersectionObserver`.
+> **Référence héritée, à ne pas suivre pour un projet neuf.** Corps d'origine de la skill (claudedesignskills, MIT), conservé pour maintenir ou migrer un projet qui emploie déjà AOS. AOS n'a plus de version depuis le 03/10/2018 (2.3.4, et 3.0.0-beta.6 jamais stabilisée). La méthode par défaut est dans `apparitions.md` : CSS natif, repli par `IntersectionObserver`. Les fichiers cités plus bas s'appellent ici `aos-api.md` et `aos-catalogue.md` ; les scripts et assets d'origine ne sont pas repris.
 
 # Scroll Reveal Libraries
+
+## Sommaire
+
+- Overview
+- Core Concepts
+- Common Patterns
+- Integration Patterns
+- Performance Optimization
+- Common Pitfalls
+- Built-in Animations
+- Custom Animations
+- Comparison with Alternatives
+- Resources
+- Related Skills
 
 ## Overview
 

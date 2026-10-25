@@ -1,6 +1,6 @@
 # Doctrine design anti-générique — à charger avant TOUTE production visuelle
 
-> **Ce fichier est le pendant visuel de la section 2 de `checklist-pre-composition.md`** (qui couvre le texte). Il fait partie de l'étape 0 des skills de production visuelle (`landing-page`, `page-web`, `design-system`, `design-direction`, `design-taste`, `design-review`) et s'applique à tout HTML livré. Chaque règle est sourcée : les URLs sont en fin de fichier, numérotées [1]-[7].
+> **Ce fichier est le pendant visuel de la section 2 de `checklist-pre-composition.md`** (qui couvre le texte). Il fait partie de l'étape 0 des skills de production visuelle (`landing-page`, `page-web`, `design`, `revue`) et s'applique à tout HTML livré. Chaque règle est sourcée : les URLs sont en fin de fichier, numérotées [1]-[7].
 
 **Principe racine.** Le look générique ne vient pas du médium, il vient de l'acceptation des défauts. L'homogénéisation visuelle du web est mesurable dès 2007, bien avant l'IA générative : entre 2010 et 2019 la distance de layout entre sites a chuté de 44 % (la distance couleur de 32 %), et cette similarité est corrélée à 0,77 (p < 0,001) avec l'usage partagé des mêmes librairies front-end — pendant que le code source natif, lui, devenait *moins* similaire [6]. Conséquence pratique : chaque valeur par défaut non questionnée (framework, palette, police, layout) est un pas vers le template. La règle de fond n'est pas « éviter tel style », c'est **ne jamais livrer un choix qu'on n'a pas fait**.
 
@@ -92,7 +92,7 @@ S'engager sur une esthétique cohérente via variables CSS. « Dominant colors w
 
 ### 2f. Élément signature
 
-Chaque page a UN élément dont on se souvient : « the single unique element this page will be remembered by » [2]. Si la marque possède déjà une signature (gradient, motif, mascotte, style d'illustration), l'amplifier avant d'inventer — c'est le premier candidat (cf. skill `design-direction`).
+Chaque page a UN élément dont on se souvient : « the single unique element this page will be remembered by » [2]. Si la marque possède déjà une signature (gradient, motif, mascotte, style d'illustration), l'amplifier avant d'inventer — c'est le premier candidat (cf. skill `design`, `references/direction.md`).
 
 ---
 

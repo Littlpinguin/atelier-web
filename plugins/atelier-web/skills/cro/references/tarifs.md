@@ -1,9 +1,4 @@
----
-name: cro-pricing
-description: Stratégie de tarification et optimisation de la page tarifs de la marque — packaging des offres, métrique de valeur, structure de paliers Good-Better-Best, psychologie des prix, hausse de prix, page tarifs qui convertit. Utiliser quand l'utilisateur dit « pricing », « tarifs », « combien facturer », « paliers », « freemium », « augmenter les prix », « page tarifs » ou « annuel vs mensuel ».
----
-
-# cro-pricing — pricing et page tarifs
+# Tarifs : stratégie de prix et page tarifs
 
 Adapté du plugin marketingskills (Corey Haines / fork Littlpinguin, MIT) — voir `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-cro.md`. Deux registres : **conseil stratégique** (packaging, prix) et **production** (copy de la page tarifs). La décision de prix appartient toujours à le responsable de la marque — cette skill structure et argumente, elle ne tranche pas.
 
@@ -53,7 +48,7 @@ Stratégies : grandfathering (nouveau prix pour les nouveaux seulement) ; annonc
 - Au-dessus de la ligne de flottaison : comparaison claire des paliers, palier recommandé signalé, toggle mensuel/annuel, un CTA par palier
 - Éléments : tableau comparatif des fonctionnalités, « pour qui » par palier, FAQ (objections prix), remise annuelle explicite (17-20% typique), garantie, preuves (logos, témoignages — sourcés doctrine)
 - **Psychologie** (à utiliser honnêtement, jamais contre l'utilisateur) : ancrage (option chère visible d'abord), effet de compromis (palier du milieu = meilleure valeur), prix charme 49 € (positionnement valeur) vs prix rond 50 € (positionnement premium)
-- La revue de conversion de la page elle-même : skill `cro-page`
+- La revue de conversion de la page elle-même : `page.md`
 
 ## Recherche de disposition à payer
 
@@ -76,7 +71,7 @@ Stratégies : grandfathering (nouveau prix pour les nouveaux seulement) ; annonc
 
 ## Skills associées
 
-- `cro-page` — conversion de la page tarifs
-- `copywriting` — rédaction de la page
+- `page.md` : conversion de la page tarifs
+- skill `ecriture` : rédaction de la page
 - `landing-page` — production HTML
 - `brand-check` — validation obligatoire

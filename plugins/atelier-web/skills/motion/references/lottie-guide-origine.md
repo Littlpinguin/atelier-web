@@ -1,6 +1,17 @@
-> **Référence héritée.** Corps d'origine de la skill (claudedesignskills, MIT), conservé pour les projets existants. Il présente lottie-web comme une option : lottie-web n'a plus de version depuis le 21/05/2025 (5.13.0) et `lottie-react` s'appuie dessus. Pour un projet neuf, suivre `../SKILL.md` : dotLottie.
+> **Référence héritée.** Corps d'origine de la skill (claudedesignskills, MIT), conservé pour les projets existants. Il présente lottie-web comme une option : lottie-web n'a plus de version depuis le 21/05/2025 (5.13.0) et `lottie-react` s'appuie dessus. Pour un projet neuf, suivre `lottie.md` : dotLottie. Les fichiers cités plus bas s'appellent ici `lottie-api.md`, `lottie-after-effects.md` et `lottie-performance.md` ; les scripts et assets d'origine ne sont pas repris.
 
 # Lottie Animations
+
+## Sommaire
+
+- Overview
+- Core Concepts
+- Common Patterns
+- Integration Patterns
+- Performance Optimization
+- Common Pitfalls
+- Resources
+- Related Skills
 
 ## Overview
 

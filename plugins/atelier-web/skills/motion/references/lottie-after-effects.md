@@ -1,5 +1,18 @@
 # After Effects to Lottie Export Guide
 
+## Sommaire
+
+- Prerequisites
+- Installation
+- Export Settings
+- Supported Features
+- Optimization Techniques
+- Common Export Issues
+- Testing Workflow
+- Best Practices
+- Resources
+- Troubleshooting
+
 Complete guide for exporting Lottie animations from After Effects using the Bodymovin plugin.
 
 ## Prerequisites

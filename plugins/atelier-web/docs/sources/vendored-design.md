@@ -66,6 +66,14 @@ Note d'audit : ui-ux-pro-max a fait l'objet d'un audit sécurité statique (verd
 
 ---
 
+## Consolidation du 2026-10-25 (atelier-web 1.2.0)
+
+- `design-direction` devient `skills/design/references/direction.md` (route créer de la skill `design`).
+- `design-system` devient `skills/design/references/systeme.md` (route systématiser), avec `styles.md`, `palettes.md` et `typographie.md` à côté.
+- `design-review` devient `skills/revue/references/interface.md` (angle interface de la skill `revue`, lu par l'agent `landing-reviewer-design`).
+
+L'étape 0 commune (doctrine, dimensions verrouillées ou libres) et les règles dures vivent dans le `SKILL.md` de chaque skill d'accueil ; les références gardent leur contenu, leurs renvois pointent les nouveaux fichiers.
+
 ## Procédure de re-synchronisation
 
 Les skills vendorisées sont des **adaptations**, pas des miroirs : ne jamais écraser un fichier du template par sa source. Procédure :

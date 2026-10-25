@@ -1,5 +1,5 @@
 ---
-description: 'design-direction ou design-taste : deux directions nommées par leur objet signature, aux jetons de la marque.'
+description: 'design (créer) : deux directions nommées par leur objet signature, aux jetons de la marque.'
 tags: [declenchement]
 max_turns: 20
 timeout_seconds: 420

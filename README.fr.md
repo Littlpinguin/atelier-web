@@ -2,11 +2,11 @@
 
 [English](README.md) · **Français**
 
-[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![24 skills](https://img.shields.io/badge/skills-24-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
+[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.0](https://img.shields.io/badge/version-1.2.0-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
 
 ![Atelier web : trois landings de trois marques fictives, produites par la même fabrique](docs/assets/apercu-fr.webp)
 
-**Atelier web est un plugin Claude Code pour concevoir et construire des landing pages et des pages web belles, qui convertissent et qui ressemblent exactement à la marque qu'elles servent.** Il réunit 24 skills, 7 agents (recherche d'inspiration, construction en parallèle, revues design, marque, conversion et accessibilité), une bibliothèque de 44 sections de landing éprouvées et une QA qui mesure le rendu réel avant de vous montrer quoi que ce soit.
+**Atelier web est un plugin Claude Code pour concevoir et construire des landing pages et des pages web belles, qui convertissent et qui ressemblent exactement à la marque qu'elles servent.** Il réunit 10 skills, 7 agents (recherche d'inspiration, construction en parallèle, revues design, marque, conversion et accessibilité), une bibliothèque de 44 sections de landing éprouvées et une QA qui mesure le rendu réel avant de vous montrer quoi que ce soit.
 
 Il reprend la méthode avec laquelle je construis les sites et les landings de mes clients. Je suis [Jessy Martin](https://jessem.fr), consultant et formateur sur Claude Code et les agents IA pour les équipes marketing.
 
@@ -51,9 +51,9 @@ Redémarrez Claude Code. Pour ajouter les plugins que j'utilise avec l'atelier (
 
 1. Ouvrez Claude Code dans le dossier de votre site.
 2. Lancez `/atelier-web:demarrer-projet-web` : Claude lit votre site et vos contenus, propose la doctrine de marque, la fait valider bloc par bloc et l'écrit dans `atelier/marque/`.
-3. Lancez `/atelier-web:landing-page` pour une landing, `/atelier-web:page-web` pour une page ou une section sur un site existant, `/atelier-web:design-redesign` pour moderniser un site qui fait daté.
+3. Lancez `/atelier-web:landing-page` pour une landing, `/atelier-web:page-web` pour une page ou une section sur un site existant, `/atelier-web:design` pour moderniser un site qui fait daté.
 
-Chaque livrable passe par `qa-rendu` puis `brand-check` avant de vous être montré.
+Chaque livrable passe par `revue` puis `brand-check` avant de vous être montré.
 
 ## Ce que contient le plugin
 
@@ -61,11 +61,13 @@ Chaque livrable passe par `qa-rendu` puis `brand-check` avant de vous être mont
 |---|---|
 | Démarrer | `demarrer-projet-web` : doctrine du projet et orientation |
 | Produire une page | `landing-page` (playbook en huit phases), `page-web` (site existant), `lead-magnet` (outil ou guide contre un email) |
-| Direction et système | `design-direction`, `design-taste`, `design-system`, `design-redesign` |
-| Mouvement | `motion-defilement` (le cœur : CSS natif piloté par le défilement d'abord, GSAP pour l'épinglage, dotLottie pour les médias animés), `animation-scroll-reveal`, `animation-gsap`, `animation-animejs`, `animation-lottie` |
-| Conversion | `cro-page`, `cro-form`, `cro-popup`, `cro-pricing` |
-| Textes | `copywriting`, `copy-editing`, `humanize-writing` |
-| Contrôle | `qa-rendu`, `design-review`, `accessibility-web`, `brand-check` |
+| Design | `design` : directions nommées par leur objet signature, protocole contre le « design IA », refonte d'un existant, jetons |
+| Mouvement | `motion` : CSS natif piloté par le défilement d'abord, GSAP pour l'épinglage, anime.js, dotLottie pour les médias animés |
+| Conversion | `cro` : page, formulaire, pop-up, tarifs |
+| Textes | `ecriture` : rédiger, relire en sept passes, humaniser un texte qui sonne généré |
+| Contrôle | `revue` (rendu mesuré, interface, accessibilité WCAG 2.2 AA), `brand-check` |
+
+Chaque skill garde son détail dans des fichiers de référence, à un niveau sous son `SKILL.md`, lus seulement quand la tâche en a besoin.
 
 **Agents** : `landing-researcher` (benchmark et recherche visuelle en arrière-plan), `landing-section-builder` (une section par agent, en parallèle), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, `landing-reviewer-a11y`, et `a11y-auditor` (accessibilité en rendu réel).
 

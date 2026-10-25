@@ -4,7 +4,7 @@ Source de vérité des sections HTML pour toute page produite dans `atelier/` (l
 
 **Règle d'usage.** Avant d'écrire un bloc HTML : chercher ici. Si la section existe → la décliner (le contenu change, la structure reste). Si elle n'existe pas → la créer, puis **l'ajouter à ce fichier** dans la foulée. Chaque page qui réinvente sa structure crée un dialecte visuel de plus à maintenir.
 
-Les structures ci-dessous sont des **squelettes sémantiques** : classes stables, tokens en custom properties. Le design (espacements fins, compositions, interactions) est affiné par les skills `design-direction` / `design-system` sous contrainte des tokens — jamais en changeant les couleurs ou les polices.
+Les structures ci-dessous sont des **squelettes sémantiques** : classes stables, tokens en custom properties. Le design (espacements fins, compositions, interactions) est affiné par la skill `design` (routes créer et systématiser) sous contrainte des tokens — jamais en changeant les couleurs ou les polices.
 
 ## Bloc de tokens de référence
 
@@ -254,7 +254,7 @@ Notes CRO : un seul H1 ; le CTA primaire porte l'action de conversion de la page
 
 ## 13. Formulaire de capture
 
-**Usage** : lead magnets et pages de capture. Règles : skill `cro-form` (fallback : email seul, bouton en bénéfice, RGPD). Voir skill `lead-magnet` pour le circuit complet (n8n → emailing → nurturing).
+**Usage** : lead magnets et pages de capture. Règles : skill `cro`, `references/formulaire.md` (fallback : email seul, bouton en bénéfice, RGPD). Voir skill `lead-magnet` pour le circuit complet (n8n → emailing → nurturing).
 
 ```html
 <section class="capture" id="conversion">

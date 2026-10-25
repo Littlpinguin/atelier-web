@@ -1,5 +1,17 @@
 # Charte d'une landing : modèle
 
+## Sommaire
+
+- 1. Recherche d'inspiration (avant de coder)
+- 2. Grille et rythme
+- 3. En-tête de section (le même partout)
+- 4. Composants et matières
+- 5. Mouvement (vocabulaire commun)
+- 6. Interdits de marque
+- 7. Conversion
+- 8. Technique
+- 9. Décisions de l'humain (priment sur tout le reste)
+
 Chaque agent qui touche à la page reçoit ce fichier, en plus de son brief. Le contrôleur le copie au démarrage dans `atelier/landings/<slug>/pilotage/page-charter.md`, remplace chaque `<…>` par la valeur de la page (lue dans `atelier/marque/tokens.json` et la spec, jamais de mémoire), puis y ajoute au § 9 les décisions que l'humain prend en cours de route. **Le § 9 prime sur tout le reste**, brief compris.
 
 Chaque section est forte seule, mais la page se lit comme un seul récit. En cas de doute, faire comme les sections déjà construites de la page, pas comme une autre page.

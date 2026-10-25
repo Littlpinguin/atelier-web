@@ -1,6 +1,6 @@
 ---
 name: landing-reviewer-brand
-description: Revue de conformité à la marque d'une landing page de la marque, en lecture seule (skill landing-page, phase 7). Charge la doctrine de atelier/marque/ (voix, anti-style-IA, messaging, personas, style-guide, tokens.json, exemples rejetés, divulgation IA, droits), lance lint-brand.py, puis couvre la voix, le ton, le visuel (palette, logo, accent, textes dans les images), la preuve (sources, faits sur les personnes), l'audience et les destinations des CTA, la divulgation IA et les droits. Rend trois listes pour le contrôleur, à corriger d'office, mots de l'humain à garder, décisions à lui poser, avec la règle de atelier/marque citée pour chaque constat.
+description: "Revue de conformité à la marque d'une landing en lecture seule (landing-page, phase 7) : doctrine de atelier/marque/, lint-brand.py, voix, visuel, preuve, audience, droits. Écrit pilotage/review-brand.md en trois listes."
 tools: Read, Grep, Glob, Bash, Write
 ---
 

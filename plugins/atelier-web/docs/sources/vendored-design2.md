@@ -35,6 +35,7 @@
 - Ban du cadratin aligné sur la checklist de marque (`atelier/marque/checklist-pre-composition.md` §2b fait foi : cadratin `—` interdit, demi-cadratin `–` autorisé — la source amont bannissait les deux).
 - Politique d'images branchée sur `atelier/marque/assets/index.md` + skill `image-generation` (règle « un asset existant se réutilise, il ne se régénère pas »).
 - **2026-10-25, atelier-web 1.1.0** : `design-taste` restructurée pour tenir sous les 5 000 tokens que Claude Code réattache après compaction. Invariants (ordre des étapes, préséance de la marque, validations) et pre-flight check remontés en tête ; carte brief → design system et pile par défaut déplacées dans `references/stack-et-systemes.md`, squelettes React (sticky-stack, pan horizontal, cascade) intégralement dans `references/squelettes-motion.md`. Le mouvement renvoie à `motion-defilement` (CSS natif d'abord) ; précision ajoutée au verrou de thème : les bandes sombres d'une landing relèvent de sa charte. Aucune règle retirée.
+- **2026-10-25, atelier-web 1.2.0** : `design-taste` devient `skills/design/references/execution.md`, dont le pre-flight remonte dans le `SKILL.md` de la skill `design` ; `design-redesign` devient `references/refonte.md` ; `stack-et-systemes.md` suit ; `squelettes-motion.md` passe dans la skill `motion` (`references/squelettes-react.md`).
 
 ---
 
@@ -59,6 +60,7 @@
 - Règles du template plus strictes que la source, documentées comme telles : parallélisme négatif = faute fatale dès la première occurrence (vs « density-based » amont) ; **zéro cadratin** (vs « compter avant de signaler » amont).
 - Passe 8 (voix) subordonnée à `atelier/marque/voice.md` : on injecte la voix de la marque, pas une personnalité générique.
 - Vocabulaire : liste EN de la source + liste FR de la checklist + `la liste des termes bannis de `voice.md``, cumulatifs.
+- **2026-10-25, atelier-web 1.2.0** : `humanize-writing` devient la passe curative de la skill `ecriture` (`references/humaniser.md`, `references/ai-tells.md`), appelée par la relecture (`references/relire.md`, ex-`copy-editing`).
 
 ---
 

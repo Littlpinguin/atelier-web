@@ -10,7 +10,7 @@ tags: [marque, redaction, corpus-negatif, brand-check]
 
 ## À quoi sert ce fichier
 
-Les exemples publiés apprennent à un agent ce que la marque fait. Ce fichier lui apprend ce que la marque a refusé, et pourquoi. Les deux se lisent ensemble : les skills de rédaction (`social-content`, `email`, `copywriting`) chargent ce corpus au même moment que les archives du canal, avant de rédiger une ligne.
+Les exemples publiés apprennent à un agent ce que la marque fait. Ce fichier lui apprend ce que la marque a refusé, et pourquoi. Les deux se lisent ensemble : les skills de rédaction (`ecriture` de l'atelier, ou `social-content` et `email` s'ils sont installés) chargent ce corpus au même moment que les archives du canal, avant de rédiger une ligne.
 
 Un rejet enregistré ici n'est pas une faute de goût : chaque entrée renvoie à une règle écrite, à sa section exacte, et porte la version corrigée qui a été retenue. Une entrée sans règle citée n'a rien à faire dans ce fichier.
 

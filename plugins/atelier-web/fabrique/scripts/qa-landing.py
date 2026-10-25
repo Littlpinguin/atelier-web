@@ -168,7 +168,7 @@ def charger_module(nom: str, chemin: Path) -> ModuleType:
 qa_common = charger_module("qa_common", Path(__file__).resolve().parent / "qa_common.py")
 
 # --------------------------------------------------------------------------
-# Seuils (doctrine : .claude/skills/landing-page/references/pieges.md)
+# Seuils (doctrine : skills/landing-page/references/pieges.md)
 # --------------------------------------------------------------------------
 VIEWPORTS_DEFAUT = "375x812,768x1024,1440x900"
 LARGEUR_MOBILE_MAX = 767         # en dessous de 768 px de large : écran mobile

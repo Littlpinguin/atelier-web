@@ -1,5 +1,23 @@
 # Anime.js Stagger Guide
 
+## Sommaire
+
+- Overview
+- Basic Stagger
+- Stagger Options
+- Stagger From
+- Grid Stagger
+- Stagger Direction
+- Stagger Easing
+- Stagger Start
+- Common Patterns
+- Stagger with Different Properties
+- Advanced Techniques
+- Performance Tips
+- Common Mistakes
+- Debugging Tips
+- Resources
+
 Complete guide to Anime.js stagger utilities for creating sequential and coordinated animations.
 
 ## Overview

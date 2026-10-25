@@ -1,11 +1,16 @@
----
-name: animation-lottie
-description: "Illustrations et icônes animées de marque en dotLottie (.lottie exporté d'After Effects ou de Lottie Creator) avec dotlottie-wc, dotlottie-web ou dotlottie-react : lecture à l'entrée dans l'écran, pilotage au défilement, mouvement réduit, pause, poids du WASM, CSP. À charger après motion-defilement pour toute animation Lottie, ou pour migrer un projet sous lottie-web ou lottie-react, qu'on n'ajoute plus à un projet neuf."
----
+# Lottie : médias animés de marque en dotLottie
 
-# animation-lottie : médias animés de marque en dotLottie
+## Sommaire
 
-Une animation Lottie est un média, comme une vidéo : elle illustre une idée, elle ne remplace ni une apparition au défilement (CSS natif, skill `animation-scroll-reveal`) ni une transition d'interface (CSS ou Motion). La grammaire commune du mouvement vit dans la skill `motion-defilement` et prime.
+- 1. Quoi prendre
+- 2. Avant d'intégrer
+- 3. Recette : HTML statique
+- 4. Animation pilotée par le défilement
+- 5. CSP, auto-hébergement, React
+- 6. Migrer depuis lottie-web ou lottie-react
+- 7. Références
+
+Une animation Lottie est un média, comme une vidéo : elle illustre une idée, elle ne remplace ni une apparition au défilement (CSS natif, `apparitions.md`) ni une transition d'interface (CSS ou Motion). La grammaire commune du mouvement vit dans le `SKILL.md` de la skill `motion` et prime.
 
 ## 1. Quoi prendre
 
@@ -75,14 +80,14 @@ Fichier : `.lottie` (archive ZIP qui regroupe une ou plusieurs animations, leurs
 })();
 ```
 
-- `loop loopcount="2"` : trois lectures en tout (la première plus deux), puis l'animation s'arrête. C'est la règle des animations infinies de `motion-defilement` (trois itérations au plus).
+- `loop loopcount="2"` : trois lectures en tout (la première plus deux), puis l'animation s'arrête. C'est la règle des animations infinies du `SKILL.md`, § 1 (trois itérations au plus).
 - Un mouvement automatique de plus de cinq secondes, à côté d'autre contenu, exige un moyen de le mettre en pause (WCAG 2.2.2, niveau A) : le script affiche le bouton dès que la boucle est sans fin ou que la durée totale (`duration`, en secondes, fois le nombre de lectures) dépasse cinq secondes.
 - Une animation décorative prend `aria-hidden="true"` au lieu de `role="img"` et d'un `aria-label` ; une animation qui porte une information garde son équivalent en texte à côté.
 - Sans JavaScript ou sans WebAssembly, rien ne s'affiche : prévoir une image fixe en repli si l'illustration porte du sens (le premier ou le dernier état exporté en SVG ou WebP).
 
 ## 4. Animation pilotée par le défilement
 
-La progression d'une scène épinglée pilote l'image courante. Avec GSAP (skill `animation-gsap`) :
+La progression d'une scène épinglée pilote l'image courante. Avec GSAP (`gsap.md`) :
 
 ```js
 ScrollTrigger.create({
@@ -94,7 +99,7 @@ ScrollTrigger.create({
 });
 ```
 
-Sans GSAP, la même progression se calcule depuis la position de la piste collante (`motion-defilement`, § 5). En mouvement réduit : la dernière image, fixe.
+Sans GSAP, la même progression se calcule depuis la position de la piste collante (`SKILL.md`, § 5). En mouvement réduit : la dernière image, fixe.
 
 ## 5. CSP, auto-hébergement, React
 
@@ -116,11 +121,11 @@ Rendu à vérifier après migration : couleurs, taille du canvas (le lecteur des
 
 ## 7. Références
 
-- `references/api_reference.md` : API de dotlottie-web et, pour la maintenance, de lottie-web et lottie-react.
-- `references/after_effects_export.md` : réglages d'export Bodymovin, fonctions d'After Effects non prises en charge.
-- `references/performance_guide.md` : poids des fichiers, rendu, mémoire.
-- `references/guide-origine.md` : la skill d'origine, pour un projet qui garde lottie-web.
+- `lottie-api.md` : API de dotlottie-web et, pour la maintenance, de lottie-web et lottie-react.
+- `lottie-after-effects.md` : réglages d'export Bodymovin, fonctions d'After Effects non prises en charge.
+- `lottie-performance.md` : poids des fichiers, rendu, mémoire.
+- `lottie-guide-origine.md` : la skill d'origine, pour un projet qui garde lottie-web.
 
 ---
 
-*Réécrite pour l'atelier web le 25/10/2026 : dotLottie devient le lecteur par défaut et l'API enseignée a été vérifiée sur `dotlottie-wc` 0.10.0. La skill d'origine (`lottie-animations` v1.0.0 de [claudedesignskills](https://github.com/freshtechbro/claudedesignskills), freshtechbro, licence MIT, © 2025 Claude Skills Project) reste dans `references/`. Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*
+*Réécrite pour l'atelier web le 25/10/2026 : dotLottie devient le lecteur par défaut et l'API enseignée a été vérifiée sur `dotlottie-wc` 0.10.0. La skill d'origine (`lottie-animations` v1.0.0 de [claudedesignskills](https://github.com/freshtechbro/claudedesignskills), freshtechbro, licence MIT, © 2025 Claude Skills Project) reste dans `lottie-guide-origine.md`. Fusionnée dans la skill `motion` le 25/10/2026 (atelier-web 1.2.0). Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*

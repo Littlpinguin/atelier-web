@@ -1,9 +1,19 @@
----
-name: animation-gsap
-description: Comprehensive skill for GSAP (GreenSock Animation Platform) and ScrollTrigger plugin. Use this skill when creating web animations, scroll-driven experiences, timelines, tweens, scroll-triggered animations, pinning, scrubbing, parallax effects, or animating DOM elements, SVG, Canvas, WebGL, or Three.js. Triggers on tasks involving GSAP, ScrollTrigger, smooth animations, scroll effects, or animation sequencing.
----
-
 # GSAP & ScrollTrigger Development
+
+## Sommaire
+
+- Overview
+- Core Concepts
+- ScrollTrigger Fundamentals
+- Common Patterns
+- Integration Patterns
+- Advanced Techniques
+- Performance Best Practices
+- Common Pitfalls
+- Easing Reference
+- ScrollTrigger Methods
+- Resources
+- When to Use This Reference
 
 ## Overview
 
@@ -733,25 +743,16 @@ ScrollTrigger.defaults({
 
 ## Resources
 
-This skill includes bundled resources:
+In the atelier, next to this file:
+- `gsap-api.md`: quick API reference (tween methods, timeline methods, ScrollTrigger properties)
+- `gsap-easing.md`: visual easing reference with use cases
+- `gsap-patterns.md`: copy-paste patterns for common scenarios
 
-### references/
-- `api_reference.md`: Quick API reference (tween methods, timeline methods, ScrollTrigger properties)
-- `easing_guide.md`: Visual easing reference with use cases
-- `common_patterns.md`: Copy-paste patterns for common scenarios
+The original scripts and assets are not vendored.
 
-### scripts/
-- `generate_animation.py`: Generate boilerplate GSAP code
-- `timeline_builder.py`: Interactive timeline sequence builder
+## When to Use This Reference
 
-### assets/
-- `starter_scroll/`: Complete scroll-driven site template
-- `easings/`: Easing visualization HTML tool
-- `examples/`: Real-world ScrollTrigger examples
-
-## When to Use This Skill
-
-Use this skill when:
+Use it when:
 - Creating smooth web animations
 - Building scroll-driven experiences
 - Implementing parallax effects
@@ -761,9 +762,8 @@ Use this skill when:
 - Building scrollytelling websites
 - Creating interactive UI transitions
 
-For Three.js-specific animations, also reference the **threejs-webgl** skill.
-For React components with built-in animations, reference the **motion-framer** skill.
+For Three.js, see the complementary tools in the atelier README. For React components, Motion (`motion/react`) and the skeletons in `squelettes-react.md`.
 
 ---
 
-*Vendorisée depuis [claudedesignskills](https://github.com/freshtechbro/claudedesignskills) de freshtechbro (plugin `gsap-scrolltrigger`, skill `gsap-scrolltrigger` v1.0.0, licence MIT, © 2025 Claude Skills Project). Copie SKILL.md + references/ uniquement (pas de scripts ni d'assets, conformément à la politique de vendoring du template). Attribution, périmètre retenu et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*
+*Vendorisée depuis [claudedesignskills](https://github.com/freshtechbro/claudedesignskills) de freshtechbro (plugin `gsap-scrolltrigger`, skill `gsap-scrolltrigger` v1.0.0, licence MIT, © 2025 Claude Skills Project). Copie SKILL.md + references/ uniquement (pas de scripts ni d'assets, conformément à la politique de vendoring du template). Attribution, périmètre retenu et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`. Fusionnée dans la skill `motion` le 25/10/2026 (atelier-web 1.2.0).*

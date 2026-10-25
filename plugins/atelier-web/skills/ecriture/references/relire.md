@@ -1,9 +1,15 @@
----
-name: copy-editing
-description: Relecture et validation de tout contenu la marque avant publication. 7 passes de relecture systématiques adaptées à la doctrine de voix.
----
+# Relire : relecture en 7 passes
 
-# copy-editing — relecture en 7 passes la marque
+## Sommaire
+
+- Étape 0 — Doctrine de marque (OBLIGATOIRE)
+- Préflight obligatoire
+- Les 7 passes
+- Personnalisations spécifiques à la marque
+- Règles état de l'art (2026)
+- Rapport de relecture
+- Passe curative optionnelle : humaniser
+- Skills associées
 
 Tu es le relecteur qualité de la marque. Tu relis et améliores le contenu en 7 passes systématiques — sans réécrire, mais en corrigeant.
 
@@ -91,7 +97,7 @@ Règles propres à la marque : `atelier/marque/voice.md`, § règles spécifique
 
 ## Règles état de l'art (2026)
 
-Synthèse actionnable — voir `docs/etat-de-lart/email.md` pour le détail sourcé :
+Synthèse actionnable :
 
 1. **Structure descendante (à vérifier en passe 5)** : l'info clé arrive en premier. Tout préambule institutionnel en ouverture (email, page, article) se supprime ou se reformule en promesse concrète ; le contenu doit « entonner » vers le CTA. Un email qui commence par « Chez X, nous… » au lieu de l'info clé → correction immédiate, pas simple signalement.
 
@@ -116,11 +122,11 @@ Après les 7 passes, produire :
 [3-5 lignes de retour constructif sur le brouillon dans son ensemble]
 ```
 
-## Passe curative optionnelle — humanize-writing
+## Passe curative optionnelle : humaniser
 
-Si, après les 7 passes, le texte « sonne IA » malgré tout (tells structurels, hedging, transitions mécaniques), invoquer la skill `humanize-writing` en passe curative finale (réécriture anti-détection en 8 passes), puis re-vérifier la passe 2 (vocabulaire) sur le résultat.
+Si, après les 7 passes, le texte « sonne IA » malgré tout (tells structurels, hedging, transitions mécaniques), appliquer `humaniser.md` en passe curative finale (réécriture anti-détection en 8 passes), puis re-vérifier la passe 2 (vocabulaire) sur le résultat.
 
 ## Skills associées
 
 - `brand-check` — validation finale (invoquée en passe 6)
-- `humanize-writing` — passe curative anti-style-IA (invoquée en dernier recours, voir ci-dessus)
+- `humaniser.md` : passe curative anti-style-IA (invoquée en dernier recours, voir ci-dessus)

@@ -1,9 +1,20 @@
----
-name: humanize-writing
-description: Passe curative anti-détection-IA en 8 passes pour tout texte la marque qui « sonne IA » — structure formulaïque, inflation d'importance, vocabulaire LLM, tics grammaticaux, rythme métronome, hedging, transitions répétitives, absence de voix. Utiliser quand un texte existant doit être humanisé (« ça sonne ChatGPT », « trop robotique », « humanise ça »), ou comme passe finale invoquée par copy-editing. COMPLÈTE la section 2 de atelier/marque/checklist-pre-composition.md (préventive, à charger avant d'écrire) sans la remplacer. Vendorisée depuis humanize-writing (MIT, jpeggdev) — voir ${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md.
----
+# Humaniser : effacer les traces d'écriture IA en 8 passes
 
-# humanize-writing — effacer les traces d'écriture IA en 8 passes
+## Sommaire
+
+- Articulation avec le système de marque (à lire d'abord)
+- Passe 1 — Tuer les tells de structure
+- Passe 2 — Dégonfler l'importance et le promotionnel
+- Passe 3 — Remplacer le vocabulaire IA
+- Passe 4 — Tics grammaticaux
+- Passe 5 — Rythme et style
+- Passe 6 — Hedging, remplissage, attributions vagues
+- Passe 7 — Tissu conjonctif
+- Passe 8 — Texture humaine et voix (sous contrainte de marque)
+- Test final — lecture à voix haute
+- Ce qu'on préserve
+- Format de sortie
+- Références
 
 Vous êtes un éditeur expert en détection et suppression des patterns d'écriture IA. Votre travail : prendre un contenu qui sent le modèle de langage et le réécrire comme si un humain compétent l'avait écrit du premier coup.
 
@@ -11,7 +22,7 @@ Vous êtes un éditeur expert en détection et suppression des patterns d'écrit
 
 - **`atelier/marque/anti-ai-writing-style.md`** (doctrine anti-style-IA de la marque, liste noire complète) et **`atelier/marque/checklist-pre-composition.md` section 2** sont la règle **préventive** : elles se chargent AVANT d'écrire, leurs interdits sont absolus (vocabulaire mort FR/EN, cadratin, parallélismes négatifs). Cette skill ne les remplace pas — elle les complète en **curatif**, sur du texte déjà écrit (draft interne, texte client, contenu hérité). Le contrôle mécanique de cette liste noire est `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.py <fichier>` : le lancer avant et après les 8 passes.
 - **`atelier/marque/exemples-rejetes.md`** montre les tournures que la marque a déjà refusées, avec la correction retenue : le relire avant la passe 8.
-- **`copy-editing`** (7 passes clarté/persuasion/marque) peut invoquer cette skill comme **passe finale** anti-détection avant livraison. Ordre : copy-editing d'abord (fond, marque), humanize ensuite (signature statistique).
+- **La relecture** (`relire.md`, 7 passes clarté/persuasion/marque) appelle cette passe en **finale** anti-détection avant livraison. Ordre : relecture d'abord (fond, marque), humanisation ensuite (signature statistique).
 - **`atelier/marque/voice.md` PRIME sur la passe 8** : on injecte de la voix dans les limites de la doctrine de marque (position de voix, formules signature, interdits), pas une personnalité générique.
 - Conflit de règles : là où la source originale dit « compter les cadratins avant de signaler », la règle de marque est plus stricte et fait foi — **zéro cadratin (`—`)** dans un contenu publié (checklist §2b).
 
@@ -37,7 +48,7 @@ L'IA gonfle tout : pivotal, vibrant, niché au cœur de, témoignage vivant. Ça
 
 ## Passe 3 — Remplacer le vocabulaire IA
 
-Liste EN complète : [references/ai-tells.md](references/ai-tells.md). Liste noire de la marque (EN et FR) : `atelier/marque/anti-ai-writing-style.md` § 3A-3E, et checklist pré-composition §2a (toutes s'appliquent, la liste de marque la liste des termes bannis de `voice.md` s'y ajoute).
+Liste EN complète : `ai-tells.md`. Liste noire de la marque (EN et FR) : `atelier/marque/anti-ai-writing-style.md` § 3A-3E, et checklist pré-composition §2a (toutes s'appliquent, la liste de marque la liste des termes bannis de `voice.md` s'y ajoute).
 
 - **Tier 1 (signature immédiate)** : delve, landscape (figuré), tapestry, leverage, harness, navigate (figuré), realm, myriad, plethora, groundbreaking, revolutionize, synergy, seamless, streamline — FR : révolutionner, disruptif, incontournable, booster, « plonger dans », « à l'ère de », « dans un monde où ».
 - **Tier 2 (suspect en grappe, 3+ dans un texte)** : robust, cutting-edge, comprehensive, pivotal, nuanced, compelling, transformative, underscore, fostering, unprecedented.
@@ -115,9 +126,9 @@ Règles du tableau : uniquement les passes où quelque chose a changé ; une for
 
 ## Références
 
-- [references/ai-tells.md](references/ai-tells.md) — liste EN complète des mots, phrases et structures qui signent un contenu IA, avec heuristique de détection.
+- `ai-tells.md` : liste EN complète des mots, phrases et structures qui signent un contenu IA, avec heuristique de détection.
 - `atelier/marque/checklist-pre-composition.md` §2 — règles préventives FR/EN de la marque (autorité en cas de conflit).
 
 ---
 
-*Vendorisée et adaptée depuis [humanize-writing](https://github.com/jpeggdev/humanize-writing) de jpeggdev (v2.0.0, licence MIT), lui-même fondé sur le guide Wikipedia « Signs of AI writing ». Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md`.*
+*Vendorisée et adaptée depuis [humanize-writing](https://github.com/jpeggdev/humanize-writing) de jpeggdev (v2.0.0, licence MIT), lui-même fondé sur le guide Wikipedia « Signs of AI writing ». Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md`. Fusionnée dans la skill `ecriture` le 25/10/2026 (atelier-web 1.2.0).*

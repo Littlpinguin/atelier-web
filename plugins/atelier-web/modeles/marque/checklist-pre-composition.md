@@ -1,6 +1,6 @@
 # Checklist pré-composition — à charger avant TOUTE production
 
-> **Ce fichier est l'étape 0 de toutes les skills de production** de l'atelier web (`copywriting`, `copy-editing`, `landing-page`, `page-web`, `lead-magnet`, `cro-*`). Aucun texte ne s'écrit, aucun visuel ne se génère, aucun plan ne se brief sans avoir chargé ce fichier **et** `atelier/marque/voice.md`. Si l'un des deux manque ou contient encore des `{{...}}`, arrêter et lancer la skill `demarrer-projet-web` (atelier-web), qui pose la doctrine du projet.
+> **Ce fichier est l'étape 0 de toutes les skills de production** de l'atelier web (`ecriture`, `landing-page`, `page-web`, `lead-magnet`, `cro`, `design`). Aucun texte ne s'écrit, aucun visuel ne se génère, aucun plan ne se brief sans avoir chargé ce fichier **et** `atelier/marque/voice.md`. Si l'un des deux manque ou contient encore des `{{...}}`, arrêter et lancer la skill `demarrer-projet-web` (atelier-web), qui pose la doctrine du projet.
 
 ---
 

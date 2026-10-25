@@ -1,5 +1,21 @@
 # Anime.js Timeline Guide
 
+## Sommaire
+
+- Overview
+- Creating a Timeline
+- Adding Animations
+- Timeline Offsets
+- Common Patterns
+- Timeline Controls
+- Advanced Techniques
+- Timeline vs Individual Animations
+- Performance Optimization
+- Common Mistakes
+- Real-World Examples
+- Debugging Timelines
+- Resources
+
 Complete guide to creating complex animation sequences with Anime.js timelines.
 
 ## Overview

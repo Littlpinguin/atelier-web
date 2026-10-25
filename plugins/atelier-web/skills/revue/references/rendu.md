@@ -1,9 +1,4 @@
----
-name: qa-rendu
-description: "Contrôle du rendu réel d'une page web avant de la montrer ou de la livrer : mesures automatiques (débordements, contrastes, planchers typographiques, CTA sous le pli, mouvement réduit), continuité des fonds entre sections, captures aux tailles d'écran de référence, et les pièges du rendu sans tête qui font conclure à tort à un bug. À utiliser après toute construction ou retouche de page, quand l'utilisateur dit « vérifie le rendu », « fais une capture », « ça déborde ? », « contrôle la page », ou en phase de QA des skills landing-page et page-web."
----
-
-# qa-rendu : juger sur le rendu, pas sur le code
+# Rendu : juger sur le rendu, pas sur le code
 
 Un code qui a l'air juste peut donner une page cassée, et une page qui a l'air cassée en capture peut être juste. On mesure d'abord avec des scripts, on regarde ensuite les captures, puis l'humain regarde la page lui-même : son œil reste la dernière porte.
 
@@ -11,7 +6,7 @@ Un code qui a l'air juste peut donner une page cassée, et une page qui a l'air 
 
 - Lire le bloc « Atelier web » du `CLAUDE.md` du projet : commande d'aperçu local, et **outils autorisés pour voir un rendu**. Certains projets interdisent de piloter un navigateur : dans ce cas, Chrome sans tête en ligne de commande et Playwright seulement, et l'humain ouvre la page lui-même.
 - Prévisualiser la **sortie du build** (dossier `dist/`, serveur du framework), jamais des sources qui contiennent encore des marqueurs d'inclusion.
-- Dépendances : `pip install playwright pillow && playwright install chromium`. Absentes : le dire et s'arrêter, jamais de QA « de tête ».
+- Dépendances : `pip install playwright pillow && playwright install chromium`. Absentes : le dire, puis faire la revue statique du code (causes probables, sélecteur, correction) et donner la commande qui mesurera ; le verdict reste partiel, jamais « propre » sans mesure.
 
 ## 1. Mesurer
 

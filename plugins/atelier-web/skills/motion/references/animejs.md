@@ -1,9 +1,15 @@
----
-name: animation-animejs
-description: Versatile JavaScript animation engine for DOM, CSS, SVG, and JavaScript objects. Use when creating timeline-based animations, stagger effects, SVG morphing, keyframe sequences, or complex choreographed animations. Triggers on tasks involving Anime.js, timeline animations, staggered sequences, SVG path animations, morphing, or multi-step animation choreography. Alternative to GSAP for SVG-heavy animations and React-independent projects.
----
-
 # Anime.js
+
+## Sommaire
+
+- Overview
+- Core Concepts
+- Common Patterns
+- Integration Patterns
+- Advanced Techniques
+- Performance Optimization
+- Common Pitfalls
+- Resources
 
 Lightweight JavaScript animation library with powerful timeline and stagger capabilities for web animations.
 
@@ -500,25 +506,12 @@ anime({
 
 ## Resources
 
-### Scripts
-- `animation_generator.py` - Generate Anime.js animation boilerplate (8 types)
-- `timeline_builder.py` - Build complex timeline sequences
+In the atelier, next to this file:
+- `animejs-api.md` - Complete Anime.js API documentation
+- `animejs-stagger.md` - Stagger utilities and patterns
+- `animejs-timeline.md` - Timeline sequencing deep dive
 
-### References
-- `api_reference.md` - Complete Anime.js API documentation
-- `stagger_guide.md` - Stagger utilities and patterns
-- `timeline_guide.md` - Timeline sequencing deep dive
-
-### Assets
-- `starter_animejs/` - Vanilla JS + Vite template with examples
-- `examples/` - Real-world patterns (SVG morphing, stagger grids, timelines)
-
-## Related Skills
-
-- **gsap-scrolltrigger** - More powerful timeline features and scroll integration
-- **motion-framer** - React-specific declarative animations
-- **react-spring-physics** - Physics-based spring animations
-- **lightweight-3d-effects** - Simple 3D effects (Zdog, Vanta.js)
+The original scripts and assets are not vendored. Related: `gsap.md` (scroll-driven timelines and pinning).
 
 **Anime.js vs GSAP**: Use Anime.js for SVG-heavy animations, simpler projects, or when bundle size matters. Use GSAP for complex scroll-driven experiences, advanced timelines, and professional-grade control.
 
@@ -526,4 +519,4 @@ anime({
 
 ---
 
-*Vendorisée depuis [claudedesignskills](https://github.com/freshtechbro/claudedesignskills) de freshtechbro (plugin `animation-components`, skill `animejs` v1.0.0, licence MIT, © 2025 Claude Skills Project). Copie SKILL.md + references/ uniquement (pas de scripts ni d'assets, conformément à la politique de vendoring du template). Attribution, périmètre retenu et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*
+*Vendorisée depuis [claudedesignskills](https://github.com/freshtechbro/claudedesignskills) de freshtechbro (plugin `animation-components`, skill `animejs` v1.0.0, licence MIT, © 2025 Claude Skills Project). Copie SKILL.md + references/ uniquement (pas de scripts ni d'assets, conformément à la politique de vendoring du template). Attribution, périmètre retenu et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`. Fusionnée dans la skill `motion` le 25/10/2026 (atelier-web 1.2.0).*

@@ -44,6 +44,7 @@ Ces skills étaient déjà attendues par la skill `landing-page` du template (ta
 - **`brand-check` obligatoire** avant intégration de tout copy produit.
 - **Ancrage template** : sorties dans `atelier/` et `02-strategy/`, orchestration par `landing-page` et `lead-magnet`, placeholders `la marque`/`le responsable de la marque`, RGPD par défaut (marché francophone).
 - **Garde-fous éthiques renforcés** : interdiction explicite des dark patterns (refus culpabilisant, cases pré-cochées, popups plein écran mobile).
+- **2026-10-25, atelier-web 1.2.0** : les quatre skills fusionnent dans la skill `cro`, une référence par surface (`references/page.md`, `formulaire.md`, `popup.md`, `tarifs.md`). Le `SKILL.md` porte l'étape 0 commune, dont la règle de `cro-pricing` (la première réponse dit ce qu'elle tire de la doctrine) et la lecture du document de l'offre, les règles dures et le format de sortie.
 
 ## Procédure de re-sync
 

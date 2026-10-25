@@ -1,5 +1,45 @@
 # Catalogue des mécaniques de section
 
+## Sommaire
+
+- Squelette de page
+- Hero : un objet fort
+- Hero éditorial
+- Hero à image dans le titre
+- Sommaire des chapitres
+- Bande de preuve immédiate
+- Problème épinglé
+- Problème en pièces à conviction
+- Basculement typographique
+- Porte de choix qui révèle la suite
+- Recommandeur d’offre
+- Parcours en scrollytelling
+- Programme ou contenu détaillé
+- Citation en respiration
+- Démonstrateur
+- Vitrine d’un objet tangible (bande sombre)
+- Carte ou schéma épinglé
+- Personnes (experts, intervenants, équipe)
+- Lettre signée
+- Témoignages
+- Mur d’avis
+- Cas avant / après
+- Mur de réalisations
+- Graphique de preuve sourcé
+- Résultats (respiration)
+- Pour qui, et pour qui ce n’est pas
+- Fiche pratique
+- Schéma de propriété
+- Bloc de conversion en objet
+- Ticket à la carte
+- Formulaire de capture
+- FAQ
+- Informations légales
+- CTA final (bande sombre)
+- Barre d’action mobile collante
+- Théâtre de défilement (transverse)
+- Matières transverses
+
 Des mécaniques éprouvées sur des landings de conversion, pas un ordre imposé. Pour chaque page, choisir celles qui servent le récit de la spec, leur donner l’objet signature de la page, et garder un seul moment orchestré par section. Ce fichier dit **quand** et **pourquoi** une mécanique sert, et ce qui la fait échouer. Leur implémentation est la bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` : un fragment par mécanique (nommé en fin de fiche), ses slots, ses moteurs, et le catalogue qui les montre toutes (généré depuis `catalogue.json`) ; `README.md` y donne les compositions de départ, le format de la spec et les contrats des moteurs.
 
 Chaque fiche donne : l’objection du visiteur qu’elle traite, la mécanique, quand la choisir, les anti-modèles, et le comportement en mouvement réduit (`prefers-reduced-motion: reduce`).
@@ -275,7 +315,7 @@ Chaque fiche donne : l’objection du visiteur qu’elle traite, la mécanique,
 - **Objection** : qu’est-ce que je donne, et qu’est-ce que je reçois.
 - **Mécanique** : le moins de champs possible (l’email seul si la suite le permet), chaque champ avec son `<label>`, `autocomplete` sur les champs d’identité, champ piège anti-robots hors champ et en `aria-hidden`, message de confirmation en `role="status"`, erreurs annoncées (`aria-invalid` et `aria-describedby`). Une phrase sous le bouton dit ce qui arrive après l’envoi.
 - **Consentement** : recevoir la ressource demandée ne demande aucune case, la demande vaut envoi. L’inscription à une lettre ou à la prochaine édition passe par une case facultative et décochée, mesurée (`optin`). Une demande de démo ou de devis n’a pas de case : la mention de confidentialité et son lien, sous le bouton, suffisent. Un endpoint encore en marqueur fait de l’envoi une démonstration, jamais comptée comme lead.
-- **Règles** : `cro-form` pour l’optimisation, `lead-magnet` pour le circuit complet si la page capture un email contre un contenu.
+- **Règles** : skill `cro` (`formulaire.md`) pour l’optimisation, `lead-magnet` pour le circuit complet si la page capture un email contre un contenu.
 - **Anti-modèles** : placeholder qui tient lieu de label, case pré-cochée, champ qui ne paie pas sa friction.
 
 ## FAQ

@@ -1,9 +1,4 @@
----
-name: cro-form
-description: Optimiser un formulaire de la marque — capture de lead, contact, demande de démo, inscription événement, devis. Maximise le taux de complétion en ne gardant que les champs qui servent vraiment, avec labels, messages d'erreur et bouton optimisés. Utiliser quand l'utilisateur dit « personne ne remplit le formulaire », « trop de champs », « optimiser le formulaire », « abandon de formulaire » ou « taux de complétion ». Orchestrée par les skills landing-page et lead-magnet.
----
-
-# cro-form — optimisation de formulaires
+# Formulaires : ne garder que les champs qui servent
 
 Adapté du plugin marketingskills (Corey Haines / fork Littlpinguin, MIT) — voir `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-cro.md`.
 
@@ -67,7 +62,7 @@ Près du formulaire : mention de confidentialité (« Jamais partagé, désindex
 
 ## Mesure
 
-Suivre (GA4 / outil configuré via `/tools-setup`) : taux de démarrage (vues → premier focus), taux de complétion (démarré → soumis), abandon par champ, erreurs par champ, mobile vs desktop.
+Suivre (GA4 ou l'outil de mesure déclaré dans le `CLAUDE.md` du projet) : taux de démarrage (vues → premier focus), taux de complétion (démarré → soumis), abandon par champ, erreurs par champ, mobile vs desktop.
 
 ## Format de sortie
 
@@ -80,6 +75,6 @@ Le circuit complet formulaire → n8n → outil emailing → nurturing est défi
 ## Skills associées
 
 - `lead-magnet` — circuit de capture complet
-- `cro-page` / `cro-popup` — la page ou le popup qui contient le formulaire
+- `page.md` / `popup.md` : la page ou le popup qui contient le formulaire
 - `landing-page` — production de la page
 - `brand-check` — validation du microcopy avant intégration

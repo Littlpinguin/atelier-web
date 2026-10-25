@@ -65,7 +65,7 @@ Ces règles viennent de retours réels sur des pages livrées. Elles valent tant
 
 - **Mesurer avant de regarder** : débordements, contrastes, planchers typographiques, CTA sous le pli, continuité des fonds, mouvement réduit.
 - **Capturer aux tailles réelles** (portable 14 pouces, 1366 × 768, tablette, téléphone) et lire les images.
-- **Connaître les pièges du rendu sans tête** avant de conclure à un bug (skill `qa-rendu`).
+- **Connaître les pièges du rendu sans tête** avant de conclure à un bug (skill `revue`, `references/rendu.md`).
 - **L'œil de l'humain reste la dernière porte.** Chaque retour s'applique, puis s'écrit : propre à la page dans sa charte, valable pour le site dans `design.md`, valable pour la marque dans `exemples-rejetes.md`.
 
 ## 7. Les garde-fous

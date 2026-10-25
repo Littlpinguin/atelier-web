@@ -1,6 +1,12 @@
 # Squelettes canoniques de mouvement (React)
 
-Détail de l'étape 6 de `design-taste`, pour un projet React. En HTML statique (la fabrique de l'atelier), le mouvement suit la skill `motion-defilement` : CSS piloté par le défilement d'abord, GSAP pour l'épinglage avec scrub. Ces squelettes corrigent les échecs les plus fréquents des pages générées.
+## Sommaire
+
+- A. Pile de cartes au défilement (sticky-stack)
+- B. Défilement horizontal épinglé (scroll-hijack)
+- C. Apparition en cascade, sans épinglage
+
+Squelettes React, appelés par l'étape 6 du protocole d'exécution de la skill `design` (`${CLAUDE_PLUGIN_ROOT}/skills/design/references/execution.md`). En HTML statique (la fabrique de l'atelier), le mouvement suit le `SKILL.md` de cette skill : CSS piloté par le défilement d'abord, GSAP pour l'épinglage avec scrub. Ces squelettes corrigent les échecs les plus fréquents des pages générées.
 
 ## A. Pile de cartes au défilement (sticky-stack)
 
@@ -61,7 +67,7 @@ export function StickyStack({ cards }: { cards: React.ReactNode[] }) {
 }
 ```
 
-Points critiques : `start: "top top"`, `pin: true`, chaque carte sauf la dernière est épinglée, l'échelle et l'opacité sont pilotées par le déclencheur de la carte SUIVANTE. Dans une landing de l'atelier, `motion-defilement` § 6 écarte les cartes qui s'empilent : ce squelette sert hors de ce cadre, sur décision de l'humain.
+Points critiques : `start: "top top"`, `pin: true`, chaque carte sauf la dernière est épinglée, l'échelle et l'opacité sont pilotées par le déclencheur de la carte SUIVANTE. Dans une landing de l'atelier, le `SKILL.md`, § 6, écarte les cartes qui s'empilent : ce squelette sert hors de ce cadre, sur décision de l'humain.
 
 ## B. Défilement horizontal épinglé (scroll-hijack)
 
@@ -111,7 +117,7 @@ export function HorizontalPan({ children }: { children: React.ReactNode }) {
 
 ## C. Apparition en cascade, sans épinglage
 
-Pour « les éléments apparaissent en entrant dans la fenêtre » : en HTML statique, le CSS natif (skill `animation-scroll-reveal`) ; en React, Motion `whileInView`. GSAP reste pour le vrai épinglage avec scrub.
+Pour « les éléments apparaissent en entrant dans la fenêtre » : en HTML statique, le CSS natif (`apparitions.md`) ; en React, Motion `whileInView`. GSAP reste pour le vrai épinglage avec scrub.
 
 ```tsx
 "use client";

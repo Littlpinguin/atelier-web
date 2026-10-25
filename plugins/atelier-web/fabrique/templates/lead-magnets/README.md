@@ -8,7 +8,7 @@ Chaque fichier contient :
 - une **direction artistique par outil** (colonne « Ambiance » ci-dessous) déclinée du langage Meridian : display serif, hairlines, grain discret, motif signature de méridiens en SVG inline, curseurs et cases customisés aux couleurs de marque ;
 - une **logique JS fonctionnelle** dont les données/formules sont des **placeholders commentés** (`── PLACEHOLDER ──`) à remplacer par vos vraies hypothèses ;
 - un **gate de capture** (`bindGate`) branché sur `{{FORM_ENDPOINT}}` : POST du formulaire (email + champs cachés de segmentation) vers n8n/outil emailing, événement `generate_lead`, déblocage du résultat complet. Endpoint non configuré → déblocage local en mode démo (console) ;
-- des contenus d'exemple fictifs (« Meridian Conseil ») à réécrire via `copywriting`.
+- des contenus d'exemple fictifs (« Meridian Conseil ») à réécrire via la skill `ecriture`.
 
 **Rappel skill `lead-magnet`** : un outil sans circuit complet est un lead perdu — page de capture (voir `../landing-pages/lead-magnet.html`), automatisation, séquence de nurturing (une branche par profil/segment), mesure.
 

@@ -1,9 +1,4 @@
----
-name: cro-popup
-description: "Créer ou optimiser un popup, une modale, un slide-in ou une bannière de conversion pour la marque du projet — capture email, lead magnet, exit intent, annonce. Convertir sans agacer ni abîmer la marque : déclencheurs, ciblage, fréquence, copy, accessibilité, conformité RGPD/Google. Utiliser quand l'utilisateur dit « popup », « exit intent », « modale », « bannière d'annonce », « capturer des emails avec un popup » ou « sticky bar ». Orchestrée par la skill landing-page (uniquement sur demande explicite)."
----
-
-# cro-popup — popups et modales de conversion
+# Pop-ups : popups et modales de conversion
 
 Adapté du plugin marketingskills (Corey Haines / fork Littlpinguin, MIT) — voir `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-cro.md`.
 
@@ -38,7 +33,7 @@ Si un fichier manque ou contient des `{{...}}` : arrêter et lancer la skill `de
 - **Capture email** : bénéfice spécifique (pas « Abonnez-vous »), un seul champ, fréquence annoncée (« Un email par mois, 5 min de lecture »)
 - **Lead magnet** : montrer ce qu'on obtient (aperçu/couverture), promesse tangible, livraison immédiate — circuit complet via skill `lead-magnet`
 - **Exit intent** : reconnaître le départ, traiter une objection, offre finale distincte
-- **Bannière d'annonce** : haut de page, un seul message, dismissible, limitée dans le temps (événements → skill `event-marketing`)
+- **Bannière d'annonce** : haut de page, un seul message, dismissible, limitée dans le temps (événements : la landing de l'événement, skill `landing-page`)
 - **Slide-in** : coin/bas d'écran, ne bloque pas le contenu — l'option la moins intrusive
 
 ## Design
@@ -77,6 +72,6 @@ Spécification complète par popup : type, déclencheur, ciblage, fréquence, co
 ## Skills associées
 
 - `lead-magnet` — l'offre derrière le popup et son circuit de nurturing
-- `cro-form` — le formulaire dans le popup
-- `cro-page` — la page qui accueille le popup
+- `formulaire.md` : le formulaire dans le popup
+- `page.md` : la page qui accueille le popup
 - `email` — ce qui se passe après la capture

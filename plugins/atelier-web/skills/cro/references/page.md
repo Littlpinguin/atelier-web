@@ -1,9 +1,4 @@
----
-name: cro-page
-description: Optimiser la conversion d'une page marketing de la marque — homepage, landing page, page tarifs, page fonctionnalité, article. Analyse en 7 dimensions (proposition de valeur, headline, CTA, hiérarchie visuelle, preuve, objections, friction) et recommandations priorisées avec alternatives de copy. Utiliser quand l'utilisateur dit « CRO », « cette page ne convertit pas », « améliorer les conversions », « taux de rebond trop élevé », « revue de landing page » ou partage une URL pour feedback. Orchestrée par la skill landing-page pour la structure et la revue finale.
----
-
-# cro-page — optimisation de conversion des pages
+# Page : optimiser la conversion d'une page marketing
 
 Adapté du plugin marketingskills (Corey Haines / fork Littlpinguin, MIT) — voir `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-cro.md`.
 
@@ -54,13 +49,13 @@ Si un fichier manque ou contient des `{{...}}` : arrêter et lancer la skill `de
 - Leviers : FAQ, garanties, comparatifs, transparence du process
 
 ### 7. Points de friction
-- Formulaires trop longs (→ skill `cro-form`), étapes floues, navigation distrayante, expérience mobile, temps de chargement
+- Formulaires trop longs (→ `formulaire.md`), étapes floues, navigation distrayante, expérience mobile, temps de chargement
 
 ## Spécificités par type de page
 
 - **Homepage** : positionner pour le visiteur froid ; servir à la fois « prêt à acheter » et « en recherche »
 - **Landing page** : message match avec la source ; CTA unique (retirer la navigation si possible) ; argument complet sur une page — structure de référence dans la skill `landing-page`
-- **Page tarifs** : comparaison claire, plan recommandé signalé, lever l'anxiété « quel plan pour moi ? » (→ skill `cro-pricing`)
+- **Page tarifs** : comparaison claire, plan recommandé signalé, lever l'anxiété « quel plan pour moi ? » (→ `tarifs.md`)
 - **Article de blog** : CTA contextuels alignés sur le sujet, aux points d'arrêt naturels
 
 ## Format de sortie
@@ -79,7 +74,7 @@ Livrer dans `atelier/` (revue à côté de la page concernée) ou en réponse di
 ## Skills associées
 
 - `landing-page` — production complète d'une page (orchestre cette skill)
-- `cro-form` / `cro-popup` — formulaires et popups de la page
-- `cro-pricing` — page tarifs en profondeur
-- `copywriting` — réécriture complète du copy
+- `formulaire.md` / `popup.md` : formulaires et popups de la page
+- `tarifs.md` : page tarifs en profondeur
+- skill `ecriture` : réécriture complète du copy
 - `brand-check` — validation obligatoire avant intégration

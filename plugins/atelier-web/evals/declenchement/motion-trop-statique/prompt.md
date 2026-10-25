@@ -1,5 +1,5 @@
 ---
-description: 'motion-defilement : CSS natif piloté par le défilement, mouvement réduit, pas d''AOS.'
+description: 'motion : CSS natif piloté par le défilement, mouvement réduit, pas d''AOS.'
 tags: [declenchement]
 max_turns: 20
 timeout_seconds: 420

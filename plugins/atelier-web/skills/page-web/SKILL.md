@@ -1,6 +1,6 @@
 ---
 name: page-web
-description: Construire ou retoucher une page ou une section sur un site qui existe déjà, au niveau de ses pages les plus soignées, sans jamais inventer un style à côté. Lecture du système de design du site, reprise exacte des sections, fonds qui s'enchaînent, rythme des largeurs, captures qui tiennent dans l'écran, formulaires en étapes, pièges techniques connus (balises globales, cache, contenu en double), puis rendu vérifié et itéré. À utiliser pour toute nouvelle page d'un site, section ajoutée, déclinaison d'une page existante, ou quand l'utilisateur dit « ajoute une section », « fais la page X comme la page Y », « reprends le style du site ». Pour une landing de conversion complète, utiliser landing-page.
+description: "Construit ou retouche une page ou une section d'un site existant au niveau de ses meilleures pages, en reprenant son système de design au pixel près, puis vérifie le rendu. Pour une page de plus, une section ajoutée, une déclinaison, « fais la page X comme la page Y », « reprends le style du site ». Une landing de conversion complète relève de landing-page."
 ---
 
 # page-web : une page de plus, au niveau des meilleures
@@ -30,7 +30,7 @@ Sur un site qui existe, la qualité vient de la cohérence : une page neuve qui 
 ## Étape 2 : composer la page
 
 ### Fonds qui s'enchaînent
-Chaque section finit sur la couleur où commence la suivante, souvent par un dégradé : aucune coupure nette entre deux sections. Une section posée hors de son ordre d'origine casse la chaîne, et une ombre longue rognée en bas de section crée aussi une coupure. Contrôle mesuré : `controle-fonds.py` (skill `qa-rendu`), à 1440 puis 390 px, « Aucune coupure » attendu.
+Chaque section finit sur la couleur où commence la suivante, souvent par un dégradé : aucune coupure nette entre deux sections. Une section posée hors de son ordre d'origine casse la chaîne, et une ombre longue rognée en bas de section crée aussi une coupure. Contrôle mesuré : `controle-fonds.py` (`${CLAUDE_PLUGIN_ROOT}/skills/revue/references/rendu.md`), à 1440 puis 390 px, « Aucune coupure » attendu.
 
 ### Rythme des largeurs
 Sur une page longue, treize sections à la même largeur donnent un rythme monotone. Alterner quatre largeurs, sans en mettre deux identiques d'affilée quand c'est possible :
@@ -77,7 +77,7 @@ Une page conforme peut rester banale. Chercher au moins un moment qu'on ne voit 
 ## Étape 4 : rendre, montrer, itérer
 
 1. Construire en gros blocs, sans cérémonie de micro-validation : l'humain juge sur le rendu.
-2. Passer la QA de la skill `qa-rendu` (captures aux tailles d'écran, fonds, débordements, mouvement réduit).
+2. Passer la revue de rendu de la skill `revue` (captures aux tailles d'écran, fonds, débordements, mouvement réduit).
 3. Montrer : l'URL locale de l'aperçu, avec la liste des points à regarder. L'œil de l'humain reste la dernière porte.
 4. Appliquer chaque retour, puis l'écrire : propre à la page dans la conversation, valable pour tout le site dans `design.md` ou `exemples-rejetes.md`.
 5. `brand-check` avant toute livraison ; commit et publication selon les règles du projet, sur go explicite.
@@ -93,4 +93,4 @@ Une page conforme peut rester banale. Chercher au moins un moment qu'on ne voit 
 - [ ] Liens CSS et JS versionnés sur toutes les pages concernées
 - [ ] Images WebP dimensionnées, `alt`, `lazy` hors premier écran
 - [ ] Titres et textes conformes à la doctrine, aucun chiffre inventé
-- [ ] `qa-rendu` passé, page montrée, `brand-check` ✅
+- [ ] Revue de rendu passée (skill `revue`), page montrée, `brand-check` ✅

@@ -1,6 +1,6 @@
 ---
 name: lead-magnet
-description: Créer un lead magnet pour la marque du projet — guide PDF charté, outil interactif (calculateur, diagnostic), quiz, template/checklist — avec le circuit de capture complet obligatoire (page de capture → formulaire → n8n → outil emailing → séquence de nurturing). Utiliser dès que l'utilisateur demande un lead magnet, un aimant à leads, un guide téléchargeable, un livre blanc, un calculateur, un quiz, un diagnostic, une checklist ou un template à offrir contre un email.
+description: "Crée un lead magnet aux couleurs de la marque du projet (guide PDF, calculateur, diagnostic, quiz, checklist) avec son circuit de capture complet : page, formulaire, consentement, automatisation, emailing, séquence. Pour un aimant à leads, un livre blanc, un outil ou un modèle à offrir contre un email."
 ---
 
 # lead-magnet — lead magnets la marque
@@ -54,19 +54,19 @@ Présenter 2-3 options argumentées à l'utilisateur avant de produire ; le resp
 
 **Guide PDF / livre blanc** — `atelier/lead-magnets/guides-pdf/<slug>/`
 1. Plan validé par l'utilisateur (5-15 pages ; un guide utile et court bat un pavé).
-2. Rédaction via la skill `copywriting` (étape 0 doctrine incluse) ; chiffres vérifiés contre le messaging framework ou les rapports chiffrés du projet.
+2. Rédaction via la skill `ecriture`, mode rédiger (étape 0 doctrine incluse) ; chiffres vérifiés contre le messaging framework ou les rapports chiffrés du projet.
 3. Mise en forme chartée : skill `pdf` ou `docx` si disponible dans l'environnement ; sinon document HTML aux tokens atelier/marque (custom properties, voir `${CLAUDE_PLUGIN_ROOT}/fabrique/sections-library.md`) avec CSS print, exporté en PDF via impression navigateur.
 4. Couverture : assets de `atelier/marque/assets/` d'abord, sinon l'outil d'images du projet (après accord sur le coût).
 5. Dernière page : CTA vers l'étape suivante (démo, contact, autre contenu) — un PDF sans CTA est une impasse.
 
 **Outil interactif / quiz** — `atelier/lead-magnets/outils-web/<slug>/`
 1. Spécifier la logique (entrées, calcul ou scoring, restitution) et la faire valider AVANT de coder.
-2. Build : `index.html` autonome, HTML/JS vanilla, tokens atelier/marque, mobile-first, conventions techniques de le `CLAUDE.md` du projet (§ Atelier web). Design via `design-direction` / `design-system` avec les tokens injectés (la marque prime) ; fallback : sections-library + style-guide seuls.
+2. Build : `index.html` autonome, HTML/JS vanilla, tokens atelier/marque, mobile-first, conventions techniques de le `CLAUDE.md` du projet (§ Atelier web). Design via la skill `design` (routes créer et systématiser) avec les tokens injectés (la marque prime) ; fallback : sections-library + style-guide seuls.
 3. **Capture intégrée à l'outil** : le résultat détaillé (score complet, rapport, recommandations) est délivré contre l'email — l'utilisateur voit un aperçu du résultat, l'email débloque le reste. Jamais de formulaire avant toute valeur : donner d'abord, capturer ensuite.
 4. Pour un quiz : chaque profil de résultat porte un identifiant transmis à l'automatisation (segmentation du nurturing).
 
 **Template / checklist**
-1. Contenu via `copywriting`, format le plus actionnable (checklist cochable, tableau à remplir).
+1. Contenu via la skill `ecriture`, format le plus actionnable (checklist cochable, tableau à remplir).
 2. Livrable charté : page HTML dans `outils-web/` ou PDF une page dans `guides-pdf/`.
 
 ### 3. Page de capture
@@ -75,7 +75,7 @@ Invoquer la skill **`landing-page`** (brief allégé : hero avec promesse du lea
 
 ### 4. Formulaire
 
-Chemin nominal : skill interne **`cro-form`**. Fallback inline :
+Chemin nominal : skill interne **`cro`** (`formulaire.md`). Fallback inline :
 
 - Le minimum de champs : **email seul** par défaut ; prénom uniquement si le nurturing le personnalise ; toute question de qualification doit payer son coût en friction.
 - Label explicite, bouton formulé en bénéfice (« Recevoir le guide », jamais « Envoyer »).
@@ -96,7 +96,7 @@ Lead magnet → formulaire → automatisation (n8n, Make…) → outil emailing 
 
 ### 6. Séquence de nurturing
 
-Écrire la séquence avec la skill d'emailing installée (par exemple `email-sequence`), sinon directement avec `copywriting`. Minimum vital :
+Écrire la séquence avec la skill d'emailing installée (par exemple `email-sequence`), sinon directement avec la skill `ecriture`. Minimum vital :
 
 1. **Email 0 (immédiat)** : livraison du lead magnet + rappel de la promesse.
 2. **Emails 1-3 (J+2 à J+14)** : approfondissement du sujet, preuve, puis passage vers l'offre.
@@ -120,20 +120,20 @@ Mettre à jour `atelier/publie.md` (et le calendrier éditorial du projet s'il e
 ## Checklist pré-livraison
 
 - [ ] Type choisi et argumenté selon persona + niveau de conscience, validé par le responsable de la marque
-- [ ] Contenu produit via `copywriting`, chiffres vérifiés, livrable charté (tokens atelier/marque)
+- [ ] Contenu produit via `ecriture`, chiffres vérifiés, livrable charté (tokens atelier/marque)
 - [ ] CTA de sortie présent dans le lead magnet lui-même
 - [ ] Page de capture livrée via la skill `landing-page` (UTM + événement de conversion inclus)
-- [ ] Formulaire minimal (`cro-form` ou règles inline), mention RGPD + opt-in
+- [ ] Formulaire minimal (`cro`, `formulaire.md`, ou règles inline), mention RGPD + opt-in
 - [ ] Circuit complet branché : formulaire → n8n (ou direct) → l'outil d'emailing du projet → séquence
-- [ ] Séquence de nurturing en place (skill `email`), email 0 livre le contenu
+- [ ] Séquence de nurturing en place (skill d'emailing installée, ou `ecriture`), email 0 livre le contenu
 - [ ] `brand-check` passé sur les trois livrables (contenu, page, emails)
 - [ ] Mesure configurée et `atelier/publie.md` + calendrier à jour
 
 ## Skills associées
 
 - `landing-page` — page de capture (structure CRO, design, tracking)
-- `copywriting` / `copy-editing` — contenu
-- `cro-form` / `cro-popup` — capture
-- `design-direction` / `design-system` / `design-review` — design sous tokens atelier/marque
-- `email` — séquence de nurturing
+- `ecriture` : contenu (rédiger, relire)
+- `cro` : capture (`formulaire.md`, `popup.md`)
+- `design` et `revue` : design sous tokens atelier/marque, puis revue
+- skill d'emailing installée (par exemple `email-sequence`) : séquence de nurturing
 - `brand-check` — validation obligatoire

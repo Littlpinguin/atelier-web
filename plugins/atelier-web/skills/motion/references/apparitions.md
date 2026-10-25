@@ -1,11 +1,14 @@
----
-name: animation-scroll-reveal
-description: "Apparitions au défilement en CSS natif (animation-timeline view(), scroll()) avec repli IntersectionObserver ou reveal.js : fondu, montée, cascade, image qui se découvre, barre de lecture, parallaxe légère. À charger après motion-defilement pour faire apparaître des blocs au scroll, ou pour maintenir ou migrer un projet sous AOS (data-aos), qu'on n'ajoute plus à un projet neuf."
----
+# Apparitions au défilement, natif d'abord
 
-# animation-scroll-reveal : apparitions au défilement, natif d'abord
+## Sommaire
 
-La grammaire du mouvement (durées, courbe, un seul moment orchestré par section, rien ne bouge à la sortie, mouvement réduit) vit dans la skill `motion-defilement` et prime sur ce qui suit. Cette skill donne les recettes d'apparition, écrites pour les trois moteurs de navigateur : `animation-timeline` existe dans Chrome et Edge depuis la 115, Safari depuis la 26 et Firefox depuis la 159 (sortie le 27/10/2026, données de compatibilité de MDN). Un navigateur plus ancien reçoit le repli, et un visiteur en mouvement réduit voit tout, tout de suite.
+- 1. Décider
+- 2. Recette de base : CSS natif, repli par observateur
+- 3. Variantes
+- 4. Pièges
+- 5. Projets qui emploient déjà AOS
+
+La grammaire du mouvement (durées, courbe, un seul moment orchestré par section, rien ne bouge à la sortie, mouvement réduit) vit dans le `SKILL.md` de la skill `motion` et prime sur ce qui suit. Cette référence donne les recettes d'apparition, écrites pour les trois moteurs de navigateur : `animation-timeline` existe dans Chrome et Edge depuis la 115, Safari depuis la 26 et Firefox depuis la 159 (sortie le 27/10/2026, données de compatibilité de MDN). Un navigateur plus ancien reçoit le repli, et un visiteur en mouvement réduit voit tout, tout de suite.
 
 ## 1. Décider
 
@@ -15,7 +18,7 @@ La grammaire du mouvement (durées, courbe, un seul moment orchestré par sectio
 | Effet lié à la progression du défilement (barre de lecture, paragraphe qui s'encre, parallaxe) | CSS natif seul (§ 3), sans JavaScript |
 | Page hors fabrique, apparition simple | Recette du § 2 |
 | Apparition jouée une seule fois et qui ne doit jamais se rejouer (compteur, rideau) | Le moteur d'apparition (`IntersectionObserver`), pas le CSS piloté par le défilement, qui se rejoue à l'envers quand on remonte |
-| Épinglage avec scrub, texte cinétique, timeline longue | Skill `animation-gsap` |
+| Épinglage avec scrub, texte cinétique, timeline longue | `gsap.md` |
 | Projet qui emploie déjà AOS | § 5 |
 
 ## 2. Recette de base : CSS natif, repli par observateur
@@ -84,7 +87,7 @@ Le contenu reste visible sans JavaScript et en mouvement réduit : l'état masqu
 - **`visibility: hidden`** interdit sur un titre ou un bouton en attente : il sort du clavier et des lecteurs d'écran. Opacité et position seulement.
 - **Élément LCP** : le titre et l'image du hero ne partent jamais d'une opacité nulle, ni en natif ni en repli.
 - **Deux moteurs** : `data-aos`, `data-reveal` du socle et une recette maison sur la même page donnent des doubles apparitions. Un seul moteur par page.
-- **Captures sans tête** : elles ne déclenchent pas toujours les observateurs ; voir la skill `qa-rendu` avant de conclure à un bug.
+- **Captures sans tête** : elles ne déclenchent pas toujours les observateurs ; voir `${CLAUDE_PLUGIN_ROOT}/skills/revue/references/rendu.md` avant de conclure à un bug.
 - **`will-change`** : seulement sur un problème constaté, puis retiré.
 
 ## 5. Projets qui emploient déjà AOS
@@ -102,8 +105,8 @@ AOS (dernière version 2.3.4 du 03/10/2018, la 3.0.0-beta.6 n'a jamais été sta
 | `data-aos-once="true"` | comportement par défaut du repli ; en natif, plage bornée à `entry` |
 | `AOS.refresh()` après un changement du DOM | observer les nouveaux éléments ; avec GSAP, `ScrollTrigger.refresh()` |
 
-Retirer ensuite `aos.css`, `aos.js` et l'appel `AOS.init()`, puis vérifier en mouvement réduit que tout s'affiche (`qa-landing.py`, passage en mouvement réduit). L'API complète d'AOS, pour un projet qu'on maintient : `references/aos_api.md`, `references/animation_catalog.md` et le guide d'origine `references/aos-guide.md`.
+Retirer ensuite `aos.css`, `aos.js` et l'appel `AOS.init()`, puis vérifier en mouvement réduit que tout s'affiche (`qa-landing.py`, passage en mouvement réduit). L'API complète d'AOS, pour un projet qu'on maintient : `aos-api.md`, `aos-catalogue.md` et le guide d'origine `aos-guide.md`.
 
 ---
 
-*Réécrite pour l'atelier web le 25/10/2026 : l'enseignement par défaut passe au CSS natif. La skill d'origine (`scroll-reveal-libraries` v1.0.0 de [claudedesignskills](https://github.com/freshtechbro/claudedesignskills), freshtechbro, licence MIT, © 2025 Claude Skills Project) reste dans `references/` pour les projets AOS existants. Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*
+*Réécrite pour l'atelier web le 25/10/2026 : l'enseignement par défaut passe au CSS natif. La skill d'origine (`scroll-reveal-libraries` v1.0.0 de [claudedesignskills](https://github.com/freshtechbro/claudedesignskills), freshtechbro, licence MIT, © 2025 Claude Skills Project) reste dans `aos-guide.md` pour les projets AOS existants. Fusionnée dans la skill `motion` le 25/10/2026 (atelier-web 1.2.0). Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*

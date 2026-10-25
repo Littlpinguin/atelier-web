@@ -1,9 +1,4 @@
----
-name: design-direction
-description: Direction artistique distinctive pour les livrables web de la marque — choix esthétiques délibérés (typographie, palette, layout, signature visuelle) qui ne ressemblent pas à un template ni à du « design généré par IA ». Utiliser au moment de concevoir l'apparence d'une nouvelle page (landing, page événement, page campagne), quand un livrable « fait template » ou « fait IA », ou en amont de design-system pour poser une intention. Vendorisée depuis frontend-design d'Anthropic (Apache-2.0) — voir ${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design.md.
----
-
-# design-direction — une identité visuelle qu'on ne peut confondre avec aucune autre
+# Créer : une direction artistique qu'on ne peut confondre avec aucune autre
 
 Abordez chaque brief comme le lead designer d'un petit studio réputé pour donner à chaque client une identité visuelle impossible à confondre avec celle d'un autre. Le client a déjà rejeté des propositions qui « faisaient template » : il paie pour un point de vue. Faites des choix délibérés et assumés de palette, typographie et layout, spécifiques à ce brief — et prenez un vrai risque esthétique que vous savez justifier.
 
@@ -26,7 +21,7 @@ Si le brief ne précise pas le produit ou le sujet, le fixer vous-même avant de
 
 **Le héros est une thèse.** Ouvrir avec la chose la plus caractéristique de l'univers du sujet, sous la forme qui lui convient : un titre, une image, une animation, une démo, un moment interactif. Le « gros chiffre + petit label + stats de soutien + accent en gradient » est la réponse template — ne l'utiliser que si c'est réellement la meilleure option.
 
-**La typographie porte la personnalité de la page.** Sous contrainte de la police de `tokens.json` : travailler l'échelle, les graisses, les chasses et l'espacement pour que le traitement typographique soit mémorable en lui-même, pas un simple véhicule neutre du contenu. Si la marque autorise une police display complémentaire, la choisir pour ce brief précis (voir `design-system/references/typographie.md`), pas par habitude.
+**La typographie porte la personnalité de la page.** Sous contrainte de la police de `tokens.json` : travailler l'échelle, les graisses, les chasses et l'espacement pour que le traitement typographique soit mémorable en lui-même, pas un simple véhicule neutre du contenu. Si la marque autorise une police display complémentaire, la choisir pour ce brief précis (voir `typographie.md`), pas par habitude.
 
 **La structure est de l'information.** Les dispositifs structurels — numérotation, eyebrows, filets, labels — doivent encoder quelque chose de vrai sur le contenu, pas le décorer. Les marqueurs numérotés (01 / 02 / 03) ne se justifient que si le contenu est réellement une séquence. Questionner chaque dispositif avant de l'adopter.
 
@@ -34,7 +29,7 @@ Si le brief ne précise pas le produit ou le sujet, le fixer vous-même avant de
 
 **La complexité doit égaler la vision.** Une direction maximaliste exige une exécution élaborée ; une direction minimale exige une précision extrême d'espacement, de typo et de détail. L'élégance, c'est d'exécuter la vision choisie au niveau qu'elle demande.
 
-**Le texte fait partie du design.** Si le brief ne fournit pas de contenu réel, le copy que vous écrivez peut rendre une page aussi template que son design. Aller chercher `atelier/marque/messaging-framework.md` et la skill `copywriting` — jamais de texte de remplissage générique.
+**Le texte fait partie du design.** Si le brief ne fournit pas de contenu réel, le copy que vous écrivez peut rendre une page aussi template que son design. Aller chercher `atelier/marque/messaging-framework.md` et la skill `ecriture` (mode rédiger) : jamais de texte de remplissage générique.
 
 ## Anti-défauts : les trois looks « IA » à ne pas produire par réflexe
 
@@ -81,11 +76,11 @@ Les mots n'apparaissent dans un design que pour une raison : rendre la page plus
 
 | Moment | Skill |
 |---|---|
-| Formaliser les tokens issus de la direction retenue | `design-system` |
-| Écrire le copy réel de la page | `copywriting` |
-| QA finale (marque, a11y, responsive, perf) | `design-review` |
+| Formaliser les tokens issus de la direction retenue | `systeme.md` (route systématiser) |
+| Écrire le copy réel de la page | skill `ecriture` |
+| QA finale (marque, a11y, responsive, perf) | skill `revue` |
 | Validation éditoriale avant livraison | `brand-check` |
 
 ---
 
-*Source : adapté de la skill [frontend-design](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design) d'Anthropic (plugin officiel Claude Code), licence Apache-2.0. Adaptations : traduction française, ajout de l'étape 0 de chargement des tokens atelier/marque (la marque prime), ancrage dans le workflow du template (copywriting, design-system, design-review, brand-check), notes anti-répétition dans le dossier livrable. Registre : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design.md`.*
+*Source : adapté de la skill [frontend-design](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design) d'Anthropic (plugin officiel Claude Code), licence Apache-2.0. Adaptations : traduction française, ajout de l'étape 0 de chargement des tokens atelier/marque (la marque prime), ancrage dans le workflow du template (écriture, système, revue, brand-check), notes anti-répétition dans le dossier livrable. Registre : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design.md`. Fusionnée dans la skill `design` le 25/10/2026 (atelier-web 1.2.0).*

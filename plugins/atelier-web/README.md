@@ -6,7 +6,7 @@ Full documentation, screenshots and installation: https://github.com/Littlpingui
 
 ## What it contains
 
-- **24 skills**: project setup (`demarrer-projet-web`), an 8-phase landing page playbook (`landing-page`), pages on an existing site (`page-web`), lead magnets, design direction and design systems, motion and scroll animation, conversion (page, form, popup, pricing), copywriting, rendering QA, accessibility, design review and a final brand check.
+- **10 skills**: project setup (`demarrer-projet-web`), an 8-phase landing page playbook (`landing-page`), pages on an existing site (`page-web`), lead magnets (`lead-magnet`), design (`design`: direction, execution, redesign, tokens), motion (`motion`), conversion (`cro`: page, form, popup, pricing), copy (`ecriture`: write and review), review (`revue`: rendering QA, interface, accessibility) and a final brand check (`brand-check`). Each keeps its detail in reference files one level below its `SKILL.md`.
 - **7 agents**: visual research, parallel section builders, and design, brand, conversion and accessibility reviewers.
 - **A factory** (`fabrique/`): 44 slot-based landing sections, 6 landing templates, 10 interactive lead magnets, and Python scripts to assemble pages, measure the render, derive CSS tokens and lint brand compliance.
 - **A hook**: after Claude writes a page under `atelier/`, directly or through a script such as `assemble-landing.py`, it runs the local brand linter and reminds Claude to run the brand check. It stays silent in projects without a brand doctrine and never blocks a tool call.

@@ -9,7 +9,7 @@ tags: [redaction, anti-ia, liste-noire, brand-check]
 
 Ce fichier dit comment écrire pour que rien ne sonne produit par une machine. Il se lit **avant** toute rédaction (règle préventive) et se repasse en relecture. La voix propre de la marque vit dans `voice.md` : quand les deux divergent sur un choix de ton (tutoiement, contractions, première personne), `voice.md` l'emporte ; sur la liste noire, ce fichier l'emporte.
 
-Les sections 3A, 3B, 3D, 3E et 3F sont reprises telles quelles par `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.toml` (règles `forbidden-words` et `negative-parallelism`) : un mot ajouté ici s'ajoute aussi là-bas, sinon le linter et la doctrine divergent. La skill `humanize-writing` est la passe **curative** qui applique ce fichier à un texte déjà écrit.
+Les sections 3A, 3B, 3D, 3E et 3F sont reprises telles quelles par `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.toml` (règles `forbidden-words` et `negative-parallelism`) : un mot ajouté ici s'ajoute aussi là-bas, sinon le linter et la doctrine divergent. La passe **curative** de la skill `ecriture` (`references/humaniser.md`) est celle qui applique ce fichier à un texte déjà écrit.
 
 ---
 
@@ -62,7 +62,7 @@ Ces mots sont statistiquement surreprésentés dans les textes produits par des 
 
 Également bannis en anglais quand ils servent à éviter « is » ou « has » : « serves as », « stands as », « marks a », « represents a », « boasts a », « features a », « offers a ». Dire simplement « is ».
 
-**Français** : disruptif, révolutionner, révolutionnaire, incontournable, booster, « plonger dans », « à l'ère de », « dans un monde où ». La liste longue des tics français vit dans la skill `humanize-writing` (passes 2 et 3).
+**Français** : disruptif, révolutionner, révolutionnaire, incontournable, booster, « plonger dans », « à l'ère de », « dans un monde où ». La liste longue des tics français vit dans la skill `ecriture` (`references/humaniser.md`, passes 2 et 3).
 
 ### 3B. Tournures mortes
 

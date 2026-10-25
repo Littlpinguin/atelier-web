@@ -1,5 +1,17 @@
 # GSAP & ScrollTrigger API Quick Reference
 
+## Sommaire
+
+- Core GSAP Methods
+- Timeline Methods
+- Common Tween Properties
+- Easing Functions
+- Stagger Configuration
+- ScrollTrigger Properties
+- ScrollTrigger Methods
+- Utility Methods
+- Common Patterns
+
 ## Core GSAP Methods
 
 ### gsap.to()

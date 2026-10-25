@@ -1,6 +1,6 @@
 ---
 name: demarrer-projet-web
-description: Point d'entrée de l'atelier web dans un nouveau projet. Pose la doctrine de marque du projet dans atelier/marque/ (jetons, charte visuelle, voix, anti-style-IA, preuves, personas, système de design du site existant) à partir du site et des contenus réels, la fait valider section par section, ajoute le bloc « Atelier web » au CLAUDE.md du projet, puis oriente vers la bonne skill. À utiliser dès qu'on ouvre l'atelier sur un projet, quand une skill de l'atelier s'arrête faute de doctrine, ou quand l'utilisateur dit « initialise l'atelier », « pose la charte », « on démarre le site ».
+description: "Point d'entrée de l'atelier web : pose la doctrine de marque du projet dans atelier/marque/ (jetons, voix, preuves, personas, système du site) à partir du site et des contenus réels, la fait valider, puis oriente vers la bonne skill. Pour « initialise l'atelier », « pose la charte », « on démarre le site », ou quand une skill de l'atelier s'arrête faute de doctrine."
 ---
 
 # demarrer-projet-web : poser la doctrine avant la première page
@@ -83,19 +83,18 @@ Ajouter au `CLAUDE.md` du projet le bloc de `${CLAUDE_PLUGIN_ROOT}/modeles/CLAUD
 
 ## Étape 6 : orienter
 
-| Demande | Skill ou agent |
+| Demande | Skill (et la référence qu'elle lira) |
 |---|---|
 | Landing, page de vente, page d'inscription, page de campagne | `landing-page` |
 | Page ou section sur un site qui existe déjà | `page-web` |
-| Direction artistique d'une page nouvelle | `design-direction`, puis `design-taste` |
-| Jetons, palette sémantique, échelle typographique | `design-system` |
-| Refonte d'un site qui fait daté ou « fait IA » | `design-redesign` |
-| Mouvement, défilement, apparitions, épinglages | `motion-defilement` d'abord (pile et grammaire), puis `animation-scroll-reveal` (apparitions en CSS natif), `animation-gsap` (épinglage, scrub), `animation-animejs`, `animation-lottie` (illustrations en dotLottie) |
-| Revue de l'interface avant livraison | `design-review`, `qa-rendu` |
-| Accessibilité | `accessibility-web`, agent `a11y-auditor` |
-| Conversion d'une page, d'un formulaire, d'une pop-up, d'une page tarifs | `cro-page`, `cro-form`, `cro-popup`, `cro-pricing` |
 | Outil interactif ou guide contre un email | `lead-magnet` |
-| Textes | `copywriting`, `copy-editing`, `humanize-writing` |
+| Direction artistique d'une page nouvelle, page qui « fait template » | `design` (créer : `direction.md`, puis `execution.md`) |
+| Refonte d'un site qui fait daté ou « fait IA » | `design` (refondre : `refonte.md`) |
+| Jetons, palette sémantique, échelle typographique | `design` (systématiser : `systeme.md`) |
+| Mouvement, défilement, apparitions, épinglages, Lottie | `motion` (pile et grammaire, puis `apparitions.md`, `gsap.md`, `animejs.md` ou `lottie.md`) |
+| Conversion d'une page, d'un formulaire, d'une pop-up, d'une page tarifs | `cro` (`page.md`, `formulaire.md`, `popup.md`, `tarifs.md`) |
+| Textes à rédiger, relire ou humaniser | `ecriture` (`rediger.md`, `relire.md`, `humaniser.md`) |
+| Rendu, revue de l'interface, accessibilité avant livraison | `revue` (`rendu.md`, `interface.md`, `accessibilite.md`), agents `landing-reviewer-*` et `a11y-auditor` |
 | Validation finale de tout livrable | `brand-check` |
 
 ## Règles

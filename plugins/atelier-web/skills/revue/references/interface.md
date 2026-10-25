@@ -1,9 +1,11 @@
----
-name: design-review
-description: Réviser et corriger l'UI des livrables web de la marque (landing pages, pages statiques, emails HTML riches, dashboards de reporting) — conformité marque, accessibilité WCAG, responsive, performance perçue, formulaires, animations. Utiliser avant toute livraison de code UI, quand l'utilisateur dit « review cette page », « le design fait pas pro », « corrige l'UI », ou en QA finale des skills landing-page / design-system / design-direction. Vendorisée depuis ui-ux-pro-max (MIT, NextLevelBuilder) — voir ${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design.md.
----
+# Interface : revue et correction UI des livrables web
 
-# design-review — revue et correction UI des livrables web
+## Sommaire
+
+- Étape 0 — Charger les design tokens de la marque (OBLIGATOIRE)
+- Format du rapport
+- Grille de revue par priorité
+- Checklist express pré-livraison
 
 Vous êtes le passage QA design obligatoire avant livraison. Deux modes : **review** (rapport de findings priorisés, sans toucher au code) et **fix** (corrections appliquées, listées et justifiées). Par défaut : review, puis fix sur validation.
 
@@ -13,7 +15,7 @@ Vous êtes le passage QA design obligatoire avant livraison. Deux modes : **revi
 
 1. Lire `atelier/marque/style-guide.md` : couleurs, police, radius, gradient, interdits visuels.
 2. Lire `atelier/marque/design-anti-generique.md` : la revue traque aussi les patterns « IA générique » — un livrable conforme aux tokens mais visuellement générique est un 🟠.
-3. Si un `design-tokens.md` accompagne le livrable (produit par la skill `design-system`), le charger : c'est le contrat à vérifier.
+3. Si un `design-tokens.md` accompagne le livrable (produit par la skill `design`, route systématiser), le charger : c'est le contrat à vérifier.
 4. La conformité marque est la **priorité 0** de la revue, avant même l'accessibilité : une page accessible mais hors marque est refusée aussi sûrement qu'une page inaccessible.
 
 Si `atelier/marque/style-guide.md` est manquant ou contient des `{{...}}`, signaler et limiter la revue aux priorités 1-8 (génériques).
@@ -111,8 +113,8 @@ Pour chaque finding : `[P{n}-{sévérité}] {fichier}:{ligne} — {problème} �
 - [ ] Formulaires : labels, erreurs claires, feedback submit
 - [ ] Un seul CTA primaire par écran
 
-Si le livrable est du contenu marketing en dossier de production, enchaîner avec la skill `brand-check` (fond éditorial) — `design-review` couvre la forme, pas le message.
+Si le livrable est du contenu marketing en dossier de production, enchaîner avec la skill `brand-check` (fond éditorial) : cette revue couvre la forme, pas le message.
 
 ---
 
-*Source : règles condensées et adaptées de [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) v2.5.0 (`quick-reference.md` + `ux-guidelines.csv`), © 2024 Next Level Builder, licence MIT. Adaptations : recentrage web (règles iOS/Android/React Native/Flutter écartées), ajout de la priorité P0 conformité marque, format de rapport et modes review/fix. Registre : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design.md`.*
+*Source : règles condensées et adaptées de [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) v2.5.0 (`quick-reference.md` + `ux-guidelines.csv`), © 2024 Next Level Builder, licence MIT. Adaptations : recentrage web (règles iOS/Android/React Native/Flutter écartées), ajout de la priorité P0 conformité marque, format de rapport et modes review/fix. Registre : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design.md`. Fusionnée dans la skill `revue` le 25/10/2026 (atelier-web 1.2.0).*

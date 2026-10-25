@@ -1,5 +1,16 @@
 # Lottie API Reference
 
+## Sommaire
+
+- dotlottie-web API
+- DotLottieWorker API
+- dotlottie-react API
+- lottie-web API (Original Library)
+- lottie-react API
+- useLottie Hook
+- useLottieInteractivity Hook
+- Best Practices
+
 Complete API documentation for lottie-web, lottie-react, dotlottie-web, and dotlottie-react libraries.
 
 ## dotlottie-web API

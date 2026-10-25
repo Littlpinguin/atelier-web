@@ -1,11 +1,16 @@
----
-name: design-redesign
-description: Audit et modernisation d'un site ou d'une page web existants de la marque (ou d'un client) sans casser le fonctionnel — détection des patterns IA génériques, diagnostic typographie/couleur/layout/états/contenu, correctifs ciblés par ordre d'impact. Utiliser pour toute refonte, rafraîchissement ou « ce site fait daté / fait IA », en amont d'une réécriture de landing page. Vendorisée depuis taste-skill (redesign-existing-projects, MIT, Leonxlnx) — voir ${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md.
----
+# Refondre : moderniser l'existant sans le casser
 
-# design-redesign — moderniser l'existant sans le casser
+## Sommaire
 
-Cette skill traite les **refontes** : un site ou une page existe déjà, il faut l'élever au niveau premium sans réécrire de zéro. Pour un livrable neuf, utiliser `design-direction` + `design-system` + `design-taste`.
+- Étape 0 — Charger les tokens de marque (OBLIGATOIRE)
+- Séquence
+- Audit de design
+- Techniques d'upgrade (à piocher selon le besoin)
+- Priorité des correctifs (impact max, risque min)
+- Ce qui ne change JAMAIS silencieusement
+- Règles
+
+Cette route traite les **refontes** : un site ou une page existe déjà, il faut l'élever au niveau premium sans réécrire de zéro. Pour un livrable neuf : `direction.md`, `systeme.md` et `execution.md`.
 
 ## Étape 0 — Charger les tokens de marque (OBLIGATOIRE)
 
@@ -110,7 +115,7 @@ Liens légaux (confidentialité, mentions), navigation retour, page 404 brandée
 
 - **Typo** : fontes variables animées (graisse au scroll), transitions contour→rempli, text mask reveals.
 - **Layout** : grille cassée / asymétrie calculée, maximisation du blanc, piles de cartes en parallax, split-screen scroll.
-- **Motion** : smooth scroll avec inertie, entrées en cascade (jamais tout monté d'un coup), spring physics au lieu d'easing linéaire, reveals pilotés par le scroll (pile et grammaire de la skill `motion-defilement`, CSS natif d'abord ; en React, squelettes de `design-taste`, `references/squelettes-motion.md`).
+- **Motion** : smooth scroll avec inertie, entrées en cascade (jamais tout monté d'un coup), spring physics au lieu d'easing linéaire, reveals pilotés par le scroll (pile et grammaire de la skill `motion`, CSS natif d'abord ; en React, ses squelettes `${CLAUDE_PLUGIN_ROOT}/skills/motion/references/squelettes-react.md`).
 - **Surfaces** : vrai glassmorphism (bordure interne 1px + ombre interne), spotlight borders, grain overlay fixe `pointer-events-none`, ombres teintées.
 
 ## Priorité des correctifs (impact max, risque min)
@@ -137,4 +142,4 @@ Sans validation humaine explicite : structure d'URL / slugs, labels de navigatio
 
 ---
 
-*Vendorisée et adaptée depuis [taste-skill](https://github.com/Leonxlnx/taste-skill) de Leonxlnx (skill `redesign-existing-projects`, licence MIT). Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md`.*
+*Vendorisée et adaptée depuis [taste-skill](https://github.com/Leonxlnx/taste-skill) de Leonxlnx (skill `redesign-existing-projects`, licence MIT). Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md`. Fusionnée dans la skill `design` le 25/10/2026 (atelier-web 1.2.0).*

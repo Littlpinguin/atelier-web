@@ -1,5 +1,5 @@
 ---
-description: 'animation-lottie : dotLottie par défaut, pas lottie-web, mouvement réduit et pause.'
+description: 'motion (Lottie) : dotLottie par défaut, pas lottie-web, mouvement réduit et pause.'
 tags: [declenchement]
 max_turns: 20
 timeout_seconds: 420

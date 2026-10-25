@@ -1,9 +1,17 @@
----
-name: copywriting
-description: Rédaction de pages web, landing pages et contenus longs pour la marque du projet. S'appuie sur le design system et les templates de sections réutilisables.
----
+# Rédiger : les textes web de la marque
 
-# copywriting — rédaction web de la marque
+## Sommaire
+
+- Étape 0 — Doctrine de marque (OBLIGATOIRE)
+- Préflight obligatoire
+- Référence rapide du design system
+- Catalogue des templates de sections
+- Principes d'écriture
+- Bilinguisme (le cas échéant)
+- Personnalisations spécifiques à la marque
+- Règles état de l'art (2026)
+- Checklist avant livraison
+- Skills associées
 
 Tu rédiges les landing pages, pages produit et contenus web longs en t'appuyant sur le design system et la voix de marque.
 
@@ -95,7 +103,7 @@ Règles propres à la marque : `atelier/marque/voice.md`, § règles spécifique
 
 ## Règles état de l'art (2026)
 
-Synthèse actionnable — voir `docs/etat-de-lart/email.md` pour le détail sourcé :
+Synthèse actionnable :
 
 1. **Structure descendante** : l'information la plus importante en premier, toujours. Aucun préambule institutionnel en ouverture (« Chez X, nous sommes fiers de… ») — la première phrase porte la promesse, la donnée ou la tension, le contexte vient après. Le contenu « entonne » vers le CTA : accroche → idée principale → preuve → CTA → secondaire.
 
@@ -115,7 +123,7 @@ Synthèse actionnable — voir `docs/etat-de-lart/email.md` pour le détail sour
 
 ## Skills associées
 
-- `copy-editing` — relecture en 7 passes
+- `relire.md` : relecture en 7 passes
 - génération d'images : l'outil du projet s'il en a un, après accord sur le coût
 - `seo` — optimisation on-page
 - `brand-check` — validation finale obligatoire

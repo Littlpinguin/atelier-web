@@ -1,5 +1,28 @@
 # Styles UI web — bibliothèque de référence
 
+## Sommaire
+
+- Styles généraux
+  - Minimalisme / Swiss Style
+  - Flat Design
+  - Swiss Modernism 2.0
+  - Glassmorphism
+  - Aurora UI / Gradient Mesh
+  - Bento Box Grid
+  - Neubrutalism
+  - Brutalism (classique)
+  - Vibrant & Block-based
+  - Exaggerated Minimalism
+  - Kinetic Typography
+  - Motion-Driven
+  - Parallax Storytelling
+  - Organic Biophilic / Nature Distilled
+  - Editorial Grid / Magazine
+  - Vintage Analog / Retro Film
+  - Liquid Glass
+- Styles orientés landing page
+- Règles transverses
+
 > Condensé et adapté de `styles.csv` d'[ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) v2.5.0 (MIT, © 2024 Next Level Builder). Sélection web marketing uniquement — les styles mobile natif et dashboards BI ont été écartés. **Rappel : la marque (`atelier/marque/style-guide.md`) prime toujours. Un style qui contredit les interdits visuels de la marque est écarté d'office.**
 
 Comment lire : *Pour* = contextes adaptés · *Jamais* = contextes à exclure · *Signature CSS* = techniques clés · *A11y* = point de vigilance accessibilité · *Conv.* = orientation conversion.

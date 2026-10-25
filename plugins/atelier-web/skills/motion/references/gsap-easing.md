@@ -1,5 +1,21 @@
 # GSAP Easing Functions - Visual Guide
 
+## Sommaire
+
+- What Are Easings?
+- Why Easings Matter
+- Easing Families
+- Quick Decision Tree
+- Common Patterns by Use Case
+- Easing Combinations
+- Custom Easings
+- Testing Easings
+- Performance Notes
+- Common Mistakes
+- Best Practices
+- Cheat Sheet
+- Summary
+
 ## What Are Easings?
 
 Easings control the **rate of change** during an animation, making motion feel more natural and expressive. They define the acceleration curve between the start and end of an animation.

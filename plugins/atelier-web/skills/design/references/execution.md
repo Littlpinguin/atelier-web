@@ -1,45 +1,40 @@
----
-name: design-taste
-description: Protocole d'exécution anti-slop pour tout livrable web de la marque — landing pages, pages statiques, portfolios, sections marketing. Trois curseurs paramétriques (DESIGN_VARIANCE / MOTION_INTENSITY / VISUAL_DENSITY), inférence du langage design depuis le brief, squelettes GSAP canoniques, bans typographiques et pre-flight check strict. Utiliser en complément de design-system (tokens) et landing-page (structure) chaque fois qu'un rendu web risque de ressembler à du template IA générique. Vendorisée depuis taste-skill v2 (MIT, Leonxlnx) — voir ${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md.
----
+# Exécuter : protocole anti-slop
 
-# design-taste — protocole d'exécution anti-slop
+## Sommaire
 
-Cette skill ne choisit pas un style : elle empêche l'exécution de ressembler à du design généré. Elle s'applique aux landing pages, pages marketing, portfolios et refontes ; pas aux dashboards denses, tables de données ou interfaces produit à étapes (y prendre un design system officiel).
+- Invariants (à relire en reprenant une session)
+- Place parmi les skills design
+- Étape 0 — Charger la marque (OBLIGATOIRE)
+- 1. Lecture du brief (avant tout code)
+- 2. Les trois curseurs
+- 5. Directives d'exécution (correction de biais)
+- 6. Mouvement
+- 7. Performance et accessibilité
+- 8. Tells d'IA (motifs interdits)
+- 9. Pre-flight check
+
+Ce protocole ne choisit pas un style : il empêche l'exécution de ressembler à du design généré. Il s'applique aux landing pages, pages marketing, portfolios et refontes ; pas aux dashboards denses, tables de données ou interfaces produit à étapes (y prendre un design system officiel).
 
 ## Invariants (à relire en reprenant une session)
 
-**Ordre, sans sauter d'étape** : 0. charger la marque → 1. lire le brief et **déclarer la lecture design en une ligne** → 2. fixer les trois curseurs → 3-4. système officiel et pile si le projet en a un (`references/stack-et-systemes.md`) → 5. exécuter sous les règles dures → 6. mouvement motivé → 7. performance et accessibilité → 8. chasse aux tells → 9. **pre-flight check**, case par case, avant de livrer.
+**Ordre, sans sauter d'étape** : 0. charger la marque → 1. lire le brief et **déclarer la lecture design en une ligne** → 2. fixer les trois curseurs → 3-4. système officiel et pile si le projet en a un (`stack-et-systemes.md`) → 5. exécuter sous les règles dures → 6. mouvement motivé → 7. performance et accessibilité → 8. chasse aux tells → 9. **pre-flight check**, case par case, avant de livrer.
 
-**Préséance** : `atelier/marque/style-guide.md` et `tokens.json` > `atelier/marque/checklist-pre-composition.md` > `atelier/marque/design-anti-generique.md` > les règles de cette skill. Une dimension fixée par la marque (couleur, police, rayon) ne se discute pas ; les règles ci-dessous ne s'appliquent pleinement que là où la marque est muette.
+**Préséance** : `atelier/marque/style-guide.md` et `tokens.json` > `atelier/marque/checklist-pre-composition.md` > `atelier/marque/design-anti-generique.md` > les règles de ce protocole. Une dimension fixée par la marque (couleur, police, rayon) ne se discute pas ; les règles ci-dessous ne s'appliquent pleinement que là où la marque est muette.
 
 **Validations** : une seule question de clarification si le brief est ambigu, jamais une rafale ; curseurs annoncés et motivés, modifiés seulement à voix haute ; une case du pre-flight qui ne se coche pas honnêtement = le livrable n'est pas fini.
 
-**Pre-flight check (étape 9)** :
-- [ ] Jetons de la marque chargés et respectés (dimensions verrouillées intactes) ; lecture design déclarée ; curseurs explicités ?
-- [ ] Design system officiel choisi si applicable, esthétique étiquetée honnêtement sinon ?
-- [ ] **Zéro cadratin `—`** visible ; règles typographiques de la checklist de marque (pas de point final sur les titres, casse de phrase) ?
-- [ ] Un seul thème, un seul accent, une seule échelle de rayons ?
-- [ ] Contraste AA sur chaque CTA et champ ; aucun libellé de CTA qui passe à la ligne ; une intention = un libellé ?
-- [ ] Hero : titre ≤ 2 lignes, sous-texte ≤ 20 mots, ≤ 4 éléments texte, CTA visible, `pt-24` au plus ?
-- [ ] Sur-titres ≤ ceil(nbSections / 3) ; pas de split-header ; ≤ 2 zigzags consécutifs ; ≥ 4 familles de mise en page ; bento sans cellule vide et avec variation visuelle ?
-- [ ] Vraies images (générées, photo, ou emplacements étiquetés) ; aucune fausse capture en `div` ; logos SVG réels ; mur de logos sans étiquettes ?
-- [ ] Copie relue ; aucun chiffre inventé ; citations ≤ 3 lignes, attribuées ?
-- [ ] Mouvement motivé, livré s'il est annoncé, `prefers-reduced-motion` partout au-dessus de 3, squelettes conformes (`start: "top top"`, `pin: true`), aucun `addEventListener('scroll')`, nettoyages `useEffect` stricts ?
-- [ ] Mode sombre testé dans les deux modes ; `min-h-[100dvh]` ; repli mobile explicite ?
-- [ ] États chargement, vide et erreur fournis ; une seule famille d'icônes autorisée ; aucun tell de l'étape 8 ?
-- [ ] Core Web Vitals plausibles ; un seul design system dans l'arbre ?
+**Pre-flight check (étape 9)** : dans le `SKILL.md` de la skill `design` (§ Pre-flight), commun aux routes créer et refondre.
 
-**Chemins** : `references/stack-et-systemes.md` (étapes 3-4 : systèmes officiels, pile React, polices, icônes) ; `references/squelettes-motion.md` (étape 6, React) ; skill `motion-defilement` (mouvement en HTML statique) ; provenance : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md`.
+**Chemins** : `stack-et-systemes.md` (étapes 3-4 : systèmes officiels, pile React, polices, icônes) ; skill `motion` (mouvement en HTML statique, et ses squelettes React `${CLAUDE_PLUGIN_ROOT}/skills/motion/references/squelettes-react.md` pour l'étape 6) ; provenance : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md`.
 
 ## Place parmi les skills design
 
-`design-direction` choisit la direction visuelle au cadrage, `design-system` pose les jetons sémantiques sous contrainte de marque, `design-redesign` audite et modernise un existant ; `ui-ux-pro-max` (plugin tiers, s'il est installé) sert de base de choix (palettes, paires de polices, styles). **`design-taste`** est le protocole d'exécution, pendant et après l'écriture du code. Ordre type : `design-direction` → `design-system` → production (`landing-page`, `page-web`) avec cette skill en garde-fou → pre-flight.
+Dans la skill `design`, `direction.md` choisit la direction visuelle au cadrage, `systeme.md` pose les jetons sémantiques sous contrainte de marque, `refonte.md` audite et modernise un existant ; `ui-ux-pro-max` (plugin tiers, s'il est installé) sert de base de choix (palettes, paires de polices, styles). **Ce protocole** est l'exécution, pendant et après l'écriture du code. Ordre type : direction → système → production (`landing-page`, `page-web`) avec ce protocole en garde-fou → pre-flight.
 
 ## Étape 0 — Charger la marque (OBLIGATOIRE)
 
 1. Lire `atelier/marque/style-guide.md` (couleurs, police, rayon, dégradé, illustration, interdits visuels), `checklist-pre-composition.md` (anti-style-IA et typographie ; elle fait foi contre les bans de cette skill : si elle autorise le demi-cadratin `–`, le ban ne porte que sur le cadratin `—`) et `design-anti-generique.md`.
-2. Classer chaque dimension : **verrouillée par la marque** (aucune dérogation, même si un ban ci-dessous suggère autre chose) ou **libre** (la skill s'applique pleinement). Une marque violette reste violette malgré la règle « LILA ».
+2. Classer chaque dimension : **verrouillée par la marque** (aucune dérogation, même si un ban ci-dessous suggère autre chose) ou **libre** (le protocole s'applique pleinement). Une marque violette reste violette malgré la règle « LILA ».
 3. Si `style-guide.md` manque ou contient des `{{...}}` : s'arrêter et proposer la skill `demarrer-projet-web`.
 
 ## 1. Lecture du brief (avant tout code)
@@ -116,7 +111,7 @@ Priorité : **1)** l'outil d'images du projet, après `atelier/marque/assets/ind
 ### 5.6 Densité de contenu et copie
 - Section par défaut : titre ≤ 8 mots + paragraphe ≤ 25 mots + un visuel OU un CTA.
 - Pas de section fourre-tout (table de 20 lignes sur une page marketing) : 3 à 5 éléments puis « tout voir », un carrousel ou une autre page. Une liste de plus de 5 éléments devient un autre composant (grille de cartes, onglets, pastilles en défilement, groupes), pas un `<ul>` plus long avec un filet sous chaque ligne.
-- **Relecture obligatoire** de chaque chaîne visible : réécrire ce qui est cassé, flou ou « sonne LLM » (checklist de marque § 2 et skill `copy-editing`).
+- **Relecture obligatoire** de chaque chaîne visible : réécrire ce qui est cassé, flou ou « sonne LLM » (checklist de marque § 2 et skill `ecriture`, mode relire).
 - **Chiffres faussement précis bannis** : une donnée sourcée (`messaging-framework.md`) ou un exemple étiqueté.
 - Citations : ≤ 3 lignes, nom + rôle (+ entreprise), guillemets typographiques.
 - **Verrou de thème** : un thème par page ; aucune section n'inverse le mode en plein défilement (sauf un bloc de couleur délibéré, une fois). Les bandes sombres prévues par la charte d'une landing de la fabrique échappent à ce verrou.
@@ -125,7 +120,7 @@ Priorité : **1)** l'outil d'images du projet, après `atelier/marque/assets/ind
 
 **Mouvement motivé** : chaque animation se justifie en une phrase (hiérarchie, narration, retour, transition d'état) ; « ça faisait joli » = suppression. **Un bandeau défilant par page au plus.** « Mouvement annoncé = mouvement livré » : si `MOTION_INTENSITY > 4`, la page bouge vraiment ; sinon baisser le curseur à 3 et livrer un statique propre.
 
-Pile et grammaire : skill `motion-defilement` (CSS natif d'abord, GSAP pour l'épinglage avec scrub, dotLottie pour les médias). Squelettes React corrigés (épinglage `start: "top top"`, défilement horizontal, cascade Motion) : `references/squelettes-motion.md`.
+Pile et grammaire : skill `motion` (CSS natif d'abord, GSAP pour l'épinglage avec scrub, dotLottie pour les médias). Squelettes React corrigés (épinglage `start: "top top"`, défilement horizontal, cascade Motion) : `${CLAUDE_PLUGIN_ROOT}/skills/motion/references/squelettes-react.md`.
 
 Interdits : `window.addEventListener("scroll", …)` (utiliser le CSS piloté par le défilement, ScrollTrigger, `IntersectionObserver` ou `useScroll()`) ; progression calculée avec `window.scrollY` dans un état React ; boucles `requestAnimationFrame` qui touchent l'état React ; GSAP ou Three.js mélangés à Motion dans le même arbre de composants.
 
@@ -152,8 +147,8 @@ Complète la § 2 de `atelier/marque/checklist-pre-composition.md` (le texte) pa
 
 ## 9. Pre-flight check
 
-La liste est en tête de cette skill (Invariants). La dérouler avant de livrer le code.
+La liste est dans le `SKILL.md` de la skill `design` (§ Pre-flight), commune aux routes créer et refondre. La dérouler avant de livrer le code.
 
 ---
 
-*Vendorisée et condensée depuis [taste-skill](https://github.com/Leonxlnx/taste-skill) de Leonxlnx (skill `design-taste-frontend` v2, licence MIT). Le 25/10/2026 (atelier-web 1.1.0), invariants et pre-flight remontés en tête, pile React et squelettes de mouvement déplacés dans `references/`. Attribution, périmètre retenu et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md`.*
+*Vendorisée et condensée depuis [taste-skill](https://github.com/Leonxlnx/taste-skill) de Leonxlnx (skill `design-taste-frontend` v2, licence MIT). Le 25/10/2026 (atelier-web 1.1.0), invariants et pre-flight remontés en tête, pile React et squelettes de mouvement déplacés dans `references/`. Fusionnée dans la skill `design` le 25/10/2026 (atelier-web 1.2.0). Pre-flight remonté dans son `SKILL.md`, squelettes React passés dans la skill `motion`. Attribution, périmètre retenu et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-design2.md`.*

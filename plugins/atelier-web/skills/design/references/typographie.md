@@ -49,4 +49,4 @@ Toujours `font-display: swap` et préchargement des seules graisses réellement 
 2. **Échelle modulaire cohérente** : ex. 12 / 14 / 16 / 18 / 24 / 32 / 48. Corps ≥ 16 px (mobile inclus), line-height 1.5–1.75, mesure 65–75 caractères.
 3. **Hiérarchie par la graisse** : titres 600–700, corps 400, labels 500. Pas de tracking serré sur le corps de texte.
 4. **Chiffres tabulaires** (`font-variant-numeric: tabular-nums`) pour prix, stats et compteurs.
-5. **Anti-défaut IA** : Inter-partout-en-corps + serif à fort contraste en display est devenu la signature des pages générées par IA. Si la marque laisse le choix libre, justifier le pairing par le sujet, pas par l'habitude (voir skill `design-direction`).
+5. **Anti-défaut IA** : Inter-partout-en-corps + serif à fort contraste en display est devenu la signature des pages générées par IA. Si la marque laisse le choix libre, justifier le pairing par le sujet, pas par l'habitude (voir `direction.md`).
