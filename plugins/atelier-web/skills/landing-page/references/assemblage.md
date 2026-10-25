@@ -15,7 +15,7 @@ Détail des phases 4 et 5 du playbook : l'arborescence d'une landing, ce que pos
 │       ├── spec.md                       ← spec validée (phase 3)
 │       ├── page.json                     ← spec d'assemblage (sections et slots)
 │       ├── page-charter.md               ← charte de la page (copie de references/charte.md)
-│       ├── research-notes.md             ← recherche consolidée (landing-researcher)
+│       ├── research-notes.md             ← recherche consolidée (inspiration-researcher)
 │       ├── sections/<nn>-<id>.html       ← un fragment par section, propriété d'un seul agent
 │       ├── reports/<nn>-<id>.md          ← rapports des builders
 │       ├── qa.json                       ← sortie de qa-landing.py (phase 7)

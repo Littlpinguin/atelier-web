@@ -1,6 +1,6 @@
 ---
 name: design
-description: "Design visuel des pages web sous les jetons de la marque du projet : directions nommées par leur objet signature, exécution sans tells de design IA, refonte d'un site qui fait daté, jetons CSS (palette sémantique, typographie, rayons). Pour « propose des directions », « ça fait template » ou « fait IA », « modernise ce site », « donne-moi les jetons »."
+description: "Design visuel des pages web sous les jetons de la marque du projet : recherche d'inspiration en images avant de dessiner, directions nommées par leur objet signature, exécution sans tells de design IA, refonte d'un site qui fait daté, jetons CSS (palette sémantique, typographie, rayons). Pour « propose des directions », « ça fait template » ou « fait IA », « modernise ce site », « donne-moi les jetons »."
 ---
 
 # design : la marque d'abord, puis une page qu'on ne confond avec aucune autre
@@ -11,9 +11,9 @@ Une page de la marque se reconnaît à ses jetons et à un objet signature tenu 
 
 | La demande | Route | Lire |
 |---|---|---|
-| Directions pour une page neuve, un hero, une campagne ; « ça fait template » sur un livrable en cours | Créer | `references/direction.md`, puis `references/execution.md` pendant le code |
+| Directions pour une page neuve, un hero, une campagne ; « ça fait template » sur un livrable en cours | Créer | `references/inspiration.md` (étape 1), `references/direction.md`, puis `references/execution.md` pendant le code |
 | Écrire ou corriger le code d'une page pour qu'il ne ressemble pas à du design généré | Exécuter | `references/execution.md` |
-| Un site ou une page existants qui font datés ou « font IA », à moderniser sans rien casser | Refondre | `references/refonte.md`, puis `references/execution.md` |
+| Un site ou une page existants qui font datés ou « font IA », à moderniser sans rien casser | Refondre | `references/refonte.md`, `references/inspiration.md` en mode refondre (étape 1), puis `references/execution.md` |
 | Jetons CSS, palette sémantique, échelle typographique, espacements, rayons, style UI | Systématiser | `references/systeme.md` |
 
 Une demande ambiguë appelle une seule question (« partir de l'existant, ou d'une direction neuve ? »), jamais une rafale. Une landing complète passe par `landing-page`, qui appelle cette skill aux phases 2 et 4 ; une page d'un site existant, par `page-web`.
@@ -26,6 +26,20 @@ Une demande ambiguë appelle une seule question (« partir de l'existant, ou d'u
 4. Fichier manquant ou porteur de `{{…}}` : s'arrêter et lancer `demarrer-projet-web`. Pour refondre le site d'un tiers sans doctrine, extraire d'abord ses jetons existants (`references/refonte.md`, étape 0).
 
 Préséance : `style-guide.md` et `tokens.json`, puis `checklist-pre-composition.md`, puis `design-anti-generique.md`, puis les règles des références.
+
+## Étape 1 : regarder avant de dessiner (créer, refondre)
+
+Une direction se dessine après avoir regardé, en images, les meilleures pages du même genre. Méthode, galeries et filtre de marque : `references/inspiration.md`.
+
+**Créer**
+1. **Notes existantes** : une landing en cours a déjà les siennes (`pilotage/research-notes.md`). Les lire, et ne relancer que pour un besoin qu'elles ne couvrent pas.
+2. **Sinon, lancer `inspiration-researcher` en arrière-plan** dès que le sujet est clair, avec l'objet de la page, son public et les directions pressenties ; notes au chemin que donne `references/inspiration.md` § 1. Continuer l'étape 0 et la passe 1 du plan sans l'attendre. Sans agent : `references/inspiration.md` § 1.
+3. **Passe 2, la critique** : une direction qui fait ce que font toutes les références tombe dans un défaut de plus. Elle prend à une référence un geste précis et le nomme.
+4. **Montrer** : chaque direction cite les deux ou trois références qui l'ont nourrie, avec le lien et ce qu'on en prend.
+
+**Refondre** : la recherche suit le diagnostic de `references/refonte.md`, en mode refondre seulement, et porte sur les sections que le diagnostic désigne à refaire. Elle tourne à côté : le plan montré reste une liste de correctifs ciblés, jetons d'abord, dans l'ordre de `references/refonte.md`, et n'en change ni l'ordre ni le périmètre. En mode préserver, pas de recherche.
+
+Les routes exécuter et systématiser s'en passent.
 
 ## Règles dures, toutes routes
 
@@ -41,6 +55,7 @@ Préséance : `style-guide.md` et `tokens.json`, puis `checklist-pre-composition
 
 À dérouler case par case avant de livrer. Une case qui ne se coche pas honnêtement : le livrable n'est pas fini.
 
+- [ ] Créer : références regardées en images, deux ou trois citées par direction ?
 - [ ] Jetons de la marque chargés et respectés (dimensions verrouillées intactes) ; lecture design déclarée ; curseurs explicités (`references/execution.md`, § 2) ?
 - [ ] Design system officiel choisi si applicable, esthétique étiquetée honnêtement sinon ?
 - [ ] **Zéro cadratin `—`** visible ; règles typographiques de la checklist de marque (pas de point final sur les titres, casse de phrase) ?
@@ -59,6 +74,7 @@ Préséance : `style-guide.md` et `tokens.json`, puis `checklist-pre-composition
 
 | Fichier | Contenu |
 |---|---|
+| `references/inspiration.md` | Créer et refondre, et pour `landing-page` et `page-web` : qui cherche quoi, benchmark, galeries et méthode, filtre de marque, notes, licences des composants |
 | `references/direction.md` | Créer : ancrer le design dans le sujet, principes, les trois looks « IA », workflow en deux passes (plan puis critique), retenue, écrire dans le design |
 | `references/execution.md` | Exécuter : lecture du brief, trois curseurs (variance, mouvement, densité), règles dures de typographie, couleur, mise en page, surfaces, images et contenu, mouvement, performance, tells visuels |
 | `references/refonte.md` | Refondre : modes préserver ou refondre, audit (typographie, couleur, mise en page, états, contenu, composants, icônes, code), techniques, ordre des correctifs, ce qui ne change jamais en silence |

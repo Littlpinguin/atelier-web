@@ -1,5 +1,15 @@
 # Journal des versions
 
+## 1.3.0 · 2026-10-25
+
+La recherche d'inspiration ne sert plus seulement aux landings.
+
+- **`page-web`** : à l'étape 0, dès que la page et ses sections pressenties sont claires, `inspiration-researcher` part en arrière-plan, notes dans `atelier/pages/<slug>/research-notes.md`. Ses références nourrissent les sections que le site n'a pas encore et le moment qui marque ; elles ne touchent jamais une section reprise, et le système du site (`design.md`) prime sur elles. Une déclinaison stricte s'en passe.
+- **`design`** : nouvelle étape 1, regarder avant de dessiner. Route créer : les notes existantes se lisent d'abord ; sinon la recherche part en arrière-plan pendant la passe 1 du plan, la critique de la passe 2 écarte la direction qui fait ce que font toutes les références, et chaque direction montrée cite les deux ou trois références qui l'ont nourrie. Route refondre : en mode refondre seulement, après le diagnostic, sur les sections qu'il désigne (benchmark de 4 à 6 sites du même secteur, puis visuel) ; le plan montré reste une liste de correctifs ciblés, jetons d'abord. Une première version lançait la recherche dès le début de toute refonte : les réponses tournaient au redessin et `design-refonte` passait de 3 réussites sur 3 (version 1.2.4) à 0 sur 3 ; resserrée, 3 sur 3.
+- **Un agent pour trois skills** : `landing-researcher` devient `inspiration-researcher`. Son brief dit quelle skill l'appelle, le sujet et le chemin des notes ; benchmark pour une landing ou une refonte, recherche visuelle toujours.
+- **Méthode partagée** : `inspiration.md` passe de `landing-page` à `design/references/`, avec un tableau « qui cherche quoi », des requêtes pour les pages d'un site et pour les directions, le filtre propre à un site existant, et la conduite sans agent : recherche courte si la recherche web est là, sinon une ligne pour le dire, et le travail continue. Renvois mis à jour dans `landing-page`, sa charte, le brief de section, `landing-section-builder`, les README et les évals.
+- **Mesure** (bras avec plugin, Sonnet 5.5, sans sous-agents comme toute la suite) : `design-refonte` 3 sur 3, `directions-hero` 3 sur 3, `page-web-section` 5 sur 6 (l'échec est une réponse équivalente aux cinq autres, jugée FAIL par deux votes sur trois ; la 1.2.4 fait 3 sur 3). Environ 4 $. Le lancement réel de l'agent depuis `page-web` et `design` reste à observer sur un vrai projet : la suite coupe l'outil Agent, faute de réseau pour les galeries dans le bac à sable.
+
 ## 1.2.4 · 2026-10-25
 
 Des démos habillées de photos.

@@ -29,7 +29,7 @@ Open Claude Code in your website's folder and run `/atelier-web:demarrer-projet-
 - **The eval suite** (`evals/`) runs only when you call `claude plugin eval`; its fixture is a fictional brand, with no real person or client data.
 - **Assembled pages** link Google Fonts (`fonts.googleapis.com`, `fonts.gstatic.com`) when their spec lists fonts, and load Google Tag Manager or Google Analytics only if you configure a tracking ID in the spec. Forms post to the endpoint you set. Visitors' browsers make these requests, not the plugin.
 - **Rendering QA** (`qa-landing.py`, `controle-fonds.py`) opens your pages in a local headless Chromium through Playwright, which loads the fonts and resources those pages reference.
-- **The research agent** (`landing-researcher`) reads public web pages (search results, design galleries) to collect inspiration, through Claude Code's own web tools. Its tools are limited to reading the project, writing its notes file, web search and fetch, local headless captures, and the in-app browser or a Playwright MCP server if one is installed. It never logs in anywhere and collects no personal data.
+- **The research agent** (`inspiration-researcher`) reads public web pages (search results, design galleries) to collect inspiration, through Claude Code's own web tools. Its tools are limited to reading the project, writing its notes file, web search and fetch, local headless captures, and the in-app browser or a Playwright MCP server if one is installed. It never logs in anywhere and collects no personal data.
 - No telemetry, no analytics, no account.
 
 ## License

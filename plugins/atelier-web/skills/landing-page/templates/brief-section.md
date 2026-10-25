@@ -37,7 +37,7 @@ Une modification ailleurs (socle, texte de la spec, autre section, jeton manquan
 ## Règles
 
 - Charte : en-tête en `<div class="section-head">`, sans pastille de sur-titre ; titres sans virgule ni point, sans mot seul en fin de ligne ; fond de page jamais recouvert ; jetons du `:root`, aucune couleur en dur ; polices de la marque ; aucun tiret cadratin ; entrées par le moteur commun (`data-reveal`), en opacité et position seules ; un seul moment orchestré, 0,9 s au plus, aucun ressort.
-- **Recherche** : si `research-notes.md` ne couvre pas ton besoin, cherche 4 à 6 références (`references/inspiration.md`), sur des sites tiers publics seulement.
+- **Recherche** : si `research-notes.md` ne couvre pas ton besoin, cherche 4 à 6 références (`${CLAUDE_PLUGIN_ROOT}/skills/design/references/inspiration.md`), sur des sites tiers publics seulement.
 - **Interdits** : ne commite pas ; n'écris ni dans `index.html` ni dans le fragment d'un autre ; ne supprime aucun fichier que tu n'as pas créé ; n'invente aucun chiffre, client, témoignage ni fait sur une personne.
 
 ## Vérification

@@ -15,13 +15,14 @@ Sur un site qui existe, la qualité vient de la cohérence : une page neuve qui 
 2. Lire `atelier/marque/voice.md`, `checklist-pre-composition.md`, `design-anti-generique.md` et `exemples-rejetes.md`.
 3. **Ouvrir une page de référence** (celle que le `CLAUDE.md` désigne, sinon l'accueil et la page la plus soignée) et relever ce qu'on va reprendre : sections, classes, feuilles de style, comportements JS.
 4. **Ancrer le texte dans le site en ligne** : les douleurs, preuves chiffrées et témoignages déjà publiés (l'accueil en porte souvent le plus) priment sur une spec plus ancienne.
+5. **Chercher l'inspiration** dès que la page et ses sections pressenties sont claires : lancer `inspiration-researcher` en arrière-plan, avec la page, son public, les sections que le site n'a pas encore et l'idée du moment qui marque ; notes dans `atelier/pages/<slug>/research-notes.md`. Continuer sans l'attendre : ses références servent à l'étape 1 (rangs 3 et 4) et au moment qui marque, jamais à une section reprise. Une déclinaison stricte (seuls les textes et les visuels changent) s'en passe. Méthode, galeries et filtre de marque : `${CLAUDE_PLUGIN_ROOT}/skills/design/references/inspiration.md`, qui dit aussi quoi faire sans agent.
 
 ## Étape 1 : choisir chaque section, dans cet ordre
 
 1. **Réutiliser** une section du site telle quelle, en chargeant sa feuille d'origine plutôt qu'en redéfinissant ses règles.
 2. Sinon lui ajouter une **variante de mise en page** (une classe ou un attribut), jamais une variante de style.
-3. Sinon créer une **section partagée** nouvelle, inscrite dans `design.md`, validée par l'humain avant d'être posée ailleurs.
-4. Seulement s'il n'existe aucun équivalent : une section propre à la page, qui respecte les jetons, les signatures et le mouvement du site.
+3. Sinon créer une **section partagée** nouvelle, dessinée à partir des notes de recherche, inscrite dans `design.md`, validée par l'humain avant d'être posée ailleurs.
+4. Seulement s'il n'existe aucun équivalent : une section propre à la page, nourrie des mêmes notes, qui respecte les jetons, les signatures et le mouvement du site.
 
 **Une section reprise est identique.** Recopier son balisage section par section depuis la page source, avec ses comportements JS (filtres, sommaire, accordéon), sans surcharger son CSS. Avant de livrer, comparer le squelette (balises et classes) des sections reprises avec la source : zéro écart attendu, hors contenu. Un détail retiré ou ajouté sur une section « reprise » se voit.
 
@@ -60,7 +61,7 @@ Une landing sans navigation reprend la barre partagée du site, jamais une barre
 - **Textes** : aucune phrase qui n'apprend rien au visiteur, aucune construction « X, pas Y », aucune formule qui annonce au lieu de dire, aucun chiffre inventé.
 
 ### Le moment qui marque
-Une page conforme peut rester banale. Chercher au moins un moment qu'on ne voit pas ailleurs : une scène qui montre la méthode en mouvement, du vrai produit, un personnage ou un objet de la marque, une visualisation animée d'un process plutôt qu'un schéma. Le proposer en deux concepts si le sujet s'y prête, avec le coût de toute génération payante, validé avant dépense.
+Une page conforme peut rester banale. Chercher au moins un moment qu'on ne voit pas ailleurs : une scène qui montre la méthode en mouvement, du vrai produit, un personnage ou un objet de la marque, une visualisation animée d'un process plutôt qu'un schéma. Partir des références de la recherche, et citer pour chaque concept les deux ou trois qui l'ont nourri. Le proposer en deux concepts si le sujet s'y prête, avec le coût de toute génération payante, validé avant dépense.
 
 ## Étape 3 : pièges techniques qui reviennent
 
@@ -84,6 +85,7 @@ Une page conforme peut rester banale. Chercher au moins un moment qu'on ne voit 
 
 ## Checklist avant de livrer
 
+- [ ] Recherche d'inspiration lue avant de dessiner les sections nouvelles et le moment qui marque (sauf déclinaison stricte)
 - [ ] Chaque section vient d'un composant du site (ou d'une section nouvelle validée et inscrite dans `design.md`)
 - [ ] Sections reprises identiques à leur source (squelette comparé, comportements JS compris)
 - [ ] Signatures visuelles du site présentes ; jetons seuls, aucune couleur en dur

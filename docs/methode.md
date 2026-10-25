@@ -39,7 +39,7 @@ Avant la première ligne, la doctrine de la marque est écrite dans le projet (`
 9. **Mesurer, puis quatre revues** (design, marque, conversion, accessibilité), une vague de corrections arbitrée.
 10. **Livrer** après QA sans erreur et brand-check positif ; publication sur go explicite, à chaque fois.
 
-Pour une page ou une section sur un site existant, le déroulé se resserre : lire le système du site, reprendre ses sections, construire en gros blocs, rendre, montrer, itérer. On avance en gros blocs et l'humain juge sur le rendu.
+Pour une page ou une section sur un site existant, le déroulé se resserre : lire le système du site, chercher des références en images pour ce que le site n'a pas encore, reprendre ses sections, construire en gros blocs, rendre, montrer, itérer. On avance en gros blocs et l'humain juge sur le rendu.
 
 ## 5. Les goûts par défaut
 

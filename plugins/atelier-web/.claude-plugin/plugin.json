@@ -1,7 +1,7 @@
 {
   "name": "atelier-web",
   "displayName": "Atelier web",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "Design and build beautiful, high-converting landing pages and web pages with Claude Code, in each brand's own colors: per-project brand doctrine, 8-phase landing playbook, research, builder and reviewer agents (design, brand, CRO, accessibility), a 44-section library and measured rendering QA. Skills written in French.",
   "author": {
     "name": "Jessy Martin",

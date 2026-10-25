@@ -18,7 +18,7 @@ Chaque section est forte seule, mais la page se lit comme un seul récit. En cas
 
 ## 1. Recherche d'inspiration (avant de coder)
 
-Lire `pilotage/research-notes.md`. S'il ne couvre pas le besoin de la section, chercher 4 à 6 références de très haut niveau selon `references/inspiration.md`, les ouvrir et les regarder vraiment (en images, pas sur leur titre). Le rapport cite les 3 références qui ont le plus servi, avec l'URL et ce qu'on en a pris. Écarter ce qui contredit la marque (§ 6).
+Lire `pilotage/research-notes.md`. S'il ne couvre pas le besoin de la section, chercher 4 à 6 références de très haut niveau selon `${CLAUDE_PLUGIN_ROOT}/skills/design/references/inspiration.md`, les ouvrir et les regarder vraiment (en images, pas sur leur titre). Le rapport cite les 3 références qui ont le plus servi, avec l'URL et ce qu'on en a pris. Écarter ce qui contredit la marque (§ 6).
 
 ## 2. Grille et rythme
 

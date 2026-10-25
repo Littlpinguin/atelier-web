@@ -15,7 +15,7 @@ Tu construis une partie d'une landing page de la marque : un HTML statique auton
 2. Lis `pilotage/page-charter.md` en entier. Son § 9, les décisions de l'humain, prime sur tout le reste, y compris sur ton brief.
 3. Lis `${CLAUDE_PLUGIN_ROOT}/skills/landing-page/references/pieges.md`, puis, dans `references/sections.md`, la mécanique qui ressemble à la tienne.
 4. Lis le socle (`index.html` hors marqueurs) : jetons du `:root`, CSS commun, moteur d'apparition (`data-reveal`), relais de mesure (`data-track`). Tu t'en sers, tu ne le modifies pas.
-5. Lis `pilotage/research-notes.md`. S'il ne couvre pas ton besoin, cherche 4 à 6 références selon `references/inspiration.md`, sur des sites tiers publics seulement, par la recherche et la lecture web : tu n'as ni navigateur ni sous-agent, la recherche regardée en images est celle de `landing-researcher`.
+5. Lis `pilotage/research-notes.md`. S'il ne couvre pas ton besoin, cherche 4 à 6 références selon `${CLAUDE_PLUGIN_ROOT}/skills/design/references/inspiration.md`, sur des sites tiers publics seulement, par la recherche et la lecture web : tu n'as ni navigateur ni sous-agent, la recherche regardée en images est celle d'`inspiration-researcher`.
 6. Relis ton fichier juste avant de l'éditer : le contrôleur a pu y toucher.
 
 ## Pendant

@@ -2,7 +2,7 @@
 
 [English](README.md) · **Français**
 
-[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.4](https://img.shields.io/badge/version-1.2.4-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![6 agents](https://img.shields.io/badge/agents-6-1B4965.svg)
+[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.3.0](https://img.shields.io/badge/version-1.3.0-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![6 agents](https://img.shields.io/badge/agents-6-1B4965.svg)
 
 ![Atelier web : trois landings de trois marques fictives, produites par la même fabrique](docs/assets/apercu-fr.webp)
 
@@ -61,7 +61,7 @@ Chaque livrable passe par `revue` puis `brand-check` avant de vous être montré
 |---|---|
 | Démarrer | `demarrer-projet-web` : doctrine du projet et orientation |
 | Produire une page | `landing-page` (playbook en huit phases), `page-web` (site existant), `lead-magnet` (outil ou guide contre un email) |
-| Design | `design` : directions nommées par leur objet signature, protocole contre le « design IA », refonte d'un existant, jetons |
+| Design | `design` : recherche visuelle avant de dessiner, directions nommées par leur objet signature, protocole contre le « design IA », refonte d'un existant, jetons |
 | Mouvement | `motion` : CSS natif piloté par le défilement d'abord, GSAP pour l'épinglage, anime.js, dotLottie pour les médias animés |
 | Conversion | `cro` : page, formulaire, pop-up, tarifs |
 | Textes | `ecriture` : rédiger, relire en sept passes, humaniser un texte qui sonne généré |
@@ -69,7 +69,7 @@ Chaque livrable passe par `revue` puis `brand-check` avant de vous être montré
 
 Chaque skill garde son détail dans des fichiers de référence, à un niveau sous son `SKILL.md`, lus seulement quand la tâche en a besoin.
 
-**Agents** : `landing-researcher` (benchmark et recherche visuelle en arrière-plan), `landing-section-builder` (une section par agent, en parallèle), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, et `a11y-auditor` (accessibilité : mesures, code et rendu réel).
+**Agents** : `inspiration-researcher` (benchmark et recherche visuelle en arrière-plan, avant une landing, une page d'un site existant, des directions ou une refonte), `landing-section-builder` (une section par agent, en parallèle), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, et `a11y-auditor` (accessibilité : mesures, code et rendu réel).
 
 **Fabrique** : 44 sections (hero, preuves, programme, offre, FAQ, porte de choix, comparateur…), 6 modèles de landing (formation, événement, prestation, démo B2B, vente longue, capture), 10 outils interactifs avec capture (calculateur de ROI, diagnostic, quiz…), et les scripts `assemble-landing.py`, `qa-landing.py`, `controle-fonds.py`, `build-tokens.py`, `lint-brand.py`. Un hook lance le contrôle de marque après chaque page écrite, y compris celles qu'assemble un script.
 

@@ -2,7 +2,7 @@
 
 **English** · [Français](README.fr.md)
 
-[![MIT license](https://img.shields.io/badge/license-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.4](https://img.shields.io/badge/version-1.2.4-0D1B2A.svg) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![6 agents](https://img.shields.io/badge/agents-6-1B4965.svg)
+[![MIT license](https://img.shields.io/badge/license-MIT-0D1B2A.svg)](LICENSE) ![Version 1.3.0](https://img.shields.io/badge/version-1.3.0-0D1B2A.svg) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![6 agents](https://img.shields.io/badge/agents-6-1B4965.svg)
 
 ![Atelier web: three landing pages for three fictional brands, built by the same factory](docs/assets/apercu-en.webp)
 
@@ -63,7 +63,7 @@ Every deliverable goes through `revue` (rendering QA) and `brand-check` before y
 |---|---|
 | Start | `demarrer-projet-web`: project brand doctrine and routing |
 | Build a page | `landing-page` (8-phase playbook), `page-web` (existing site), `lead-magnet` (tool or guide in exchange for an email) |
-| Design | `design`: directions named by their signature object, an execution protocol against the generated look, redesign of an existing site, design tokens |
+| Design | `design`: visual research before drawing, directions named by their signature object, an execution protocol against the generated look, redesign of an existing site, design tokens |
 | Motion | `motion`: native CSS scroll-driven animations first, GSAP for pinning, anime.js, dotLottie for animated media |
 | Conversion | `cro`: pages, forms, popups, pricing |
 | Copy | `ecriture`: write, review in seven passes, humanize text that sounds generated |
@@ -71,7 +71,7 @@ Every deliverable goes through `revue` (rendering QA) and `brand-check` before y
 
 Each skill keeps its detail in reference files one level below its `SKILL.md`, read only when the task needs them.
 
-**Agents**: `landing-researcher` (benchmark and visual research in the background), `landing-section-builder` (one section per agent, in parallel), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, and `a11y-auditor` (accessibility: measures, code and real render).
+**Agents**: `inspiration-researcher` (benchmark and visual research in the background, before a landing page, a page on an existing site, design directions or a redesign), `landing-section-builder` (one section per agent, in parallel), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, and `a11y-auditor` (accessibility: measures, code and real render).
 
 **Factory**: 44 sections (hero, proof, program, offer, FAQ, choice gate, comparison and more), 6 landing page templates (training, event, service, B2B demo, long-form sales, lead capture), 10 interactive lead magnets (ROI calculator, scored diagnostic, quiz and more), and the scripts `assemble-landing.py`, `qa-landing.py`, `controle-fonds.py`, `build-tokens.py`, `lint-brand.py`. A hook runs the brand linter after every page Claude writes, including pages assembled by a script.
 

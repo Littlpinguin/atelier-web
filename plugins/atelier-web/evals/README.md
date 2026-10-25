@@ -54,7 +54,7 @@ claude plugin eval /tmp/atelier-web-eval --scaffold --trust-plugin --allow-tools
 
 - **Copie hors du dossier personnel** : le bac à sable des runs rend le dossier personnel illisible pour Bash. Depuis `~/claude-projets/…`, les scripts de la fabrique ne se lancent pas et le cas de bout en bout échoue avec le plugin (constaté le 25/10/2026). Les résultats sortent alors dans `/tmp/atelier-web-eval/evals/results/`.
 - `--scaffold` installe la fixture ; `--allow-tools Write Edit Bash` n'est utile qu'au cas de bout en bout (Bash tourne dans le bac à sable du système).
-- `--disallow-tools Agent` : sans lui, `landing-page` lance `landing-researcher` en arrière-plan, le réseau du bac à sable bloque ses galeries, et la réponse jugée de `landing-cadrage` devient le compte rendu de cette recherche.
+- `--disallow-tools Agent` : sans lui, `landing-page` lance `inspiration-researcher` en arrière-plan, le réseau du bac à sable bloque ses galeries, et la réponse jugée de `landing-cadrage` devient le compte rendu de cette recherche.
 - Juge Sonnet : Haiku a rendu un faux négatif sur `brand-check-brouillon` au passage du 25/10/2026.
 - Trois runs par cas et par bras (défaut) ; modèles épinglés pour comparer les passages entre eux : un changement de modèle n'est pas une régression du plugin.
 - `--case` ne garde que sa dernière occurrence : lancer un passage par cas pour en rejouer plusieurs. Les neuf cas de la consolidation, seuls : `--tag fusion`.

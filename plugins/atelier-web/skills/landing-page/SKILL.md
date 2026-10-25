@@ -15,7 +15,7 @@ Une landing réussie se lit comme un seul récit, section par section, et amène
 
 | Phase | Produit | Validation avant la suite |
 |---|---|---|
-| 0. Doctrine et matière réelle | lecture de `atelier/marque/` ; `landing-researcher` lancé en arrière-plan | doctrine complète, sinon arrêt et skill `demarrer-projet-web` |
+| 0. Doctrine et matière réelle | lecture de `atelier/marque/` ; `inspiration-researcher` lancé en arrière-plan | doctrine complète, sinon arrêt et skill `demarrer-projet-web` |
 | 1. Cadrage en une salve | `atelier/briefs/<slug>.md` | le responsable de la marque valide le brief |
 | 2. Directions | 2 ou 3 maquettes nommées par leur objet signature | l'humain choisit |
 | 3. Spec | `pilotage/spec.md`, textes définitifs clé par clé | l'humain valide ; la spec est figée pendant la construction |
@@ -50,7 +50,7 @@ Une landing réussie se lit comme un seul récit, section par section, et amène
 | `references/charte.md` | phase 4 : copiée dans `pilotage/page-charter.md` et donnée à **chaque** agent ; son § 9 (décisions de l'humain) prime sur tout |
 | `references/sections.md` | phases 3 à 5 : mécaniques de section, objection servie, anti-modèles, mouvement réduit |
 | `references/assemblage.md` | phases 4 à 6 : arborescence, ce que pose l'assembleur, insertion scriptée des fragments, micro-retouches |
-| `references/inspiration.md` | phase 0 : méthode de recherche, galeries, filtre de marque |
+| `${CLAUDE_PLUGIN_ROOT}/skills/design/references/inspiration.md` | phase 0 : méthode de recherche, galeries, filtre de marque (partagée avec `page-web` et `design`) |
 | `references/pieges.md` | toutes phases : pièges techniques, de session et de marque, avec leur parade |
 | `references/revues.md` | phase 7 : lancer les quatre revues, arbitrer |
 | `references/mesure.md` | phases 3 et 8 : UTM et événements |
@@ -62,7 +62,7 @@ Une landing réussie se lit comme un seul récit, section par section, et amène
 
 | Agent | Phase | Rôle |
 |---|---|---|
-| `landing-researcher` | 0, en arrière-plan | Benchmark de pages qui convertissent et recherche visuelle, consolidés dans `pilotage/research-notes.md`. Ne code rien |
+| `inspiration-researcher` | 0, en arrière-plan | Benchmark de pages qui convertissent et recherche visuelle, consolidés dans `pilotage/research-notes.md`. Ne code rien |
 | `landing-section-builder` | 4 à 7 | Construit ou corrige une section (ou un lot) dans les seuls fichiers qu'on lui confie. Ne commite jamais |
 | `landing-reviewer-design` / `-brand` / `-cro` | 7 | Webdesign ; marque ; conversion. En lecture seule : ils n'écrivent que leur rapport |
 | `a11y-auditor` | 7 et 8 | WCAG 2.2 AA : mesures de la QA, 14 points sur le code, rendu réel (axe-core, parcours clavier). Relecteur en phase 7, contrôle de livraison en phase 8. En lecture seule : il n'écrit que son rapport |
@@ -81,7 +81,7 @@ Une section qui figure sur deux pages est **la même section** : même fragment,
 1. **Doctrine**, jamais de mémoire : dans `atelier/marque/`, `checklist-pre-composition.md`, `voice.md`, `anti-ai-writing-style.md`, `messaging-framework.md` (chiffres et hiérarchie de preuves), `personas.md`, `style-guide.md` et `tokens.json` (valeurs exactes), `design-anti-generique.md`, `divulgation-ia.md`, `droits.md`, `exemples-rejetes.md` ; puis le `CLAUDE.md` du projet (§ Atelier web : conventions, publication). Un fichier manquant ou qui porte encore des `{{...}}` : arrêter et lancer `demarrer-projet-web`.
 2. **Matière réelle** : document de l'offre (programme, proposition, fiche produit), chiffres des rapports du projet, calendrier éditorial s'il existe, assets de `atelier/marque/assets/` et leur catalogue, pages déjà produites dans `atelier/landings/`. Une intel confidentielle se reformule, et aucun fait sur une personne n'en vient.
 3. **Nom de l'offre** : vérifier que le nom ou la marque affichés ont le droit de porter un prix et des dates (marque tierce, partenaire, programme officiel).
-4. **Recherche** : lancer tout de suite `landing-researcher` en arrière-plan, avec l'offre, l'audience et les besoins de section pressentis.
+4. **Recherche** : lancer tout de suite `inspiration-researcher` en arrière-plan, avec l'offre, l'audience et les besoins de section pressentis.
 
 ## Phase 1 : cadrage, en une seule salve
 
@@ -119,7 +119,7 @@ Le contrôleur (l'agent principal), seul, prépare puis montre :
 
 - **Un agent par section** : un `landing-section-builder` propriétaire d'un seul fragment, `pilotage/sections/<nn>-<id>.html` (la `<section>`, son `<style>` préfixé par `#<id>`, son `<script>` éventuel enfermé dans une fonction). Aucun builder n'écrit dans `index.html`. Les lancer tous dans un seul message, chacun avec un brief tiré de `templates/brief-section.md`.
 - **Assemblage** : à chaque rapport, le contrôleur branche le fragment dans la spec et réassemble ; si la page a été retouchée à la main, insertion scriptée avec contrôle des marqueurs (`references/assemblage.md`). Puis `qa-landing.py` et un commit, sur go de l'humain si la session l'exige.
-- **Recherche visuelle** : faite en amont par `landing-researcher` (la navigation peut être refusée aux agents de section) ; les builders lisent `research-notes.md`.
+- **Recherche visuelle** : faite en amont par `inspiration-researcher` (la navigation peut être refusée aux agents de section) ; les builders lisent `research-notes.md`.
 - **Limite d'usage** : si des agents sont coupés, assembler et commiter ce qui est fini, puis reprendre chacun par `SendMessage` avec l'endroit où il s'est arrêté et la consigne « relis d'abord l'état actuel de ton fichier ».
 
 ## Phase 6 : montrer, écouter, appliquer
