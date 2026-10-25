@@ -90,7 +90,7 @@ Ajouter au `CLAUDE.md` du projet le bloc de `${CLAUDE_PLUGIN_ROOT}/modeles/CLAUD
 | Direction artistique d'une page nouvelle | `design-direction`, puis `design-taste` |
 | Jetons, palette sémantique, échelle typographique | `design-system` |
 | Refonte d'un site qui fait daté ou « fait IA » | `design-redesign` |
-| Mouvement, défilement, apparitions, épinglages | `motion-defilement`, puis `animation-gsap`, `animation-scroll-reveal`, `animation-animejs`, `animation-lottie` |
+| Mouvement, défilement, apparitions, épinglages | `motion-defilement` d'abord (pile et grammaire), puis `animation-scroll-reveal` (apparitions en CSS natif), `animation-gsap` (épinglage, scrub), `animation-animejs`, `animation-lottie` (illustrations en dotLottie) |
 | Revue de l'interface avant livraison | `design-review`, `qa-rendu` |
 | Accessibilité | `accessibility-web`, agent `a11y-auditor` |
 | Conversion d'une page, d'un formulaire, d'une pop-up, d'une page tarifs | `cro-page`, `cro-form`, `cro-popup`, `cro-pricing` |

@@ -1,13 +1,27 @@
 ---
 name: motion-defilement
-description: Grammaire du mouvement d'une page web soignée - apparitions au défilement, défilement fluide (Lenis), animations liées au défilement en CSS natif, épinglages, transitions entre sections, mouvement réduit - avec les pièges qui cassent une page en production. À charger avant d'animer une page ou une section, de poser un défilement fluide, une scène épinglée ou une animation pilotée par le défilement, et quand l'utilisateur dit « c'est trop statique », « il faut que ce soit vivant », « anime cette section ». Les skills animation-gsap, animation-scroll-reveal, animation-animejs et animation-lottie donnent ensuite la technique de chaque bibliothèque.
+description: Cœur du mouvement d'une page web : la pile (CSS natif d'abord, GSAP pour l'épinglage, Lenis en option, dotLottie pour les médias, Motion en React) et la grammaire commune (apparitions, animations pilotées par le défilement, épinglages, défilement fluide, transitions, mouvement réduit), avec les pièges de production. À charger avant toute animation de page ou de section, et quand l'utilisateur dit « c'est trop statique », « rends ça vivant », « anime cette section ». animation-scroll-reveal, animation-gsap, animation-animejs et animation-lottie donnent ensuite la technique de chaque outil.
 ---
 
 # motion-defilement : du mouvement qui sert la lecture
 
 Le mouvement rend une page vivante quand il raconte quelque chose : une section qui arrive, une méthode qui se déroule, un chiffre qui se pose. Il la rend pénible quand tout bouge tout le temps. La règle : un vocabulaire commun pour toute la page, et un seul moment orchestré par section.
 
-Le mouvement du site existant prime : lire `atelier/marque/design.md` (§ mouvement) avant tout. Ce qui suit vaut par défaut.
+Le mouvement du site existant prime : lire `atelier/marque/design.md` (§ mouvement) avant tout. Ce qui suit vaut par défaut, et c'est la porte d'entrée de tout le mouvement de l'atelier : les skills par outil (§ 8) viennent après.
+
+## 0. La pile : monter d'un niveau seulement quand le précédent ne sait pas faire
+
+| Niveau | Usage | Outil |
+|---|---|---|
+| 0, sans JavaScript | apparitions, barre de progression, parallaxe légère, texte qui s'encre, entrées de modale, ressorts | CSS piloté par le défilement (`animation-timeline: view()` ou `scroll()`, § 4), `@starting-style`, `linear()`, View Transitions dans un même document |
+| 0, repli | la même apparition, jouée une fois | le moteur d'apparition de la page (`reveal.js` de la fabrique, ou un `IntersectionObserver`) |
+| 1 | narration épinglée avec scrub, texte cinétique, timelines longues, morphing SVG | GSAP 3.15 avec ScrollTrigger et SplitText, dans `gsap.matchMedia()` ; anime.js 4 pour une séquence sans GSAP |
+| 2, en option | défilement fluide, sur les pages vitrines seulement | Lenis 1.3 (§ 3) |
+| Médias | illustration ou icône animée de marque | dotLottie : composant `dotlottie-wc` (skill `animation-lottie`) |
+| React ou Next.js | micro-interactions, présence, mise en page animée | `motion` 14.6 (`motion/react`) ; GSAP avec `useGSAP` pour les séquences |
+| Plus pour un projet neuf | | AOS (sans version depuis 2018), lottie-web (depuis mai 2025), Theatre.js et Barba (depuis 2024) : un projet qui les emploie les garde, on ne les ajoute pas |
+
+Versions relevées sur npm le 25/10/2026 : figer la version dans l'URL ou le `package.json`, jamais `@latest`. Le CSS piloté par le défilement fonctionne dans Chrome et Edge 115, Safari 26 et Firefox 159 (sortie le 27/10/2026, données de compatibilité de MDN) ; le `@supports` et le repli couvrent les autres.
 
 ## 1. Le vocabulaire commun
 
@@ -38,8 +52,9 @@ Il donne une impression plus soignée sur ordinateur, à condition de le borner 
 
 ## 4. Animations liées au défilement, en CSS natif
 
-- `animation-timeline: view()` ou `scroll()`, toujours dans `@supports (animation-timeline: view())` **et** `@media (prefers-reduced-motion: no-preference)`, avec en repli la version déclenchée une fois par le moteur d'apparition (le script teste `CSS.supports('animation-timeline', 'view()')`).
+- `animation-timeline: view()` ou `scroll()`, toujours dans `@supports (animation-timeline: view())` **et** `@media (prefers-reduced-motion: no-preference)`, avec en repli la version déclenchée une fois par le moteur d'apparition (le script teste `CSS.supports('animation-timeline: view()')`). Recette complète, testée : skill `animation-scroll-reveal`, § 2.
 - Écrire `animation-timeline` **après** le raccourci `animation`, qui le remet à zéro.
+- Une animation pilotée par le défilement se rejoue à l'envers quand on remonte : borner la plage d'une apparition à `entry` (fixe dès que l'élément est entré) ; un compteur ou un rideau qui ne doit jouer qu'une fois passe par le moteur d'apparition.
 - Une seule règle décide où une scène se joue (une constante du script, le même seuil dans le CSS), et un mode léger sur machine faible ou en économie de données.
 
 ## 5. Épinglages et scènes
@@ -59,15 +74,17 @@ Il donne une impression plus soignée sur ordinateur, à condition de le borner 
 
 ## 7. Mouvement réduit
 
-`prefers-reduced-motion: reduce` : rien ne bouge, tout est visible, les états finaux s'affichent d'emblée (compteurs à leur valeur, scènes à leur dernière étape). La QA le vérifie (`qa-landing.py`, passage en mouvement réduit).
+`prefers-reduced-motion: reduce` : rien ne bouge, tout est visible, les états finaux s'affichent d'emblée (compteurs à leur valeur, scènes à leur dernière étape, animation Lottie sur sa dernière image). La QA le vérifie (`qa-landing.py`, passage en mouvement réduit).
 
-## 8. Technique, par bibliothèque
+Tout mouvement automatique de plus de cinq secondes affiché à côté d'autre contenu (bandeau défilant, carrousel automatique, boucle Lottie, vidéo d'ambiance) porte un moyen visible de le mettre en pause (WCAG 2.2.2, niveau A).
+
+## 8. Technique, par outil
 
 | Besoin | Skill |
 |---|---|
-| Timelines, ScrollTrigger, scrub, SVG | `animation-gsap` (toujours dans `gsap.context` ou `gsap.matchMedia`, nettoyé au démontage) |
-| Apparitions simples sur une page de contenu | `animation-scroll-reveal` |
+| Apparitions au défilement en CSS natif, repli, migration depuis AOS | `animation-scroll-reveal` |
+| Timelines, ScrollTrigger, scrub, épinglage, SplitText, SVG | `animation-gsap` (toujours dans `gsap.context` ou `gsap.matchMedia`, nettoyé au démontage) |
 | Séquences, décalages, morphing SVG sans GSAP | `animation-animejs` |
-| Animations After Effects exportées | `animation-lottie` |
+| Illustrations et icônes animées (dotLottie), migration depuis lottie-web | `animation-lottie` |
 
 Pour la 3D, Three.js et les bibliothèques de composants animés (Magic UI, React Bits), voir les outils complémentaires du README de l'atelier.

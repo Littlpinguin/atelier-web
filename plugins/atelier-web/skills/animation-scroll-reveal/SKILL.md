@@ -1,824 +1,109 @@
 ---
 name: animation-scroll-reveal
-description: Simple scroll-triggered reveal animations using AOS (Animate On Scroll). Use this skill when building marketing pages, landing pages, or content-heavy sites requiring basic fade/slide effects without complex animation orchestration. Triggers on tasks involving scroll animations, scroll-triggered reveals, AOS, simple animations, or basic scroll effects. Alternative to GSAP ScrollTrigger and Locomotive Scroll for simpler use cases. Compare with motion-framer for React-specific animations.
+description: Apparitions au défilement en CSS natif (animation-timeline view(), scroll()) avec repli IntersectionObserver ou reveal.js : fondu, montée, cascade, image qui se découvre, barre de lecture, parallaxe légère. À charger après motion-defilement pour faire apparaître des blocs au scroll, ou pour maintenir ou migrer un projet sous AOS (data-aos), qu'on n'ajoute plus à un projet neuf.
 ---
 
-# Scroll Reveal Libraries
+# animation-scroll-reveal : apparitions au défilement, natif d'abord
 
-## Overview
+La grammaire du mouvement (durées, courbe, un seul moment orchestré par section, rien ne bouge à la sortie, mouvement réduit) vit dans la skill `motion-defilement` et prime sur ce qui suit. Cette skill donne les recettes d'apparition, écrites pour les trois moteurs de navigateur : `animation-timeline` existe dans Chrome et Edge depuis la 115, Safari depuis la 26 et Firefox depuis la 159 (sortie le 27/10/2026, données de compatibilité de MDN). Un navigateur plus ancien reçoit le repli, et un visiteur en mouvement réduit voit tout, tout de suite.
 
-This skill covers AOS (Animate On Scroll), a lightweight CSS-driven library for scroll-triggered animations. AOS excels at simple fade, slide, and zoom effects activated when elements enter the viewport.
+## 1. Décider
 
-**Key Features**:
-- **Minimal Setup**: Single JavaScript file + CSS
-- **Data Attribute API**: Configure animations in HTML
-- **Performance**: CSS-driven, GPU-accelerated animations
-- **50+ Built-in Animations**: Fades, slides, zooms, flips
-- **Framework Agnostic**: Works with vanilla JS, React, Vue, etc.
+| Situation | Faire |
+|---|---|
+| Page assemblée par la fabrique | Rien à ajouter : poser `data-reveal` (`up`, `left`, `right`, `scale`, `fade`) ou `data-reveal-group` sur les blocs, le moteur `reveal.js` du socle les révèle une fois. Ne jamais ajouter un second moteur |
+| Effet lié à la progression du défilement (barre de lecture, paragraphe qui s'encre, parallaxe) | CSS natif seul (§ 3), sans JavaScript |
+| Page hors fabrique, apparition simple | Recette du § 2 |
+| Apparition jouée une seule fois et qui ne doit jamais se rejouer (compteur, rideau) | Le moteur d'apparition (`IntersectionObserver`), pas le CSS piloté par le défilement, qui se rejoue à l'envers quand on remonte |
+| Épinglage avec scrub, texte cinétique, timeline longue | Skill `animation-gsap` |
+| Projet qui emploie déjà AOS | § 5 |
 
-**When to Use**:
-- Marketing/landing pages with simple scroll effects
-- Content-heavy sites (blogs, documentation)
-- Quick prototypes requiring scroll animations
-- Projects where GSAP/Framer Motion complexity isn't needed
+## 2. Recette de base : CSS natif, repli par observateur
 
-**When NOT to Use**:
-- Complex animation timelines or orchestration → Use GSAP ScrollTrigger
-- Physics-based animations → Use React Spring or Framer Motion
-- Precise scroll-synced animations → Use GSAP ScrollTrigger
-- Heavy interactive animations → Use Framer Motion
-
-## Core Concepts
-
-### Installation
-
-**CDN (Quickest)**:
-```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-</head>
-<body>
-  <!-- Content with data-aos attributes -->
-
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
-</body>
-```
-
-**NPM/Yarn (Recommended)**:
-```bash
-npm install aos@next
-# or
-yarn add aos@next
-```
-
-```javascript
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-AOS.init();
-```
-
-### Basic Usage
-
-Apply animations using the `data-aos` attribute:
+Le contenu reste visible sans JavaScript et en mouvement réduit : l'état masqué ne s'applique que sous `@supports` ou une fois le repli démarré.
 
 ```html
-<!-- Fade in -->
-<div data-aos="fade-in">Content</div>
-
-<!-- Fade up -->
-<div data-aos="fade-up">Content</div>
-
-<!-- Slide from right -->
-<div data-aos="slide-left">Content</div>
-
-<!-- Zoom in -->
-<div data-aos="zoom-in">Content</div>
+<div class="bloc" data-reveal>…</div>
 ```
-
-### Configuration Options
-
-**Global Configuration**:
-```javascript
-AOS.init({
-  // Animation settings
-  duration: 800,  // Animation duration (ms): 0-3000
-  delay: 0,       // Delay before animation (ms): 0-3000
-  offset: 120,    // Offset from trigger point (px)
-  easing: 'ease', // Easing function
-  once: false,    // Animate only once (true) or every time (false)
-  mirror: false,  // Animate out when scrolling past
-
-  // Placement
-  anchorPlacement: 'top-bottom', // Which position triggers animation
-
-  // Performance
-  disable: false,                // Disable on mobile/tablet
-  startEvent: 'DOMContentLoaded', // Initialization event
-  debounceDelay: 50,             // Window resize debounce
-  throttleDelay: 99              // Scroll throttle
-});
-```
-
-**Per-Element Overrides**:
-```html
-<div
-  data-aos="fade-up"
-  data-aos-duration="1000"
-  data-aos-delay="200"
-  data-aos-offset="50"
-  data-aos-easing="ease-in-out"
-  data-aos-once="true"
-  data-aos-mirror="true"
-  data-aos-anchor-placement="center-bottom"
->
-  Custom configured element
-</div>
-```
-
-## Common Patterns
-
-### 1. Landing Page Hero Section
-
-```html
-<section class="hero">
-  <!-- Staggered heading words -->
-  <h1
-    data-aos="fade-down"
-    data-aos-duration="800"
-  >
-    Welcome to the Future
-  </h1>
-
-  <!-- Delayed subheading -->
-  <p
-    data-aos="fade-up"
-    data-aos-delay="200"
-    data-aos-duration="600"
-  >
-    Transform your ideas into reality
-  </p>
-
-  <!-- CTA button -->
-  <button
-    data-aos="zoom-in"
-    data-aos-delay="400"
-    data-aos-duration="500"
-  >
-    Get Started
-  </button>
-</section>
-```
-
-### 2. Feature Cards Grid
-
-```html
-<div class="features-grid">
-  <!-- Stagger cards with increasing delays -->
-  <div
-    class="feature-card"
-    data-aos="fade-up"
-    data-aos-duration="600"
-    data-aos-delay="0"
-  >
-    <h3>Feature 1</h3>
-    <p>Description...</p>
-  </div>
-
-  <div
-    class="feature-card"
-    data-aos="fade-up"
-    data-aos-duration="600"
-    data-aos-delay="100"
-  >
-    <h3>Feature 2</h3>
-    <p>Description...</p>
-  </div>
-
-  <div
-    class="feature-card"
-    data-aos="fade-up"
-    data-aos-duration="600"
-    data-aos-delay="200"
-  >
-    <h3>Feature 3</h3>
-    <p>Description...</p>
-  </div>
-</div>
-```
-
-### 3. Alternating Content Sections
-
-```html
-<!-- Content from left -->
-<div class="section">
-  <div
-    class="content"
-    data-aos="slide-right"
-    data-aos-duration="800"
-  >
-    <h2>Section Title</h2>
-    <p>Content slides in from left...</p>
-  </div>
-  <img
-    src="image1.jpg"
-    data-aos="fade-left"
-    data-aos-delay="200"
-  />
-</div>
-
-<!-- Content from right -->
-<div class="section reverse">
-  <img
-    src="image2.jpg"
-    data-aos="fade-right"
-  />
-  <div
-    class="content"
-    data-aos="slide-left"
-    data-aos-duration="800"
-    data-aos-delay="200"
-  >
-    <h2>Section Title</h2>
-    <p>Content slides in from right...</p>
-  </div>
-</div>
-```
-
-### 4. Scroll-Triggered Testimonials
-
-```html
-<div class="testimonials">
-  <div
-    class="testimonial"
-    data-aos="zoom-in"
-    data-aos-duration="500"
-  >
-    <blockquote>"Amazing product!"</blockquote>
-    <cite>- John Doe</cite>
-  </div>
-
-  <div
-    class="testimonial"
-    data-aos="zoom-in"
-    data-aos-duration="500"
-    data-aos-delay="100"
-  >
-    <blockquote>"Exceeded expectations"</blockquote>
-    <cite>- Jane Smith</cite>
-  </div>
-</div>
-```
-
-### 5. Custom Anchor Triggers
-
-Trigger animations based on a different element's scroll position:
-
-```html
-<!-- Fixed sidebar animates based on main content scroll -->
-<div class="main-content">
-  <div id="trigger-point" data-aos-id="sidebar-trigger">
-    <!-- Content -->
-  </div>
-</div>
-
-<aside
-  class="sidebar"
-  data-aos="fade-left"
-  data-aos-anchor="#trigger-point"
->
-  Sidebar content
-</aside>
-```
-
-### 6. Sequential Animation Chain
-
-```html
-<div class="animation-sequence">
-  <!-- Step 1: Heading -->
-  <h2
-    data-aos="fade-down"
-    data-aos-duration="600"
-    data-aos-delay="0"
-  >
-    Our Process
-  </h2>
-
-  <!-- Step 2: Description -->
-  <p
-    data-aos="fade-up"
-    data-aos-duration="600"
-    data-aos-delay="200"
-  >
-    Follow these simple steps
-  </p>
-
-  <!-- Step 3-5: Process cards -->
-  <div
-    class="process-step"
-    data-aos="flip-left"
-    data-aos-delay="400"
-  >
-    Step 1
-  </div>
-
-  <div
-    class="process-step"
-    data-aos="flip-left"
-    data-aos-delay="600"
-  >
-    Step 2
-  </div>
-
-  <div
-    class="process-step"
-    data-aos="flip-left"
-    data-aos-delay="800"
-  >
-    Step 3
-  </div>
-</div>
-```
-
-### 7. Image Gallery with Zoom Effects
-
-```html
-<div class="gallery">
-  <img
-    src="photo1.jpg"
-    data-aos="zoom-in-up"
-    data-aos-duration="800"
-  />
-  <img
-    src="photo2.jpg"
-    data-aos="zoom-in-up"
-    data-aos-duration="800"
-    data-aos-delay="100"
-  />
-  <img
-    src="photo3.jpg"
-    data-aos="zoom-in-up"
-    data-aos-duration="800"
-    data-aos-delay="200"
-  />
-</div>
-```
-
-## Integration Patterns
-
-### React Integration
-
-**Basic Setup**:
-```jsx
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-function App() {
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      offset: 100
-    });
-  }, []);
-
-  return (
-    <div>
-      <h1 data-aos="fade-down">Welcome</h1>
-      <p data-aos="fade-up">Content here</p>
-    </div>
-  );
-}
-```
-
-**Refreshing on Route Changes**:
-```jsx
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import AOS from 'aos';
-
-function App() {
-  const location = useLocation();
-
-  useEffect(() => {
-    AOS.init({ duration: 800 });
-  }, []);
-
-  // Refresh AOS on route change
-  useEffect(() => {
-    AOS.refresh();
-  }, [location]);
-
-  return <Routes>{/* routes */}</Routes>;
-}
-```
-
-**Dynamic Content Updates**:
-```jsx
-import { useState, useEffect } from 'react';
-import AOS from 'aos';
-
-function DynamicList() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    AOS.init();
-  }, []);
-
-  const addItem = () => {
-    setItems([...items, { id: Date.now(), text: 'New Item' }]);
-
-    // Refresh AOS to detect new elements
-    setTimeout(() => AOS.refresh(), 50);
-  };
-
-  return (
-    <div>
-      <button onClick={addItem}>Add Item</button>
-      <ul>
-        {items.map((item) => (
-          <li key={item.id} data-aos="fade-in">
-            {item.text}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-```
-
-**Component Wrapper Pattern**:
-```jsx
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-function AnimatedSection({ children, animation = "fade-up", delay = 0, ...props }) {
-  return (
-    <div
-      data-aos={animation}
-      data-aos-delay={delay}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-}
-
-// Usage
-<AnimatedSection animation="slide-right" delay={200}>
-  <h2>Animated Content</h2>
-</AnimatedSection>
-```
-
-### Vue.js Integration
-
-```vue
-<template>
-  <div>
-    <h1 data-aos="fade-down">Vue + AOS</h1>
-    <div
-      v-for="(item, index) in items"
-      :key="item.id"
-      data-aos="fade-up"
-      :data-aos-delay="index * 100"
-    >
-      {{ item.text }}
-    </div>
-  </div>
-</template>
-
-<script>
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-export default {
-  mounted() {
-    AOS.init({ duration: 800 });
-  },
-  updated() {
-    // Refresh when component updates
-    this.$nextTick(() => {
-      AOS.refresh();
-    });
-  },
-  data() {
-    return {
-      items: [/*...*/]
-    };
-  }
-};
-</script>
-```
-
-### Next.js Integration
-
-```jsx
-// pages/_app.js
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true
-    });
-  }, []);
-
-  return <Component {...pageProps} />;
-}
-
-export default MyApp;
-```
-
-```jsx
-// pages/index.js
-export default function Home() {
-  return (
-    <main>
-      <h1 data-aos="fade-down">Next.js + AOS</h1>
-      <p data-aos="fade-up">Server-side rendered content with animations</p>
-    </main>
-  );
-}
-```
-
-## Performance Optimization
-
-### 1. Disable on Mobile Devices
-
-```javascript
-AOS.init({
-  disable: 'mobile', // Disable on mobile
-  // Or use function for custom logic
-  disable: function() {
-    return window.innerWidth < 768;
-  }
-});
-```
-
-### 2. Use Once for Better Performance
-
-```javascript
-AOS.init({
-  once: true, // Animate only once (better performance)
-  mirror: false // Don't animate out
-});
-```
-
-### 3. Optimize Throttle and Debounce
-
-```javascript
-AOS.init({
-  throttleDelay: 99,  // Scroll event throttle (default)
-  debounceDelay: 50   // Resize event debounce (default)
-});
-```
-
-### 4. Disable Mutation Observer for Static Content
-
-```javascript
-AOS.init({
-  disableMutationObserver: true // Disable for fully static content
-});
-```
-
-### 5. Reduce Animation Complexity
-
-```html
-<!-- Simpler animations perform better -->
-<div data-aos="fade-in">Simple fade</div>
-
-<!-- Complex animations may cause jank -->
-<div data-aos="flip-left">Complex flip</div>
-```
-
-### 6. Use RequestIdleCallback for Initialization
-
-```javascript
-if ('requestIdleCallback' in window) {
-  requestIdleCallback(() => {
-    AOS.init({ duration: 800 });
-  });
-} else {
-  AOS.init({ duration: 800 });
-}
-```
-
-## Common Pitfalls
-
-### 1. Forgetting to Refresh After DOM Changes
-
-**Problem**: New elements don't animate after being added dynamically.
-
-**Solution**: Call `AOS.refresh()` or `AOS.refreshHard()`:
-
-```javascript
-// After adding elements to DOM
-const newElement = document.createElement('div');
-newElement.setAttribute('data-aos', 'fade-in');
-container.appendChild(newElement);
-
-// Refresh AOS
-AOS.refresh(); // Recalculate positions
-// or
-AOS.refreshHard(); // Reinitialize completely
-```
-
-### 2. Animations Not Working in React
-
-**Problem**: AOS doesn't detect elements on first render or route changes.
-
-**Solution**: Initialize in `useEffect` and refresh on route/content changes:
-
-```jsx
-useEffect(() => {
-  AOS.init();
-  return () => AOS.refresh(); // Cleanup
-}, []);
-
-useEffect(() => {
-  AOS.refresh(); // Refresh on route change
-}, [location.pathname]);
-```
-
-### 3. Scroll Performance Issues
-
-**Problem**: Page scrolling feels janky with many animated elements.
-
-**Solution**: Reduce animated elements and use `once: true`:
-
-```javascript
-AOS.init({
-  once: true, // Animate only once
-  disable: window.innerWidth < 768 // Disable on mobile
-});
-```
-
-### 4. CSS Conflicts
-
-**Problem**: Custom CSS interferes with AOS animations.
-
-**Solution**: Use more specific selectors and avoid `!important`:
 
 ```css
-/* Bad: Conflicts with AOS */
-div {
-  opacity: 1 !important;
+@keyframes apparition {
+  from { opacity: 0; translate: 0 36px; }
 }
 
-/* Good: Specific selector */
-.my-content > div {
-  /* styles */
-}
-```
-
-### 5. Anchor Placement Confusion
-
-**Problem**: Animations trigger at unexpected scroll positions.
-
-**Solution**: Understand anchor placement options:
-
-```javascript
-// Triggers when element's top hits viewport bottom
-data-aos-anchor-placement="top-bottom"
-
-// Triggers when element's center hits viewport center
-data-aos-anchor-placement="center-center"
-
-// Triggers when element's bottom hits viewport top
-data-aos-anchor-placement="bottom-top"
-```
-
-### 6. Duration/Delay Limits
-
-**Problem**: Values above 3000ms don't work.
-
-**Solution**: Add custom CSS for extended durations:
-
-```css
-body[data-aos-duration='4000'] [data-aos],
-[data-aos][data-aos][data-aos-duration='4000'] {
-  transition-duration: 4000ms;
-}
-```
-
-```html
-<div data-aos="fade-in" data-aos-duration="4000">
-  Long animation
-</div>
-```
-
-## Built-in Animations
-
-### Fade Animations
-- `fade-in` - Simple fade in
-- `fade-up` - Fade in from bottom
-- `fade-down` - Fade in from top
-- `fade-left` - Fade in from right
-- `fade-right` - Fade in from left
-- `fade-up-right` - Diagonal fade
-- `fade-up-left` - Diagonal fade
-- `fade-down-right` - Diagonal fade
-- `fade-down-left` - Diagonal fade
-
-### Slide Animations
-- `slide-up` - Slide from bottom
-- `slide-down` - Slide from top
-- `slide-left` - Slide from right
-- `slide-right` - Slide from left
-
-### Zoom Animations
-- `zoom-in` - Zoom in
-- `zoom-in-up` - Zoom in from bottom
-- `zoom-in-down` - Zoom in from top
-- `zoom-in-left` - Zoom in from right
-- `zoom-in-right` - Zoom in from left
-- `zoom-out` - Zoom out
-- `zoom-out-up` - Zoom out to top
-- `zoom-out-down` - Zoom out to bottom
-- `zoom-out-left` - Zoom out to left
-- `zoom-out-right` - Zoom out to right
-
-### Flip Animations
-- `flip-up` - Flip from bottom
-- `flip-down` - Flip from top
-- `flip-left` - Flip from right
-- `flip-right` - Flip from left
-
-## Custom Animations
-
-Create custom animations with CSS:
-
-```css
-[data-aos="custom-slide-bounce"] {
-  opacity: 0;
-  transform: translateY(100px);
-  transition-property: transform, opacity;
-}
-
-[data-aos="custom-slide-bounce"].aos-animate {
-  opacity: 1;
-  transform: translateY(0);
-  animation: bounce 0.5s;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+@media (prefers-reduced-motion: no-preference) {
+  /* Natif : l'apparition suit l'entrée de l'élément dans la fenêtre. */
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: apparition linear both;
+      animation-timeline: view();            /* après le raccourci animation, qui le remet à zéro */
+      animation-range: entry 0% entry 90%;   /* fixe dès qu'il est entré */
+    }
   }
-  40% {
-    transform: translateY(-10px);
+  /* Repli : déclenché une fois par le script. */
+  .rv-repli [data-reveal] {
+    opacity: 0;
+    translate: 0 36px;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), translate 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  60% {
-    transform: translateY(-5px);
-  }
+  .rv-repli [data-reveal].est-entre { opacity: 1; translate: none; }
 }
 ```
 
-```html
-<div data-aos="custom-slide-bounce">
-  Custom animation
-</div>
+```js
+// Repli seulement si le natif manque et que le mouvement est permis.
+(function () {
+  var reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var natif = window.CSS && CSS.supports && CSS.supports('animation-timeline: view()');
+  if (reduit || natif || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('rv-repli');
+  var obs = new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      obs.unobserve(e.target);
+      e.target.classList.add('est-entre');
+    });
+  }, { rootMargin: '0px 0px -15% 0px', threshold: 0 });   // seuil 0 : un bloc plus haut que l'écran entre aussi
+  document.querySelectorAll('[data-reveal]').forEach(function (el) { obs.observe(el); });
+})();
 ```
 
-## Comparison with Alternatives
+## 3. Variantes
 
-### AOS vs GSAP ScrollTrigger
+- **Gauche, droite, échelle** : changer le `from` (`translate: -40px 0`, `translate: 40px 0`, `scale: 0.96`) dans une `@keyframes` par variante, sélectionnée par la valeur de `data-reveal`.
+- **Cascade dans une grille** : en natif, les enfants d'une même rangée entrent ensemble ; décaler leur plage d'entrée avec un rang posé en ligne (`style="--i: 2"`) : `animation-range: entry calc(var(--i) * 5%) entry calc(60% + var(--i) * 5%)`. En repli, `transition-delay: calc(var(--i) * 0.08s)`. Huit rangs au plus.
+- **Image qui se découvre** : `from { clip-path: inset(0 0 100% 0); }` sur le conteneur de l'image, jamais sur l'image LCP du hero.
+- **Barre de progression de lecture** : une barre fixe en `transform-origin: left`, `animation: progression linear both; animation-timeline: scroll(root);` avec `@keyframes progression { from { transform: scaleX(0); } }`. Décorative : `aria-hidden="true"`.
+- **Parallaxe légère** : `animation-timeline: view(); animation-range: cover;` et un déplacement de 40 px au plus, sur un élément décoratif seulement, jamais sur du texte.
+- **Paragraphe qui s'encre au défilement** : modèle dans le fragment `letter` de la fabrique (`${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/letter.html`).
 
-| Feature | AOS | GSAP ScrollTrigger |
-|---------|-----|-------------------|
-| **Complexity** | Simple, data-attribute based | Advanced, JavaScript API |
-| **Use Case** | Simple reveals | Complex timelines |
-| **File Size** | ~13KB | ~27KB (GSAP) + ScrollTrigger |
-| **Performance** | CSS-driven | JavaScript-driven |
-| **Learning Curve** | Minutes | Hours |
-| **Customization** | Limited | Extensive |
-| **Best For** | Marketing pages | Interactive experiences |
+## 4. Pièges
 
-**Use AOS when**:
-- Simple fade/slide/zoom effects
-- Quick implementation needed
-- Minimal JavaScript preferred
-- Basic scroll reveals sufficient
+- **Ordre des propriétés** : `animation-timeline` écrit avant le raccourci `animation` est remis à `auto`, et l'animation se joue au chargement.
+- **Rejeu à l'envers** : une apparition pilotée par le défilement se rejoue quand l'élément ressort par le bas. Borner la plage à `entry` (§ 2) ; pour un effet unique, passer par le repli.
+- **`visibility: hidden`** interdit sur un titre ou un bouton en attente : il sort du clavier et des lecteurs d'écran. Opacité et position seulement.
+- **Élément LCP** : le titre et l'image du hero ne partent jamais d'une opacité nulle, ni en natif ni en repli.
+- **Deux moteurs** : `data-aos`, `data-reveal` du socle et une recette maison sur la même page donnent des doubles apparitions. Un seul moteur par page.
+- **Captures sans tête** : elles ne déclenchent pas toujours les observateurs ; voir la skill `qa-rendu` avant de conclure à un bug.
+- **`will-change`** : seulement sur un problème constaté, puis retiré.
 
-**Use GSAP ScrollTrigger when**:
-- Complex animation sequences
-- Precise scroll-synced animations
-- Timeline orchestration needed
-- Advanced easing/physics required
+## 5. Projets qui emploient déjà AOS
 
-## Resources
+AOS (dernière version 2.3.4 du 03/10/2018, la 3.0.0-beta.6 n'a jamais été stabilisée) se maintient tel quel s'il fonctionne ; on ne l'ajoute plus. Pour migrer une page :
 
-### Official Documentation
-- **AOS**: https://michalsnik.github.io/aos/
-- **GitHub**: https://github.com/michalsnik/aos
+| AOS | Équivalent |
+|---|---|
+| `data-aos="fade-up"` | `data-reveal` (ou `data-reveal="up"`) |
+| `data-aos="fade-right"` (entre par la gauche) | `data-reveal="left"` |
+| `data-aos="fade-left"` (entre par la droite) | `data-reveal="right"` |
+| `data-aos="zoom-in"` | `data-reveal="scale"` |
+| `data-aos="fade"` | `data-reveal="fade"` |
+| `data-aos-delay` | rang `--i` (cascade, § 3) |
+| `data-aos-once="true"` | comportement par défaut du repli ; en natif, plage bornée à `entry` |
+| `AOS.refresh()` après un changement du DOM | observer les nouveaux éléments ; avec GSAP, `ScrollTrigger.refresh()` |
 
-### Key Scripts
-- `scripts/aos_generator.py` - Generate AOS HTML boilerplate
-- `scripts/config_builder.py` - Build AOS configuration
-
-### References
-- `references/aos_api.md` - Complete AOS API reference
-- `references/animation_catalog.md` - All built-in animations with demos
-- `references/integration_patterns.md` - Framework integration guides
-
-### Starter Assets
-- `assets/starter_aos/` - Complete AOS starter template
-- `assets/examples/` - Production-ready patterns
-
-## Related Skills
-
-- **gsap-scrolltrigger**: For complex scroll-driven animations
-- **motion-framer**: For React-specific animations with physics
-- **locomotive-scroll**: For smooth scrolling with parallax
-- **animated-component-libraries**: For pre-built animated React components
+Retirer ensuite `aos.css`, `aos.js` et l'appel `AOS.init()`, puis vérifier en mouvement réduit que tout s'affiche (`qa-landing.py`, passage en mouvement réduit). L'API complète d'AOS, pour un projet qu'on maintient : `references/aos_api.md`, `references/animation_catalog.md` et le guide d'origine `references/aos-guide.md`.
 
 ---
 
-*Vendorisée depuis [claudedesignskills](https://github.com/freshtechbro/claudedesignskills) de freshtechbro (plugin `animation-components`, skill `scroll-reveal-libraries` v1.0.0, licence MIT, © 2025 Claude Skills Project). Copie SKILL.md + references/ uniquement (pas de scripts ni d'assets, conformément à la politique de vendoring du template). Attribution, périmètre retenu et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*
+*Réécrite pour l'atelier web le 25/10/2026 : l'enseignement par défaut passe au CSS natif. La skill d'origine (`scroll-reveal-libraries` v1.0.0 de [claudedesignskills](https://github.com/freshtechbro/claudedesignskills), freshtechbro, licence MIT, © 2025 Claude Skills Project) reste dans `references/` pour les projets AOS existants. Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*

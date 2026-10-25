@@ -10,8 +10,8 @@ Date de vendorisation : **2026-07-03**.
 |---|---|---|---|---|
 | `.claude/skills/animation-gsap/` | [claudedesignskills](https://github.com/freshtechbro/claudedesignskills) (freshtechbro), plugin `gsap-scrolltrigger`, skill `gsap-scrolltrigger` | v1.0.0 | MIT | ✅ Vendorisée |
 | `.claude/skills/animation-animejs/` | idem, plugin `animation-components`, skill `animejs` | v1.0.0 | MIT | ✅ Vendorisée |
-| `.claude/skills/animation-lottie/` | idem, plugin `animation-components`, skill `lottie-animations` | v1.0.0 | MIT | ✅ Vendorisée |
-| `.claude/skills/animation-scroll-reveal/` | idem, plugin `animation-components`, skill `scroll-reveal-libraries` | v1.0.0 | MIT | ✅ Vendorisée |
+| `.claude/skills/animation-lottie/` | idem, plugin `animation-components`, skill `lottie-animations` | v1.0.0 | MIT | ✏️ Réécrite le 2026-10-25 (dotLottie par défaut) ; corps d'origine dans `references/guide-origine.md` |
+| `.claude/skills/animation-scroll-reveal/` | idem, plugin `animation-components`, skill `scroll-reveal-libraries` | v1.0.0 | MIT | ✏️ Réécrite le 2026-10-25 (CSS natif par défaut) ; corps d'origine dans `references/aos-guide.md` |
 | — | plugin `animation-components`, skills `react-spring-physics` et `animated-component-libraries` | v1.0.0 | MIT | ⛔ Non vendorisées (React-only, hors périmètre : les livrables web du template sont des fichiers HTML/CSS/JS autonomes) |
 | — | plugins `threejs-webgl` et `meta-skills` (`web3d-integration-patterns`) | v1.0.0 | MIT | ⛔ Non vendorisées (3D/WebGL : trop lourd et rarement justifié pour une page marketing ; réévaluable au besoin) |
 
@@ -30,6 +30,7 @@ Adaptations effectuées :
 
 - `name:` du frontmatter renommé (`animation-gsap`, `animation-animejs`, `animation-lottie`, `animation-scroll-reveal`) pour suivre la convention de nommage par famille du template.
 - Footer d'attribution ajouté en fin de chaque `SKILL.md`.
+- **2026-10-25, atelier-web 1.1.0** : `animation-scroll-reveal` et `animation-lottie` réécrites en français. AOS (sans version depuis le 03/10/2018) et lottie-web (sans version depuis le 21/05/2025) sortent de l'enseignement par défaut : la première enseigne le CSS piloté par le défilement avec un repli par `IntersectionObserver`, la seconde le lecteur dotLottie (`dotlottie-wc`, `dotlottie-web`, `dotlottie-react`). Le `SKILL.md` d'origine de chacune est conservé tel quel, sans son frontmatter, dans `references/` (`aos-guide.md`, `guide-origine.md`), avec les autres références d'origine, pour maintenir ou migrer un projet existant. `motion-defilement` (skill maison) devient la porte d'entrée de tout le mouvement.
 
 ## Cas d'usage dans le template
 
@@ -43,4 +44,4 @@ Ces skills servent aux livrables web (`atelier/`) : landing pages, lead magnets,
 
 1. `claude plugin marketplace add freshtechbro/claudedesignskills` puis `claude plugin install <plugin>@claude-design-skillstack`.
 2. Comparer `~/.claude/plugins/cache/claude-design-skillstack/<plugin>/<version>/skills/<skill>/` avec la copie locale (`diff -ru`, en ignorant frontmatter `name:` et footer).
-3. Reporter les changements utiles, conserver renommage + footer, mettre à jour la version dans ce registre.
+3. Reporter les changements utiles, conserver renommage + footer, mettre à jour la version dans ce registre. Pour `animation-scroll-reveal` et `animation-lottie`, le `SKILL.md` amont se compare à `references/aos-guide.md` et `references/guide-origine.md` ; le `SKILL.md` local, réécrit, ne se re-synchronise pas.

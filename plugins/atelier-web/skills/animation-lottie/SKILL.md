@@ -1,696 +1,126 @@
 ---
 name: animation-lottie
-description: After Effects animation rendering for web and React applications. Use this skill when implementing Lottie animations, JSON vector animations, interactive animated icons, micro-interactions, or loading animations. Triggers on tasks involving Lottie, lottie-web, lottie-react, dotLottie, After Effects JSON export, bodymovin, animated SVG alternatives, or designer-created animations. Complements GSAP ScrollTrigger and Framer Motion for scroll-driven and interactive animations.
+description: Illustrations et icônes animées de marque en dotLottie (.lottie exporté d'After Effects ou de Lottie Creator) avec dotlottie-wc, dotlottie-web ou dotlottie-react : lecture à l'entrée dans l'écran, pilotage au défilement, mouvement réduit, pause, poids du WASM, CSP. À charger après motion-defilement pour toute animation Lottie, ou pour migrer un projet sous lottie-web ou lottie-react, qu'on n'ajoute plus à un projet neuf.
 ---
 
-# Lottie Animations
+# animation-lottie : médias animés de marque en dotLottie
 
-## Overview
+Une animation Lottie est un média, comme une vidéo : elle illustre une idée, elle ne remplace ni une apparition au défilement (CSS natif, skill `animation-scroll-reveal`) ni une transition d'interface (CSS ou Motion). La grammaire commune du mouvement vit dans la skill `motion-defilement` et prime.
 
-Lottie is a library for rendering After Effects animations in real-time on web, iOS, Android, and React Native. Created by Airbnb, it allows designers to ship animations as easily as shipping static assets. Animations are exported from After Effects as JSON files using the Bodymovin plugin, then rendered natively with minimal performance overhead.
+## 1. Quoi prendre
 
-**When to use Lottie:**
-- Designer-created animations that need pixel-perfect fidelity
-- Complex animated icons and micro-interactions
-- Loading animations and progress indicators
-- Onboarding sequences and tutorial animations
-- Marketing animations and promotional content
-- Alternative to GIF/video with smaller file sizes and scalability
+| Besoin | Outil |
+|---|---|
+| Page HTML statique, fabrique de l'atelier | Composant `<dotlottie-wc>` (`@lottiefiles/dotlottie-wc`, 0.10.0 au 25/10/2026) |
+| Contrôle fin en JavaScript (canvas, segments, pilotage au défilement) | `@lottiefiles/dotlottie-web` (0.81.0), classe `DotLottie` |
+| React ou Next.js | `@lottiefiles/dotlottie-react` (0.20.0), composant `DotLottieReact` |
+| Animation interactive à états (survol, clic, machine à états) | dotLottie et son interactivité, ou Rive (vérifier sa licence d'export) |
+| Projet existant sous lottie-web ou `lottie-react` | Les garder s'ils marchent ; migrer au prochain chantier (§ 6). Ne plus les ajouter : lottie-web n'a plus de version depuis le 21/05/2025 (5.13.0) et `lottie-react` s'appuie dessus |
 
-**Key advantages:**
-- Vector-based (scalable without quality loss)
-- Significantly smaller file sizes than GIF or video
-- Editable at runtime (colors, speed, segments)
-- Full designer control via After Effects
-- Cross-platform rendering consistency
-- Interactive controls (play, pause, seek, loop)
+Fichier : `.lottie` (archive ZIP qui regroupe une ou plusieurs animations, leurs images et leurs thèmes) plutôt que `.json`. Versions vérifiées sur npm le 25/10/2026 : toujours figer la version dans l'URL ou le `package.json`, jamais `@latest`.
 
-## Core Concepts
+## 2. Avant d'intégrer
 
-### Lottie Format Types
+- **Couleurs de la marque** : l'animation s'exporte avec les couleurs de `atelier/marque/tokens.json`, ou porte un thème dotLottie à ces couleurs. `lint-brand.py` ne lit pas l'intérieur d'un `.lottie` : vérifier à l'œil sur le rendu, contre les jetons.
+- **Droits et divulgation** : une animation achetée ou téléchargée (LottieFiles, banque) se note dans `atelier/marque/droits.md` ; une animation générée suit `atelier/marque/divulgation-ia.md`.
+- **Poids** : le moteur WASM du lecteur pèse environ 500 Ko compressés (README de dotlottie-web) et se télécharge au premier lecteur construit. Une animation n'entre donc jamais dans le premier écran d'une page qui vise un bon LCP, sauf décision de l'humain ; au-delà du premier écran, charger le composant à l'approche (§ 3).
 
-**1. JSON Lottie (.json)**
-- Original Lottie format
-- Exported from After Effects via Bodymovin plugin
-- Human-readable JSON structure
-- Larger file sizes (not compressed)
-- Widely supported across all platforms
-
-**2. dotLottie (.lottie)**
-- Modern compressed format
-- ZIP archive containing JSON + assets
-- Supports multiple animations and themes in one file
-- Smaller file sizes (up to 90% reduction)
-- Recommended for production use
-
-### Library Options
-
-**lottie-web** (original library):
-```javascript
-import lottie from 'lottie-web';
-
-lottie.loadAnimation({
-  container: document.getElementById('lottie-container'),
-  renderer: 'svg', // or 'canvas', 'html'
-  loop: true,
-  autoplay: true,
-  path: 'animation.json' // or animationData: jsonData
-});
-```
-
-**@lottiefiles/dotlottie-web** (modern, recommended):
-```javascript
-import { DotLottie } from '@lottiefiles/dotlottie-web';
-
-new DotLottie({
-  canvas: document.getElementById('canvas'),
-  src: 'animation.lottie',
-  autoplay: true,
-  loop: true
-});
-```
-
-**@lottiefiles/dotlottie-react** (React integration):
-```jsx
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
-<DotLottieReact
-  src="animation.lottie"
-  loop
-  autoplay
-  style={{ height: 300 }}
-/>
-```
-
-**lottie-react** (alternative React wrapper):
-```jsx
-import Lottie from 'lottie-react';
-import animationData from './animation.json';
-
-<Lottie animationData={animationData} loop={true} />
-```
-
-### Animation Data Sources
-
-**1. LottieFiles** (lottie.host)
-- 100,000+ free animations
-- Direct URL embedding
-- CDN hosting
-
-**2. Local JSON/dotLottie files**
-- Bundled with application
-- Better performance (no network request)
-- Version control friendly
-
-**3. After Effects export**
-- Custom designer animations
-- Bodymovin plugin required
-- Export settings critical for file size
-
-## Common Patterns
-
-### 1. Basic HTML Integration with dotLottie-web
+## 3. Recette : HTML statique
 
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    #canvas {
-      width: 400px;
-      height: 400px;
-    }
-  </style>
-</head>
-<body>
-  <canvas id="canvas"></canvas>
+<figure class="illustration-animee">
+  <dotlottie-wc data-lottie src="assets/anim/tournee.lottie" loop loopcount="2"
+                role="img" aria-label="Le tracé de la tournée se dessine de dépôt en dépôt"
+                style="width: min(100%, 420px); aspect-ratio: 1"></dotlottie-wc>
+  <button type="button" class="lottie-pause" hidden>Mettre en pause</button>
+</figure>
+```
 
-  <script type="module">
-    import { DotLottie } from 'https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm';
-
-    new DotLottie({
-      canvas: document.getElementById('canvas'),
-      src: 'https://lottie.host/4db68bbd-31f6-4cd8-84eb-189de081159a/IGmMCqhzpt.lottie',
-      autoplay: true,
-      loop: true
+```js
+// Lecture à l'entrée dans l'écran, jamais en mouvement réduit, chargement du lecteur à l'approche.
+(function () {
+  var reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var obs = new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      obs.unobserve(e.target);
+      import('https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-wc@0.10.0/dist/dotlottie-wc.js').then(function () {
+        customElements.whenDefined('dotlottie-wc').then(function () { lancer(e.target); });
+      });
     });
-  </script>
-</body>
-</html>
-```
+  }, { rootMargin: '200px 0px' });
+  document.querySelectorAll('dotlottie-wc[data-lottie]').forEach(function (el) { obs.observe(el); });
 
-### 2. React Component with Controls
-
-```jsx
-import React from 'react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
-const AnimatedButton = () => {
-  const [dotLottie, setDotLottie] = React.useState(null);
-
-  const handlePlay = () => dotLottie?.play();
-  const handlePause = () => dotLottie?.pause();
-  const handleStop = () => dotLottie?.stop();
-  const handleSeek = (frame) => dotLottie?.setFrame(frame);
-
-  return (
-    <div>
-      <DotLottieReact
-        src="button-animation.lottie"
-        loop
-        autoplay={false}
-        dotLottieRefCallback={setDotLottie}
-        style={{ height: 200 }}
-      />
-
-      <div>
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handlePause}>Pause</button>
-        <button onClick={handleStop}>Stop</button>
-        <button onClick={() => handleSeek(30)}>Seek to frame 30</button>
-      </div>
-    </div>
-  );
-};
-```
-
-### 3. Event Listeners and Lifecycle Hooks
-
-```jsx
-import React, { useEffect } from 'react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
-const EventDrivenAnimation = () => {
-  const [dotLottie, setDotLottie] = React.useState(null);
-
-  useEffect(() => {
-    if (!dotLottie) return;
-
-    const onLoad = () => console.log('Animation loaded');
-    const onPlay = () => console.log('Animation started');
-    const onPause = () => console.log('Animation paused');
-    const onComplete = () => console.log('Animation completed');
-    const onFrame = ({ currentFrame }) => console.log('Frame:', currentFrame);
-
-    dotLottie.addEventListener('load', onLoad);
-    dotLottie.addEventListener('play', onPlay);
-    dotLottie.addEventListener('pause', onPause);
-    dotLottie.addEventListener('complete', onComplete);
-    dotLottie.addEventListener('frame', onFrame);
-
-    return () => {
-      dotLottie.removeEventListener('load', onLoad);
-      dotLottie.removeEventListener('play', onPlay);
-      dotLottie.removeEventListener('pause', onPause);
-      dotLottie.removeEventListener('complete', onComplete);
-      dotLottie.removeEventListener('frame', onFrame);
-    };
-  }, [dotLottie]);
-
-  return (
-    <DotLottieReact
-      src="animation.lottie"
-      loop
-      autoplay
-      dotLottieRefCallback={setDotLottie}
-    />
-  );
-};
-```
-
-### 4. Scroll-Driven Animation with lottie-react
-
-```jsx
-import Lottie from 'lottie-react';
-import robotAnimation from './robot.json';
-
-const ScrollAnimation = () => {
-  const interactivity = {
-    mode: 'scroll',
-    actions: [
-      {
-        visibility: [0, 0.2],
-        type: 'stop',
-        frames: [0]
-      },
-      {
-        visibility: [0.2, 0.45],
-        type: 'seek',
-        frames: [0, 45]
-      },
-      {
-        visibility: [0.45, 1.0],
-        type: 'loop',
-        frames: [45, 60]
+  function lancer(el) {
+    var attendre = setInterval(function () {
+      var lecteur = el.dotLottie;
+      if (!lecteur || !lecteur.isLoaded) return;
+      clearInterval(attendre);
+      if (reduit) { lecteur.setFrame(lecteur.totalFrames - 1); return; }   // état final, immobile
+      lecteur.play();
+      // Plus de cinq secondes de mouvement (WCAG 2.2.2) : bouton pause visible.
+      var boucle = el.hasAttribute('loop');
+      var replays = boucle ? Number(el.getAttribute('loopcount') || 0) : 0;
+      var bouton = el.parentElement.querySelector('.lottie-pause');
+      if (bouton && ((boucle && replays === 0) || lecteur.duration * (replays + 1) > 5)) {
+        bouton.hidden = false;
+        bouton.addEventListener('click', function () {
+          var enPause = lecteur.isPaused;
+          enPause ? lecteur.play() : lecteur.pause();
+          bouton.textContent = enPause ? 'Mettre en pause' : 'Reprendre';
+        });
       }
-    ]
-  };
-
-  return (
-    <Lottie
-      animationData={robotAnimation}
-      style={{ height: 300 }}
-      interactivity={interactivity}
-    />
-  );
-};
-```
-
-### 5. Hover-Triggered Segment Playback
-
-```jsx
-import { useLottie, useLottieInteractivity } from 'lottie-react';
-import likeButton from './like-button.json';
-
-const HoverAnimation = () => {
-  const lottieObj = useLottie({
-    animationData: likeButton
-  });
-
-  const Animation = useLottieInteractivity({
-    lottieObj,
-    mode: 'cursor',
-    actions: [
-      {
-        position: { x: [0, 1], y: [0, 1] },
-        type: 'loop',
-        frames: [45, 60]
-      },
-      {
-        position: { x: -1, y: -1 },
-        type: 'stop',
-        frames: [45]
-      }
-    ]
-  });
-
-  return <div style={{ height: 300, border: '2px solid black' }}>{Animation}</div>;
-};
-```
-
-### 6. Multi-Animation and Theme Support
-
-```jsx
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import React, { useState, useEffect } from 'react';
-
-const ThemedAnimation = () => {
-  const [dotLottie, setDotLottie] = useState(null);
-  const [animations, setAnimations] = useState([]);
-  const [themes, setThemes] = useState([]);
-  const [currentAnimationId, setCurrentAnimationId] = useState('');
-  const [currentThemeId, setCurrentThemeId] = useState('');
-
-  useEffect(() => {
-    if (!dotLottie) return;
-
-    const onLoad = () => {
-      setAnimations(dotLottie.manifest.animations || []);
-      setThemes(dotLottie.manifest.themes || []);
-      setCurrentAnimationId(dotLottie.activeAnimationId);
-      setCurrentThemeId(dotLottie.activeThemeId);
-    };
-
-    dotLottie.addEventListener('load', onLoad);
-    return () => dotLottie.removeEventListener('load', onLoad);
-  }, [dotLottie]);
-
-  return (
-    <div>
-      <DotLottieReact
-        src="multi-animation.lottie"
-        dotLottieRefCallback={setDotLottie}
-        animationId={currentAnimationId}
-        themeId={currentThemeId}
-      />
-
-      {themes.length > 0 && (
-        <select value={currentThemeId} onChange={(e) => setCurrentThemeId(e.target.value)}>
-          {themes.map((theme) => (
-            <option key={theme.id} value={theme.id}>{theme.id}</option>
-          ))}
-        </select>
-      )}
-
-      {animations.length > 0 && (
-        <select value={currentAnimationId} onChange={(e) => setCurrentAnimationId(e.target.value)}>
-          {animations.map((anim) => (
-            <option key={anim.id} value={anim.id}>{anim.id}</option>
-          ))}
-        </select>
-      )}
-    </div>
-  );
-};
-```
-
-### 7. Web Worker for Performance (DotLottieWorker)
-
-```javascript
-import { DotLottieWorker } from '@lottiefiles/dotlottie-web';
-
-// Offload animation rendering to a web worker
-new DotLottieWorker({
-  canvas: document.getElementById('canvas'),
-  src: 'heavy-animation.lottie',
-  autoplay: true,
-  loop: true,
-  workerId: 'worker-1' // Group multiple animations by worker
-});
-
-// Multiple animations in separate workers
-new DotLottieWorker({
-  canvas: document.getElementById('canvas-2'),
-  src: 'animation-2.lottie',
-  autoplay: true,
-  loop: true,
-  workerId: 'worker-2'
-});
-```
-
-## Integration Patterns
-
-### With GSAP ScrollTrigger
-
-```jsx
-import Lottie from 'lottie-react';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import animationData from './animation.json';
-
-gsap.registerPlugin(ScrollTrigger);
-
-const GSAPLottieIntegration = () => {
-  const lottieRef = React.useRef();
-
-  React.useEffect(() => {
-    const anim = lottieRef.current;
-    if (!anim) return;
-
-    // Sync Lottie with scroll
-    gsap.to(anim, {
-      scrollTrigger: {
-        trigger: '#animation-section',
-        start: 'top center',
-        end: 'bottom center',
-        scrub: 1,
-        onUpdate: (self) => {
-          const frame = Math.floor(self.progress * (anim.totalFrames - 1));
-          anim.goToAndStop(frame, true);
-        }
-      }
-    });
-  }, []);
-
-  return (
-    <div id="animation-section" style={{ height: '200vh' }}>
-      <Lottie
-        lottieRef={lottieRef}
-        animationData={animationData}
-        autoplay={false}
-        loop={false}
-      />
-    </div>
-  );
-};
-```
-
-### With Framer Motion
-
-```jsx
-import { motion } from 'framer-motion';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
-const MotionLottie = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <DotLottieReact
-        src="animation.lottie"
-        loop
-        autoplay
-        style={{ height: 400 }}
-      />
-    </motion.div>
-  );
-};
-```
-
-### Vue 3 Integration
-
-```vue
-<script setup>
-import { DotLottieVue } from '@lottiefiles/dotlottie-vue';
-</script>
-
-<template>
-  <DotLottieVue
-    style="height: 500px; width: 500px"
-    autoplay
-    loop
-    src="https://path-to-animation.lottie"
-  />
-</template>
-```
-
-### Svelte Integration
-
-```svelte
-<script lang="ts">
-  import { DotLottieSvelte } from '@lottiefiles/dotlottie-svelte';
-  import type { DotLottie } from '@lottiefiles/dotlottie-svelte';
-
-  let dotLottie: DotLottie | null = null;
-
-  function play() {
-    dotLottie?.play();
+    }, 100);
   }
-</script>
-
-<DotLottieSvelte
-  src="animation.lottie"
-  loop={true}
-  autoplay={true}
-  dotLottieRefCallback={(ref) => dotLottie = ref}
-/>
-
-<button on:click={play}>Play</button>
+})();
 ```
 
-## Performance Optimization
+- `loop loopcount="2"` : trois lectures en tout (la première plus deux), puis l'animation s'arrête. C'est la règle des animations infinies de `motion-defilement` (trois itérations au plus).
+- Un mouvement automatique de plus de cinq secondes, à côté d'autre contenu, exige un moyen de le mettre en pause (WCAG 2.2.2, niveau A) : le script affiche le bouton dès que la boucle est sans fin ou que la durée totale (`duration`, en secondes, fois le nombre de lectures) dépasse cinq secondes.
+- Une animation décorative prend `aria-hidden="true"` au lieu de `role="img"` et d'un `aria-label` ; une animation qui porte une information garde son équivalent en texte à côté.
+- Sans JavaScript ou sans WebAssembly, rien ne s'affiche : prévoir une image fixe en repli si l'illustration porte du sens (le premier ou le dernier état exporté en SVG ou WebP).
 
-### File Size Optimization
+## 4. Animation pilotée par le défilement
 
-**1. Export Settings in After Effects:**
-- Enable "Skip images that aren't used"
-- Use "Glyphs" instead of fonts when possible
-- Simplify paths (reduce points in illustrator)
-- Avoid effects that create large data (particles, noise)
-- Use shape layers instead of vector layers
+La progression d'une scène épinglée pilote l'image courante. Avec GSAP (skill `animation-gsap`) :
 
-**2. Compression:**
-- Use dotLottie format (.lottie) for automatic compression
-- Run JSON through Lottie optimizer tools
-- Remove unnecessary metadata
-
-**3. Lazy Loading:**
-```jsx
-const LazyLottie = () => {
-  const [shouldLoad, setShouldLoad] = React.useState(false);
-
-  React.useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setShouldLoad(true);
-      }
-    });
-
-    observer.observe(document.getElementById('lottie-trigger'));
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div id="lottie-trigger">
-      {shouldLoad && <DotLottieReact src="animation.lottie" loop autoplay />}
-    </div>
-  );
-};
-```
-
-### Runtime Performance
-
-**1. Renderer Selection:**
-```javascript
-// SVG: Best quality, slower for complex animations
-// Canvas: Better performance, rasterized
-// HTML: Limited support, use only for simple animations
-
-// For complex animations, prefer canvas
-new DotLottie({
-  canvas: document.getElementById('canvas'),
-  src: 'animation.lottie',
-  autoplay: true,
-  loop: true,
-  renderConfig: {
-    devicePixelRatio: window.devicePixelRatio || 1
+```js
+ScrollTrigger.create({
+  trigger: '#methode', start: 'top top', end: '+=150%', scrub: true,
+  onUpdate: function (self) {
+    var l = document.querySelector('#methode dotlottie-wc').dotLottie;
+    if (l && l.isLoaded) l.setFrame(Math.round(self.progress * (l.totalFrames - 1)));
   }
 });
 ```
 
-**2. Web Workers:**
-```javascript
-// Offload to worker for heavy animations
-import { DotLottieWorker } from '@lottiefiles/dotlottie-web';
+Sans GSAP, la même progression se calcule depuis la position de la piste collante (`motion-defilement`, § 5). En mouvement réduit : la dernière image, fixe.
 
-new DotLottieWorker({
-  canvas: document.getElementById('canvas'),
-  src: 'heavy-animation.lottie',
-  autoplay: true,
-  loop: true
-});
-```
+## 5. CSP, auto-hébergement, React
 
-**3. Mobile Optimization:**
-```javascript
-// Reduce quality on mobile
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+- **WASM auto-hébergé** : par défaut, le lecteur va chercher son `.wasm` sur jsDelivr ou unpkg. Pour le servir depuis le site : copier `dist/dotlottie-player.wasm` de `@lottiefiles/dotlottie-web` (même version que le lecteur) et appeler `setWasmUrl('/js/dotlottie/dotlottie-player.wasm')` (exporté par `dotlottie-wc`) avant le premier chargement. Une adresse explicite coupe le repli vers le CDN : un mauvais chemin échoue en `loadError`.
+- **CSP stricte** : autoriser la compilation WebAssembly (`script-src 'wasm-unsafe-eval'`) et l'origine du `.wasm` dans `connect-src` ; la variante worker démarre depuis une URL `blob:` (`worker-src blob:`), sinon auto-héberger `dotlottie.worker.js` et appeler `setWorkerUrl`. À vérifier sur la page assemblée avant la mise en ligne.
+- **React** : `import { DotLottieReact } from '@lottiefiles/dotlottie-react'` puis `<DotLottieReact src="/anim/tournee.lottie" loop autoplay={!reduit} />`, avec `reduit` lu par `useReducedMotion()` de Motion ou un `matchMedia`.
 
-new DotLottie({
-  canvas: document.getElementById('canvas'),
-  src: isMobile ? 'animation-low.lottie' : 'animation-high.lottie',
-  autoplay: true,
-  loop: true,
-  renderConfig: {
-    devicePixelRatio: isMobile ? 1 : window.devicePixelRatio
-  }
-});
-```
+## 6. Migrer depuis lottie-web ou lottie-react
 
-## Common Pitfalls
+| Avant | Après |
+|---|---|
+| `lottie.loadAnimation({ container, path: 'x.json', loop, autoplay })` | `<dotlottie-wc src="x.lottie" loop>` ou `new DotLottie({ canvas, src: 'x.lottie', loop, autoplay })` |
+| `animation.goToAndStop(n, true)` | `lecteur.setFrame(n)` |
+| `animation.play()`, `.pause()`, `.destroy()` | `lecteur.play()`, `.pause()`, `.destroy()` |
+| `<Lottie animationData={json} />` (lottie-react) | `<DotLottieReact src="x.lottie" />` |
+| Fichier `.json` | Le convertir en `.lottie` (Lottie Creator, outils LottieFiles) ; le `.json` reste lisible par dotLottie |
 
-### 1. Memory Leaks from Improper Cleanup
+Rendu à vérifier après migration : couleurs, taille du canvas (le lecteur dessine dans un `canvas` à la taille de l'élément), mouvement réduit.
 
-**Problem:** Not destroying Lottie instances when components unmount.
+## 7. Références
 
-**Solution:**
-```jsx
-const SafeAnimation = () => {
-  const [dotLottie, setDotLottie] = React.useState(null);
-
-  React.useEffect(() => {
-    return () => {
-      // Always destroy instance on unmount
-      dotLottie?.destroy();
-    };
-  }, [dotLottie]);
-
-  return <DotLottieReact src="animation.lottie" dotLottieRefCallback={setDotLottie} />;
-};
-```
-
-### 2. Event Listener Cleanup
-
-**Problem:** Event listeners not removed, causing multiple handlers.
-
-**Solution:**
-```jsx
-useEffect(() => {
-  if (!dotLottie) return;
-
-  const handleComplete = () => console.log('Complete');
-  dotLottie.addEventListener('complete', handleComplete);
-
-  // MUST return cleanup function
-  return () => {
-    dotLottie.removeEventListener('complete', handleComplete);
-  };
-}, [dotLottie]);
-```
-
-### 3. Large File Sizes
-
-**Problem:** Exported JSON files are 500KB+ for simple animations.
-
-**Solutions:**
-- Simplify After Effects composition (reduce layers, keyframes)
-- Use dotLottie format for compression
-- Check Bodymovin export settings (disable "Include expressions" if not needed)
-- Remove unused assets before export
-- Use Lottie optimizer tools: https://lottiefiles.com/tools/lottie-editor
-
-### 4. Animation Performance Issues
-
-**Problem:** Animation stutters or drops frames.
-
-**Solutions:**
-- Switch from SVG to Canvas renderer
-- Use `DotLottieWorker` for web worker rendering
-- Reduce complexity in After Effects (fewer layers, simpler shapes)
-- Lower devicePixelRatio on mobile
-- Avoid animating too many properties simultaneously
-
-### 5. Incorrect Path/URL References
-
-**Problem:** Animation doesn't load due to CORS or incorrect paths.
-
-**Solution:**
-```jsx
-// Use animationData for local imports (best for bundled apps)
-import animationData from './animation.json';
-<Lottie animationData={animationData} />
-
-// OR use path for external URLs (requires CORS headers)
-<DotLottieReact src="https://example.com/animation.lottie" />
-
-// For Next.js, place in public/ folder
-<DotLottieReact src="/animations/animation.lottie" />
-```
-
-### 6. After Effects Export Compatibility
-
-**Problem:** Some After Effects features don't export to Lottie.
-
-**Unsupported features:**
-- Layer effects (drop shadows, glows) - use shape layers instead
-- Blending modes (limited support)
-- 3D layers
-- Expressions (partial support)
-- Track mattes (partial support)
-
-**Solution:**
-- Test export early and often
-- Use LottieFiles preview before exporting
-- Check Bodymovin compatibility: https://airbnb.io/lottie/#/supported-features
-- Convert effects to shapes when possible
-
-## Resources
-
-This skill includes:
-
-### scripts/
-- `generate_lottie_component.py` - Generate React/Vue/Svelte Lottie component boilerplate
-- `optimize_lottie.py` - Optimize Lottie JSON file size
-
-### references/
-- `api_reference.md` - Complete API documentation for lottie-web, lottie-react, and dotlottie-web
-- `after_effects_export.md` - Guide for exporting animations from After Effects
-- `performance_guide.md` - Detailed performance optimization strategies
-
-### assets/
-- `starter_lottie/` - Complete React + Vite starter template with Lottie examples
-- `examples/` - Real-world Lottie animation patterns and use cases
-
-## Related Skills
-
-- **gsap-scrolltrigger** - For scroll-driven Lottie animations synchronized with page scroll
-- **motion-framer** - Combine with Framer Motion for layout animations wrapping Lottie
-- **animated-component-libraries** - Pre-built components that may include Lottie animations
-- **threejs-webgl** - For 3D animations beyond Lottie's 2D capabilities
-- **react-three-fiber** - Alternative for complex 3D animated scenes
+- `references/api_reference.md` : API de dotlottie-web et, pour la maintenance, de lottie-web et lottie-react.
+- `references/after_effects_export.md` : réglages d'export Bodymovin, fonctions d'After Effects non prises en charge.
+- `references/performance_guide.md` : poids des fichiers, rendu, mémoire.
+- `references/guide-origine.md` : la skill d'origine, pour un projet qui garde lottie-web.
 
 ---
 
-*Vendorisée depuis [claudedesignskills](https://github.com/freshtechbro/claudedesignskills) de freshtechbro (plugin `animation-components`, skill `lottie-animations` v1.0.0, licence MIT, © 2025 Claude Skills Project). Copie SKILL.md + references/ uniquement (pas de scripts ni d'assets, conformément à la politique de vendoring du template). Attribution, périmètre retenu et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*
+*Réécrite pour l'atelier web le 25/10/2026 : dotLottie devient le lecteur par défaut et l'API enseignée a été vérifiée sur `dotlottie-wc` 0.10.0. La skill d'origine (`lottie-animations` v1.0.0 de [claudedesignskills](https://github.com/freshtechbro/claudedesignskills), freshtechbro, licence MIT, © 2025 Claude Skills Project) reste dans `references/`. Attribution et procédure de re-synchronisation : `${CLAUDE_PLUGIN_ROOT}/docs/sources/vendored-animation.md`.*
