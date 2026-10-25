@@ -2,12 +2,14 @@
 
 ## Mesurer d'abord
 
-Avant toute revue, le contrôleur assemble la page et lance la QA :
+Avant toute revue, le contrôleur assemble la page et lance la QA, captures comprises, **une seule fois** pour les quatre relecteurs :
 
 ```bash
 python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py atelier/landings/<slug>/index.html \
-  --format json > atelier/landings/<slug>/pilotage/qa.json
+  --format json --captures <scratchpad>/captures-<slug>/ > atelier/landings/<slug>/pilotage/qa.json
 ```
+
+Le dossier de captures (`vue-375x812.png`, `vue-768x1024.png`, `vue-1440x900.png`, en pleine page) reste dans le scratchpad, jamais dans le dépôt. Aucun relecteur ne recapture : tous jugent les mêmes images. Une page modifiée après la mesure se remesure avant d'être relue.
 
 Les relecteurs partent de ce fichier : ce que le script mesure (débordement, planchers, contraste, titres, alternatives, noms, champs, cibles tactiles, CTA et pli mobile, mouvement réduit, suivi) ne se recalcule pas à la main, il se commente et se priorise.
 
@@ -15,24 +17,31 @@ Les relecteurs partent de ce fichier : ce que le script mesure (débordement, pl
 
 Les quatre relecteurs partent ensemble, dans un seul message, en lecture seule, une fois la page construite et montrée à l'humain :
 
-| Agent | Grille | Modèle conseillé |
+| Agent | Grille | Modèle (fixé dans l'agent) |
 |---|---|---|
-| `landing-reviewer-design` | En-têtes, rythme, matières, typographie, mouvement, responsive, boutons, code mort | le plus capable disponible |
-| `landing-reviewer-brand` | Voix et anti-style-IA, ton, visuel contre `tokens.json`, preuve, audience, divulgation IA et droits | standard |
-| `landing-reviewer-cro` | Récit et objections, porte de choix, CTA, bloc de conversion, urgence, preuve, mesure | le plus capable disponible |
-| `a11y-auditor` (moment : revue) | WCAG 2.2 AA : 14 points sur le code et la QA mesurée, puis rendu réel (axe-core, parcours clavier) | standard |
+| `landing-reviewer-design` | Inventaire sur les captures, puis en-têtes, rythme, matières, typographie, mouvement, responsive, boutons, code mort | Opus |
+| `landing-reviewer-brand` | Voix et anti-style-IA, ton, visuel contre `tokens.json`, preuve, audience, divulgation IA et droits | Sonnet |
+| `landing-reviewer-cro` | Récit et objections, porte de choix, CTA, bloc de conversion, urgence, preuve, mesure | Opus |
+| `a11y-auditor` (moment : revue) | WCAG 2.2 AA : 14 points sur le code et la QA mesurée, puis rendu réel (axe-core, parcours clavier) | Sonnet |
 
 Chaque prompt donne :
 - le chemin de la page (`atelier/landings/<slug>/index.html`) et de ses fragments ;
 - le chemin de la charte de page et de la spec ;
-- le chemin de `pilotage/qa.json` ;
+- le chemin de `pilotage/qa.json` et celui du dossier de captures ;
 - le fichier de rapport attendu, `pilotage/review-<grille>.md`.
 
-Les revues lisent le code et la QA ; seule celle d'accessibilité ouvre la page, pour axe-core et le clavier. Elles voient mal le rendu d'ensemble : un en-tête collé, un fond qui masque la matière, un épinglage qui ne se bloque pas, une page qui « fait template ». Les captures et l'œil de l'humain restent la dernière porte.
+Les revues lisent les captures, le code et la QA ; seule celle d'accessibilité ouvre la page, pour axe-core et le clavier, sans recapturer. Elles voient mal le rendu en mouvement : un en-tête collé, un fond qui masque la matière, un épinglage qui ne se bloque pas, une page qui « fait template ». Les captures et l'œil de l'humain restent la dernière porte.
 
 ## Arbitrer
 
-Le contrôleur lit les quatre rapports et écrit `pilotage/fix-wave-brief.md` à partir de `templates/brief-corrections.md`. Ses arbitrages priment sur les rapports :
+Chaque rapport s'ouvre sur un verdict fermé et porte **huit corrections au plus**, ordonnées ; le reste tient en une ligne par constat, sans correction. Le contrôleur lit d'abord les quatre verdicts :
+
+- `recapturer` : la mesure ou les captures manquent, ou datent d'avant la dernière version de la page. Remesurer (§ Mesurer d'abord), puis relancer ce seul relecteur.
+- `reprendre` : un défaut de structure que des retouches ne règlent pas. Le poser à l'humain, dans ses mots, avant toute vague de corrections ; la page revient à la phase qu'il désigne.
+- `corriger` : les corrections du rapport entrent dans la vague.
+- `livrer` : rien à corriger de ce côté ; les autres constats se consignent.
+
+Puis il écrit `pilotage/fix-wave-brief.md` à partir de `templates/brief-corrections.md`. Ses arbitrages priment sur les rapports :
 
 1. **L'humain d'abord.** Ses décisions (charte § 9) priment sur toute recommandation. Ses mots, et ceux de son document source, se gardent même quand une revue les signale ; ils sont listés comme tels.
 2. **Aucun chiffre inventé** pour combler une recommandation : un compteur sans vrai chiffre reste vide, un témoignage absent reste absent.

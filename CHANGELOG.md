@@ -1,5 +1,14 @@
 # Journal des versions
 
+## 1.2.3 · 2026-10-25
+
+Fin de la ligne 11 du rapport d'architecture : agents réglés, relectures fermées.
+
+- **Outils restreints** : `landing-researcher` lit le projet, écrit son seul fichier de notes, cherche et lit le web, capture en local par Bash, et prend le navigateur de l'application ou Playwright MCP s'ils sont installés (pas Claude in Chrome, qui porte les sessions de l'utilisateur) ; ni sous-agent ni édition. `landing-section-builder` garde la lecture, l'écriture et l'édition de son fragment, Bash pour la QA et le lint, la recherche et la lecture web ; ni navigateur ni sous-agent, et l'interdit d'ouvrir une préproduction ou un compte connecté vaut pour tout outil.
+- **Modèle, effort et tours fixés** pour les six agents : Opus pour les relectures de jugement (`landing-reviewer-design`, `landing-reviewer-cro`), Sonnet pour le reste (`landing-reviewer-brand`, `a11y-auditor`, `landing-section-builder`, `landing-researcher`) ; effort élevé, moyen pour la recherche ; `maxTurns` de 30 (relecteurs) à 80 (constructeur). Un agent arrêté par sa limite rend un résultat partiel et se reprend par `SendMessage`, comme le prévoit déjà le playbook.
+- **Verdict fermé, corrections plafonnées** : les quatre relecteurs ouvrent leur rapport sur un mot parmi quatre (`livrer`, `corriger`, `reprendre`, `recapturer`) et ne portent que huit corrections au plus, ordonnées, les constats d'une même cause regroupés ; le reste tient en une ligne sans correction. Pour `a11y-auditor`, un constat bloquant ou majeur ne sort jamais du tableau, et plus de huit après regroupement donnent `reprendre` ; sans Playwright, le verdict est `recapturer`, jamais un feu vert. Le contrôleur lit les verdicts avant d'écrire la vague de corrections (`revues.md`, `brief-corrections.md`) ; la livraison exige `livrer` d'`a11y-auditor`.
+- **Captures prises une fois par le contrôleur** : en phase 7, un seul `qa-landing.py --format json --captures <scratchpad>/captures-<slug>/` produit `qa.json` et les trois captures pleine page, passées à chaque relecteur ; aucun ne recapture. `landing-reviewer-design` inventorie la page sur les captures, dans ses propres mots, avant de lire la spec et la charte.
+
 ## 1.2.2 · 2026-10-25
 
 - **Doctrine sans cadratin** : les modèles de `modeles/marque/` et `modeles/design.md`, et la doctrine de la fixture Brivalle, portaient 64 tirets cadratins (titres, incises, références). Une doctrine fraîchement posée sortait donc 59 erreurs `dashes` à `lint-brand.py atelier/marque`, l'étape 4 de `demarrer-projet-web`. Chaque occurrence est reformulée selon sa phrase (deux-points, virgule, parenthèses, point-virgule) ; la règle qui nomme le caractère le désigne par « tiret long, U+2014 ». Les deux exemples refusés de `exemples-rejetes.md` gardent le leur : ils sont dans un bloc de code, que le linter ignore. La fixture passe de 59 erreurs à 0 ; les modèles ne gardent que leurs marqueurs `{{…}}`.

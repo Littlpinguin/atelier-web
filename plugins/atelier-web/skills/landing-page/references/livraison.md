@@ -24,6 +24,6 @@ Détail de la phase 8. Les contrôles bloquants sont en tête du `SKILL.md` ; ce
 - [ ] Un seul objectif, `data-cta="primaire"` posé, CTA primaire visible sans défiler sur mobile
 - [ ] `qa-landing.py` : zéro erreur ; avertissements restants listés et assumés
 - [ ] Quatre revues rendues, vague de corrections arbitrée et appliquée
-- [ ] `a11y-auditor` sans bloquant ni majeur ; `lint-brand.py` et `brand-check` au vert
+- [ ] `a11y-auditor` au verdict `livrer` (moment : livraison) ; `lint-brand.py` et `brand-check` au vert
 - [ ] UTM et événements en place ; `atelier/publie.md`, calendrier et inventaire à jour
 - [ ] Publication par dry-run, sans `pilotage/` ; contrôle en ligne fait

@@ -27,7 +27,7 @@ Une landing réussie se lit comme un seul récit, section par section, et amène
 
 **Contrôles bloquants de la phase 8**, tous :
 - `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py atelier/landings/<slug>/index.html` sans erreur aux trois tailles d'écran et en mouvement réduit ; les avertissements restants sont listés et assumés dans le rapport de livraison ;
-- agent `a11y-auditor` (rendu réel, axe-core, parcours clavier complet) : aucun constat bloquant ni majeur ;
+- agent `a11y-auditor`, moment livraison (mesures, code, rendu réel, parcours clavier complet) : verdict `livrer` ;
 - `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.py atelier/landings/<slug>/index.html` sans erreur ;
 - skill `brand-check` (texte et visuel) : verdict positif ;
 - aucun secret ni identifiant en dur dans le diff (l'ID de mesure vit dans la configuration).
@@ -131,9 +131,9 @@ Le contrôleur (l'agent principal), seul, prépare puis montre :
 
 ## Phase 7 : mesure, quatre revues, une vague de corrections
 
-1. **Mesure** : `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py <index.html> --format json > pilotage/qa.json`. Les relecteurs partent de ces constats au lieu de les recalculer.
-2. **Revues** : les quatre relecteurs en parallèle, dans un seul message, en lecture seule ; chacun écrit `pilotage/review-<grille>.md` (`references/revues.md`).
-3. **Arbitrage** : `pilotage/fix-wave-brief.md` depuis `templates/brief-corrections.md`. Les décisions de l'humain priment, aucun chiffre n'est inventé, une structure reçoit une seule valeur, les décisions business ou légales sont posées à l'humain en une fois.
+1. **Mesure et captures**, une seule fois : `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py <index.html> --format json --captures <scratchpad>/captures-<slug>/ > pilotage/qa.json`. Les relecteurs partent de ces constats et de ces captures, sans recalculer ni recapturer.
+2. **Revues** : les quatre relecteurs en parallèle, dans un seul message, en lecture seule ; chacun écrit `pilotage/review-<grille>.md`, ouvert par un verdict fermé (`livrer`, `corriger`, `reprendre`, `recapturer`) et limité à huit corrections (`references/revues.md`).
+3. **Arbitrage** : verdicts d'abord (`recapturer` : remesurer et relancer ce relecteur ; `reprendre` : poser la question à l'humain avant toute vague), puis `pilotage/fix-wave-brief.md` depuis `templates/brief-corrections.md`. Les décisions de l'humain priment, aucun chiffre n'est inventé, une structure reçoit une seule valeur, les décisions business ou légales sont posées à l'humain en une fois.
 4. **Corrections** : deux `landing-section-builder` en parallèle sur des fragments disjoints (sections 1 à 4, 5 à 8). Le socle (`index.html` hors marqueurs) et toute section partagée avec d'autres pages se corrigent par le contrôleur, à l'identique partout. Constats tardifs et retours de l'humain partent aux deux agents par `SendMessage`, avec la mention « ils priment sur le brief ».
 5. **Clôture** : assembler, relancer la QA jusqu'à zéro erreur, montrer la page.
 

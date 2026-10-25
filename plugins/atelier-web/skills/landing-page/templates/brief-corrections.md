@@ -11,6 +11,17 @@
 - `pilotage/review-a11y.md`
 - `pilotage/page-charter.md`
 
+## Verdicts des revues
+
+| Revue | Verdict (`livrer`, `corriger`, `reprendre`, `recapturer`) | Corrections retenues |
+|---|---|---|
+| design | | |
+| marque | | |
+| conversion | | |
+| accessibilité | | |
+
+Un `recapturer` se règle avant ce brief (mesure et captures refaites, relecteur relancé) ; un `reprendre` aussi (décision de l'humain).
+
 ## Répartition des fichiers (stricte)
 
 - **Agent A** : uniquement `pilotage/sections/<01…04>-*.html` (+ `assets/<ids>/`).
