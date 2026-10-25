@@ -10,3 +10,5 @@ node_modules/
 # rendus et captures de test : jamais dans le dépôt
 captures/
 *.log
+# résultats des runs de claude plugin eval (rapports HTML, JSON, enregistrements)
+plugins/atelier-web/evals/results/

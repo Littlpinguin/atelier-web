@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: orienter-page-tarifs
+context:
+  scaffold_script: installer.sh
