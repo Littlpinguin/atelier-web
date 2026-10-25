@@ -1,5 +1,5 @@
 ---
 type: 'tool_used'
 tool: 'Skill'
-input_match: '"skill"\s*:\s*"(?:[\w-]+:)?(?:cro-pricing|cro-page|demarrer-projet-web)"'
+input_match: '"skill"\s*:\s*"(?:[\w-]+:)?(?:cro-pricing|cro-page|demarrer-projet-web|cro)"'
 ---

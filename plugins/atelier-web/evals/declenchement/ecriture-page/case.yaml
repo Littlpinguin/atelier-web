@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: ecriture-page
+context:
+  scaffold_script: installer.sh
