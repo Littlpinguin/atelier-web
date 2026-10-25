@@ -9,8 +9,15 @@ Deux chemins d'écriture sont suivis :
 - Bash : une page assemblée par script (assemble-landing.py, insertion scriptée
   d'un fragment, copie) ne passe pas par Write. Pour une commande qui mentionne
   « atelier » (un chemin atelier/, une variable ATELIER_, un script de la
-  fabrique), le hook cherche sous atelier/ les fichiers modifiés depuis leur
-  dernier contrôle et les lint d'un seul passage.
+  fabrique) et qui peut écrire, le hook cherche sous atelier/ les fichiers
+  modifiés depuis leur dernier contrôle et les lint d'un seul passage. Une
+  commande en lecture seule (ls, cat, grep, find sans -exec ni -delete, git
+  status…, sans redirection vers un fichier) ne déclenche rien.
+
+Le même script tourne aussi en PreToolUse sur Bash : avant la première commande
+de la session, il note l'heure de départ du registre. Les fichiers déjà là à ce
+moment (projet installé, doctrine copiée, page modifiée dans un éditeur avant la
+session) ne passent donc jamais pour écrits par une commande.
 
 Se déclenche seulement si :
 - le projet a une doctrine posée (atelier/marque/tokens.json existe, ou le
@@ -22,8 +29,9 @@ Se déclenche seulement si :
 Registre de session : chaque fichier contrôlé y est noté avec sa date de
 modification, dans le dossier temporaire du système. Un fichier inchangé depuis
 son dernier contrôle ne se relint pas ; un fichier jamais vu se lint s'il a été
-modifié depuis le premier passage du hook dans la session (ou dans les dix
-dernières minutes, au premier passage).
+modifié depuis le départ du registre (premier passage en PreToolUse, ou première
+écriture par Write ou Edit). Si le passage en PreToolUse manque, le départ
+retombe sur les dix dernières minutes.
 
 Le hook ne bloque jamais une écriture : linter absent, en échec, trop lent ou
 avec une sortie inattendue, il retombe sur le rappel simple et sort toujours 0.
@@ -33,6 +41,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -121,6 +130,70 @@ def noter_controles(payload: dict, registre: dict, chemins: list[Path]) -> None:
 def commande_vise_atelier(payload: dict) -> bool:
     commande = (payload.get("tool_input") or {}).get("command", "") or ""
     return bool(re.search(r"atelier", commande, re.IGNORECASE))
+
+
+COMMANDES_LECTURE = {
+    "ls", "cat", "head", "tail", "less", "more", "grep", "egrep", "fgrep", "rg", "find", "wc", "stat",
+    "file", "du", "tree", "pwd", "cd", "echo", "printf", "sort", "uniq", "cut", "tr", "diff", "cmp",
+    "jq", "which", "test", "[", "true", "basename", "dirname", "realpath", "readlink", "sed", "awk",
+    "column", "nl", "od", "xxd", "shasum", "md5", "git",
+}
+GIT_LECTURE = {"status", "log", "diff", "show", "ls-files", "grep", "blame", "rev-parse"}
+FIND_ECRITURE = {"-exec", "-execdir", "-ok", "-okdir", "-delete", "-fprint", "-fprint0", "-fprintf", "-fls"}
+REDIRECTIONS_SANS_FICHIER = re.compile(r"\d?>&\d|&?\d?>\s*/dev/null")
+
+
+def lecture_seule(commande: str) -> bool:
+    """Vrai si chaque segment de la commande ne fait que lire. Au moindre doute, faux."""
+    if not commande.strip() or "$(" in commande or "`" in commande:
+        return False
+    nettoyee = REDIRECTIONS_SANS_FICHIER.sub(" ", commande)
+    if ">" in nettoyee:
+        return False
+    for segment in re.split(r"\|\||&&|[;|&\n]", nettoyee):
+        segment = segment.strip().strip("(){} ")
+        if not segment:
+            continue
+        try:
+            mots = shlex.split(segment)
+        except ValueError:
+            return False
+        while mots and re.match(r"^[A-Za-z_][A-Za-z0-9_]*=", mots[0]):
+            mots = mots[1:]
+        if mots and mots[0] in ("for", "done", "fi"):
+            continue
+        while mots and mots[0] in ("do", "then", "else", "if", "!"):
+            mots = mots[1:]
+        if mots and mots[0] == "rtk":
+            mots = mots[2:] if len(mots) > 1 and mots[1] == "proxy" else mots[1:]
+        if not mots:
+            continue
+        nom = os.path.basename(mots[0])
+        if nom not in COMMANDES_LECTURE:
+            return False
+        if nom == "find" and FIND_ECRITURE.intersection(mots):
+            return False
+        if nom == "sed" and any(m.startswith("-i") or m.startswith("--in-place") for m in mots[1:]):
+            return False
+        if nom == "git":
+            reste, i = mots[1:], 0
+            while i < len(reste) and reste[i].startswith("-"):
+                i += 2 if reste[i] in ("-C", "-c") else 1
+            if i >= len(reste) or reste[i] not in GIT_LECTURE:
+                return False
+    return True
+
+
+def noter_depart(payload: dict, projet: Path) -> None:
+    """PreToolUse : note le départ du registre avant la première commande ; ne lève jamais."""
+    try:
+        if not doctrine_posee(projet):
+            return
+        registre = lire_registre(payload)
+        if registre.get("debut") is None:
+            noter_controles(payload, registre, [])
+    except Exception:
+        pass
 
 
 def fichiers_modifies(projet: Path, registre: dict) -> list[Path]:
@@ -212,8 +285,13 @@ def main() -> int:
     if not isinstance(payload, dict):
         return 0
     projet = racine_projet(payload)
+    if payload.get("hook_event_name") == "PreToolUse":
+        if payload.get("tool_name") == "Bash":
+            noter_depart(payload, projet)
+        return 0
     if payload.get("tool_name") == "Bash":
-        if not commande_vise_atelier(payload) or not doctrine_posee(projet):
+        commande = (payload.get("tool_input") or {}).get("command", "") or ""
+        if not commande_vise_atelier(payload) or lecture_seule(commande) or not doctrine_posee(projet):
             return 0
         registre = lire_registre(payload)
         modifies = fichiers_modifies(projet, registre)

@@ -1,6 +1,18 @@
 {
-  "description": "Atelier web : lint de marque et rappel du brand-check après l'écriture d'une page ou d'un texte sous atelier/, par Write, Edit ou une commande Bash qui vise l'atelier (page assemblée par script). Inactif tant que le projet n'a pas de doctrine atelier/marque/tokens.json ; ne bloque jamais.",
+  "description": "Atelier web : lint de marque et rappel du brand-check après l'écriture d'une page ou d'un texte sous atelier/, par Write, Edit ou une commande Bash qui vise l'atelier et peut écrire (page assemblée par script). Le passage en PreToolUse note seulement l'heure de départ de la session. Inactif tant que le projet n'a pas de doctrine atelier/marque/tokens.json ; ne bloque jamais.",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/rappel-brand-check.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit|Bash",
