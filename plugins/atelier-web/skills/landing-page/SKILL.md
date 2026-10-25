@@ -5,22 +5,58 @@ description: "Playbook de production d'une landing page de conversion pour la ma
 
 # landing-page : produire une landing page de haut niveau pour la marque du projet
 
-Une landing réussie se lit comme un seul récit, section par section, et amène son visiteur à une seule action. Ce playbook donne la méthode et le système qui y mènent : il ne donne ni un ordre de sections à recopier ni une apparence. Chaque landing a sa propre direction, sinon toutes les pages finissent pareilles.
+Une landing réussie se lit comme un seul récit, section par section, et amène son visiteur à une seule action. Ce playbook donne la méthode et le système qui y mènent, ni un ordre de sections à recopier ni une apparence : chaque landing a sa propre direction, sinon toutes les pages finissent pareilles.
 
 **La barre.** Une page faite de cartes blanches empilées qui respecte le plan et passe ses tests reste refusée. Ce qu'on vise : des visuels de marque, un hero construit autour d'un objet fort, un ou deux moments de mise en scène au défilement, une alternance de sections claires et de bandes sombres, et partout de la preuve concrète.
 
-## Contenu du skill
+## Invariants (à relire en reprenant une session)
 
-| Fichier | Rôle |
+**Ordre des phases.** Aucune ne se saute ; un modèle de la fabrique raccourcit les phases 2, 4 et 5, il n'en supprime aucune.
+
+| Phase | Produit | Validation avant la suite |
+|---|---|---|
+| 0. Doctrine et matière réelle | lecture de `atelier/marque/` ; `landing-researcher` lancé en arrière-plan | doctrine complète, sinon arrêt et skill `demarrer-projet-web` |
+| 1. Cadrage en une salve | `atelier/briefs/<slug>.md` | le responsable de la marque valide le brief |
+| 2. Directions | 2 ou 3 maquettes nommées par leur objet signature | l'humain choisit |
+| 3. Spec | `pilotage/spec.md`, textes définitifs clé par clé | l'humain valide ; la spec est figée pendant la construction |
+| 4. Socle et charte | `index.html` assemblé, `pilotage/page-charter.md` | le hero est montré et validé avant le reste |
+| 5. Construction parallèle | un fragment par builder, le contrôleur seul assemble | QA après chaque assemblage |
+| 6. Montrer, appliquer | chemin de la page et points à regarder, après chaque étape | chaque retour écrit au § 9 de la charte |
+| 7. Mesure, revues, corrections | `pilotage/qa.json`, quatre `review-*.md`, `fix-wave-brief.md` | QA à zéro erreur après la vague |
+| 8. Livraison | contrôles bloquants, enregistrement, publication | go explicite de l'humain pour chaque commit, push et publication |
+
+**Contrôles bloquants de la phase 8**, tous :
+- `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py atelier/landings/<slug>/index.html` sans erreur aux trois tailles d'écran et en mouvement réduit ; les avertissements restants sont listés et assumés dans le rapport de livraison ;
+- agent `a11y-auditor` (rendu réel, axe-core, parcours clavier complet) : aucun constat bloquant ni majeur ;
+- `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.py atelier/landings/<slug>/index.html` sans erreur ;
+- skill `brand-check` (texte et visuel) : verdict positif ;
+- aucun secret ni identifiant en dur dans le diff (l'ID de mesure vit dans la configuration).
+
+**Règles dures.**
+- **Contenu** : aucun chiffre, client, logo, témoignage, compteur ni fait sur une personne inventé. Un compteur sans vrai chiffre reste vide.
+- **Une page, un objectif** : tous les boutons mènent à la conversion ou à l'étape de choix qui y conduit. Pas de navigation complète : logo et CTA suffisent. Le CTA primaire porte `data-cta="primaire"`.
+- **Urgence honnête** : vraies places, vraie date de clôture, comptées en jours. Jamais de compte à rebours en secondes.
+- **Fichiers** : un fichier, un propriétaire. Aucun agent n'écrit dans un fichier qu'on ne lui a pas confié ; le contrôleur seul assemble et commite.
+- **Actions refusées** : une action refusée à un agent (suppression, navigation, écriture) n'est refaite par personne sans l'accord de l'humain.
+- **Outils tiers** : toute écriture dans un outil de vente, d'emailing ou de calendrier passe par un dry-run montré, puis un go.
+- **Mouvement** : `prefers-reduced-motion: reduce` affiche tout, d'emblée, et rien ne bouge.
+
+**Reprendre** après une compaction ou une limite d'usage : relire `pilotage/` (spec, charte et son § 9, rapports, revues, `fix-wave-brief.md`) et `git log` pour situer la phase ; reprendre un agent coupé par `SendMessage`, jamais par un agent neuf.
+
+**Chemins.** Scripts dans `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/` (`assemble-landing.py`, `qa-landing.py`, `controle-fonds.py`, `lint-brand.py`), lancés depuis la racine du projet. Références du skill, à lire au moment indiqué :
+
+| Fichier | Quand |
 |---|---|
-| `references/charte.md` | Modèle de charte de page, copié au démarrage dans `pilotage/page-charter.md` et donné à **chaque** agent : grille, en-têtes, matières, mouvement, interdits, conversion, technique, décisions de l'humain (§ 9, qui prime) |
-| `references/sections.md` | Catalogue des mécaniques de section éprouvées : objection servie, quand, pourquoi, anti-modèles, mouvement réduit. Leur implémentation : la bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` (un fragment par mécanique, voir son `README.md`, et le catalogue généré depuis `catalogue.json`) |
-| `references/pieges.md` | Pièges techniques, de session et de marque, avec leur parade, plus les règles tirées des retours d'arbitrage |
-| `references/inspiration.md` | Méthode de recherche : benchmark de pages qui convertissent, galeries publiques, filtre de marque |
-| `references/revues.md` | Lancer les quatre revues et arbitrer leurs rapports |
-| `templates/spec.md` | Squelette de spec de landing |
-| `templates/brief-section.md` | Brief d'un agent de section |
-| `templates/brief-corrections.md` | Brief d'arbitrage et de vague de corrections |
+| `references/charte.md` | phase 4 : copiée dans `pilotage/page-charter.md` et donnée à **chaque** agent ; son § 9 (décisions de l'humain) prime sur tout |
+| `references/sections.md` | phases 3 à 5 : mécaniques de section, objection servie, anti-modèles, mouvement réduit |
+| `references/assemblage.md` | phases 4 à 6 : arborescence, ce que pose l'assembleur, insertion scriptée des fragments, micro-retouches |
+| `references/inspiration.md` | phase 0 : méthode de recherche, galeries, filtre de marque |
+| `references/pieges.md` | toutes phases : pièges techniques, de session et de marque, avec leur parade |
+| `references/revues.md` | phase 7 : lancer les quatre revues, arbitrer |
+| `references/mesure.md` | phases 3 et 8 : UTM et événements |
+| `references/livraison.md` | phase 8 : budget, publication, checklist de livraison |
+| `references/skills-orchestrees.md` | phases 2 à 8 : rôle de chaque skill appelée et repli si elle manque |
+| `templates/spec.md`, `templates/brief-section.md`, `templates/brief-corrections.md` | phases 3, 5 et 7 |
 
 ## Agents (`${CLAUDE_PLUGIN_ROOT}/agents/`)
 
@@ -28,221 +64,83 @@ Une landing réussie se lit comme un seul récit, section par section, et amène
 |---|---|---|
 | `landing-researcher` | 0, en arrière-plan | Benchmark de pages qui convertissent et recherche visuelle, consolidés dans `pilotage/research-notes.md`. Ne code rien |
 | `landing-section-builder` | 4 à 7 | Construit ou corrige une section (ou un lot) dans les seuls fichiers qu'on lui confie. Ne commite jamais |
-| `landing-reviewer-design` | 7 | Cohérence webdesign : en-têtes, rythme, matières, typographie, mouvement, responsive, boutons |
-| `landing-reviewer-brand` | 7 | Marque : voix et anti-style-IA, ton, visuel contre `tokens.json`, preuve, audience, divulgation IA, droits |
-| `landing-reviewer-cro` | 7 | Conversion : récit et objections, CTA, bloc de conversion, urgence honnête, preuve, mesure |
-| `landing-reviewer-a11y` | 7 | WCAG 2.2 AA en 14 points, sur la QA mesurée et le code |
+| `landing-reviewer-design` / `-brand` / `-cro` / `-a11y` | 7 | Webdesign ; marque ; conversion ; WCAG 2.2 AA en 14 points. En lecture seule : ils n'écrivent que leur rapport |
+| `a11y-auditor` | 8 | Rendu réel, axe-core, parcours clavier |
 
-Les quatre relecteurs sont en lecture seule : ils n'écrivent que leur rapport. Dans une session où le plugin est actif, les agents s'appellent `atelier-web:<nom>` (par exemple `atelier-web:landing-researcher`). Si un type d'agent n'est pas reconnu (registre chargé au démarrage), dispatcher un agent généraliste dont le prompt commence par « Lis et applique `${CLAUDE_PLUGIN_ROOT}/agents/<nom>.md` ».
-
-## Où vit quoi
-
-```
-<projet>/atelier/
-├── marque/                               ← doctrine (skill demarrer-projet-web) : tokens.json, tokens.css, voice.md…
-├── briefs/<slug>.md                      ← brief validé (phase 1)
-├── landings/<slug>/
-│   ├── index.html                        ← la page : HTML + CSS + JS inline, livrable unique
-│   ├── assets/                           ← images, polices locales, données
-│   └── pilotage/                         ← la fabrication, versionnée, jamais déployée
-│       ├── spec.md                       ← spec validée (phase 3)
-│       ├── page.json                     ← spec d'assemblage (sections et slots)
-│       ├── page-charter.md               ← charte de la page (copie de references/charte.md)
-│       ├── research-notes.md             ← recherche consolidée (landing-researcher)
-│       ├── sections/<nn>-<id>.html       ← un fragment par section, propriété d'un seul agent
-│       ├── reports/<nn>-<id>.md          ← rapports des builders
-│       ├── review-<grille>.md            ← rapports des revues
-│       └── fix-wave-brief.md             ← arbitrage de la vague de corrections
-└── publie.md                             ← registre des pages publiées
-
-${CLAUDE_PLUGIN_ROOT}/fabrique/           ← dans le plugin, en lecture seule
-├── templates/sections/<mécanique>.html   ← bibliothèque de sections (fragments à slots) + catalogue.json
-├── templates/assets/                     ← tokens.css neutre, base.css, moteurs reveal / scroll / offer / forms / tracking
-├── templates/landing-pages/              ← 6 modèles de landing (specs YAML + pages assemblées)
-├── templates/lead-magnets/               ← 10 outils interactifs avec capture
-└── scripts/
-    ├── assemble-landing.py               ← spec (pilotage/page.json) → index.html autonome
-    ├── qa-landing.py                     ← QA mesurable (phases 5 à 8)
-    ├── controle-fonds.py                 ← continuité des fonds entre sections
-    └── lint-brand.py                     ← linter de marque déterministe
-```
-
-Les scripts se lancent **depuis la racine du projet** : ils y lisent la marque (`atelier/marque/`, ou `ATELIER_MARQUE`) et y écrivent la page. Dans un projet sous framework (Next.js, Astro…), la page assemblée sert de maquette fidèle, puis se porte en composants avec les mêmes jetons.
+Avec le plugin actif, les agents s'appellent `atelier-web:<nom>` ; si un type n'est pas reconnu (registre chargé au démarrage), dispatcher un agent généraliste dont le prompt commence par « Lis et applique `${CLAUDE_PLUGIN_ROOT}/agents/<nom>.md` ».
 
 ## Gabarit de données ou page sur mesure
 
-- **Gabarit de données** : une spec qui assemble des sections de la bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` (compositions de départ par type de page dans son `README.md`, rendu de chaque section dans le catalogue, généré par `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py ${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/catalogue.json` vers `atelier/catalogue-sections.html`), ou un modèle complet de `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/landing-pages/`. On remplit les slots (textes, chiffres, visuels, endpoint) et on assemble avec `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py`. À choisir pour une offre de type courant, un délai court, ou une série de pages de même forme (pages partenaires, pages locales, éditions successives d'un événement). Le modèle ne dispense de rien : brief, charte, QA, revues de marque et de conversion, brand-check. Les phases 2, 4 et 5 se réduisent à l'adaptation du modèle.
-- **Page sur mesure** : tout le playbook. À choisir pour une offre phare, un lancement, un ticket élevé, une page qui doit porter sa propre signature visuelle. Les sections courantes viennent quand même de la bibliothèque ; une section qu'on crée ici et qui servira ailleurs y entre ensuite comme fragment (`${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/README.md` § 7, règle « réutiliser avant de créer »).
+- **Gabarit** : une spec qui assemble des sections de la bibliothèque (compositions de départ dans `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/README.md`, catalogue visuel généré depuis `catalogue.json`) ou un des six modèles de `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/landing-pages/`, slots remplis puis assemblés. Pour une offre courante, un délai court, une série de pages de même forme. Le modèle ne dispense ni du brief, ni de la charte, ni de la QA, ni des revues de marque et de conversion, ni du brand-check.
+- **Sur mesure** : tout le playbook, pour une offre phare, un lancement, un ticket élevé, une signature visuelle propre. Les sections courantes viennent quand même de la bibliothèque ; une section créée ici qui servira ailleurs y entre comme fragment (« réutiliser avant de créer »).
 
-Dans les deux cas, une section qui figure sur deux pages est **la même section** : même structure, mêmes jetons, au pixel près. Elle vient du même fragment de la bibliothèque, on ne la redessine pas.
+Une section qui figure sur deux pages est **la même section** : même fragment, mêmes jetons, au pixel près.
 
 ## Phase 0 : doctrine et matière réelle
 
-1. **Doctrine**, jamais de mémoire :
-   - `atelier/marque/checklist-pre-composition.md`, `atelier/marque/voice.md`, `atelier/marque/anti-ai-writing-style.md` ;
-   - `atelier/marque/messaging-framework.md` (chiffres clés et hiérarchie de preuves), `atelier/marque/personas.md` ;
-   - `atelier/marque/style-guide.md` et `atelier/marque/tokens.json` (valeurs exactes de couleur, police, rayon) ;
-   - `atelier/marque/design-anti-generique.md` (marqueurs du look IA, workflow en deux passes) ;
-   - `atelier/marque/divulgation-ia.md` et `atelier/marque/droits.md` (visuels générés, logos tiers, personnes) ;
-   - `atelier/marque/exemples-rejetes.md` (ce que la marque a déjà refusé) ;
-   - le `CLAUDE.md` du projet (§ Atelier web) (conventions techniques, publication).
-   Si un de ces fichiers manque ou porte encore des `{{...}}`, arrêter et lancer la skill `demarrer-projet-web` (atelier-web), qui pose la doctrine du projet.
-2. **Matière réelle** : le document de l'offre (programme, proposition commerciale, fiche produit), les chiffres des rapports du projet, le calendrier éditorial du projet s'il existe, les assets de `atelier/marque/assets/` et de leur catalogue, les pages déjà produites dans `atelier/landings/`. L'intel de `00-intel/` est confidentielle : on reformule, et aucun fait sur une personne n'en vient.
+1. **Doctrine**, jamais de mémoire : dans `atelier/marque/`, `checklist-pre-composition.md`, `voice.md`, `anti-ai-writing-style.md`, `messaging-framework.md` (chiffres et hiérarchie de preuves), `personas.md`, `style-guide.md` et `tokens.json` (valeurs exactes), `design-anti-generique.md`, `divulgation-ia.md`, `droits.md`, `exemples-rejetes.md` ; puis le `CLAUDE.md` du projet (§ Atelier web : conventions, publication). Un fichier manquant ou qui porte encore des `{{...}}` : arrêter et lancer `demarrer-projet-web`.
+2. **Matière réelle** : document de l'offre (programme, proposition, fiche produit), chiffres des rapports du projet, calendrier éditorial s'il existe, assets de `atelier/marque/assets/` et leur catalogue, pages déjà produites dans `atelier/landings/`. Une intel confidentielle se reformule, et aucun fait sur une personne n'en vient.
 3. **Nom de l'offre** : vérifier que le nom ou la marque affichés ont le droit de porter un prix et des dates (marque tierce, partenaire, programme officiel).
-4. **Recherche** : lancer tout de suite `landing-researcher` en arrière-plan, avec l'offre, l'audience et les besoins de section pressentis. Sa synthèse arrive pendant le cadrage.
+4. **Recherche** : lancer tout de suite `landing-researcher` en arrière-plan, avec l'offre, l'audience et les besoins de section pressentis.
 
 ## Phase 1 : cadrage, en une seule salve
 
-Poser toutes les questions bloquantes en une fois (outil de question à choix s'il existe), chacune avec l'option recommandée en premier et la conséquence de chaque option :
+Toutes les questions bloquantes en une fois (outil de question à choix s'il existe), chacune avec l'option recommandée en premier et la conséquence de chaque option :
 
-1. **Audience et accès** : page publique indexée (balise `robots`, JSON-LD, liens depuis le site) ou lien direct en `noindex`.
-2. **Objectif unique et action de conversion** : réservation, prise de rendez-vous, formulaire, achat, téléchargement, appel. Une page, un objectif, un CTA primaire.
-3. **Circuit de vente** : qui inscrit, qui facture, qui encaisse, qui envoie la confirmation. Ce choix réécrit le bloc de conversion, les étapes et la FAQ : il se tranche avant d'écrire ces textes.
+1. **Audience et accès** : page publique indexée (`robots`, JSON-LD, liens depuis le site) ou lien direct en `noindex`.
+2. **Objectif unique et action de conversion** : réservation, rendez-vous, formulaire, achat, téléchargement, appel.
+3. **Circuit de vente** : qui inscrit, facture, encaisse, confirme. Il réécrit le bloc de conversion, les étapes et la FAQ : il se tranche avant ces textes.
 4. **Chiffres affichés** : places, prix (HT ou TTC), dates, remises, échéance. Signaler chaque écart entre la demande et le document source : le document fait foi.
-5. **Preuves disponibles** : vraies personnes (avec leur accord pour le portrait), vrais documents, vrais chiffres, vrais témoignages. Ce qui manque ne s'invente pas.
+5. **Preuves disponibles** : vraies personnes (avec leur accord pour le portrait), vrais documents, chiffres, témoignages. Ce qui manque ne s'invente pas.
 6. **Visuels** : réutiliser la bibliothèque, ou générer (outil d'images du projet), avec le coût de chaque option.
-7. **Source de trafic et mesure** : d'où viennent les visiteurs (message match), suivi d'audience actif ou non (`CLAUDE.md` du projet, § Atelier web).
+7. **Source de trafic et mesure** : d'où viennent les visiteurs (message match), suivi d'audience actif ou non.
 
-Un point ouvert se formule dans les mots de l'humain : ce que voit le visiteur, et pourquoi ça compte. Jamais dans ceux de l'outil.
-
-Les réponses vont dans `atelier/briefs/<slug>.md` (objectif, cible et niveau de conscience, offre, source de trafic, preuves, métrique de succès). le responsable de la marque valide le brief avant la suite.
+Un point ouvert se formule dans les mots de l'humain : ce que voit le visiteur, et pourquoi ça compte. Les réponses vont dans `atelier/briefs/<slug>.md` (objectif, cible et niveau de conscience, offre, trafic, preuves, métrique de succès).
 
 ## Phase 2 : directions
 
-Montrer 2 ou 3 directions visuelles en maquettes rapides (widget, capture ou page jetable dans le scratchpad), chacune nommée par son **objet signature** : l'élément dont on se souviendra. En recommander une. Écarter toute direction qui reprend la signature d'une autre page de la marque. Appliquer le workflow en deux passes de `atelier/marque/design-anti-generique.md` § 3 (plan de jetons, puis auto-critique contre le brief) et la skill `design-direction`, en injectant les jetons de `atelier/marque/tokens.json` : la marque prime, la skill décide des compositions, jamais des couleurs ni des polices.
-
-L'humain choisit. Détailler ensuite la conception dans la conversation et la faire valider.
+Montrer 2 ou 3 directions en maquettes rapides (widget, capture ou page jetable dans le scratchpad), chacune nommée par son **objet signature**, l'élément dont on se souviendra ; en recommander une ; écarter toute direction qui reprend la signature d'une autre page de la marque. Appliquer le workflow en deux passes de `atelier/marque/design-anti-generique.md` § 3 (plan de jetons, puis auto-critique contre le brief) et la skill `design-direction`, sous les jetons de `tokens.json` : la marque prime, la skill décide des compositions, jamais des couleurs ni des polices. Une fois la direction choisie, détailler la conception dans la conversation et la faire valider.
 
 ## Phase 3 : spec
 
-Écrire `pilotage/spec.md` à partir de `templates/spec.md` :
-
-- le cadre (réponses de la phase 1, avec leur source) ;
-- la direction retenue et son objet signature ;
-- le récit : une ligne par section, l'objection du visiteur qu'elle traite, la mécanique (`references/sections.md`), son moment orchestré, son fond ;
-- les comportements : état de l'offre (ouverte, liste d'attente, close) piloté par **une seule configuration** en tête du script, porte de choix éventuelle, liens profonds, échéance, événements de mesure ;
-- **les textes définitifs, clé par clé**, dans chaque langue de la marque. La structure CRO vient de la skill `cro-page`, le texte de la skill `copywriting` (puis `copy-editing` si l'enjeu le justifie), chaque chiffre de `messaging-framework.md` ou d'une source citée.
-
-La spec est figée pendant chaque étape de construction. Si elle doit changer, prévenir les agents en cours.
+`pilotage/spec.md` depuis `templates/spec.md` : le cadre (réponses de la phase 1 et leur source) ; la direction et son objet signature ; le récit, une ligne par section (objection traitée, mécanique de `references/sections.md`, moment orchestré, fond) ; les comportements (état de l'offre, ouverte, liste d'attente ou close, piloté par **une seule configuration** en tête du script ; porte de choix ; liens profonds ; échéance ; événements de `references/mesure.md`) ; **les textes définitifs, clé par clé**, dans chaque langue de la marque. Structure CRO par `cro-page`, texte par `copywriting` (puis `copy-editing` si l'enjeu le justifie), chaque chiffre de `messaging-framework.md` ou d'une source citée. Si la spec doit changer en cours de construction, prévenir les agents en cours.
 
 ## Phase 4 : poser avant de paralléliser
 
-Le contrôleur (l'agent principal), seul, prépare ce qui suit, puis le montre :
+Le contrôleur (l'agent principal), seul, prépare puis montre :
 
-1. **`index.html` socle**, assemblé depuis une spec `pilotage/page.json` par `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py pilotage/page.json` (format, slots et garde-fous : `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/README.md`). L'assembleur pose le `<head>` complet (titre, description, `robots`, Open Graph, favicon, `<meta name="viewport">`), les jetons (`templates/assets/tokens.css`, généré depuis `atelier/marque/tokens.json`), le CSS commun de la charte (`templates/assets/base.css` : base, en-tête de section, famille de cartes, boutons, focus, bandes sombres), **un seul moteur d'apparition** (`reveal.js` : attributs `data-reveal`, opacité et position, coupé par `prefers-reduced-motion`), le relais de mesure (`tracking.js` : `data-track` vers `dataLayer` / `gtag`, UTM) et la configuration de l'offre (`offer` de la spec, lue par `offer.js`). Les sections courantes y entrent déjà remplies depuis la bibliothèque.
-2. **Une paire de marqueurs par section**, à sa place définitive. Une section sur mesure prend d'abord le fragment `_placeholder` (section provisoire : id, `aria-labelledby`, titre), pour que la page s'affiche à chaque étape :
-   ```html
-   <!-- section:hero -->
-   <section id="hero" aria-labelledby="hero-titre">…</section>
-   <!-- /section:hero -->
-   ```
-3. `pilotage/page-charter.md`, copié depuis `references/charte.md` et complété (§ 9 : les décisions déjà prises), et `pilotage/research-notes.md` à côté.
+1. **`index.html` socle**, assemblé depuis `pilotage/page.json` par `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py pilotage/page.json` : `<head>`, jetons, CSS de la charte, un seul moteur d'apparition, relais de mesure, configuration de l'offre, sections courantes remplies (`references/assemblage.md`) ;
+2. **une paire de marqueurs par section** à sa place définitive (`<!-- section:<id> -->` … `<!-- /section:<id> -->`), le fragment `_placeholder` pour une section sur mesure à venir ;
+3. `pilotage/page-charter.md`, copié de `references/charte.md` et complété (§ 9 : décisions déjà prises), et `pilotage/research-notes.md` à côté.
 
-**Le hero d'abord.** Le construire, le montrer à l'humain et le faire valider avant de lancer le reste : un hero raté entraîne toute la page.
+**Le hero d'abord** : le construire, le montrer et le faire valider avant le reste. Un hero raté entraîne toute la page.
 
 ## Phase 5 : construction en parallèle
 
-- **Un agent par section** : un `landing-section-builder` propriétaire d'un seul fragment, `pilotage/sections/<nn>-<id>.html` (la `<section>`, son `<style>` préfixé par `#<id>`, son `<script>` éventuel enfermé dans une fonction). Personne d'autre n'écrit dans ce fichier, et aucun builder n'écrit dans `index.html`. Les lancer tous dans un seul message, chacun avec un brief tiré de `templates/brief-section.md`.
-- **Assemblage** : à réception d'un rapport, le contrôleur remplace dans la spec l'entrée `_placeholder` de la section par `{"file": "sections/<nn>-<id>.html", "id": "<id>"}` et réassemble : l'assembleur insère le fragment tel quel entre ses marqueurs. Si la page a été retouchée à la main depuis le dernier assemblage, l'assembleur refuse de l'écraser (empreinte dans `<meta name="generator">`) : le contrôleur insère alors le fragment avec un script qui vérifie que chaque marqueur existe une seule fois :
-  ```python
-  import re, pathlib
-  page = pathlib.Path("atelier/landings/<slug>/index.html")
-  html = page.read_text(encoding="utf-8")
-  for frag in sorted(page.parent.glob("pilotage/sections/*.html")):
-      sid = frag.stem.split("-", 1)[1]
-      debut, fin = f"<!-- section:{sid} -->", f"<!-- /section:{sid} -->"
-      assert html.count(debut) == 1 and html.count(fin) == 1, sid
-      motif = re.compile(re.escape(debut) + r".*?" + re.escape(fin), re.S)
-      html = motif.sub(lambda _: f"{debut}\n{frag.read_text(encoding='utf-8').strip()}\n{fin}", html)
-  page.write_text(html, encoding="utf-8")
-  ```
-  Puis `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py <index.html>` et un commit, sur go de l'humain si la session l'exige.
-- **Recherche visuelle** : elle se fait en amont (`landing-researcher`), parce que la navigation des agents de section sur les galeries peut leur être refusée. Les builders lisent `research-notes.md`.
-- **Limite d'usage** : si des agents sont coupés, assembler et commiter ce qui est fini, puis reprendre chacun par `SendMessage` avec l'endroit où il s'est arrêté et la consigne « relis d'abord l'état actuel de ton fichier ». Ne jamais relancer un agent neuf qui repartirait de zéro.
+- **Un agent par section** : un `landing-section-builder` propriétaire d'un seul fragment, `pilotage/sections/<nn>-<id>.html` (la `<section>`, son `<style>` préfixé par `#<id>`, son `<script>` éventuel enfermé dans une fonction). Aucun builder n'écrit dans `index.html`. Les lancer tous dans un seul message, chacun avec un brief tiré de `templates/brief-section.md`.
+- **Assemblage** : à chaque rapport, le contrôleur branche le fragment dans la spec et réassemble ; si la page a été retouchée à la main, insertion scriptée avec contrôle des marqueurs (`references/assemblage.md`). Puis `qa-landing.py` et un commit, sur go de l'humain si la session l'exige.
+- **Recherche visuelle** : faite en amont par `landing-researcher` (la navigation peut être refusée aux agents de section) ; les builders lisent `research-notes.md`.
+- **Limite d'usage** : si des agents sont coupés, assembler et commiter ce qui est fini, puis reprendre chacun par `SendMessage` avec l'endroit où il s'est arrêté et la consigne « relis d'abord l'état actuel de ton fichier ».
 
 ## Phase 6 : montrer, écouter, appliquer
 
-- **Montrer** après chaque étape : donner à l'humain le chemin ou l'URL locale de la page (serveur statique lancé depuis la racine du dépôt si la page lit `atelier/marque/assets/`), avec la liste des points à regarder, puis enchaîner l'étape suivante sans attendre.
-- **Appliquer un retour** : il s'applique, puis s'écrit au § 9 de `pilotage/page-charter.md`. S'il vaut pour toutes les landings, proposer de le reporter dans la doctrine (`atelier/marque/style-guide.md`, `atelier/marque/exemples-rejetes.md`) ou dans ce skill.
-- **Micro-retouches** : le contrôleur les fait lui-même, par un remplacement scripté qui vérifie la chaîne d'origine (`assert texte in html`), puis QA et commit.
+- **Montrer** après chaque étape : le chemin ou l'URL locale de la page (serveur statique depuis la racine du dépôt si la page lit `atelier/marque/assets/`), avec la liste des points à regarder, puis enchaîner sans attendre.
+- **Appliquer un retour**, puis l'écrire au § 9 de `pilotage/page-charter.md`. S'il vaut pour toutes les landings, proposer de le reporter dans la doctrine (`style-guide.md`, `exemples-rejetes.md`) ou dans ce skill.
+- **Micro-retouches** : par le contrôleur, en remplacement scripté qui vérifie la chaîne d'origine, puis QA et commit.
 - **Ce que les revues ne voient pas** : un en-tête collé, un fond qui masque la matière, un épinglage absent, une page qui « fait template ». L'œil de l'humain reste la dernière porte.
 
 ## Phase 7 : mesure, quatre revues, une vague de corrections
 
 1. **Mesure** : `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py <index.html> --format json > pilotage/qa.json`. Les relecteurs partent de ces constats au lieu de les recalculer.
-2. **Revues** : lancer les quatre relecteurs en parallèle, dans un seul message, en lecture seule. Chacun écrit `pilotage/review-<grille>.md` (`references/revues.md`).
-3. **Arbitrage** : le contrôleur écrit `pilotage/fix-wave-brief.md` à partir de `templates/brief-corrections.md`. Les décisions de l'humain priment, aucun chiffre n'est inventé, une structure reçoit une seule valeur, les décisions business ou légales sont posées à l'humain en une fois.
-4. **Corrections** : deux `landing-section-builder` en parallèle, sur des fragments disjoints (par exemple les sections 1 à 4 pour l'un, 5 à 8 pour l'autre). Le socle (`index.html` hors marqueurs) et toute section partagée avec d'autres pages se corrigent par le contrôleur, à l'identique partout. Les constats tardifs et les retours de l'humain partent aux deux agents par `SendMessage`, avec la mention « ils priment sur le brief ».
+2. **Revues** : les quatre relecteurs en parallèle, dans un seul message, en lecture seule ; chacun écrit `pilotage/review-<grille>.md` (`references/revues.md`).
+3. **Arbitrage** : `pilotage/fix-wave-brief.md` depuis `templates/brief-corrections.md`. Les décisions de l'humain priment, aucun chiffre n'est inventé, une structure reçoit une seule valeur, les décisions business ou légales sont posées à l'humain en une fois.
+4. **Corrections** : deux `landing-section-builder` en parallèle sur des fragments disjoints (sections 1 à 4, 5 à 8). Le socle (`index.html` hors marqueurs) et toute section partagée avec d'autres pages se corrigent par le contrôleur, à l'identique partout. Constats tardifs et retours de l'humain partent aux deux agents par `SendMessage`, avec la mention « ils priment sur le brief ».
 5. **Clôture** : assembler, relancer la QA jusqu'à zéro erreur, montrer la page.
 
 ## Phase 8 : livraison
 
-1. **Contrôles bloquants** :
-   - `qa-landing.py` sans erreur aux trois tailles d'écran et en mouvement réduit ; les avertissements restants sont listés et assumés dans le rapport de livraison ;
-   - agent `a11y-auditor` (rendu réel, axe-core, parcours clavier complet) : aucun constat bloquant ni majeur ;
-   - `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/lint-brand.py atelier/landings/<slug>/index.html` sans erreur ;
-   - skill `brand-check` (texte et visuel) : verdict positif ;
-   - aucun secret ni identifiant en dur dans le diff (l'ID de mesure vit dans la configuration, jamais écrit au hasard).
-2. **Budget** : HTML, CSS et JS inline sous 200 Ko ; images en WebP dimensionnées à l'usage, `loading="lazy"` hors hero ; polices en `font-display: swap` ; aucun script bloquant ; cible LCP < 2,5 s.
-3. **Enregistrement** : UTM et métrique de succès dans `atelier/publie.md`, calendrier éditorial à jour s'il existe.
-4. **Publication** : suivre le `CLAUDE.md` du projet (§ Atelier web) § Publication (dry-run obligatoire), sans le dossier `pilotage/`. Contrôler ensuite la page en ligne : HTTP 200, balise `robots` conforme au brief, rendu identique à la version validée.
-5. **Commit, push, publication** : seulement sur go explicite de l'humain, à chaque fois.
-
-## Mesure : UTM et événements
-
-**UTM** (toute URL diffusée vers la page, kebab-case, minuscules) :
-
-| Paramètre | Contenu | Exemples |
-|---|---|---|
-| `utm_source` | Plateforme d'origine | `linkedin`, `newsletter`, `google`, `partenaire-x` |
-| `utm_medium` | Type de canal | `social`, `email`, `cpc`, `qr`, `referral` |
-| `utm_campaign` | Slug de campagne + année | `{{CAMPAIGN_SLUG}}-2026` |
-| `utm_content` | Variante ou emplacement | `post-1`, `cta-hero`, `cta-final` |
-
-Le tableau des URL trackées va dans le brief et dans `deployed.md`.
-
-**Événements** :
-
-- chaque CTA porte `data-track` (`cta_click` au clic, avec `data-cta-position` : `hero`, `offre`, `final`…), le formulaire `data-track="generate_lead"` ; le CTA primaire porte en plus `data-cta="primaire"`, que la QA lit pour savoir quelle conversion protéger ;
-- si le projet déclare un suivi GA4 (`CLAUDE.md` du projet, § Atelier web) : snippet gtag avec `{{GA4_MEASUREMENT_ID}}`, et un relais qui transforme ces attributs en événements `gtag('event', …)` ou `dataLayer.push(…)`, avec la formule et la langue en paramètres. `generate_lead` se marque comme conversion clé côté GA4 (action manuelle, à signaler) ;
-- sinon : les attributs restent posés, pour brancher la mesure plus tard sans retoucher le HTML.
-
-La QA vérifie les deux cas : suivi déclaré, un événement doit partir au clic de chaque CTA primaire ; suivi absent, le crochet `data-track` doit être là.
-
-## Règles dures
-
-- **Contenu** : aucun chiffre, client, logo, témoignage, compteur ni fait sur une personne inventé. Un compteur sans vrai chiffre reste vide.
-- **Une page, un objectif** : tous les boutons mènent à la conversion ou à l'étape de choix qui y conduit. Pas de navigation complète : logo et CTA suffisent.
-- **Urgence honnête** : vraies places, vraie date de clôture, comptées en jours. Jamais de compte à rebours en secondes.
-- **Fichiers** : un fichier, un propriétaire. Aucun agent n'écrit dans un fichier qu'on ne lui a pas confié ; le contrôleur seul assemble et commite.
-- **Actions refusées** : une action refusée à un agent (suppression, navigation, écriture) n'est refaite par personne sans l'accord de l'humain.
-- **Outils tiers** : toute écriture dans un outil de vente, d'emailing ou de calendrier passe par un dry-run montré, puis un go.
-- **Mouvement** : `prefers-reduced-motion: reduce` affiche tout, d'emblée, et rien ne bouge.
+Les contrôles bloquants des invariants, tous au vert ; puis budget, enregistrement dans `atelier/publie.md`, publication par dry-run sans `pilotage/` et contrôle en ligne (`references/livraison.md`, avec la checklist). Commit, push et publication seulement sur go explicite de l'humain, à chaque fois.
 
 ## Skills orchestrées
 
-| Skill | Rôle dans le playbook | Repli si absente |
-|---|---|---|
-| `cro-page` | Structure CRO (phase 3) et regard CRO en revue | Ordre des objections de `references/charte.md` § 7 |
-| `copywriting` / `copy-editing` | Textes définitifs de la spec | Aucun : obligatoires |
-| `design-direction` / `design-system` / `design-taste` | Directions et système visuel, sous les jetons de `atelier/marque/tokens.json` | bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` + `style-guide.md` |
-| `design-review` | Regard UI en complément de `landing-reviewer-design` | La grille de l'agent |
-| `motion-defilement` | Grammaire du mouvement, épinglages, défilement fluide, mouvement réduit | Charte § 5 |
-| `page-web` | Sections reprises du site, fonds continus, rythme des largeurs, pièges techniques du site | `atelier/marque/design.md` |
-| `qa-rendu` | Captures aux tailles de référence, continuité des fonds, pièges du rendu sans tête | `qa-landing.py` seul |
-| `accessibility-web` | Référentiel WCAG 2.2 AA chargé avant de construire | Grille de `landing-reviewer-a11y` |
-| `cro-form` / `lead-magnet` | Formulaire de capture ; circuit complet si la page capture un email contre un contenu | Règles formulaire de `references/sections.md` |
-| outil d'images du projet | Visuels manquants, après la bibliothèque et accord sur le coût | Assets de `atelier/marque/assets/` |
-| `brand-check` | Validation finale obligatoire | Aucun : obligatoire |
-
-## Checklist de livraison
-
-- [ ] Brief validé par le responsable de la marque ; spec validée, textes définitifs clé par clé
-- [ ] Direction choisie par l'humain, objet signature nommé, aucune signature reprise d'une autre page
-- [ ] Charte de page à jour (§ 9 : toutes les décisions de l'humain)
-- [ ] Un seul objectif, `data-cta="primaire"` posé, CTA primaire visible sans défiler sur mobile
-- [ ] `qa-landing.py` : zéro erreur ; avertissements restants listés et assumés
-- [ ] Quatre revues rendues, vague de corrections arbitrée et appliquée
-- [ ] `a11y-auditor` sans bloquant ni majeur ; `lint-brand.py` et `brand-check` au vert
-- [ ] UTM et événements en place ; `deployed.md`, calendrier et inventaire à jour
-- [ ] Publication par dry-run, sans `pilotage/` ; contrôle en ligne fait
+`cro-page` (structure CRO), `copywriting` et `copy-editing` (textes, obligatoires), `design-direction`, `design-system` et `design-taste` (directions et système visuel, sous les jetons de la marque), `design-review`, `motion-defilement` (pile et grammaire du mouvement), `page-web`, `qa-rendu`, `accessibility-web`, `cro-form` et `lead-magnet` (capture), l'outil d'images du projet, et `brand-check` (validation finale, obligatoire). Rôle de chacune et repli si elle manque : `references/skills-orchestrees.md`.

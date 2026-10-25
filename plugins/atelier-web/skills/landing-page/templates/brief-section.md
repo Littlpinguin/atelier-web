@@ -16,7 +16,7 @@
 2. `pilotage/spec.md`, § <n> : textes et comportements de cette section.
 3. `pilotage/research-notes.md` : références déjà retenues pour ce besoin.
 4. Les fragments déjà faits (<fichiers>), pour l'en-tête, les cartes et le mouvement ; le socle (`index.html` hors marqueurs) pour les jetons et le moteur d'apparition.
-5. `.claude/skills/landing-page/references/pieges.md`, puis dans `references/sections.md` la mécanique « <nom> ».
+5. `${CLAUDE_PLUGIN_ROOT}/skills/landing-page/references/pieges.md`, puis dans `references/sections.md` la mécanique « <nom> ».
 
 ## Ton fichier (et seulement lui)
 

@@ -34,6 +34,7 @@
 - **Note de complémentarité** en tête de `design-taste` : taste = protocole d'exécution ; `ui-ux-pro-max` = base de données de styles ; `design-system` = tokens sous contrainte de marque ; `design-direction` = cadrage amont ; `design-redesign` = refonte de l'existant.
 - Ban du cadratin aligné sur la checklist de marque (`atelier/marque/checklist-pre-composition.md` §2b fait foi : cadratin `—` interdit, demi-cadratin `–` autorisé — la source amont bannissait les deux).
 - Politique d'images branchée sur `atelier/marque/assets/index.md` + skill `image-generation` (règle « un asset existant se réutilise, il ne se régénère pas »).
+- **2026-10-25, atelier-web 1.1.0** : `design-taste` restructurée pour tenir sous les 5 000 tokens que Claude Code réattache après compaction. Invariants (ordre des étapes, préséance de la marque, validations) et pre-flight check remontés en tête ; carte brief → design system et pile par défaut déplacées dans `references/stack-et-systemes.md`, squelettes React (sticky-stack, pan horizontal, cascade) intégralement dans `references/squelettes-motion.md`. Le mouvement renvoie à `motion-defilement` (CSS natif d'abord) ; précision ajoutée au verrou de thème : les bandes sombres d'une landing relèvent de sa charte. Aucune règle retirée.
 
 ---
 
@@ -124,7 +125,7 @@ Chaque SKILL.md vendorisée porte en pied de page l'attribution (repo, auteur, l
 
 | Skill template | Source | Licence | Fichiers créés |
 |---|---|---|---|
-| `design-taste` | Leonxlnx/taste-skill (`taste-skill` v2) | MIT | `SKILL.md` |
+| `design-taste` | Leonxlnx/taste-skill (`taste-skill` v2) | MIT | `SKILL.md`, `references/stack-et-systemes.md`, `references/squelettes-motion.md` |
 | `design-redesign` | Leonxlnx/taste-skill (`redesign-skill`) | MIT | `SKILL.md` |
 | `brandkit` | Leonxlnx/taste-skill (`brandkit`) | MIT | `SKILL.md` |
 | `humanize-writing` | jpeggdev/humanize-writing v2.0.0 | MIT | `SKILL.md`, `references/ai-tells.md` |

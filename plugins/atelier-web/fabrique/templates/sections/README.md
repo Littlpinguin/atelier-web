@@ -290,7 +290,7 @@ Chaque événement porte aussi `page_slug` et les UTM de la visite (`utm_source`
 - **Garde-fous** : l’assembleur n’écrit qu’un fichier ; il refuse une sortie dans un dossier `pilotage/` et n’y écrit ni n’y supprime jamais rien (il peut y lire une spec ou un fragment). La balise `<meta name="generator" content="assemble-landing.py · sha256:…">` porte l’empreinte de ce qu’il a écrit : une page retouchée à la main depuis (sections de builders insérées, micro-retouches) ou une page qu’il n’a pas produite n’est pas écrasée sans `--force`.
 - **Contrôles** : `--check` (sortie 1 si la page ne correspond plus à la spec et aux fragments : c’est le test du catalogue), `--strict`, `--list`, `--describe`.
 
-**Dans le playbook** (`.claude/skills/landing-page/SKILL.md`) : en phase 4, le contrôleur écrit `pilotage/page.json` et assemble le socle (sections de la bibliothèque remplies, `_placeholder` pour chaque section sur mesure) ; en phase 5, chaque builder écrit son fragment dans `pilotage/sections/<nn>-<id>.html`, et le contrôleur remplace l’entrée `_placeholder` par `file: sections/<nn>-<id>.html` puis réassemble (ou insère le fragment entre les marqueurs, s’il a retouché la page à la main entre-temps).
+**Dans le playbook** (`${CLAUDE_PLUGIN_ROOT}/skills/landing-page/SKILL.md`) : en phase 4, le contrôleur écrit `pilotage/page.json` et assemble le socle (sections de la bibliothèque remplies, `_placeholder` pour chaque section sur mesure) ; en phase 5, chaque builder écrit son fragment dans `pilotage/sections/<nn>-<id>.html`, et le contrôleur remplace l’entrée `_placeholder` par `file: sections/<nn>-<id>.html` puis réassemble (ou insère le fragment entre les marqueurs, s’il a retouché la page à la main entre-temps).
 
 ## 6. Les jetons et la base
 

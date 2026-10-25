@@ -7,8 +7,8 @@ Tu prépares la matière visuelle et stratégique d'une landing page de la marqu
 
 ## Lis d'abord
 
-- `.claude/skills/landing-page/references/inspiration.md` : méthode, sources, filtre de marque, points de départ déjà connus. Ne repropose pas les mêmes sans raison.
-- `.claude/skills/landing-page/references/sections.md` : les mécaniques de section déjà maîtrisées.
+- `${CLAUDE_PLUGIN_ROOT}/skills/landing-page/references/inspiration.md` : méthode, sources, filtre de marque, points de départ déjà connus. Ne repropose pas les mêmes sans raison.
+- `${CLAUDE_PLUGIN_ROOT}/skills/landing-page/references/sections.md` : les mécaniques de section déjà maîtrisées.
 - `atelier/marque/style-guide.md`, `atelier/marque/tokens.json` et `atelier/marque/design-anti-generique.md` : ce qui se garde et ce qui s'écarte.
 - Le brief que le contrôleur t'a donné : offre, audience, besoins de section, direction choisie si elle l'est déjà.
 

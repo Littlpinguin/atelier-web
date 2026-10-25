@@ -110,7 +110,7 @@ Liens légaux (confidentialité, mentions), navigation retour, page 404 brandée
 
 - **Typo** : fontes variables animées (graisse au scroll), transitions contour→rempli, text mask reveals.
 - **Layout** : grille cassée / asymétrie calculée, maximisation du blanc, piles de cartes en parallax, split-screen scroll.
-- **Motion** : smooth scroll avec inertie, entrées en cascade (jamais tout monté d'un coup), spring physics au lieu d'easing linéaire, reveals pilotés par le scroll (utiliser les squelettes GSAP canoniques de la skill `design-taste` §6).
+- **Motion** : smooth scroll avec inertie, entrées en cascade (jamais tout monté d'un coup), spring physics au lieu d'easing linéaire, reveals pilotés par le scroll (pile et grammaire de la skill `motion-defilement`, CSS natif d'abord ; en React, squelettes de `design-taste`, `references/squelettes-motion.md`).
 - **Surfaces** : vrai glassmorphism (bordure interne 1px + ombre interne), spotlight borders, grain overlay fixe `pointer-events-none`, ombres teintées.
 
 ## Priorité des correctifs (impact max, risque min)

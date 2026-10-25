@@ -1,6 +1,6 @@
 # Lot de corrections : landing « <nom> »
 
-> Écrit par le contrôleur dans `atelier/landings/<slug>/pilotage/fix-wave-brief.md`, après lecture des quatre revues et de la QA. Règles d'arbitrage : `.claude/skills/landing-page/references/revues.md`.
+> Écrit par le contrôleur dans `atelier/landings/<slug>/pilotage/fix-wave-brief.md`, après lecture des quatre revues et de la QA. Règles d'arbitrage : `${CLAUDE_PLUGIN_ROOT}/skills/landing-page/references/revues.md`.
 
 ## Sources à lire
 
