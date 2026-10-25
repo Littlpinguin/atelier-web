@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier web for Claude Code: live demos</title>
+<meta name="description" content="Live demos of Atelier web, a Claude Code plugin for brand-first landing pages: three fictional brands built by the same factory, and the 44-section catalogue.">
+<link rel="canonical" href="https://littlpinguin.github.io/atelier-web/">
+<meta property="og:title" content="Atelier web for Claude Code: live demos">
+<meta property="og:description" content="Three fictional brands, one factory, three landing pages. Plus the 44-section catalogue.">
+<meta property="og:image" content="https://littlpinguin.github.io/atelier-web/assets/social-preview-en.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap">
+<style>
+  :root { --midnight: #0D1B2A; --midnight-light: #112240; --golden: #F9DC5C; --off-white: #FAFAFA; --light-blue: #ACCBE1; --soft-blue: #7C98B3; --line: rgba(124, 152, 179, 0.16); }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Plus Jakarta Sans", system-ui, sans-serif; color: var(--light-blue); background: linear-gradient(180deg, var(--midnight), var(--midnight-light)); min-height: 100vh; }
+  main { max-width: 1120px; margin: 0 auto; padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 2.5rem); }
+  h1 { color: var(--off-white); font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 1rem; }
+  h1 span { color: var(--golden); }
+  p.lead { font-size: 1.15rem; line-height: 1.6; max-width: 40rem; margin: 0 0 2.5rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+  a.card { display: block; text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: rgba(13, 27, 42, 0.45); transition: transform 0.2s, border-color 0.2s; }
+  a.card:hover, a.card:focus-visible { transform: translateY(-3px); border-color: var(--golden); outline: none; }
+  a.card img { display: block; width: 100%; height: auto; }
+  a.card div { padding: 1rem 1.2rem 1.2rem; }
+  a.card strong { display: block; color: var(--off-white); font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .links a { color: var(--midnight); background: var(--golden); padding: 0.8rem 1.3rem; border-radius: 12px; font-weight: 700; text-decoration: none; }
+  .links a.ghost { background: transparent; color: var(--off-white); border: 1px solid var(--line); }
+  footer { margin-top: 3rem; font-size: 0.9rem; color: var(--soft-blue); }
+  footer a { color: var(--off-white); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Atelier web <span>for Claude Code</span></h1>
+  <p class="lead">Three fictional brands, one set of commands, three landing pages. Each one reads its own brand doctrine; the factory, the review agents and the rendering QA stay the same.</p>
+  <div class="grid">
+    <a class="card" href="demo/ferlane/"><img src="assets/landing-ferlane.webp" width="1440" height="900" alt="Training landing page for the fictional brand Ferlane" loading="lazy"><div><strong>Ferlane</strong>Training template, editorial serif</div></a>
+    <a class="card" href="demo/brivalle/"><img src="assets/landing-brivalle.webp" width="1440" height="900" alt="Event landing page for the fictional brand Brivalle" loading="lazy"><div><strong>Brivalle</strong>Event template, geometric sans</div></a>
+    <a class="card" href="demo/ouvrance/"><img src="assets/landing-ouvrance.webp" width="1440" height="900" alt="Service landing page for the fictional brand Ouvrance" loading="lazy"><div><strong>Ouvrance</strong>Service template, warm palette</div></a>
+  </div>
+  <div class="links">
+    <a href="https://github.com/Littlpinguin/atelier-web">Install from GitHub</a>
+    <a class="ghost" href="catalogue/">Browse the 44 sections</a>
+  </div>
+  <footer>Brands, people, reviews and figures on the demo pages are fictional. Made by <a href="https://jessem.fr/en/">Jessy Martin</a>. MIT license.</footer>
+</main>
+</body>
+</html>

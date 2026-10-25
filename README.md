@@ -29,6 +29,9 @@ The three pages below come out of the same commands with three different brand d
 | Training | Event | Service |
 |---|---|---|
 | ![Training landing page, fictional brand Ferlane](docs/assets/landing-ferlane.webp) | ![Event landing page, fictional brand Brivalle](docs/assets/landing-brivalle.webp) | ![Service landing page, fictional brand Ouvrance](docs/assets/landing-ouvrance.webp) |
+| [Live demo](https://littlpinguin.github.io/atelier-web/demo/ferlane/) | [Live demo](https://littlpinguin.github.io/atelier-web/demo/brivalle/) | [Live demo](https://littlpinguin.github.io/atelier-web/demo/ouvrance/) |
+
+Browse all 44 sections in the [live catalogue](https://littlpinguin.github.io/atelier-web/catalogue/).
 
 ## Install
 

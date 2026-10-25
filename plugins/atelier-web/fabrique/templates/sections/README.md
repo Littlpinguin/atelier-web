@@ -1,8 +1,8 @@
 # Bibliothèque de sections des landings
 
-Les sections éprouvées d’une landing de conversion, chacune dans un fragment autonome, plus les moteurs partagés et un assembleur qui en fait une page HTML d’un seul fichier. La méthode (quand une page prend telle mécanique, pourquoi, ce qui la fait échouer) vit dans la skill `landing-page` (`.claude/skills/landing-page/references/sections.md`) ; ce dossier en est l’implémentation.
+Les sections éprouvées d’une landing de conversion, chacune dans un fragment autonome, plus les moteurs partagés et un assembleur qui en fait une page HTML d’un seul fichier. La méthode (quand une page prend telle mécanique, pourquoi, ce qui la fait échouer) vit dans la skill `landing-page` (`references/sections.md`) ; ce dossier en est l’implémentation.
 
-**Voir avant de choisir** : ouvrir `catalogue.html` dans un navigateur. Chaque section y apparaît, remplie de son contenu d’exemple (marque fictive Meridian Conseil, offre fictive), précédée de sa fiche : objection traitée, quand l’utiliser, quand l’éviter, comportement en mouvement réduit, slots, moteurs.
+**Voir avant de choisir** : générer le catalogue dans le projet (`python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py ${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/catalogue.json`, depuis la racine du projet : il s'écrit dans `atelier/catalogue-sections.html`, aux couleurs de la marque si `atelier/marque/tokens.css` existe), puis l'ouvrir dans un navigateur. Une version de démonstration vit dans `docs/catalogue/` du dépôt de l'atelier. Chaque section y apparaît, remplie de son contenu d’exemple (marque fictive Meridian Conseil, offre fictive), précédée de sa fiche : objection traitée, quand l’utiliser, quand l’éviter, comportement en mouvement réduit, slots, moteurs.
 
 ```
 atelier/
@@ -22,7 +22,6 @@ atelier/
 │       ├── <nom>.html        ← un fragment par mécanique
 │       ├── _placeholder.html ← section provisoire (outil, hors catalogue)
 │       ├── catalogue.json    ← spec du catalogue
-│       ├── catalogue.html    ← catalogue assemblé (ne pas éditer)
 │       └── README.md
 └── scripts/
     ├── assemble-landing.py   ← spec → page autonome
@@ -346,7 +345,7 @@ Conventions : style et script valent pour toutes les instances de la page (ils 
 
 ## 8. QA du catalogue et des modèles
 
-`python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py ${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/catalogue.html` : **0 erreur**, 7 avertissements assumés, tous `cta-hors-objectif` : le catalogue montre côte à côte des conversions qu’une vraie page n’aurait pas ensemble (les trois boutons de la grille tarifaire, le ticket à la carte, le formulaire de capture, le formulaire qualifiant, l’inscription à l’événement). Une page réelle n’en garde qu’une. La QA relève jusqu’à 3 000 textes par écran (`--max-textes`) : le catalogue, le plus long des documents, en compte un peu plus de 2 000 et passe en entier, sans avertissement `troncature`.
+`python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/qa-landing.py atelier/catalogue-sections.html` (catalogue généré comme ci-dessus) : **0 erreur**, 7 avertissements assumés, tous `cta-hors-objectif` : le catalogue montre côte à côte des conversions qu’une vraie page n’aurait pas ensemble (les trois boutons de la grille tarifaire, le ticket à la carte, le formulaire de capture, le formulaire qualifiant, l’inscription à l’événement). Une page réelle n’en garde qu’une. La QA relève jusqu’à 3 000 textes par écran (`--max-textes`) : le catalogue, le plus long des documents, en compte un peu plus de 2 000 et passe en entier, sans avertissement `troncature`.
 
 Les six modèles (`landing-pages/specs/*.yaml`) s’assemblent avec `--strict` sans avertissement et passent la QA à **0 erreur** ; leurs avertissements restants sont les marqueurs à brancher (`placeholder`, `cta-destination`).
 

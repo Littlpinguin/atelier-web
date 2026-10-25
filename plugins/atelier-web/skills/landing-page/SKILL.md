@@ -14,7 +14,7 @@ Une landing réussie se lit comme un seul récit, section par section, et amène
 | Fichier | Rôle |
 |---|---|
 | `references/charte.md` | Modèle de charte de page, copié au démarrage dans `pilotage/page-charter.md` et donné à **chaque** agent : grille, en-têtes, matières, mouvement, interdits, conversion, technique, décisions de l'humain (§ 9, qui prime) |
-| `references/sections.md` | Catalogue des mécaniques de section éprouvées : objection servie, quand, pourquoi, anti-modèles, mouvement réduit. Leur implémentation : la bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` (un fragment par mécanique, voir son `README.md` et `catalogue.html`) |
+| `references/sections.md` | Catalogue des mécaniques de section éprouvées : objection servie, quand, pourquoi, anti-modèles, mouvement réduit. Leur implémentation : la bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` (un fragment par mécanique, voir son `README.md`, et le catalogue généré depuis `catalogue.json`) |
 | `references/pieges.md` | Pièges techniques, de session et de marque, avec leur parade, plus les règles tirées des retours d'arbitrage |
 | `references/inspiration.md` | Méthode de recherche : benchmark de pages qui convertissent, galeries publiques, filtre de marque |
 | `references/revues.md` | Lancer les quatre revues et arbitrer leurs rapports |
@@ -56,7 +56,7 @@ Les quatre relecteurs sont en lecture seule : ils n'écrivent que leur rapport. 
 └── publie.md                             ← registre des pages publiées
 
 ${CLAUDE_PLUGIN_ROOT}/fabrique/           ← dans le plugin, en lecture seule
-├── templates/sections/<mécanique>.html   ← bibliothèque de sections (fragments à slots) + catalogue.html
+├── templates/sections/<mécanique>.html   ← bibliothèque de sections (fragments à slots) + catalogue.json
 ├── templates/assets/                     ← tokens.css neutre, base.css, moteurs reveal / scroll / offer / forms / tracking
 ├── templates/landing-pages/              ← 6 modèles de landing (specs YAML + pages assemblées)
 ├── templates/lead-magnets/               ← 10 outils interactifs avec capture
@@ -71,7 +71,7 @@ Les scripts se lancent **depuis la racine du projet** : ils y lisent la marque (
 
 ## Gabarit de données ou page sur mesure
 
-- **Gabarit de données** : une spec qui assemble des sections de la bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` (compositions de départ par type de page dans son `README.md`, rendu de chaque section dans `catalogue.html`), ou un modèle complet de `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/landing-pages/`. On remplit les slots (textes, chiffres, visuels, endpoint) et on assemble avec `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py`. À choisir pour une offre de type courant, un délai court, ou une série de pages de même forme (pages partenaires, pages locales, éditions successives d'un événement). Le modèle ne dispense de rien : brief, charte, QA, revues de marque et de conversion, brand-check. Les phases 2, 4 et 5 se réduisent à l'adaptation du modèle.
+- **Gabarit de données** : une spec qui assemble des sections de la bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` (compositions de départ par type de page dans son `README.md`, rendu de chaque section dans le catalogue, généré par `python3 ${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py ${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/catalogue.json` vers `atelier/catalogue-sections.html`), ou un modèle complet de `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/landing-pages/`. On remplit les slots (textes, chiffres, visuels, endpoint) et on assemble avec `${CLAUDE_PLUGIN_ROOT}/fabrique/scripts/assemble-landing.py`. À choisir pour une offre de type courant, un délai court, ou une série de pages de même forme (pages partenaires, pages locales, éditions successives d'un événement). Le modèle ne dispense de rien : brief, charte, QA, revues de marque et de conversion, brand-check. Les phases 2, 4 et 5 se réduisent à l'adaptation du modèle.
 - **Page sur mesure** : tout le playbook. À choisir pour une offre phare, un lancement, un ticket élevé, une page qui doit porter sa propre signature visuelle. Les sections courantes viennent quand même de la bibliothèque ; une section qu'on crée ici et qui servira ailleurs y entre ensuite comme fragment (`${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/README.md` § 7, règle « réutiliser avant de créer »).
 
 Dans les deux cas, une section qui figure sur deux pages est **la même section** : même structure, mêmes jetons, au pixel près. Elle vient du même fragment de la bibliothèque, on ne la redessine pas.

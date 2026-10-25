@@ -27,6 +27,9 @@ Les trois pages ci-dessous sortent des mêmes commandes, avec trois doctrines di
 | Formation | Événement | Prestation |
 |---|---|---|
 | ![Landing de formation, marque fictive Ferlane](docs/assets/landing-ferlane.webp) | ![Landing d'événement, marque fictive Brivalle](docs/assets/landing-brivalle.webp) | ![Landing de prestation, marque fictive Ouvrance](docs/assets/landing-ouvrance.webp) |
+| [Démo en ligne](https://littlpinguin.github.io/atelier-web/demo/ferlane/) | [Démo en ligne](https://littlpinguin.github.io/atelier-web/demo/brivalle/) | [Démo en ligne](https://littlpinguin.github.io/atelier-web/demo/ouvrance/) |
+
+Les 44 sections se parcourent dans le [catalogue en ligne](https://littlpinguin.github.io/atelier-web/catalogue/).
 
 ## Installer
 

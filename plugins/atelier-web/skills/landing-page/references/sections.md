@@ -1,6 +1,6 @@
 # Catalogue des mécaniques de section
 
-Des mécaniques éprouvées sur des landings de conversion, pas un ordre imposé. Pour chaque page, choisir celles qui servent le récit de la spec, leur donner l’objet signature de la page, et garder un seul moment orchestré par section. Ce fichier dit **quand** et **pourquoi** une mécanique sert, et ce qui la fait échouer. Leur implémentation est la bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` : un fragment par mécanique (nommé en fin de fiche), ses slots, ses moteurs, et `catalogue.html` qui les montre toutes ; `README.md` y donne les compositions de départ, le format de la spec et les contrats des moteurs.
+Des mécaniques éprouvées sur des landings de conversion, pas un ordre imposé. Pour chaque page, choisir celles qui servent le récit de la spec, leur donner l’objet signature de la page, et garder un seul moment orchestré par section. Ce fichier dit **quand** et **pourquoi** une mécanique sert, et ce qui la fait échouer. Leur implémentation est la bibliothèque `${CLAUDE_PLUGIN_ROOT}/fabrique/templates/sections/` : un fragment par mécanique (nommé en fin de fiche), ses slots, ses moteurs, et le catalogue qui les montre toutes (généré depuis `catalogue.json`) ; `README.md` y donne les compositions de départ, le format de la spec et les contrats des moteurs.
 
 Chaque fiche donne : l’objection du visiteur qu’elle traite, la mécanique, quand la choisir, les anti-modèles, et le comportement en mouvement réduit (`prefers-reduced-motion: reduce`).
 

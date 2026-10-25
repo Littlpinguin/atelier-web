@@ -9,3 +9,4 @@ Première version.
 - Ajouts tirés de jessem.fr : `demarrer-projet-web`, `page-web`, `qa-rendu`, `motion-defilement`, `controle-fonds.py`, modèle `design.md`.
 - Corrections au passage : conflit de nom dans `qa-landing.py`, marqueurs `{{MARKER}}` en commentaire qui faisaient échouer le lint des pages assemblées, en-têtes YAML de cinq skills et agents.
 - `outils-complementaires/installer.sh` : installation de l'atelier et des plugins tiers depuis leur source.
+- Référencement : README anglais et français, aperçu de partage, démos en ligne (`docs/`, GitHub Pages), README et licence dans le dossier du plugin avec la description de ce qu'il exécute et va chercher, métadonnées en anglais. Le catalogue des sections se génère dans le projet (`catalogue.json`) et n'est plus livré dans le plugin (limite de 256 Ko de l'annuaire officiel).
