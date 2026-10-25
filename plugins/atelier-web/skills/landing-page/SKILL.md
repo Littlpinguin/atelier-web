@@ -64,8 +64,8 @@ Une landing réussie se lit comme un seul récit, section par section, et amène
 |---|---|---|
 | `landing-researcher` | 0, en arrière-plan | Benchmark de pages qui convertissent et recherche visuelle, consolidés dans `pilotage/research-notes.md`. Ne code rien |
 | `landing-section-builder` | 4 à 7 | Construit ou corrige une section (ou un lot) dans les seuls fichiers qu'on lui confie. Ne commite jamais |
-| `landing-reviewer-design` / `-brand` / `-cro` / `-a11y` | 7 | Webdesign ; marque ; conversion ; WCAG 2.2 AA en 14 points. En lecture seule : ils n'écrivent que leur rapport |
-| `a11y-auditor` | 8 | Rendu réel, axe-core, parcours clavier |
+| `landing-reviewer-design` / `-brand` / `-cro` | 7 | Webdesign ; marque ; conversion. En lecture seule : ils n'écrivent que leur rapport |
+| `a11y-auditor` | 7 et 8 | WCAG 2.2 AA : mesures de la QA, 14 points sur le code, rendu réel (axe-core, parcours clavier). Relecteur en phase 7, contrôle de livraison en phase 8. En lecture seule : il n'écrit que son rapport |
 
 Avec le plugin actif, les agents s'appellent `atelier-web:<nom>` ; si un type n'est pas reconnu (registre chargé au démarrage), dispatcher un agent généraliste dont le prompt commence par « Lis et applique `${CLAUDE_PLUGIN_ROOT}/agents/<nom>.md` ».
 

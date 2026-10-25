@@ -72,4 +72,4 @@ Vérification des licences : fichier `LICENSE` de chaque dépôt lu via l'API Gi
 
 **Exclusions.** Les ~70 agents hors web : documents (Word/Excel/PowerPoint/PDF/EPUB/markdown), desktop (NVDA, wxPython), mobile, CI/DevOps, gestion GitHub/wiki/release, analytics, WCAG AAA et WCAG 3 preview (le template vise AA), screen-reader-lab, i18n ; le serveur MCP, la CLI Go, l'extension VS Code, le plugin Codex/Gemini, les installeurs et hooks.
 
-**Consolidation (2026-10-25, atelier-web 1.2.0).** La skill `accessibility-web` devient `skills/revue/references/accessibilite.md`, lue par les agents `landing-reviewer-a11y` et `a11y-auditor` ; les mentions du dashboard `11-reporting/` et de l'agent `qa-visuel`, propres au cockpit, sont retirées.
+**Consolidation (2026-10-25, atelier-web 1.2.0).** La skill `accessibility-web` devient `skills/revue/references/accessibilite.md`, lue par les agents `landing-reviewer-a11y` et `a11y-auditor` (fusionnés dans `a11y-auditor` en 1.2.2) ; les mentions du dashboard `11-reporting/` et de l'agent `qa-visuel`, propres au cockpit, sont retirées.

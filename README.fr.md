@@ -2,11 +2,11 @@
 
 [English](README.md) · **Français**
 
-[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.1](https://img.shields.io/badge/version-1.2.1-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
+[![Licence MIT](https://img.shields.io/badge/licence-MIT-0D1B2A.svg)](LICENSE) ![Version 1.2.2](https://img.shields.io/badge/version-1.2.2-0D1B2A.svg) ![Plugin Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![10 skills](https://img.shields.io/badge/skills-10-1B4965.svg) ![6 agents](https://img.shields.io/badge/agents-6-1B4965.svg)
 
 ![Atelier web : trois landings de trois marques fictives, produites par la même fabrique](docs/assets/apercu-fr.webp)
 
-**Atelier web est un plugin Claude Code pour concevoir et construire des landing pages et des pages web belles, qui convertissent et qui ressemblent exactement à la marque qu'elles servent.** Il réunit 10 skills, 7 agents (recherche d'inspiration, construction en parallèle, revues design, marque, conversion et accessibilité), une bibliothèque de 44 sections de landing éprouvées et une QA qui mesure le rendu réel avant de vous montrer quoi que ce soit.
+**Atelier web est un plugin Claude Code pour concevoir et construire des landing pages et des pages web belles, qui convertissent et qui ressemblent exactement à la marque qu'elles servent.** Il réunit 10 skills, 6 agents (recherche d'inspiration, construction en parallèle, revues design, marque, conversion et accessibilité), une bibliothèque de 44 sections de landing éprouvées et une QA qui mesure le rendu réel avant de vous montrer quoi que ce soit.
 
 Il reprend la méthode avec laquelle je construis les sites et les landings de mes clients. Je suis [Jessy Martin](https://jessem.fr), consultant et formateur sur Claude Code et les agents IA pour les équipes marketing.
 
@@ -69,7 +69,7 @@ Chaque livrable passe par `revue` puis `brand-check` avant de vous être montré
 
 Chaque skill garde son détail dans des fichiers de référence, à un niveau sous son `SKILL.md`, lus seulement quand la tâche en a besoin.
 
-**Agents** : `landing-researcher` (benchmark et recherche visuelle en arrière-plan), `landing-section-builder` (une section par agent, en parallèle), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, `landing-reviewer-a11y`, et `a11y-auditor` (accessibilité en rendu réel).
+**Agents** : `landing-researcher` (benchmark et recherche visuelle en arrière-plan), `landing-section-builder` (une section par agent, en parallèle), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, et `a11y-auditor` (accessibilité : mesures, code et rendu réel).
 
 **Fabrique** : 44 sections (hero, preuves, programme, offre, FAQ, porte de choix, comparateur…), 6 modèles de landing (formation, événement, prestation, démo B2B, vente longue, capture), 10 outils interactifs avec capture (calculateur de ROI, diagnostic, quiz…), et les scripts `assemble-landing.py`, `qa-landing.py`, `controle-fonds.py`, `build-tokens.py`, `lint-brand.py`. Un hook lance le contrôle de marque après chaque page écrite, y compris celles qu'assemble un script.
 

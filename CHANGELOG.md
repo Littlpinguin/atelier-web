@@ -1,5 +1,10 @@
 # Journal des versions
 
+## 1.2.2 · 2026-10-25
+
+- **Doctrine sans cadratin** : les modèles de `modeles/marque/` et `modeles/design.md`, et la doctrine de la fixture Brivalle, portaient 64 tirets cadratins (titres, incises, références). Une doctrine fraîchement posée sortait donc 59 erreurs `dashes` à `lint-brand.py atelier/marque`, l'étape 4 de `demarrer-projet-web`. Chaque occurrence est reformulée selon sa phrase (deux-points, virgule, parenthèses, point-virgule) ; la règle qui nomme le caractère le désigne par « tiret long, U+2014 ». Les deux exemples refusés de `exemples-rejetes.md` gardent le leur : ils sont dans un bloc de code, que le linter ignore. La fixture passe de 59 erreurs à 0 ; les modèles ne gardent que leurs marqueurs `{{…}}`.
+- **Un seul agent d'accessibilité** (ligne 11 du rapport, volet fusion) : `landing-reviewer-a11y` fusionne dans `a11y-auditor`. Il juge sur trois preuves dans l'ordre (mesures de `qa-landing.py`, 14 points sur le code, rendu réel par axe-core et au clavier) et son brief fixe le moment : revue en phase 7, en parallèle des relecteurs design, marque et conversion, ou contrôle de livraison en phase 8. Rapport `pilotage/review-a11y.md`, constats numérotés `A11Y-n` ; verdict partiel sans Playwright, qui ne vaut jamais feu vert. Six agents au lieu de sept ; renvois mis à jour dans le playbook, `revues.md`, `skills-orchestrees.md`, la skill `revue`, les README et le registre `vendored-content.md`.
+
 ## 1.2.1 · 2026-10-25
 
 Corrections relevées par le passage d'évals de la version 1.2.0.

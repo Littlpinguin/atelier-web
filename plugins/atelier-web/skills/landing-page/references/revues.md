@@ -20,7 +20,7 @@ Les quatre relecteurs partent ensemble, dans un seul message, en lecture seule, 
 | `landing-reviewer-design` | En-têtes, rythme, matières, typographie, mouvement, responsive, boutons, code mort | le plus capable disponible |
 | `landing-reviewer-brand` | Voix et anti-style-IA, ton, visuel contre `tokens.json`, preuve, audience, divulgation IA et droits | standard |
 | `landing-reviewer-cro` | Récit et objections, porte de choix, CTA, bloc de conversion, urgence, preuve, mesure | le plus capable disponible |
-| `landing-reviewer-a11y` | WCAG 2.2 AA en 14 points, à partir de la QA mesurée | standard |
+| `a11y-auditor` (moment : revue) | WCAG 2.2 AA : 14 points sur le code et la QA mesurée, puis rendu réel (axe-core, parcours clavier) | standard |
 
 Chaque prompt donne :
 - le chemin de la page (`atelier/landings/<slug>/index.html`) et de ses fragments ;
@@ -28,7 +28,7 @@ Chaque prompt donne :
 - le chemin de `pilotage/qa.json` ;
 - le fichier de rapport attendu, `pilotage/review-<grille>.md`.
 
-Les revues lisent le code et la QA. Elles voient mal le rendu d'ensemble : un en-tête collé, un fond qui masque la matière, un épinglage qui ne se bloque pas, une page qui « fait template ». Les captures et l'œil de l'humain restent la dernière porte.
+Les revues lisent le code et la QA ; seule celle d'accessibilité ouvre la page, pour axe-core et le clavier. Elles voient mal le rendu d'ensemble : un en-tête collé, un fond qui masque la matière, un épinglage qui ne se bloque pas, une page qui « fait template ». Les captures et l'œil de l'humain restent la dernière porte.
 
 ## Arbitrer
 

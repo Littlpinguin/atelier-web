@@ -13,7 +13,7 @@ Trois angles, une règle : mesurer d'abord avec des scripts, regarder ensuite le
 |---|---|---|---|
 | « Vérifie le rendu », « ça déborde ? », « fais une capture », QA après construction ou retouche | Rendu | `references/rendu.md` | le contrôleur, avec `qa-landing.py` et `controle-fonds.py` |
 | « Revue de la page », « le design ne fait pas pro », conformité aux jetons, états, responsive | Interface | `references/interface.md` | agent `landing-reviewer-design` pour une landing (phase 7) |
-| Accessibilité, WCAG, clavier, focus, contrastes, lecteur d'écran | Accessibilité | `references/accessibilite.md` | agents `landing-reviewer-a11y` (code et mesures) et `a11y-auditor` (rendu réel, avant livraison) |
+| Accessibilité, WCAG, clavier, focus, contrastes, lecteur d'écran | Accessibilité | `references/accessibilite.md` | agent `a11y-auditor` (mesures, code et rendu réel ; relecteur de landing en phase 7, contrôle de livraison) |
 
 Une revue avant livraison couvre les trois angles ; une question ciblée, le sien. Le fond éditorial relève de `brand-check`.
 
