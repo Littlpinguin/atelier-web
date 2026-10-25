@@ -1,6 +1,6 @@
 ---
 name: animation-lottie
-description: Illustrations et icônes animées de marque en dotLottie (.lottie exporté d'After Effects ou de Lottie Creator) avec dotlottie-wc, dotlottie-web ou dotlottie-react : lecture à l'entrée dans l'écran, pilotage au défilement, mouvement réduit, pause, poids du WASM, CSP. À charger après motion-defilement pour toute animation Lottie, ou pour migrer un projet sous lottie-web ou lottie-react, qu'on n'ajoute plus à un projet neuf.
+description: "Illustrations et icônes animées de marque en dotLottie (.lottie exporté d'After Effects ou de Lottie Creator) avec dotlottie-wc, dotlottie-web ou dotlottie-react : lecture à l'entrée dans l'écran, pilotage au défilement, mouvement réduit, pause, poids du WASM, CSP. À charger après motion-defilement pour toute animation Lottie, ou pour migrer un projet sous lottie-web ou lottie-react, qu'on n'ajoute plus à un projet neuf."
 ---
 
 # animation-lottie : médias animés de marque en dotLottie

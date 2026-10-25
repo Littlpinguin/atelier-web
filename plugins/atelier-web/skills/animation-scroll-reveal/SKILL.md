@@ -1,6 +1,6 @@
 ---
 name: animation-scroll-reveal
-description: Apparitions au défilement en CSS natif (animation-timeline view(), scroll()) avec repli IntersectionObserver ou reveal.js : fondu, montée, cascade, image qui se découvre, barre de lecture, parallaxe légère. À charger après motion-defilement pour faire apparaître des blocs au scroll, ou pour maintenir ou migrer un projet sous AOS (data-aos), qu'on n'ajoute plus à un projet neuf.
+description: "Apparitions au défilement en CSS natif (animation-timeline view(), scroll()) avec repli IntersectionObserver ou reveal.js : fondu, montée, cascade, image qui se découvre, barre de lecture, parallaxe légère. À charger après motion-defilement pour faire apparaître des blocs au scroll, ou pour maintenir ou migrer un projet sous AOS (data-aos), qu'on n'ajoute plus à un projet neuf."
 ---
 
 # animation-scroll-reveal : apparitions au défilement, natif d'abord

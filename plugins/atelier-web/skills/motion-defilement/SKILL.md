@@ -1,6 +1,6 @@
 ---
 name: motion-defilement
-description: Cœur du mouvement d'une page web : la pile (CSS natif d'abord, GSAP pour l'épinglage, Lenis en option, dotLottie pour les médias, Motion en React) et la grammaire commune (apparitions, animations pilotées par le défilement, épinglages, défilement fluide, transitions, mouvement réduit), avec les pièges de production. À charger avant toute animation de page ou de section, et quand l'utilisateur dit « c'est trop statique », « rends ça vivant », « anime cette section ». animation-scroll-reveal, animation-gsap, animation-animejs et animation-lottie donnent ensuite la technique de chaque outil.
+description: "Cœur du mouvement d'une page web : la pile (CSS natif d'abord, GSAP pour l'épinglage, Lenis en option, dotLottie pour les médias, Motion en React) et la grammaire commune (apparitions, animations pilotées par le défilement, épinglages, défilement fluide, transitions, mouvement réduit), avec les pièges de production. À charger avant toute animation de page ou de section, et quand l'utilisateur dit « c'est trop statique », « rends ça vivant », « anime cette section ». animation-scroll-reveal, animation-gsap, animation-animejs et animation-lottie donnent ensuite la technique de chaque outil."
 ---
 
 # motion-defilement : du mouvement qui sert la lecture
