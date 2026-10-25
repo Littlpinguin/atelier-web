@@ -6,7 +6,7 @@
 <title>Calquai · Vos réceptions planifiées la veille</title>
 <meta name="description" content="Les transporteurs réservent leur créneau, Calquai affecte le quai. Démo de 30 minutes sur vos propres flux de réception.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="generator" content="assemble-landing.py · sha256:3a5b9faff5a48a42b5de3d8c7d40b475daecfc8d39f7cde62c0de294b1ffae56">
+<meta name="generator" content="assemble-landing.py · sha256:4c1ccca0eee13fa2922c0758a6cbbce6f0ec2766634b8f7779031fbc65b93cbe">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -4644,10 +4644,10 @@ mark:where([data-annotate]) {
        data-msg-success              confirmation shown after sending
        data-msg-failure              shown when sending fails
        data-msg-unwired              added after the success message when
-                                     the action is still a {{PLACEHOLDER}}
+                                     the action is still a {{…}} marker
                                      or empty (demonstration: nothing sent)
      form[data-demo]                 written on load when the action is
-                                     still a {{PLACEHOLDER}} or empty:
+                                     still a {{…}} marker or empty:
                                      submissions are demonstrations, never
                                      sent, counted by tracking.js under
                                      form_demo_submit instead of the lead
@@ -4730,7 +4730,7 @@ mark:where([data-annotate]) {
     status(form, text);
   }
 
-  // The endpoint is still a {{PLACEHOLDER}} (or missing): a demonstration.
+  // The endpoint is still a {{…}} marker (or missing): a demonstration.
   function unwired(form) {
     var action = form.getAttribute('action') || '';
     return !action || /\{\{/.test(action);

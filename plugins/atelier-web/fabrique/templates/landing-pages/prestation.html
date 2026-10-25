@@ -6,7 +6,7 @@
 <title>Ouvrance · Audit d’accessibilité numérique</title>
 <meta name="description" content="Vos parcours testés avec des utilisateurs de lecteur d’écran, puis chaque correction livrée en ticket priorisé. Devis sous trois jours ouvrés.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="generator" content="assemble-landing.py · sha256:2e252ede10001f4d945a6fb128f82500229e34c4115b544e3314e8d8f34951b6">
+<meta name="generator" content="assemble-landing.py · sha256:77dd8c9e4d033185792eade57c97e8da66d6cc9ee3619ad9d3659bdbe00b4f1c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -4922,10 +4922,10 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
        data-msg-success              confirmation shown after sending
        data-msg-failure              shown when sending fails
        data-msg-unwired              added after the success message when
-                                     the action is still a {{PLACEHOLDER}}
+                                     the action is still a {{…}} marker
                                      or empty (demonstration: nothing sent)
      form[data-demo]                 written on load when the action is
-                                     still a {{PLACEHOLDER}} or empty:
+                                     still a {{…}} marker or empty:
                                      submissions are demonstrations, never
                                      sent, counted by tracking.js under
                                      form_demo_submit instead of the lead
@@ -5008,7 +5008,7 @@ html.s-reco-back::view-transition-new(s-reco-stage) {
     status(form, text);
   }
 
-  // The endpoint is still a {{PLACEHOLDER}} (or missing): a demonstration.
+  // The endpoint is still a {{…}} marker (or missing): a demonstration.
   function unwired(form) {
     var action = form.getAttribute('action') || '';
     return !action || /\{\{/.test(action);

@@ -11,10 +11,10 @@
        data-msg-success              confirmation shown after sending
        data-msg-failure              shown when sending fails
        data-msg-unwired              added after the success message when
-                                     the action is still a {{PLACEHOLDER}}
+                                     the action is still a {{…}} marker
                                      or empty (demonstration: nothing sent)
      form[data-demo]                 written on load when the action is
-                                     still a {{PLACEHOLDER}} or empty:
+                                     still a {{…}} marker or empty:
                                      submissions are demonstrations, never
                                      sent, counted by tracking.js under
                                      form_demo_submit instead of the lead
@@ -97,7 +97,7 @@
     status(form, text);
   }
 
-  // The endpoint is still a {{PLACEHOLDER}} (or missing): a demonstration.
+  // The endpoint is still a {{…}} marker (or missing): a demonstration.
   function unwired(form) {
     var action = form.getAttribute('action') || '';
     return !action || /\{\{/.test(action);

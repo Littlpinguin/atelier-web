@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="Le kit de relance des factures impayées">
 <meta property="og:description" content="Six modèles d’emails, du rappel aimable à la mise en demeure, et le calendrier pour les envoyer.">
-<meta name="generator" content="assemble-landing.py · sha256:1e57abe887685386aed0f51a328f1f7e59dbe9f94e34291da518826020549a65">
+<meta name="generator" content="assemble-landing.py · sha256:5efca8052cadc57258b9a790ed9dff444b67481981add5079ef43fdc3b12561d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -3061,10 +3061,10 @@ mark:where([data-annotate]) {
        data-msg-success              confirmation shown after sending
        data-msg-failure              shown when sending fails
        data-msg-unwired              added after the success message when
-                                     the action is still a {{PLACEHOLDER}}
+                                     the action is still a {{…}} marker
                                      or empty (demonstration: nothing sent)
      form[data-demo]                 written on load when the action is
-                                     still a {{PLACEHOLDER}} or empty:
+                                     still a {{…}} marker or empty:
                                      submissions are demonstrations, never
                                      sent, counted by tracking.js under
                                      form_demo_submit instead of the lead
@@ -3147,7 +3147,7 @@ mark:where([data-annotate]) {
     status(form, text);
   }
 
-  // The endpoint is still a {{PLACEHOLDER}} (or missing): a demonstration.
+  // The endpoint is still a {{…}} marker (or missing): a demonstration.
   function unwired(form) {
     var action = form.getAttribute('action') || '';
     return !action || /\{\{/.test(action);
