@@ -8,16 +8,16 @@ Ce document dit ce qu'on vise avec l'atelier et pourquoi les skills travaillent 
 
 Ce qu'on vise, à chaque page :
 - **un objet fort** autour duquel le hero se construit, et qui nomme la direction (« la page du billet », « la page de la carte ») ;
-- **du réel montré plutôt que décrit** : captures du vrai produit, vraies réalisations, vrais documents, vraies personnes avec leur accord ;
+- **du réel qu'on montre** : captures du vrai produit, vraies réalisations, vrais documents, vraies personnes avec leur accord ;
 - **un ou deux moments de mise en scène** au défilement, un seul par section ;
-- **un moment qu'on ne voit pas ailleurs** : une méthode qui se déroule sous les yeux, un personnage de la marque, un process rejoué en animation plutôt qu'un schéma ;
+- **un moment qu'on ne voit pas ailleurs** : une méthode qui se déroule sous les yeux, un personnage de la marque, un process rejoué en animation ;
 - **une cohérence au pixel près** avec le reste du site : mêmes sections, mêmes marges, mêmes signatures.
 
-## 2. La doctrine d'abord, jamais de mémoire
+## 2. La doctrine écrite d'abord
 
 Avant la première ligne, la doctrine de la marque est écrite dans le projet (`atelier/marque/`) : valeurs exactes, voix, preuves autorisées, système de design du site, ce que la marque a déjà refusé. Les skills la lisent et s'arrêtent si elle manque. C'est ce qui permet de transmettre l'atelier : la méthode est commune, la marque reste chez chacun.
 
-**Réutiliser avant de créer.** Une section qui existe sur le site se reprend telle quelle. Une variante change la mise en page, jamais le style. Une section nouvelle qui servira ailleurs entre dans la bibliothèque ou dans `design.md`.
+**Réutiliser avant de créer.** Une section qui existe sur le site se reprend telle quelle. Une variante change la mise en page et garde le style. Une section nouvelle qui servira ailleurs entre dans la bibliothèque ou dans `design.md`.
 
 ## 3. Le fond avant le dessin
 
@@ -29,7 +29,7 @@ Avant la première ligne, la doctrine de la marque est écrite dans le projet (`
 ## 4. Le déroulé d'une page ambitieuse
 
 1. **Cadrer en une seule salve** : toutes les questions bloquantes d'un coup, chacune avec l'option recommandée et ses conséquences.
-2. **Chercher l'inspiration en images** pendant le cadrage : pages qui convertissent pour le même type d'offre, galeries visuelles, composants animés. Une référence se regarde, elle ne se juge pas sur son titre.
+2. **Chercher l'inspiration en images** pendant le cadrage : pages qui convertissent pour le même type d'offre, galeries visuelles, composants animés. Une référence se juge sur ses images.
 3. **Montrer deux ou trois directions** en maquettes rapides, chacune nommée par son objet signature. En recommander une. L'humain choisit.
 4. **Écrire la spec** avec les textes définitifs, section par section.
 5. **Poser avant de paralléliser** : textes, charte de la page, un emplacement par section.
@@ -39,7 +39,7 @@ Avant la première ligne, la doctrine de la marque est écrite dans le projet (`
 9. **Mesurer, puis quatre revues** (design, marque, conversion, accessibilité), une vague de corrections arbitrée.
 10. **Livrer** après QA sans erreur et brand-check positif ; publication sur go explicite, à chaque fois.
 
-Pour une page ou une section sur un site existant, le déroulé se resserre : lire le système du site, reprendre ses sections, construire en gros blocs, rendre, montrer, itérer. Pas de cérémonie de micro-validation : l'humain juge sur le rendu.
+Pour une page ou une section sur un site existant, le déroulé se resserre : lire le système du site, reprendre ses sections, construire en gros blocs, rendre, montrer, itérer. On avance en gros blocs et l'humain juge sur le rendu.
 
 ## 5. Les goûts par défaut
 
@@ -55,11 +55,11 @@ Ces règles viennent de retours réels sur des pages livrées. Elles valent tant
 | Captures | Entières dans l'écran, explication à côté et repères numérotés |
 | Formulaires | En étapes qui tiennent chacune dans un écran de portable sans défiler |
 | Transitions | Fondu inversé ; jamais de cartes qui s'empilent ; rien entre le hero et la section suivante |
-| Épinglages | Une section épinglée se bloque pour de bon ; trois au plus, jamais deux d'affilée |
+| Épinglages | Une section épinglée se bloque pour de bon ; trois au plus, chacune suivie d'une respiration |
 | Boutons | Un verbe court, sans prix ; un seul objectif par page |
 | Logos tiers | Monochromes dans la couleur de la marque, sans tuile blanche |
-| Illustrations | Sans fond ajouté derrière ; crédit IA dans le texte alternatif, jamais en clair |
-| Urgence | Vraies places, vraie date, comptées en jours ; jamais de compte à rebours en secondes |
+| Illustrations | Posées sur le fond de la page, sans pavé ajouté derrière ; crédit IA placé dans le texte alternatif |
+| Urgence | Vraies places et vraie date, comptées en jours |
 
 ## 6. Le contrôle
 

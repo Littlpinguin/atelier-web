@@ -1,30 +1,38 @@
-# Atelier web
+# Atelier web for Claude Code
 
-La méthode et les outils que j'utilise avec Claude Code pour créer des pages web belles, cohérentes et qui convertissent, réunis dans un plugin à installer sur n'importe quel projet.
+**English** · [Français](README.fr.md)
 
-Le plugin ne contient aucune marque : chaque projet pose sa propre doctrine (couleurs, polices, voix, preuves, système de design du site), et toutes les skills la lisent avant de produire. Résultat : des pages qui ressemblent au site qu'elles rejoignent, au pixel près, plutôt qu'à un gabarit généré.
+[![MIT license](https://img.shields.io/badge/license-MIT-0D1B2A.svg)](LICENSE) ![Version 1.0.0](https://img.shields.io/badge/version-1.0.0-0D1B2A.svg) ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-F9DC5C.svg) ![24 skills](https://img.shields.io/badge/skills-24-1B4965.svg) ![7 agents](https://img.shields.io/badge/agents-7-1B4965.svg)
 
-Jessy Martin · [jessem.fr](https://jessem.fr) · dépôt privé, partagé sur invitation.
+![Atelier web: three landing pages for three fictional brands, built by the same factory](docs/assets/apercu-en.webp)
 
----
+**Atelier web is a Claude Code plugin for designing and building beautiful, high-converting landing pages and web pages that look exactly like the brand they serve.** It bundles 24 skills, 7 agents (visual research, parallel section builders, design, brand, conversion and accessibility reviewers), a library of 44 proven landing sections, and a QA step that measures the real render before showing you anything.
 
-## Ce que contient le dépôt
+It packages the method I use to build my clients’ websites and landing pages. I'm [Jessy Martin](https://jessem.fr/en/), a French consultant and trainer who helps marketing teams work with Claude Code and AI agents.
 
-| Élément | Contenu |
-|---|---|
-| **Plugin `atelier-web`** | 24 skills, 7 agents, un hook de contrôle de marque, la fabrique de pages et les modèles de doctrine |
-| **Fabrique** | 44 sections éprouvées (hero, preuves, programme, offre, FAQ, porte de choix…), 6 modèles de landing, 10 outils interactifs avec capture, et les scripts d'assemblage, de QA mesurée, de génération des jetons et de lint de marque |
-| **Outils complémentaires** | Le script qui installe les plugins tiers que j'utilise avec l'atelier, depuis leur source d'origine |
-| **Méthode** | [`docs/methode.md`](docs/methode.md) : le niveau attendu et la manière d'y arriver |
+> The skills are written in French. Claude builds your pages in any language you ask for.
 
-## Installer
+## The problem it solves
 
-**Prérequis**
-- [Claude Code](https://claude.com/claude-code) (application de bureau, onglet Code, ou terminal).
-- Un accès à ce dépôt privé (invitation GitHub), et git authentifié sans invite : `gh auth login` puis `gh auth setup-git`.
-- Python 3.11 ou plus récent, et pour la QA du rendu : `pip install playwright pillow pyyaml && playwright install chromium`.
+Claude Code can build a page in minutes. Left alone, it tends to build the same page every time: a purple gradient, stacked white cards, a default font, made-up numbers, and a render that never gets checked on a phone before it ships.
 
-**L'atelier seul**
+Atelier web changes three things:
+
+1. **Brand first.** Each project writes its brand doctrine once (colors, fonts, voice, allowed proof points, site components), and every skill reads it before producing anything. Pages look like the site they join.
+2. **A method tested on real pages.** Scoping in one round of questions, visual directions named after their signature object, the hero approved first, sections built in parallel, four specialized reviews, then one arbitrated round of fixes.
+3. **Measured QA.** Horizontal overflow, contrast, text size floors, a call to action visible without scrolling on mobile, background continuity between sections, reduced motion: all measured at three screen sizes before you see the page.
+
+## One factory for every brand
+
+The three pages below come out of the same commands with three different brand doctrines. The brands are fictional.
+
+| Training | Event | Service |
+|---|---|---|
+| ![Training landing page, fictional brand Ferlane](docs/assets/landing-ferlane.webp) | ![Event landing page, fictional brand Brivalle](docs/assets/landing-brivalle.webp) | ![Service landing page, fictional brand Ouvrance](docs/assets/landing-ouvrance.webp) |
+
+## Install
+
+Requirements: [Claude Code](https://claude.com/claude-code) (desktop app or terminal), Python 3.11+, and for rendering QA `pip install playwright pillow pyyaml && playwright install chromium`.
 
 ```bash
 claude plugin marketplace add Littlpinguin/atelier-web
@@ -34,70 +42,63 @@ claude plugin marketplace add Littlpinguin/atelier-web
 claude plugin install atelier-web@atelier-web
 ```
 
-**L'atelier et les outils complémentaires** (depuis une copie du dépôt)
+Restart Claude Code. To add the plugins I use alongside it (UI/UX Pro Max, frontend-design, superpowers, and optionally GSAP, Three.js, SEO and Figma), run `./outils-complementaires/installer.sh` from a clone of this repository (details in [`outils-complementaires/README.md`](outils-complementaires/README.md), in French).
 
-```bash
-./outils-complementaires/installer.sh
-```
+**For a team**: add [`outils-complementaires/settings-projet.json`](outils-complementaires/settings-projet.json) to the project's `.claude/settings.json` and commit it. Everyone gets the plugin when they open the folder.
 
-`--tout` ajoute l'animation avancée et la 3D, le SEO, les marketing skills d'origine et Figma ; `--projet` installe pour le projet courant seulement ; `--essai` affiche les commandes sans rien installer. Détail : [`outils-complementaires/README.md`](outils-complementaires/README.md).
+## Quick start
 
-**Pour une équipe sur un même projet** : ajouter le contenu de [`outils-complementaires/settings-projet.json`](outils-complementaires/settings-projet.json) au `.claude/settings.json` du projet et le commiter. Chaque membre accepte la confiance du dossier à l'ouverture ; si `/plugin` signale le plugin comme « activé mais non installé », une seule commande suffit : `claude plugin install atelier-web@atelier-web --scope project`.
+1. Open Claude Code in your website's folder.
+2. Run `/atelier-web:demarrer-projet-web`: Claude reads your site and your content, drafts the brand doctrine, has you approve it block by block, and writes it to `atelier/marque/`.
+3. Run `/atelier-web:landing-page` for a landing page, `/atelier-web:page-web` for a page or section on an existing site, or `/atelier-web:design-redesign` to modernize a site that looks dated.
 
-Redémarrer Claude Code après l'installation.
+Every deliverable goes through `qa-rendu` (rendering QA) and `brand-check` before you see it.
 
-## Démarrer dans un projet
+## What's inside
 
-Ouvrir la session dans le dossier du projet, puis :
-
-1. **`/atelier-web:demarrer-projet-web`** : lit le site et vos contenus, propose la doctrine de marque (jetons, signatures visuelles, composants, voix, preuves, personas), la fait valider bloc par bloc, l'écrit dans `atelier/marque/` et ajoute un bloc « Atelier web » au `CLAUDE.md` du projet. Une fois par projet.
-2. Ensuite, selon le besoin :
-   - **`/atelier-web:landing-page`** pour une landing, une page de vente, d'inscription ou de campagne ;
-   - **`/atelier-web:page-web`** pour une page ou une section sur un site qui existe ;
-   - **`/atelier-web:design-redesign`** pour moderniser un site qui fait daté.
-
-Chaque livrable passe par **`qa-rendu`** (rendu mesuré et capturé) puis **`brand-check`** (validation finale) avant de vous être montré.
-
-## Les skills
-
-| Famille | Skills | À quoi elles servent |
-|---|---|---|
-| Démarrer | `demarrer-projet-web` | Poser la doctrine du projet, orienter vers la bonne skill |
-| Produire une page | `landing-page`, `page-web`, `lead-magnet` | Playbook de landing en huit phases ; page ou section sur un site existant ; outil ou guide contre un email |
-| Direction et système | `design-direction`, `design-taste`, `design-system`, `design-redesign` | Direction artistique distinctive, protocole anti-gabarit, jetons et échelles, refonte |
-| Mouvement | `motion-defilement`, `animation-gsap`, `animation-scroll-reveal`, `animation-animejs`, `animation-lottie` | Grammaire du mouvement, défilement fluide, épinglages, puis la technique de chaque bibliothèque |
-| Conversion | `cro-page`, `cro-form`, `cro-popup`, `cro-pricing` | Proposition de valeur, objections, formulaires, pop-ups, pages tarifs |
-| Textes | `copywriting`, `copy-editing`, `humanize-writing` | Rédaction, relecture en passes, chasse aux tournures « générées » |
-| Contrôle | `qa-rendu`, `design-review`, `accessibility-web`, `brand-check` | Rendu mesuré, revue d'interface, WCAG 2.2 AA, conformité à la marque |
-
-## Les agents
-
-| Agent | Rôle |
+| Family | Skills |
 |---|---|
-| `landing-researcher` | Benchmark de pages qui convertissent et recherche visuelle regardée en images, en arrière-plan |
-| `landing-section-builder` | Construit une section dans les seuls fichiers qu'on lui confie, en parallèle des autres |
-| `landing-reviewer-design` | Revue de cohérence webdesign : en-têtes, rythme, matières, typographie, mouvement, responsive |
-| `landing-reviewer-brand` | Revue de marque : voix, ton, visuel, preuves, droits |
-| `landing-reviewer-cro` | Revue de conversion : récit, objections, CTA, bloc de conversion, mesure |
-| `landing-reviewer-a11y` | Revue d'accessibilité statique en 14 points, contrastes calculés |
-| `a11y-auditor` | Audit d'accessibilité en rendu réel (axe-core, parcours clavier) |
+| Start | `demarrer-projet-web`: project brand doctrine and routing |
+| Build a page | `landing-page` (8-phase playbook), `page-web` (existing site), `lead-magnet` (tool or guide in exchange for an email) |
+| Direction and system | `design-direction`, `design-taste`, `design-system`, `design-redesign` |
+| Motion | `motion-defilement` (scroll and motion grammar), `animation-gsap`, `animation-scroll-reveal`, `animation-animejs`, `animation-lottie` |
+| Conversion | `cro-page`, `cro-form`, `cro-popup`, `cro-pricing` |
+| Copy | `copywriting`, `copy-editing`, `humanize-writing` |
+| Quality | `qa-rendu` (rendering QA), `design-review`, `accessibility-web`, `brand-check` |
 
-## La fabrique
+**Agents**: `landing-researcher` (benchmark and visual research in the background), `landing-section-builder` (one section per agent, in parallel), `landing-reviewer-design`, `landing-reviewer-brand`, `landing-reviewer-cro`, `landing-reviewer-a11y`, and `a11y-auditor` (accessibility on the real render).
 
-Les scripts se lancent depuis la racine du projet ; ils lisent la marque dans `atelier/marque/` (ou le dossier de `ATELIER_MARQUE`).
+**Factory**: 44 sections (hero, proof, program, offer, FAQ, choice gate, comparison and more), 6 landing page templates (training, event, service, B2B demo, long-form sales, lead capture), 10 interactive lead magnets (ROI calculator, scored diagnostic, quiz and more), and the scripts `assemble-landing.py`, `qa-landing.py`, `controle-fonds.py`, `build-tokens.py`, `lint-brand.py`. A hook runs the brand linter after every page Claude writes.
 
-| Script | Rôle |
-|---|---|
-| `assemble-landing.py` | Spec (sections et textes) → page HTML autonome, aux couleurs du projet |
-| `qa-landing.py` | QA mesurée à trois tailles d'écran et en mouvement réduit : débordements, contrastes, planchers typographiques, CTA sous le pli, suivi |
-| `controle-fonds.py` | Continuité des fonds entre sections, mesurée dans les marges |
-| `build-tokens.py` | `tokens.json` → variables CSS du projet, contrastes WCAG garantis sur les dérivées |
-| `lint-brand.py` | Linter de marque déterministe : vocabulaire banni, tirets, ponctuation des titres, couleurs et polices hors marque |
-| `lint-placeholders.py` | Vérifie qu'aucun `{{…}}` ne reste dans la doctrine |
+The full method (in French) is in [`docs/methode.md`](docs/methode.md).
 
-Le catalogue des sections s'ouvre dans un navigateur : `plugins/atelier-web/fabrique/templates/sections/catalogue.html`.
+## FAQ
 
-## Mettre à jour
+**Do I need to know how to code?**
+For everyday use, you can do without it: you describe the page, approve the direction and review the render. Reading HTML helps if you want to go further.
+
+**Does it work with Next.js, Astro or WordPress?**
+The factory outputs self-contained HTML pages, ready for a static site. In a framework, the assembled page acts as a faithful mockup, then gets ported to components with the same design tokens. The design, conversion and review skills apply to any stack.
+
+**How is it different from frontend-design or UI/UX Pro Max?**
+Both are excellent, and Atelier web includes adapted parts of them (see [`CREDITS.md`](CREDITS.md)). frontend-design gives an aesthetic direction; UI/UX Pro Max gives a database of styles, palettes and rules. Atelier web adds a per-project brand doctrine, an end-to-end method with specialized agents, a section library and measured QA. They work well together, and the installer sets them up side by side.
+
+**Is it free?**
+Yes, under the MIT license. If you want your team trained on it, I run a course on [building web pages with Claude](https://jessem.fr/en/training/build-web-pages-with-claude/).
+
+**Does my data go anywhere?**
+The plugin has no remote service: scripts run on your machine, and your brand doctrine stays in your project.
+
+## About
+
+I'm Jessy Martin. I help marketing teams adopt Claude Code and AI agents through consulting and training, and I teach at Clermont School of Business. Atelier web comes from the pages I build for clients and from my own website, [jessem.fr](https://jessem.fr/en/).
+
+- Training: [build web pages with Claude, from brief to publication](https://jessem.fr/en/training/build-web-pages-with-claude/)
+- Method: [how to build a website with Claude Code](https://jessem.fr/en/blog/build-website-with-claude-code)
+- Other open projects: [marketing-cockpit-template](https://github.com/Littlpinguin/marketing-cockpit-template) (a marketing department inside Claude Code, which Atelier web is extracted from), [claude-site-starter](https://github.com/Littlpinguin/claude-site-starter) (a static website starter)
+- [LinkedIn](https://www.linkedin.com/in/jessy-martin/)
+
+## Update
 
 ```bash
 claude plugin marketplace update atelier-web
@@ -107,10 +108,8 @@ claude plugin marketplace update atelier-web
 claude plugin update atelier-web@atelier-web
 ```
 
-La doctrine de chaque projet n'est jamais touchée par une mise à jour : elle vit dans le projet.
+Updates never touch your projects' brand doctrine.
 
-## Règles de ce dépôt
+## License
 
-- **Aucune donnée de marque ni de client ici.** Les valeurs, textes et assets d'une marque vivent dans son projet (`atelier/marque/`). Les exemples de la fabrique utilisent des marques fictives.
-- **Aucun secret.** Clés et identifiants restent dans le `.env` local de chaque projet.
-- Les contenus repris de projets tiers gardent leur licence et leur attribution : voir [`CREDITS.md`](CREDITS.md).
+MIT. Content adapted from third-party projects keeps its license and attribution: see [`CREDITS.md`](CREDITS.md).
