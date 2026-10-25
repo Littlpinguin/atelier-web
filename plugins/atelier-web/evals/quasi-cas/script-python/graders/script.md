@@ -1,4 +1,5 @@
 ---
 type: 'regex'
-pattern: '\.lower\(\)'
+target: 'trace'
+pattern: '\.(?:lower|casefold)\(\)'
 ---

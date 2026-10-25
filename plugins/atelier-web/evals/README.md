@@ -31,17 +31,23 @@ La même fixture sert aux tests de bout en bout de la fabrique : copier `projet-
 
 ## Lancer
 
-Depuis `plugins/atelier-web/`, Claude Code 2.1.269 ou plus, CLI connecté (`claude auth status`) :
+Claude Code 2.1.269 ou plus, CLI connecté (`claude auth status`). Depuis la racine du dépôt, copier le plugin hors du dossier personnel puis lancer la suite sur cette copie :
 
 ```bash
-claude plugin eval . --scaffold --trust-plugin --allow-tools Write Edit Bash --model claude-sonnet-5-5 --judge-model claude-haiku-5-5 --no-publish --max-cost-usd 40 -j 4
+rsync -a --delete --exclude evals/results --exclude __pycache__ plugins/atelier-web/ /tmp/atelier-web-eval/
 ```
 
+```bash
+claude plugin eval /tmp/atelier-web-eval --scaffold --trust-plugin --allow-tools Write Edit Bash --disallow-tools Agent --model claude-sonnet-5-5 --judge-model claude-sonnet-5-5 --no-publish --max-cost-usd 25 -j 4
+```
+
+- **Copie hors du dossier personnel** : le bac à sable des runs rend le dossier personnel illisible pour Bash. Depuis `~/claude-projets/…`, les scripts de la fabrique ne se lancent pas et le cas de bout en bout échoue avec le plugin (constaté le 25/10/2026). Les résultats sortent alors dans `/tmp/atelier-web-eval/evals/results/`.
 - `--scaffold` installe la fixture ; `--allow-tools Write Edit Bash` n'est utile qu'au cas de bout en bout (Bash tourne dans le bac à sable du système).
-- **Lancer la suite depuis une copie du plugin placée hors du dossier personnel**, par exemple `rsync -a --exclude evals/results plugins/atelier-web/ /tmp/atelier-web-eval/` puis `claude plugin eval /tmp/atelier-web-eval …`. Le bac à sable des runs rend le dossier personnel illisible pour Bash : depuis `~/claude-projets/…`, les scripts de la fabrique ne se lancent pas et le cas de bout en bout échoue avec le plugin (constaté le 25/10/2026).
-- Modèles épinglés pour comparer les runs entre eux : un changement de modèle n'est pas une régression du plugin.
-- Un seul cas, un seul bras, pour itérer : `claude plugin eval . --case <cas> --runs 1 --ablation none --scaffold --trust-plugin`.
-- Avec Claude Code 2.1.308, `--keep-temp` fait refuser les cas à fixture (« more than one hard link ») : le laisser de côté.
+- `--disallow-tools Agent` : sans lui, `landing-page` lance `landing-researcher` en arrière-plan, le réseau du bac à sable bloque ses galeries, et la réponse jugée de `landing-cadrage` devient le compte rendu de cette recherche.
+- Juge Sonnet : Haiku a rendu un faux négatif sur `brand-check-brouillon` au passage du 25/10/2026.
+- Trois runs par cas et par bras (défaut) ; modèles épinglés pour comparer les passages entre eux : un changement de modèle n'est pas une régression du plugin.
+- Un seul cas, un seul bras, pour itérer : `claude plugin eval /tmp/atelier-web-eval --case <cas> --runs 1 --ablation none --scaffold --trust-plugin`.
+- Avec Claude Code 2.1.308, `--keep-temp` fait refuser les cas à fixture (« more than one hard link ») : le garder pour les cas sans fixture.
 - Les résultats vont dans `results/`, ignoré par git.
 
 ## Δ de référence
