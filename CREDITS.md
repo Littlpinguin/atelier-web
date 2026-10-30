@@ -22,4 +22,4 @@ Les plugins installés par `outils-complementaires/installer.sh` ne sont pas cop
 
 ## Licence de l'atelier
 
-MIT (voir [`LICENSE`](LICENSE)). La notice Apache-2.0 de `frontend-design` s'applique à `plugins/atelier-web/skills/design/references/direction.md`, qui en dérive.
+MIT (voir [`LICENSE`](LICENSE)). Des parties de l'atelier dérivent des œuvres tierces listées ci-dessus, sous licence MIT ou Apache-2.0 ; leurs notices et attributions restent dans les fichiers concernés. La notice Apache-2.0 de `frontend-design` s'applique à `plugins/atelier-web/skills/design/references/direction.md`, qui en dérive.
